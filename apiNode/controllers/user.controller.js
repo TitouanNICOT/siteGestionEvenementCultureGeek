@@ -2,8 +2,7 @@
 import userS from "../services/user.service.js"
 
 const list = (req,res) => {
-    var role = req.query.role;
-    userS.getAllUser(role,(error,results)=>{
+    userS.getAllUser((error,results)=>{
         if (error)
             return res.status(404).send({success:0,data:error})
         return res.status(200).send({success:1,data:results})

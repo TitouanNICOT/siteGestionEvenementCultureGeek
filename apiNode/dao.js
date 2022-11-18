@@ -67,7 +67,7 @@ class AppDAO{
                     console.log(err)
                     reject(err)
                 }else{
-                    resolve(result)
+                    resolve(result.rows)
                 }
             })
         })
@@ -77,7 +77,8 @@ class AppDAO{
         const client = await this.db.connect();
         try {
             const res = await client.query(sql+" returning *",params)
-            console.log("INSERTED : "+res.rows[0])
+            console.log("INSERTED : ")
+            console.log(res.rows[0])
         }catch (e) {
             console.log(e)
         }finally {
