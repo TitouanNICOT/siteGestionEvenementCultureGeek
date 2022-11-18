@@ -9,6 +9,12 @@ dotenv.config();
 const port = process.env.PORT;
 import users from './routes/user.router.js';
 
+import AppDAO from "./dao.js";
+//const UserRepository = require("./repositories/user.repository")
+import UserRepository  from  "./repositories/user.repository.js" ;
+global.dao = new AppDAO();
+global.userRepo = new UserRepository(dao);
+
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 
@@ -37,4 +43,17 @@ app.get("/",(req, res)=>{
 
 app.listen(port,()=>{
     console.log("Le serveur ecoute sur port " + port);
+    userRepo.createTable()
+        .then(()=>{
+            return userRepo.count()
+        })
+        .then((numrows)=>{
+            console.log("num row nin employe "+numrows)
+            if (numrows==0){
+                return userRepo.initTable()
+            }
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
 });
