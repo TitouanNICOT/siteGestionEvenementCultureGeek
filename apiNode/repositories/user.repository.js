@@ -16,7 +16,7 @@ class user{
                         idRole int
                         -- FOREIGN KEY(idRole) REFERENCES role(idRole) //ON DELETE CASCADE
                     )`
-        return this.dao.run(sql,"User table ok")
+        return this.dao.run(sql)
     }
     async count(){
         let sql="select count(*) from users"
@@ -29,10 +29,7 @@ class user{
             ["test","test","test","aaa","emm@ee",false,0]
         ]
         for (const emp of data){
-            let cols=emp
-            let query = "insert into users(nom,prenom,pseudo,password, email, isNotif, idRole) " +
-                "values($1,$2,$3,$4,$5,$6,$7)";
-            await this.dao.save(query,cols);
+            this.newUser(emp)
         }
     }
 
@@ -43,8 +40,27 @@ class user{
     }
 
     async getUserById(id){
-        const sql="select * from user where idUser=$1"
+        const sql="select * from users where idUser=$1"
         return await dao.get(sql,[id]);
+    }
+
+    async newUser(data){
+        console.log(data)
+        let query = "insert into users(nom,prenom,pseudo,password, email, isNotif, idRole) " +
+            "values($1,$2,$3,$4,$5,$6,$7)";
+        await this.dao.insert(query,data);
+    }
+
+    async modifUser(data){
+        console.log(data)
+        let query = "update users set nom=$1, prenom=$2, pseudo=$3, password=$4, email=$5, isNotif=$6, idRole=$7 where idUser=$8 ";
+        return await this.dao.run(query,data);
+    }
+
+    async deleteUser(id){
+        console.log(id)
+        let query = "delete from users where idUser=$1 ";
+        return await this.dao.run(query,[id]);
     }
 
 }
