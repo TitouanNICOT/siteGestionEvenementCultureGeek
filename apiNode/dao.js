@@ -33,56 +33,60 @@ class AppDAO{
         }
     }
 
-    async run(sql,success_message="OK"){//update
+    async run(sql,data=[]){//update
         const client = await this.db.connect();
+        let res = false;
         try {
-            await client.query(sql)
-            console.log(success_message)
+            await client.query(sql,data)
+            res= true
         }catch (e) {
             console.log(e)
-        }finally {
-            client.release();
         }
+        client.release();
+        console.log(res)
+        return res;
     }
 
-    get(sql,params=[]){ //select
-        return new Promise((resolve,reject)=>{
-            this.db.query(sql,params,(err,result)=>{
-                if (err){
-                    console.log("erreur execution",sql)
-                    console.log(err)
-                    reject(err)
-                }else{
-                    resolve(result.rows[0])
-                }
-            })
-        })
-    }
-
-    all(sql,params=[]){ //select
-        return new Promise((resolve,reject)=>{
-            this.db.query(sql,params,(err,result)=>{
-                if (err){
-                    console.log("erreur execution",sql)
-                    console.log(err)
-                    reject(err)
-                }else{
-                    resolve(result)
-                }
-            })
-        })
-    }
-
-    async save(sql,params=[]){//insert
+    async get(sql, params = []) { //select
         const client = await this.db.connect();
+        let res=null;
         try {
-            const res = await client.query(sql+" returning *",params)
-            console.log("INSERTED : "+res.rows[0])
+            res = await client.query(sql, params)
+            res=  res.rows[0]
+        }catch (e) {
+            console.log("erreur execution", sql)
+            console.log(e);
+        }
+        client.release();
+        return res;
+    }
+
+    async all(sql, params = []) { //select
+        const client = await this.db.connect();
+        let res=null;
+        try {
+            res = await client.query(sql, params)
+            res=res.rows
+            console.log(res)
+        }catch (e) {
+            console.log(e);
+        }
+        client.release();
+        return res;
+    }
+
+    async insert(sql,params=[]){//insert
+        const client = await this.db.connect();
+        let res = null;
+        try {
+            res = await client.query(sql+" returning *",params)
+            res=  res.rows[0]
+            console.log("INSERTED : "+res)
         }catch (e) {
             console.log(e)
-        }finally {
-            client.release();
         }
+        client.release();
+        return res;
     }
 
 }

@@ -31,6 +31,9 @@ global.userRepo = new UserRepository(dao);
 // };
 // const swaggerDocs = swaggerJsdoc(swaggerOption);
 
+import cors from 'cors'
+app.use(cors())
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); //?
