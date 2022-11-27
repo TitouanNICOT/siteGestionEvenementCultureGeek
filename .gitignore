@@ -1,3 +1,4 @@
 node_modules/
 .idea
 apiNode/.env
+package-lock.json
