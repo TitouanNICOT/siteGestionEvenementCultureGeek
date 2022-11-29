@@ -1,4 +1,4 @@
 node_modules/
 .idea
-apiNode/.env
+.env
 package-lock.json
