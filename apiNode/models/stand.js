@@ -1,13 +1,14 @@
-export const Type_stand = (Sequelize,sequelize)=>{
-    return sequelize.define('type_stand', {
-        idTypeStand: {
+export const Stand = (Sequelize,sequelize)=>{
+    return sequelize.define('stand', {
+        idEmplacement: {
             type: Sequelize.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
             allowNull: false
         },
-        libelleTypeStand:{
+        descriptionEmplacement:{
             type: Sequelize.STRING,
             allowNull: false
         }
-    },{ timestamps: false})
+    })
 }
