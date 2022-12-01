@@ -1,6 +1,6 @@
 /* Réinitialise les tables afin que les valeurs mises dans les tables ne soient
 pas comptées en double. à mettre en commentaire si besoin. */
-DELETE * FROM *;
+-- DELETE * FROM *;
 \i tables.sql
 
 
@@ -30,7 +30,7 @@ INSERT INTO equipe VALUES(DEFAULT, 'Miserys Nemesis');
 INSERT INTO equipe VALUES(DEFAULT, 'The Winter of Polaris');
 INSERT INTO equipe VALUES(DEFAULT, 'Squids Evil Presentation');
 INSERT INTO equipe VALUES(DEFAULT, 'The Owl Express');
--- J'ai passé beaucoup plus de temps à trouver ces noms que j'aimerais 
+-- J'ai passé beaucoup plus de temps à trouver ces noms que j'aimerais
 -- ne l'admettre
 
 
@@ -75,9 +75,9 @@ INSERT INTO produit VALUES(DEFAULT, 'Sprite', 'limonade au citron et au citron v
 INSERT INTO produit VALUES(DEFAULT, 'T-Shirt Splatoon 2', 'T-Shirt occasionel pour un événement sur Splatoon 2. Taille: L.', 35, 'tshirtsplatoon2.jpg', 2);
 INSERT INTO produit VALUES(DEFAULT, 'Porte-clés Defect - Slay the Spire', 'Un porte-clés, dont une mini-figurine représentant Le Défecueux de Slay the Spire y est accroché (6cm)', 5, 'portecledefect.jpg', 3);
 INSERT INTO produit VALUES(DEFAULT, 'Poster The Refuge - OneShot', 'Poster du jeu OneShot montrant Niko arrivant dans le Refuge. Taille: 24cm*60cm', 9, 'posterrefuge.jpg', 4);
-INSERT INTO produit VALUES(DEFAULT, 'Halo - La chute de Reach', "Livre portant sur l'univers des jeux Halo', 20, 'livrehalolachutedereach.jpg", 5);
+INSERT INTO produit VALUES(DEFAULT, 'Halo - La chute de Reach', 'Livre portant sur l univers des jeux Halo', 20, 'livrehalolachutedereach.jpg', 5);
 INSERT INTO produit VALUES(DEFAULT, 'Le Journal', 'Oeuvre de Cedric', 20, 'lejournal.jpg', 5);
--- l'univers pas lunivers, j'ai pas réussi à inclure l'apostrophe dans la description 
+-- l'univers pas lunivers, j'ai pas réussi à inclure l'apostrophe dans la description
 
 
 INSERT INTO reserve VALUES(6, 8, 1);

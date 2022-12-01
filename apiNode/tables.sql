@@ -8,9 +8,9 @@ DROP TABLE IF EXISTS achete;
 DROP TABLE IF EXISTS reserve;
 DROP TABLE IF EXISTS produit;
 DROP TABLE IF EXISTS contient;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS type_produit;
 DROP TABLE IF EXISTS equipe;
+DROP TABLE IF EXISTS users cascade;
+DROP TABLE IF EXISTS type_produit;
 DROP TABLE IF EXISTS type_evenement;
 DROP TABLE IF EXISTS type_stand;
 DROP TABLE IF EXISTS user_role;
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS equipe(
 
 CREATE TABLE IF NOT EXISTS type_produit(
     idTypeProduit SERIAL PRIMARY KEY,
-    libelletypeProduit VARCHAR(50)
+    libelleTypeProduit VARCHAR(50)
 );
 
 

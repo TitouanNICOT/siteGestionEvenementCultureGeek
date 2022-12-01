@@ -9,12 +9,12 @@ const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME
 })
 const db = {sequelize, Sequelize};
 
-// try {
-//     await sequelize.authenticate()
-// }catch (e) {
-//     console.error(e)
-//     exit(1)
-// }
+try {
+    await sequelize.authenticate()
+}catch (e) {
+    console.error(e)
+    exit(1)
+}
 
 import {User} from "./users.js"
 db.user = User(Sequelize,sequelize)
@@ -77,6 +77,14 @@ if(option.force===true) {
     db.produit.create({idProduit: 7, libelleProduit: 'Poster The Refuge - OneShot', descriptionProduit: 'Poster du jeu OneShot montrant Niko arrivant dans le Refuge. Taille: 24cm*60cm', prix: 9, imageProduit: 'posterrefuge.jpg',idTypeProduit: 4})
     db.produit.create({idProduit: 8, libelleProduit: 'Halo - La chute de Reach', descriptionProduit: 'Livre portant sur lunivers des jeux Halo', prix: 20, imageProduit: 'livrehalolachutedereach.jpg',idTypeProduit: 5})
     db.produit.create({idProduit: 9, libelleProduit: 'Le Journal : Oeuvre de Cedric', descriptionProduit: 'Oeuvre de Cedric', prix: 20, imageProduit: 'lejournal.jpg',idTypeProduit: 5})
+    db.stand.create({idStand: 1, descriptionStand: 'stand 1', idTypeStand: 1, idPrestataire: 1})
+    db.type_evenement.create({idTypeEvenement: 1, libelleTypeEvenement: 'Tournoi'})
+    db.type_evenement.create({idTypeEvenement: 2, libelleTypeEvenement: 'Conférence'})
+    db.type_evenement.create({idTypeEvenement: 3, libelleTypeEvenement: 'Prestation Invité'})
+    db.type_evenement.create({idTypeEvenement: 4, libelleTypeEvenement: 'Exposition'})
+    db.evenement.create({idEvenement: 1, libelleEvenement: 'Tournoi Polytopia', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 1, idStand: 1})
+    db.evenement.create({idEvenement: 2, libelleEvenement: 'Tournoi Mario Kart', heureDebut: '2022-06-22 17:00:00', heureFin: '2022-06-22 20:00:00', idTypeEvenement: 1, idStand: 1})
+    db.evenement.create({idEvenement: 3, libelleEvenement: 'Conférence de Cedric', heureDebut: '2022-06-22 15:00:00', heureFin: '2022-06-22 16:30:00', idTypeEvenement: 2, idStand: 1})
 }
 
 export default db;

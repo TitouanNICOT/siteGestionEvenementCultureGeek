@@ -11,11 +11,11 @@ export const Evenement = (Sequelize,sequelize)=>{
             allowNull: false
         },
         heureDebut:{
-            type: "TIMESTAMP",
+            type: Sequelize.DATE,
             allowNull: false
         },
         heureFin:{
-            type: "TIMESTAMP",
+            type: Sequelize.DATE,
             allowNull: false
         }
     })
