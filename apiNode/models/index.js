@@ -28,6 +28,11 @@ import {Evenement} from "./evenements.js"
 db.evenement = Evenement(Sequelize,sequelize)
 import {Type_evenement} from "./type_evenement.js"
 db.type_evenement = Type_evenement(Sequelize,sequelize)
+import {Type_produit} from "./type_produit.js"
+db.type_produit = Type_produit(Sequelize,sequelize)
+import {Produit} from "./produit.js"
+db.produit = Produit(Sequelize,sequelize)
+
 
 db.user.belongsTo(db.role, {foreignKey: 'idRole'})
 db.role.hasMany(db.user, {foreignKey: 'idRole'})
@@ -43,6 +48,9 @@ db.type_evenement.hasMany(db.evenement, {foreignKey: 'idTypeEvenement'})
 
 db.evenement.belongsTo(db.evenement, {foreignKey: 'idEvenement'})
 db.evenement.hasMany(db.evenement, {foreignKey: 'idEvenement'})
+
+db.produit.belongsTo(db.type_produit, {foreignKey: 'idTypeProduit'})
+db.type_produit.hasMany(db.produit, {foreignKey: 'idTypeProduit'})
 
 let option={}
 // option.force=true

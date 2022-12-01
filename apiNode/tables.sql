@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS achete;
 DROP TABLE IF EXISTS reserve;
 DROP TABLE IF EXISTS produit;
 DROP TABLE IF EXISTS contient;
-DROP TABLE IF EXISTS tuser;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS type_produit;
 DROP TABLE IF EXISTS equipe;
 DROP TABLE IF EXISTS type_evenement;
@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS user_role;
 
 -- A NOTER :
 -- Ne me demandez pas pourquoi mais PostGreSQL n'aime pas que je donne le nom
--- de table "user". Du coup le nom de la table est "tuser" pour l'instant.
+-- de table "user". Du coup le nom de la table est "users" pour l'instant.
 
 
 -- --------------------------------------- [miroir]
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS type_produit(
 );
 
 
-CREATE TABLE IF NOT EXISTS tuser(
+CREATE TABLE IF NOT EXISTS users(
     idUser SERIAL PRIMARY KEY,
     nom VARCHAR(255),
     prenom VARCHAR(255),
@@ -58,14 +58,14 @@ CREATE TABLE IF NOT EXISTS tuser(
     email VARCHAR(255) NOT NULL,
     isNotif BOOLEAN,
     idRole INT,
-    FOREIGN KEY (idUser) REFERENCES user_role(idRole)
+    FOREIGN KEY (idRole) REFERENCES user_role(idRole)
 );
 
 CREATE TABLE IF NOT EXISTS contient(
     idUser INT, 
     idEquipe INT,
     PRIMARY KEY (idUser, idEquipe),
-    FOREIGN KEY (idUser) REFERENCES tuser(idUser),
+    FOREIGN KEY (idUser) REFERENCES users(idUser),
     FOREIGN KEY (idEquipe) REFERENCES equipe(idEquipe)
 );
 
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS reserve(
     idProduit INT,
     quantite INT,
     PRIMARY KEY(idUser, idProduit),
-    FOREIGN KEY (idUser) REFERENCES tuser(idUser),
+    FOREIGN KEY (idUser) REFERENCES users(idUser),
     FOREIGN KEY (idProduit) REFERENCES produit(idProduit)
 );
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS achete(
     idProduit INT,
     quantite INT,
     PRIMARY KEY (idUser, idProduit),
-    FOREIGN KEY (idUser) REFERENCES tuser(idUser),
+    FOREIGN KEY (idUser) REFERENCES users(idUser),
     FOREIGN KEY (idProduit) REFERENCES produit(idProduit)
 );
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS emplacement(
     y INT, 
     idUser INT,
     idTypeStand INT,
-    FOREIGN KEY (idUser) REFERENCES tuser(idUser),
+    FOREIGN KEY (idUser) REFERENCES users(idUser),
     FOREIGN KEY (idTypeStand) REFERENCES type_stand(idTypeStand)
 );
 
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS reservation(
     idUser INT,
     idEvenement INT,
     PRIMARY KEY (idUser, idEvenement),
-    FOREIGN KEY (idUser) REFERENCES tuser(idUser),
+    FOREIGN KEY (idUser) REFERENCES users(idUser),
     FOREIGN KEY (idEvenement) REFERENCES evenement(idEvenement)
 );
 
