@@ -1,7 +1,7 @@
 import db from "../models/index.js"
 
 const list = (req, res) => {
-    db.evenement.findAll({include:db.type_evenement},{include:db.stand}).then((results) => {
+    db.evenement.findAll({include: [db.type_evenement, db.stand]},).then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
         return res.status(404).send({success: 0, data: error})

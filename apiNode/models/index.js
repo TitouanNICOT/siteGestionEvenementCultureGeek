@@ -46,8 +46,8 @@ db.user.hasMany(db.stand, {foreignKey: 'idPrestataire'})
 db.evenement.belongsTo(db.type_evenement, {foreignKey: 'idTypeEvenement'})
 db.type_evenement.hasMany(db.evenement, {foreignKey: 'idTypeEvenement'})
 
-db.evenement.belongsTo(db.evenement, {foreignKey: 'idEvenement'})
-db.evenement.hasMany(db.evenement, {foreignKey: 'idEvenement'})
+db.evenement.belongsTo(db.stand, {foreignKey: 'idStand'})
+db.stand.hasMany(db.evenement, {foreignKey: 'idStand'})
 
 db.produit.belongsTo(db.type_produit, {foreignKey: 'idTypeProduit'})
 db.type_produit.hasMany(db.produit, {foreignKey: 'idTypeProduit'})
@@ -59,7 +59,9 @@ await sequelize.sync(option)//{force:true}
 
 if(option.force===true) {
     db.role.create({idRole: 1, libelle: "admin"})
-    db.role.create({idRole: 2, libelle: "user"})
+    db.role.create({idRole: 2, libelle: "prestataire"})
+    db.role.create({idRole: 3, libelle: "user"})
+    db.user.create({nom: 'Esuercal', prenom: 'Yann', pseudo:'yann', password: 'yann', email: 'yann@qerf.vv', isNotif: true, idRole: 2})
     db.type_stand.create({idTypeStand: 1, libelleTypeStand: "boutique"})
     db.type_stand.create({idTypeStand: 2, libelleTypeStand: "tournois"})
     db.type_produit.create({idTypeProduit: 1, libelleTypeProduit: 'Nourriture'})
@@ -78,13 +80,20 @@ if(option.force===true) {
     db.produit.create({idProduit: 8, libelleProduit: 'Halo - La chute de Reach', descriptionProduit: 'Livre portant sur lunivers des jeux Halo', prix: 20, imageProduit: 'livrehalolachutedereach.jpg',idTypeProduit: 5})
     db.produit.create({idProduit: 9, libelleProduit: 'Le Journal : Oeuvre de Cedric', descriptionProduit: 'Oeuvre de Cedric', prix: 20, imageProduit: 'lejournal.jpg',idTypeProduit: 5})
     db.stand.create({idStand: 1, descriptionStand: 'stand 1', idTypeStand: 1, idPrestataire: 1})
-    db.type_evenement.create({idTypeEvenement: 1, libelleTypeEvenement: 'Tournoi'})
-    db.type_evenement.create({idTypeEvenement: 2, libelleTypeEvenement: 'Conférence'})
-    db.type_evenement.create({idTypeEvenement: 3, libelleTypeEvenement: 'Prestation Invité'})
-    db.type_evenement.create({idTypeEvenement: 4, libelleTypeEvenement: 'Exposition'})
+    await db.type_evenement.create({idTypeEvenement: 1, libelleTypeEvenement: 'Tournoi'})
+    await db.type_evenement.create({idTypeEvenement: 2, libelleTypeEvenement: 'Conférence'})
+    await db.type_evenement.create({idTypeEvenement: 3, libelleTypeEvenement: 'Prestation Invité'})
+    await db.type_evenement.create({idTypeEvenement: 4, libelleTypeEvenement: 'Exposition'})
     db.evenement.create({idEvenement: 1, libelleEvenement: 'Tournoi Polytopia', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 1, idStand: 1})
     db.evenement.create({idEvenement: 2, libelleEvenement: 'Tournoi Mario Kart', heureDebut: '2022-06-22 17:00:00', heureFin: '2022-06-22 20:00:00', idTypeEvenement: 1, idStand: 1})
-    db.evenement.create({idEvenement: 3, libelleEvenement: 'Conférence de Cedric', heureDebut: '2022-06-22 15:00:00', heureFin: '2022-06-22 16:30:00', idTypeEvenement: 2, idStand: 1})
+    db.evenement.create({idEvenement: 3, libelleEvenement: 'Conférence de Cedric', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 2, idStand: 1})
 }
+// des erreurs sont survenues lorsque je ne met pas de await devant les create
+// il faudrait peut être faire un await sur chaque create
+// ou alors faire un Promise.all ---------PS : phrase genere par Copilot, donc peut etre une solution
+// ou alors faire un for await (const element of array) {await element.create()} ---------PS : phrase genere par Copilot, donc peut etre une solution
+
+// quelqu'un m'a dit q'il utilise un script sql pour faire des insertions, en plus d'utiliser sequelize
+
 
 export default db;
