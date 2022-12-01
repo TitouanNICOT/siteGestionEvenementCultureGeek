@@ -17,14 +17,6 @@ export const Evenement = (Sequelize,sequelize)=>{
         heureFin:{
             type: Sequelize.TIMESTAMP,
             allowNull: false
-        },
-        idTypeEvenement:{
-            type: Sequelize.INTEGER,
-            allowNull: false
-        },
-        idEmplacement:{
-            type: Sequelize.INTEGER,
-            allowNull: false
         }
     })
 }
