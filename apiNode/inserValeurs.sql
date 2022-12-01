@@ -112,13 +112,9 @@ INSERT INTO reservation VALUES(7, 2);
 INSERT INTO tournoi VALUES(DEFAULT, 4, 'The Battle of Polytopia', 1);
 INSERT INTO tournoi VALUES(DEFAULT, 5, 'Mario Kart 8 Deluxe', 2);
 
-
-
-
-
-
-
-
-
-
-
+INSERT INTO participe VALUES(1,1);
+INSERT INTO participe VALUES(3,1);
+INSERT INTO participe VALUES(7,2);
+INSERT INTO participe VALUES(4,1);
+INSERT INTO participe VALUES(4,2);
+INSERT INTO participe VALUES(5,2);
