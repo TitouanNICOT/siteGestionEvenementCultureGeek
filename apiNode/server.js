@@ -8,7 +8,7 @@ dotenv.config();
 
 const port = process.env.PORT;
 import users from './routes/user.router.js';
-
+import produits from './routes/produit.router.js';
 import AppDAO from "./dao.js";
 global.dao = new AppDAO();
 
@@ -36,6 +36,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); //?
 
 app.use("/users",users);
+
+app.use("/produits",produits);
 
 app.get("/",(req, res)=>{
     res.status(200).send("salut");
