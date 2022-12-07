@@ -2,21 +2,16 @@
     <div>
         <h1 style="text-align: center">Carte</h1>
         <div style="display: flex">
-            <div style="width: 210mm; margin: 20px">
-                <CarteSVG @standSelected="action" :tabCouleur="data" :modif-etat="indexSelected"
-                          style="border: black 1px solid"></CarteSVG>
-            </div>
-            <div v-if="standSelected!==undefined"
+                <CarteSVG @standSelected="selectionStand" :tab-couleur="datas" :selection="modifSelection"
+                          style="border: black 1px solid; width: 210mm; margin: 20px"/>
+            <div v-if="idSelected!==-1"
                  style="border: black 1px solid; min-width: 300px; margin: 20px; padding: 10px; height: 500px">
-                <h2 style="text-align: center">Stand : {{ standSelected.id }}</h2>
-                <div v-if="newStand">
-                    ...<br>
-                    ...<br>
-                    <v-btn color="grey" @click="createStand">Creer Stand</v-btn>
+                <h2 style="text-align: center">Stand : {{ idSelected }}</h2>
+                <div v-if="standSelected===undefined && role==='admin'">
+                    <FormStand @createStand="createStand" />
                 </div>
                 <div v-else>
-                    <p>Id : {{ standSelected.id }}</p>
-                    <p>Etat : {{ standSelected.couleur }}</p>
+                    <p v-for="(val,key,index) in standSelected" :key="index">{{key}} : {{val}}</p>
                 </div>
             </div>
         </div>
@@ -25,47 +20,52 @@
 
 <script>
 import CarteSVG from "../components/CarteSVG.vue"
+import FormStand from "@/components/formStand";
+import axios from "axios";
 
 export default {
     name: "CarteView",
     data: () => {
         return {
             standSelected: undefined,
-            indexSelected: -1,
-            data: [],
-            newStand: false
+            idSelected: -1,
+            datas: [],
+            modifSelection: {},
+            nomStand: "",
+            role:"admin"
         }
     },
-    components: {CarteSVG},
+    components: {FormStand, CarteSVG},
     methods: {
-        action(event) {
-            console.log("newStand : " + this.newStand)
-            if (this.newStand) {
-                this.standSelected.couleur = "black"
-            }
-
-            let index = this.data.findIndex(stand => stand.id === event.id)
-            if (index === -1) {
-                this.newStand = true
-                index = this.data.length
-                this.data.push({id: event.id, couleur: ""})
-            } else if (this.data[index].couleur === "black")
-                this.newStand = true
-
-            let couleur = this.newStand ? "green" : "red"
-            this.data.splice(index, 1, {id: event.id, couleur: couleur})
-
-            console.log("aa", this.data.map(stand => stand.id))
-            // this.elemActu = {id: event.id, couleur: this.tabCouleur[event.id]}
-            this.standSelected = this.data.find(s => s.id === event.id);
-            this.indexSelected = index;
+        selectionStand(event) {
+            this.modifSelection={selected:event.id,deselected:this.idSelected}
+            this.standSelected=this.datas.find(s=>s.id===event.id)
+            console.log(this.standSelected)
+            this.idSelected=event.id
         },
-        createStand() {
-            console.log("createStand")
-            this.newStand = false
-            this.action({id: this.standSelected.id})
+        createStand(data) {
+            console.log("creation stand")
+            data=Object.assign(data,{id: this.idSelected, couleur: "red"})
+            this.datas.push(data)
+            this.standSelected=this.datas[this.datas.length-1]
+            console.log(this.datas[0])
+            axios.post("http://localhost:3000/stands", data)
+                .then(responce => {
+                    if (responce.data.success === 1)
+                        this.data = responce.data.data
+                    console.log(this.data)
+                })
+            // console.log(this.standSelected)
         }
     },
+    created() {
+        axios.get("http://localhost:3000/stands")
+            .then(responce => {
+                if (responce.data.success === 1)
+                    this.data = responce.data.data
+                console.log(this.data)
+            })
+    }
 }
 </script>
 

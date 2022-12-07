@@ -215,7 +215,8 @@ export default {
     name: "CarteSVG",
     props:{
         tabCouleur:Array,
-        modifEtat:Number
+        // modifEtat:Number,
+        selection:Object
     },
     methods:{
         action(event){
@@ -237,7 +238,13 @@ export default {
             this.tabCouleur.forEach(stand=>{
                 document.getElementById(stand.id).style.fill=stand.couleur;
             })
-        }
+        },
+        selection(){
+            if (this.selection.selected!==undefined)
+                document.getElementById(this.selection.selected).style.stroke="yellow";
+            if (this.selection.deselected!==-1)
+                document.getElementById(this.selection.deselected).style.stroke="none";
+        },
     },
     mounted(){
             this.tabCouleur.forEach(stand=>{
