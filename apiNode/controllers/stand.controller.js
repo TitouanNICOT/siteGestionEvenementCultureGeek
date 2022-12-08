@@ -14,7 +14,8 @@ const newStand = (req,res) => {
         idStand: req.body.id,
         descriptionStand: req.body.description,
         nomStand: req.body.nomStand,
-        idUser: req.body.idUser
+        idUser: req.body.idUser,
+        idTypeStand: req.body.typeStand
     }).then(() => {
         return res.status(200).send({success: 1})
     }).catch((error) => {
@@ -22,5 +23,13 @@ const newStand = (req,res) => {
         return res.status(404).send({success: 0})
     });
 }
+const getStand = (req,res) =>{
+    db.stand.findByPk(req.params.id,{include:[db.user,db.type_stand,"livreOr"]})
+        .then((result) => {
+            return res.status(200).send({success: 1, data: result})
+        }).catch((error) => {
+            return res.status(404).send({success: 0, data: error})
+        })
+}
 
-export default {listStand, newStand}
+export default {listStand, newStand,getStand }

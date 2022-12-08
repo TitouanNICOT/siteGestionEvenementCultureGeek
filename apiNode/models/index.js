@@ -32,6 +32,8 @@ import {Type_produit} from "./type_produit.js"
 db.type_produit = Type_produit(Sequelize,sequelize)
 import {Produit} from "./produit.js"
 db.produit = Produit(Sequelize,sequelize)
+import {LivreOr} from "./livreOr.js"
+db.livreOr = LivreOr(Sequelize,sequelize)
 
 
 db.user.belongsTo(db.role, {foreignKey: 'idRole'})
@@ -51,6 +53,9 @@ db.stand.hasMany(db.evenement, {foreignKey: 'idStand'})
 
 db.produit.belongsTo(db.type_produit, {foreignKey: 'idTypeProduit'})
 db.type_produit.hasMany(db.produit, {foreignKey: 'idTypeProduit'})
+
+db.stand.hasMany(db.livreOr, {foreignKey: 'idStand',as: "livreOr"})
+db.livreOr.belongsTo(db.stand, {foreignKey: 'idStand'})
 
 let option={}
 // option.force=true
@@ -89,6 +94,7 @@ if(option.force===true) {
     db.evenement.create({idEvenement: 1, libelleEvenement: 'Tournoi Polytopia', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 1, idStand: 500})
     // db.evenement.create({idEvenement: 2, libelleEvenement: 'Tournoi Mario Kart', heureDebut: '2022-06-22 17:00:00', heureFin: '2022-06-22 20:00:00', idTypeEvenement: 1, idStand: 1})
     // db.evenement.create({idEvenement: 3, libelleEvenement: 'Conférence de Cedric', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 2, idStand: 1})
+    db.livreOr.create({ commentaire: 'Super événement !', idStand:500})
 }
 // des erreurs sont survenues lorsque je ne met pas de await devant les create
 // il faudrait peut être faire un await sur chaque create

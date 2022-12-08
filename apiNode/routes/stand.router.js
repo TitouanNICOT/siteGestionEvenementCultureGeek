@@ -5,5 +5,7 @@ var router = express.Router()
 router.get("/",standController.listStand)
 router.post("/",standController.newStand)
 
+router.get("/:id",standController.getStand)
+
 
 export default router;
