@@ -1,17 +1,15 @@
 <template>
-  <v-app>
-    <AccueilView></AccueilView>
-  </v-app>
+    <v-app>
+        <RouterView></RouterView>
+    </v-app>
 </template>
 
 <script>
 
-import AccueilView from "@/views/AccueilView";
 export default {
-  name: 'App',
-    components: {AccueilView},
+    name: 'App',
     data: () => ({
-    //
-  }),
+        //
+    }),
 };
 </script>
