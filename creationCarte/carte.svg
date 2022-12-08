@@ -47,28 +47,6 @@
          y="0.43970299" />
     </a>
     <a
-       id="a1730">
-      <rect
-         style="display:inline;fill:#00ffdd;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         id="rect90-1-9-9-7"
-         width="34.44854"
-         height="44.448536"
-         x="120.27573"
-         y="-204.72427"
-         transform="rotate(90)" />
-    </a>
-    <a
-       id="a1733">
-      <rect
-         style="display:inline;fill:#00ffdd;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         id="rect90-1-9-9"
-         width="34.480034"
-         height="39.480034"
-         x="80.259987"
-         y="-204.74001"
-         transform="rotate(90)" />
-    </a>
-    <a
        id="salle1-5-5"
        transform="translate(0.32488251,39.641536)"
        style="display:inline;fill:#0009ff;fill-opacity:1">
@@ -927,6 +905,28 @@
          x="118.72513"
          y="69.477745" />
     </a>
+    <a
+            id="a1730">
+      <rect
+              style="display:inline;fill:#00ffdd;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+              id="rect90-1-9-9-7"
+              width="34.44854"
+              height="44.448536"
+              x="120.27573"
+              y="-204.72427"
+              transform="rotate(90)" />
+    </a>
+    <a
+            id="a1733">
+      <rect
+              style="display:inline;fill:#00ffdd;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+              id="rect90-1-9-9"
+              width="34.480034"
+              height="39.480034"
+              x="80.259987"
+              y="-204.74001"
+              transform="rotate(90)" />
+    </a>
   </g>
   <g
      id="layer1"
@@ -1089,10 +1089,9 @@
          y="28.647379"
          transform="translate(-0.25433176,-39.585654)" />
     </a>
-    <a
+    <g
        id="a1054"
-       style="display:inline;fill:#000000;fill-opacity:1;stroke-width:1.3;stroke-dasharray:none;paint-order:markers stroke fill"
-       xlink:href="">
+       style="display:inline;fill:#000000;fill-opacity:1;stroke-width:1.3;stroke-dasharray:none;paint-order:markers stroke fill">
       <a
          id="a3190">
         <rect
@@ -1205,6 +1204,6 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1"
            x="164.49666"
            y="142.12839">Salle 6</tspan></text>
-    </a>
+    </g>
   </g>
 </svg>

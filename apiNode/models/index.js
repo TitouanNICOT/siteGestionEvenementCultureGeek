@@ -90,11 +90,11 @@ if(option.force===true) {
     db.produit.create({idProduit: 7, libelleProduit: 'Poster The Refuge - OneShot', descriptionProduit: 'Poster du jeu OneShot montrant Niko arrivant dans le Refuge. Taille: 24cm*60cm', prix: 9, imageProduit: 'posterrefuge.jpg',idTypeProduit: 4})
     db.produit.create({idProduit: 8, libelleProduit: 'Halo - La chute de Reach', descriptionProduit: 'Livre portant sur lunivers des jeux Halo', prix: 20, imageProduit: 'livrehalolachutedereach.jpg',idTypeProduit: 5})
     db.produit.create({idProduit: 9, libelleProduit: 'Le Journal : Oeuvre de Cedric', descriptionProduit: 'Oeuvre de Cedric', prix: 20, imageProduit: 'lejournal.jpg',idTypeProduit: 5})
-    db.stand.create({idStand: 500, descriptionStand: 'stand 1', idTypeStand: 1, idPrestataire: 1,nomStand: 'stand 1'})
+    db.stand.create({idStand: 300, descriptionStand: 'c est une description du stand', idTypeStand: 1, idPrestataire: 1,nomStand: 'stand 1'})
     db.evenement.create({idEvenement: 1, libelleEvenement: 'Tournoi Polytopia', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 1, idStand: 500})
     // db.evenement.create({idEvenement: 2, libelleEvenement: 'Tournoi Mario Kart', heureDebut: '2022-06-22 17:00:00', heureFin: '2022-06-22 20:00:00', idTypeEvenement: 1, idStand: 1})
     // db.evenement.create({idEvenement: 3, libelleEvenement: 'Conférence de Cedric', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 2, idStand: 1})
-    db.livreOr.create({ commentaire: 'Super événement !', idStand:500})
+    db.livreOr.create({ commentaire: 'Super événement !', idStand:300})
 }
 // des erreurs sont survenues lorsque je ne met pas de await devant les create
 // il faudrait peut être faire un await sur chaque create

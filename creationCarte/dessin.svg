@@ -1276,7 +1276,7 @@
          inkscape:label="stand7"
          transform="translate(-0.25433176,-39.585654)" />
     </a>
-    <a
+    <g
        id="a1054"
        style="display:inline;fill:#000000;fill-opacity:1;stroke-width:1.3;stroke-dasharray:none;paint-order:markers stroke fill"
        inkscape:label="salle"
@@ -1404,6 +1404,6 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1"
            x="164.49666"
            y="142.12839">Salle 6</tspan></text>
-    </a>
+    </g>
   </g>
 </svg>

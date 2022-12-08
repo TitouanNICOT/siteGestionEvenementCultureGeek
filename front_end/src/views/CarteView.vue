@@ -1,22 +1,24 @@
 <template>
-    <div>
-        <h1 style="text-align: center">Carte</h1>
-        <div style="display: flex">
-                <CarteSVG @standSelected="selectionStand" :tab-couleur="datas" :selection="modifSelection"
-                          style="border: black 1px solid; width: 210mm; margin: 20px"/>
-            <div v-if="idSelected!==-1"
-                 style="border: black 1px solid; min-width: 300px; margin: 20px; padding: 10px; height: 500px">
+    <div style="display: flex">
+        <CarteSVG @standSelected="selectionStand" :tab-couleur="datas" :selection="modifSelection"
+                  style="border: black 1px solid; width: 210mm; margin: 20px"/>
+
+        <div style="width: 100%; min-width: 300px">
+            <h1 style="text-align: center">Carte</h1>
+            <div v-if="idSelected===-1" style="margin: 20px; font-size: 30px">
+                Cliquez sur une salle puis sur un stand pour voir les informations
+            </div>
+            <div v-else style="border: black 1px solid; margin: 20px; padding: 10px">
                 <h2 style="text-align: center">Stand : {{ idSelected }}</h2>
                 <div v-if="standSelected===undefined && role==='admin'">
                     <FormStand @createStand="createStand" />
                 </div>
                 <div v-else>
                     <p v-for="(val,key,index) in standSelected" :key="index">{{key}} : {{val}}</p>
+                    <v-btn color="blue" @click="voirStand">Voir Plus</v-btn>
                 </div>
             </div>
-            <div v-else style="margin: 20px; font-size: 30px">
-                Cliquez sur une salle puis sur un stand pour voir les informations
-            </div>
+
         </div>
     </div>
 </template>
@@ -50,13 +52,16 @@ export default {
             console.log("creation stand")
             data=Object.assign(data,{id: this.idSelected, couleur: "red"})
             this.datas.push(data)
-            this.standSelected=this.datas[this.datas.length-1]
+            this.standSelected=data
             console.log(this.datas[0])
             axios.post("http://localhost:3000/stands", data)
                 .then(responce => {
                     alert(responce.data.success)
                 })
             // console.log(this.standSelected)
+        },
+        voirStand(){
+            this.$router.push({name:"stand",params:{id:this.idSelected}})
         }
     },
     created() {

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CarteView from '../views/CarteView.vue'
 import HomeView from '../views/HomeView.vue'
+import StandDetailView from "@/views/StandDetailView";
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/stand/:id',
+    name: 'stand',
+    component: StandDetailView
   }
 ]
 

@@ -26,7 +26,8 @@ for (let i=1;i<listeSalle.length;i++){
 
 
 const calqueBatiment=aa[1-CALQUE_STAND]
-const listeBatiment=calqueBatiment.a.find(b=>{return "a" in b})//rect salle
+// const listeBatiment=calqueBatiment.a.find(b=>{return "g" in b})//rect salle
+const listeBatiment=calqueBatiment.g
 console.log(listeBatiment)
 listeBatiment._attributes.id="listeBatiment"
 delete listeBatiment._attributes.style
@@ -37,7 +38,8 @@ calqueBatiment.a.find(b=>b.rect.length>10).rect.forEach(r=> {//passage
 for (const i in listeBatiment.a) {
     console.log(listeBatiment.a[i])
     listeBatiment.a[i]._attributes.id="batiment"+(parseInt(i)+1)
-    listeBatiment.a[i].text.tspan._text="salle "+(parseInt(i)+1)
+    listeBatiment.a[i].text._text="salle "+(parseInt(i)+1)
+    delete listeBatiment.a[i].text.tspan
 }
 
 
