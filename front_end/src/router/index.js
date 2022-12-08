@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CarteView from '../views/CarteView.vue'
-import HomeView from '../views/HomeView.vue'
+import AccueilView from "@/views/AccueilView";
 import StandDetailView from "@/views/StandDetailView";
 
 Vue.use(VueRouter)
@@ -14,8 +14,8 @@ const routes = [
   },
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'Accueil',
+    component: AccueilView
   },
   {
     path: '/stand/:id',
