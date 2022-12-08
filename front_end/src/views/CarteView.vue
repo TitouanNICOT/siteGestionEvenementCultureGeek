@@ -14,6 +14,9 @@
                     <p v-for="(val,key,index) in standSelected" :key="index">{{key}} : {{val}}</p>
                 </div>
             </div>
+            <div v-else style="margin: 20px; font-size: 30px">
+                Cliquez sur une salle puis sur un stand pour voir les informations
+            </div>
         </div>
     </div>
 </template>
@@ -51,9 +54,7 @@ export default {
             console.log(this.datas[0])
             axios.post("http://localhost:3000/stands", data)
                 .then(responce => {
-                    if (responce.data.success === 1)
-                        this.data = responce.data.data
-                    console.log(this.data)
+                    alert(responce.data.success)
                 })
             // console.log(this.standSelected)
         }
@@ -61,9 +62,15 @@ export default {
     created() {
         axios.get("http://localhost:3000/stands")
             .then(responce => {
+                console.log(responce.data.data)
                 if (responce.data.success === 1)
-                    this.data = responce.data.data
-                console.log(this.data)
+                    responce.data.data.forEach(d => this.datas.push({
+                        id: d.idStand.toString(),
+                        nomStand: d.nomStand,
+                        couleur: "red",
+                        description: d.descriptionStand,
+                        prestataire: d.user===null ? "null": d.user.nom,
+                    }))
             })
     }
 }

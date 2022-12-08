@@ -53,7 +53,7 @@ db.produit.belongsTo(db.type_produit, {foreignKey: 'idTypeProduit'})
 db.type_produit.hasMany(db.produit, {foreignKey: 'idTypeProduit'})
 
 let option={}
-option.force=true
+// option.force=true
 // option.alter=true
 await sequelize.sync(option)//{force:true}
 
@@ -70,6 +70,10 @@ if(option.force===true) {
     db.type_produit.create({idTypeProduit: 4, libelleTypeProduit: 'Accessoire'})
     db.type_produit.create({idTypeProduit: 5, libelleTypeProduit: 'Poster'})
     db.type_produit.create({idTypeProduit: 6, libelleTypeProduit: 'Livre'})
+    db.type_evenement.create({idTypeEvenement: 1, libelleTypeEvenement: 'Tournoi'})
+    db.type_evenement.create({idTypeEvenement: 2, libelleTypeEvenement: 'Conférence'})
+    db.type_evenement.create({idTypeEvenement: 3, libelleTypeEvenement: 'Prestation Invité'})
+    db.type_evenement.create({idTypeEvenement: 4, libelleTypeEvenement: 'Exposition'})
     db.produit.create({idProduit: 1, libelleProduit: 'Crêpe', descriptionProduit: 'Une crêpe faite sur place. Peut être assaisonnée de pâte à tartiner ou de sucre selon choix. PEUT CONTENIR : GLUTEN', prix: 1.90, imageProduit: 'crepe.jpg',idTypeProduit: 1})
     db.produit.create({idProduit: 2, libelleProduit: 'Kinder Bueno', descriptionProduit: 'Gaufrettes enrobée de chocolat et de noisette ', prix: 1.5, imageProduit: 'kbueno.jpg',idTypeProduit: 1})
     db.produit.create({idProduit: 3, libelleProduit: 'Coca-cola', descriptionProduit:  'Boisson sucrée. Rend 120 HP.', prix:2, imageProduit: 'coca.jpg',idTypeProduit: 2})
@@ -79,14 +83,10 @@ if(option.force===true) {
     db.produit.create({idProduit: 7, libelleProduit: 'Poster The Refuge - OneShot', descriptionProduit: 'Poster du jeu OneShot montrant Niko arrivant dans le Refuge. Taille: 24cm*60cm', prix: 9, imageProduit: 'posterrefuge.jpg',idTypeProduit: 4})
     db.produit.create({idProduit: 8, libelleProduit: 'Halo - La chute de Reach', descriptionProduit: 'Livre portant sur lunivers des jeux Halo', prix: 20, imageProduit: 'livrehalolachutedereach.jpg',idTypeProduit: 5})
     db.produit.create({idProduit: 9, libelleProduit: 'Le Journal : Oeuvre de Cedric', descriptionProduit: 'Oeuvre de Cedric', prix: 20, imageProduit: 'lejournal.jpg',idTypeProduit: 5})
-    db.stand.create({idStand: 1, descriptionStand: 'stand 1', idTypeStand: 1, idPrestataire: 1})
-    await db.type_evenement.create({idTypeEvenement: 1, libelleTypeEvenement: 'Tournoi'})
-    await db.type_evenement.create({idTypeEvenement: 2, libelleTypeEvenement: 'Conférence'})
-    await db.type_evenement.create({idTypeEvenement: 3, libelleTypeEvenement: 'Prestation Invité'})
-    await db.type_evenement.create({idTypeEvenement: 4, libelleTypeEvenement: 'Exposition'})
-    db.evenement.create({idEvenement: 1, libelleEvenement: 'Tournoi Polytopia', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 1, idStand: 1})
-    db.evenement.create({idEvenement: 2, libelleEvenement: 'Tournoi Mario Kart', heureDebut: '2022-06-22 17:00:00', heureFin: '2022-06-22 20:00:00', idTypeEvenement: 1, idStand: 1})
-    db.evenement.create({idEvenement: 3, libelleEvenement: 'Conférence de Cedric', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 2, idStand: 1})
+    db.stand.create({idStand: 500, descriptionStand: 'stand 1', idTypeStand: 1, idPrestataire: 1,nomStand: 'stand 1'})
+    db.evenement.create({idEvenement: 1, libelleEvenement: 'Tournoi Polytopia', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 1, idStand: 500})
+    // db.evenement.create({idEvenement: 2, libelleEvenement: 'Tournoi Mario Kart', heureDebut: '2022-06-22 17:00:00', heureFin: '2022-06-22 20:00:00', idTypeEvenement: 1, idStand: 1})
+    // db.evenement.create({idEvenement: 3, libelleEvenement: 'Conférence de Cedric', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 2, idStand: 1})
 }
 // des erreurs sont survenues lorsque je ne met pas de await devant les create
 // il faudrait peut être faire un await sur chaque create

@@ -9,6 +9,10 @@ export const Stand = (Sequelize,sequelize)=>{
         descriptionStand:{
             type: Sequelize.STRING,
             allowNull: false
+        },
+        nomStand:{
+            type: Sequelize.STRING,
+            allowNull: false
         }
     })
 }

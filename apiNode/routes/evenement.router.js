@@ -4,7 +4,6 @@ import express from "express";
 import evenementController from "../controllers/evenement.controller.js";
 
 var router = express.Router()
-router.get("/listStand",evenementController.listStand)
 router.get("/listTypeEvenement",evenementController.listTypeEvenement)
 
 router.get("/",evenementController.list)

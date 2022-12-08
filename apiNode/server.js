@@ -9,10 +9,8 @@ dotenv.config();
 const port = process.env.PORT;
 import users from './routes/user.router.js';
 import evenements from './routes/evenement.router.js';
-
+import stands from './routes/stand.router.js';
 import produits from './routes/produit.router.js';
-import AppDAO from "./dao.js";
-global.dao = new AppDAO();
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
@@ -39,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false })); //?
 
 app.use("/users",users);
 app.use("/evenements",evenements);
-
+app.use("/stands",stands);
 app.use("/produits",produits);
 
 app.get("/",(req, res)=>{

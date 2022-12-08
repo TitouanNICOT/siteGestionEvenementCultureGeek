@@ -31,7 +31,8 @@ export default {
                 nomStand:this.nomStand,
                 typeStand:this.typeStand,
                 description:this.description,
-                presta:this.presta,
+                prestataire:this.presta,
+                idUser:this.listePresta.indexOf(this.presta)
             }
             this.$emit("createStand",data)
         }

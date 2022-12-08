@@ -72,14 +72,6 @@ const deleteEvenement = (req, res) => {
     });
 }
 
-const listStand = (req,res) => {
-    db.stand.findAll().then((results) => {
-        return res.status(200).send({success: 1, data: results})
-    }).catch((error) => {
-        return res.status(404).send({success: 0, data: error})
-    })
-}
-
 const listTypeEvenement = (req,res) => {
     db.type_evenement.findAll().then((results) => {
         return res.status(200).send({success: 1, data: results})
@@ -88,4 +80,4 @@ const listTypeEvenement = (req,res) => {
     })
 }
 
-export default {list, newEvenement, getEvenementById, modifEvenement, deleteEvenement, listStand, listTypeEvenement};
+export default {list, newEvenement, getEvenementById, modifEvenement, deleteEvenement, listTypeEvenement};
