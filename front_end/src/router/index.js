@@ -1,15 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CarteView from '../views/CarteView.vue'
-// import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/carte',
     name: 'carte',
     component: CarteView
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
   }
 ]
 
