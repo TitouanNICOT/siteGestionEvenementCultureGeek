@@ -1,15 +1,10 @@
 <template>
     <v-app>
-<!--        <RouterView></RouterView>-->
-        <v-app-bar
-                app
-                color="green"
-                dark
-
-        >
+        <v-app-bar app color="green" dark>
             <NavBar :titles="[{text: 'Home', color: 'grey'}
             , {text: 'Carte', color: 'grey'}
             , {text: 'Liste des Stands', color: 'grey'}
+            , {text: 'Liste des Evenements', color: 'grey'}
             , {text: 'Se Connecter', color: 'green'}]"
                     @menu-clicked="changeRoute">
             </NavBar>
@@ -47,6 +42,8 @@
                       router.push('/stand')
                   }
                   else if (id == 3){
+                      router.push('/evenement')
+                  }else if (id == 4){
                       router.push('/login')
                   }
               }
