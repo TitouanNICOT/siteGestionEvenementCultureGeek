@@ -228,10 +228,11 @@ export default {
             })
         },
         selection(){
-            if (this.selection.selected!==undefined)
-                document.getElementById(this.selection.selected).style.stroke="yellow";
+            if (this.selection.selected!==undefined) {
+              document.getElementById(this.selection.selected).style.stroke = "yellow";
+            }
             if (this.selection.deselected!==-1)
-                document.getElementById(this.selection.deselected).style.stroke="none";
+              document.getElementById(this.selection.deselected).style.stroke="none";
         },
     },
     mounted(){

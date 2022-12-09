@@ -5,9 +5,9 @@
 
         <div style="width: 100%; min-width: 300px">
             <h1 style="text-align: center">Carte</h1>
-            <div v-if="idSelected===-1" style="margin: 20px; font-size: 30px">
+            <p v-if="idSelected===-1" style="margin: 20px; font-size: 30px">
                 Cliquez sur une salle puis sur un stand pour voir les informations
-            </div>
+            </p>
             <div v-else style="border: black 1px solid; margin: 20px; padding: 10px">
                 <h2 style="text-align: center">Stand : {{ idSelected }}</h2>
                 <div v-if="standSelected===undefined && role==='admin'">
