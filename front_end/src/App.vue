@@ -1,16 +1,61 @@
 <template>
     <v-app>
-        <RouterView></RouterView>
+<!--        <RouterView></RouterView>-->
+        <v-app-bar
+                app
+                color="green"
+                dark
+
+        >
+            <NavBar :titles="[{text: 'Home', color: 'grey'}
+            , {text: 'Carte', color: 'grey'}
+            , {text: 'Liste des Stands', color: 'grey'}
+            , {text: 'Se Connecter', color: 'green'}]"
+                    @menu-clicked="changeRoute">
+            </NavBar>
+        </v-app-bar>
+
+        <v-main>
+            <router-view/>
+        </v-main>
     </v-app>
 </template>
 
 <script>
-export default {
-    name: 'App',
-    data: () => ({
-        //
-    }),
-};
+
+      // import {mapActions} from 'vuex'
+      import router from "@/router";
+      import NavBar from "@/components/NavBar";
+
+      export default {
+          name: 'App',
+          components: {NavBar},
+          data: () => ({
+              //
+          }),
+          methods: {
+              // ...mapActions(['']),
+              // ...mapActions(['']),
+              changeRoute(id) {
+                  if(id == 0){
+                      router.push('/')
+                  }
+                  else if (id == 1){
+                      router.push('/carte')
+                  }
+                  else if (id == 2){
+                      router.push('/stand')
+                  }
+                  else if (id == 3){
+                      router.push('/login')
+                  }
+              }
+          },
+          mounted() {
+
+          }
+      };
+
 </script>
 
 <style>
