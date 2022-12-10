@@ -1,7 +1,10 @@
 import db from "../models/index.js"
 
 const list = (req, res) => {
-    db.user.findAll({include:db.role}).then((results) => {
+    const role=req.query.role
+    db.user.findAll({include: db.role}).then((results) => {
+        if (role && ["admin","prestataire","visiteur"].includes(role))
+            results=results.filter((user)=>user.role.libelle===role)
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
         return res.status(404).send({success: 0, data: error})

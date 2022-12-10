@@ -14,9 +14,9 @@ const newStand = (req,res) => {
         idStand: req.body.id,
         descriptionStand: req.body.description,
         nomStand: req.body.nomStand,
-        idUser: req.body.idUser,
+        idPrestataire: req.body.prestataire,
         idTypeStand: req.body.typeStand
-    }).then(() => {
+    }).then((result) => {
         return res.status(200).send({success: 1})
     }).catch((error) => {
         console.error(error)
@@ -32,4 +32,12 @@ const getStand = (req,res) =>{
         })
 }
 
-export default {listStand, newStand,getStand }
+const listeTypeStand = (req,res) => {
+    db.type_stand.findAll().then((results) => {
+        return res.status(200).send({success: 1, data: results})
+    }).catch((error) => {
+        return res.status(404).send({success: 0, data: error})
+    })
+}
+
+export default {listStand, newStand,getStand ,listeTypeStand}
