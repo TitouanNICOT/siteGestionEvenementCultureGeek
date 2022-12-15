@@ -13,8 +13,7 @@
 </template>
 
 <script>
-
-      // import {mapActions} from 'vuex'
+      import {mapActions} from 'vuex'
       import router from "@/router";
       import NavBar from "@/components/NavBar";
 
@@ -39,10 +38,11 @@
                   case 4: router.push('/login'); break
                   default: router.push('/'); break
                 }
-              }
+              },
+              ...mapActions(['loading'])
           },
-          mounted() {
-
+          created() {
+            this.loading()
           }
       };
 

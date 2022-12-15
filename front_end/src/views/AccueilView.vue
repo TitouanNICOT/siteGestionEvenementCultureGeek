@@ -21,7 +21,7 @@
                     <h1>Dernières Actualitées</h1>
                     <hr>
                     <div class="d-grid">
-                        <ArticleCard v-for="i in [0,0,0,0,0,0]" :key="i"></ArticleCard>
+                        <ArticleCard v-for="i in 5" :key="i"></ArticleCard>
                     </div>
                 </div>
             </v-col>

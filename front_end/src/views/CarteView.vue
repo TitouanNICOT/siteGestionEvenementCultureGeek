@@ -1,6 +1,6 @@
 <template>
     <div style="display: flex">
-        <CarteSVG @standSelected="selectionStand" @deselection="deselection" :tab-couleur="datas" :selection="modifSelection"
+        <CarteSVG @standSelected="selectionStand" @deselection="deselection" :tab-couleur="stands" :selection="modifSelection"
                   style="border: black 1px solid; width: 210mm; margin: 20px"/>
 
         <div style="width: 100%; min-width: 300px">
@@ -16,6 +16,7 @@
                 <div v-else>
                     <p v-for="(val,key,index) in standSelected" :key="index">{{key}} : {{val}}</p>
                     <v-btn color="blue" @click="voirStand">Voir Plus</v-btn>
+                    <v-btn color="red" @click="supprimerStand">Supprimer</v-btn>
                 </div>
             </div>
 
@@ -27,6 +28,8 @@
 import CarteSVG from "../components/CarteSVG.vue"
 import FormStand from "@/components/formStand";
 import axios from "axios";
+import {mapGetters, mapMutations, mapState} from "vuex";
+import standsS from "@/services/stands";
 
 export default {
     name: "CarteView",
@@ -34,19 +37,23 @@ export default {
         return {
             standSelected: undefined,
             idSelected: -1,
-            datas: [],
             modifSelection: {},
             role:"admin",
         }
     },
+    computed:{
+        ...mapState(["stands"]),
+        ...mapGetters(["listePresta"])
+    },
     components: {FormStand, CarteSVG},
     methods: {
+        ...mapMutations(["addStand"]),
         selectionStand(event) {
             if (event.id === this.idSelected)
                 this.deselection()
             else {
                 this.modifSelection = {selected: event.id, deselected: this.idSelected}
-                this.standSelected = this.datas.find(s => s.id === event.id)
+                this.standSelected = this.stands.find(s => s.id === event.id)
                 this.idSelected = event.id
             }
         },
@@ -55,37 +62,33 @@ export default {
             this.standSelected=undefined
             this.idSelected=-1
         },
+        supprimerStand(){
+            standsS.deleteStand(this.idSelected)
+                .then(responce=>{
+                    if (responce.data.success===1){
+                        this.$store.commit("removeStand",this.idSelected)
+                        document.getElementById(this.idSelected).style.fill="black"
+                        this.deselection()
+                    }
+                })
+        },
         createStand(data) {
             console.log("creation stand")
             data=Object.assign(data,{id: this.idSelected, couleur: "red"})
             // data.prestataire=d.user.nom+" "+d.user.prenom
             axios.post("http://localhost:3000/stands", data)
                 .then(responce => {
-                    console.log(responce.data.success)
                     alert(responce.data.success)
                 })
-            data.prestataire=data.nomPresta
-            // delete data.nomPresta
-            this.datas.push(data)
+            const presta=this.listePresta.find(p=>p.idUser===data.prestataire)
+            data.prestataire=presta.nom+" "+presta.prenom
+            this.addStand(data)
             this.standSelected=data
             console.log(this.standSelected)
         },
         voirStand(){
             this.$router.push({name:"stand",params:{id:this.idSelected}})
         }
-    },
-    created() {
-        axios.get("http://localhost:3000/stands")
-            .then(responce => {
-                if (responce.data.success === 1)
-                    responce.data.data.forEach(d => this.datas.push({
-                        id: d.idStand.toString(),
-                        nomStand: d.nomStand,
-                        couleur: "red",
-                        description: d.descriptionStand,
-                        prestataire: d.user===null ? "null": d.user.nom+" "+d.user.prenom,
-                    }))
-            })
     }
 }
 </script>

@@ -9,13 +9,71 @@
             <rect id="rect90-3-0" width="114.12068" height="34.120594" x="40.10585" y="40.439705" transform="translate(0,-0.03637886)"/>
             <rect id="rect90-0" width="114.12068" height="34.120594" x="40.10585" y="0.43970299"/>
         </a>
-        <a id="salle1">
-            <rect style="display:inline;fill:#00ffdd;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="100" width="34.44854" height="44.448536" x="120.27573" y="-204.72427" transform="rotate(90)"/>
+        <a id="salle1" transform="translate(0.32488251,39.641536)">
+            <rect id="100" width="14.329332" height="6.7077622" x="40.139557" y="41.044598"/>
+            <rect id="101" width="14.618905" height="6.7048869" x="61.226971" y="41.046036"/>
+            <rect id="102" width="11.735001" height="6.7350001" x="76.061951" y="41.030979"/>
+            <rect id="103" width="11.735001" height="6.7350001" x="94.777054" y="41.030979"/>
+            <rect id="104" width="11.735001" height="6.7350001" x="106.77705" y="41.030979"/>
+            <rect id="105" width="14.487102" height="6.7061915" x="118.72749" y="41.045383"/>
+            <rect id="106" width="14.465424" height="6.7064071" x="139.96837" y="41.045277"/>
+            <rect id="107" width="11.735001" height="6.7350001" x="118.7131" y="108.34591"/>
+            <rect id="108" width="11.735001" height="6.7350001" x="130.44809" y="108.34591"/>
+            <rect id="109" width="11.735001" height="6.7350001" x="106.71311" y="108.34591"/>
+            <rect id="110" width="11.735001" height="6.7350001" x="52.125938" y="52.029377"/>
+            <rect id="111" width="11.735001" height="6.7350001" x="64.125931" y="52.029377"/>
+            <rect id="112" width="11.735001" height="6.7350001" x="76.061951" y="52.029377"/>
+            <rect id="113" width="11.735001" height="6.7350001" x="94.777046" y="52.029377"/>
+            <rect id="114" width="11.735001" height="6.7350001" x="106.77705" y="52.029377"/>
+            <rect id="115" width="11.735001" height="6.7350001" x="118.7131" y="52.029377"/>
+            <rect id="116" width="11.735001" height="6.7350001" x="130.7131" y="52.029377"/>
+            <rect id="117" width="11.735001" height="6.7350001" x="52.125931" y="59.028568"/>
+            <rect id="118" width="11.735001" height="6.7350001" x="64.125931" y="59.028568"/>
+            <rect id="119" width="11.735001" height="6.7350001" x="76.061951" y="59.028568"/>
+            <rect id="120" width="11.735001" height="6.7350001" x="94.777054" y="59.028568"/>
+            <rect id="121" width="11.735001" height="6.7350001" x="106.77705" y="59.028568"/>
+            <rect id="122" width="11.735001" height="6.7350001" x="118.71309" y="59.028568"/>
+            <rect id="123" width="11.735001" height="6.7350001" x="130.71309" y="59.028568"/>
+            <rect id="124" width="11.735001" height="6.7350001" x="52.125946" y="71.273781"/>
+            <rect id="125" width="11.735001" height="6.7350001" x="64.125938" y="71.273781"/>
+            <rect id="126" width="11.735001" height="6.7350001" x="76.061958" y="71.273781"/>
+            <rect id="127" width="11.735001" height="6.7350001" x="94.777054" y="71.273781"/>
+            <rect id="128" width="11.735001" height="6.7350001" x="106.77706" y="71.273781"/>
+            <rect id="129" width="11.735001" height="6.7350001" x="118.71311" y="71.273781"/>
+            <rect id="130" width="11.735001" height="6.7350001" x="130.7131" y="71.273781"/>
+            <rect id="131" width="11.735001" height="6.7350001" x="52.125938" y="78.272972"/>
+            <rect id="132" width="11.735001" height="6.7350001" x="64.125938" y="78.272972"/>
+            <rect id="133" width="11.735001" height="6.7350001" x="76.061958" y="78.272972"/>
+            <rect id="134" width="11.735001" height="6.7350001" x="94.777061" y="78.272972"/>
+            <rect id="135" width="11.735001" height="6.7350001" x="106.77706" y="78.272972"/>
+            <rect id="136" width="11.735001" height="6.7350001" x="118.7131" y="78.272972"/>
+            <rect id="137" width="11.735001" height="6.7350001" x="130.7131" y="78.272972"/>
+            <rect id="138" width="11.735001" height="6.7350001" x="52.125954" y="90.518188"/>
+            <rect id="139" width="11.735001" height="6.7350001" x="64.125946" y="90.518188"/>
+            <rect id="140" width="11.735001" height="6.7350001" x="76.061966" y="90.518188"/>
+            <rect id="141" width="11.735001" height="6.7350001" x="94.777061" y="90.518188"/>
+            <rect id="142" width="11.735001" height="6.7350001" x="106.77706" y="90.518188"/>
+            <rect id="143" width="11.735001" height="6.7350001" x="118.71311" y="90.518188"/>
+            <rect id="144" width="11.735001" height="6.7350001" x="130.71312" y="90.518188"/>
+            <rect id="145" width="11.735001" height="6.7350001" x="52.125946" y="97.51738"/>
+            <rect id="146" width="11.735001" height="6.7350001" x="64.125946" y="97.51738"/>
+            <rect id="147" width="11.735001" height="6.7350001" x="76.061966" y="97.51738"/>
+            <rect id="148" width="11.735001" height="6.7350001" x="94.777069" y="97.51738"/>
+            <rect id="149" width="11.735001" height="6.7350001" x="106.77706" y="97.51738"/>
+            <rect id="150" width="11.735001" height="6.7350001" x="118.7131" y="97.51738"/>
+            <rect id="151" width="11.735001" height="6.7350001" x="130.7131" y="97.51738"/>
         </a>
-        <a id="salle2">
-            <rect style="display:inline;fill:#00ffdd;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="200" width="34.480034" height="39.480034" x="80.259987" y="-204.74001" transform="rotate(90)"/>
+        <a id="salle2" transform="matrix(1.1513387,0,0,0.99655963,-23.02151,28.059422)">
+            <rect id="200" width="11.756105" height="21.624344" x="20.192677" y="50.30196"/>
+            <rect id="201" width="11.809274" height="16.674603" x="38.121418" y="50.213074"/>
+            <rect id="202" width="11.809273" height="16.674601" x="20.166094" y="72.421196"/>
+            <rect id="203" width="11.809274" height="16.674603" x="38.121418" y="72.421196"/>
+            <rect id="204" width="11.814337" height="16.278086" x="20.163563" y="89.5578"/>
+            <rect id="205" width="11.815137" height="16.215918" x="38.118484" y="89.557396"/>
+            <rect id="206" width="11.794242" height="20.833084" x="20.193785" y="106.32518"/>
+            <rect id="207" width="12.091955" height="16.472437" x="38.123051" y="110.7114"/>
         </a>
-        <a id="salle3" transform="translate(0.32488251,39.641536)">
+        <a id="salle3" transform="translate(-0.15216407,-40.72336)">
             <rect id="300" width="14.329332" height="6.7077622" x="40.139557" y="41.044598"/>
             <rect id="301" width="14.618905" height="6.7048869" x="61.226971" y="41.046036"/>
             <rect id="302" width="11.735001" height="6.7350001" x="76.061951" y="41.030979"/>
@@ -23,16 +81,16 @@
             <rect id="304" width="11.735001" height="6.7350001" x="106.77705" y="41.030979"/>
             <rect id="305" width="14.487102" height="6.7061915" x="118.72749" y="41.045383"/>
             <rect id="306" width="14.465424" height="6.7064071" x="139.96837" y="41.045277"/>
-            <rect id="307" width="11.735001" height="6.7350001" x="118.7131" y="108.34591"/>
-            <rect id="308" width="11.735001" height="6.7350001" x="130.44809" y="108.34591"/>
-            <rect id="309" width="11.735001" height="6.7350001" x="106.71311" y="108.34591"/>
-            <rect id="310" width="11.735001" height="6.7350001" x="52.125938" y="52.029377"/>
-            <rect id="311" width="11.735001" height="6.7350001" x="64.125931" y="52.029377"/>
-            <rect id="312" width="11.735001" height="6.7350001" x="76.061951" y="52.029377"/>
-            <rect id="313" width="11.735001" height="6.7350001" x="94.777046" y="52.029377"/>
-            <rect id="314" width="11.735001" height="6.7350001" x="106.77705" y="52.029377"/>
-            <rect id="315" width="11.735001" height="6.7350001" x="118.7131" y="52.029377"/>
-            <rect id="316" width="11.735001" height="6.7350001" x="130.7131" y="52.029377"/>
+            <rect id="307" width="11.735001" height="6.7350001" x="40.125938" y="52.029377"/>
+            <rect id="308" width="11.735001" height="6.7350001" x="52.125938" y="52.029377"/>
+            <rect id="309" width="11.735001" height="6.7350001" x="64.125931" y="52.029377"/>
+            <rect id="310" width="11.735001" height="6.7350001" x="76.061951" y="52.029377"/>
+            <rect id="311" width="11.735001" height="6.7350001" x="94.777046" y="52.029377"/>
+            <rect id="312" width="11.735001" height="6.7350001" x="106.77705" y="52.029377"/>
+            <rect id="313" width="11.735001" height="6.7350001" x="118.7131" y="52.029377"/>
+            <rect id="314" width="11.735001" height="6.7350001" x="130.7131" y="52.029377"/>
+            <rect id="315" width="11.735001" height="6.7350001" x="142.7131" y="52.029377"/>
+            <rect id="316" width="11.735001" height="6.7350001" x="40.125931" y="59.028568"/>
             <rect id="317" width="11.735001" height="6.7350001" x="52.125931" y="59.028568"/>
             <rect id="318" width="11.735001" height="6.7350001" x="64.125931" y="59.028568"/>
             <rect id="319" width="11.735001" height="6.7350001" x="76.061951" y="59.028568"/>
@@ -40,108 +98,50 @@
             <rect id="321" width="11.735001" height="6.7350001" x="106.77705" y="59.028568"/>
             <rect id="322" width="11.735001" height="6.7350001" x="118.71309" y="59.028568"/>
             <rect id="323" width="11.735001" height="6.7350001" x="130.71309" y="59.028568"/>
-            <rect id="324" width="11.735001" height="6.7350001" x="52.125946" y="71.273781"/>
-            <rect id="325" width="11.735001" height="6.7350001" x="64.125938" y="71.273781"/>
-            <rect id="326" width="11.735001" height="6.7350001" x="76.061958" y="71.273781"/>
-            <rect id="327" width="11.735001" height="6.7350001" x="94.777054" y="71.273781"/>
-            <rect id="328" width="11.735001" height="6.7350001" x="106.77706" y="71.273781"/>
-            <rect id="329" width="11.735001" height="6.7350001" x="118.71311" y="71.273781"/>
-            <rect id="330" width="11.735001" height="6.7350001" x="130.7131" y="71.273781"/>
-            <rect id="331" width="11.735001" height="6.7350001" x="52.125938" y="78.272972"/>
-            <rect id="332" width="11.735001" height="6.7350001" x="64.125938" y="78.272972"/>
-            <rect id="333" width="11.735001" height="6.7350001" x="76.061958" y="78.272972"/>
-            <rect id="334" width="11.735001" height="6.7350001" x="94.777061" y="78.272972"/>
-            <rect id="335" width="11.735001" height="6.7350001" x="106.77706" y="78.272972"/>
-            <rect id="336" width="11.735001" height="6.7350001" x="118.7131" y="78.272972"/>
-            <rect id="337" width="11.735001" height="6.7350001" x="130.7131" y="78.272972"/>
-            <rect id="338" width="11.735001" height="6.7350001" x="52.125954" y="90.518188"/>
-            <rect id="339" width="11.735001" height="6.7350001" x="64.125946" y="90.518188"/>
-            <rect id="340" width="11.735001" height="6.7350001" x="76.061966" y="90.518188"/>
-            <rect id="341" width="11.735001" height="6.7350001" x="94.777061" y="90.518188"/>
-            <rect id="342" width="11.735001" height="6.7350001" x="106.77706" y="90.518188"/>
-            <rect id="343" width="11.735001" height="6.7350001" x="118.71311" y="90.518188"/>
-            <rect id="344" width="11.735001" height="6.7350001" x="130.71312" y="90.518188"/>
-            <rect id="345" width="11.735001" height="6.7350001" x="52.125946" y="97.51738"/>
-            <rect id="346" width="11.735001" height="6.7350001" x="64.125946" y="97.51738"/>
-            <rect id="347" width="11.735001" height="6.7350001" x="76.061966" y="97.51738"/>
-            <rect id="348" width="11.735001" height="6.7350001" x="94.777069" y="97.51738"/>
-            <rect id="349" width="11.735001" height="6.7350001" x="106.77706" y="97.51738"/>
-            <rect id="350" width="11.735001" height="6.7350001" x="118.7131" y="97.51738"/>
-            <rect id="351" width="11.735001" height="6.7350001" x="130.7131" y="97.51738"/>
+            <rect id="324" width="11.735001" height="6.7350001" x="142.71309" y="59.028568"/>
+            <rect id="325" width="14.611753" height="6.1603575" x="61.236446" y="69.479721"/>
+            <rect id="326" width="11.733239" height="6.1922603" x="76.06514" y="69.463768"/>
+            <rect id="327" width="11.733239" height="6.1922603" x="94.777428" y="69.463768"/>
+            <rect id="328" width="11.733239" height="6.1922603" x="106.77562" y="69.463768"/>
+            <rect id="329" width="14.480034" height="6.1617413" x="118.72513" y="69.479027"/>
         </a>
-        <a id="salle4" transform="matrix(1.1513387,0,0,0.99655963,-23.02151,28.059422)">
-            <rect id="400" width="11.756105" height="21.624344" x="20.192677" y="50.30196"/>
-            <rect id="401" width="11.809274" height="16.674603" x="38.121418" y="50.213074"/>
-            <rect id="402" width="11.809273" height="16.674601" x="20.166094" y="72.421196"/>
-            <rect id="403" width="11.809274" height="16.674603" x="38.121418" y="72.421196"/>
-            <rect id="404" width="11.814337" height="16.278086" x="20.163563" y="89.5578"/>
-            <rect id="405" width="11.815137" height="16.215918" x="38.118484" y="89.557396"/>
-            <rect id="406" width="11.794242" height="20.833084" x="20.193785" y="106.32518"/>
-            <rect id="407" width="12.091955" height="16.472437" x="38.123051" y="110.7114"/>
+        <a id="salle4" transform="translate(-0.12082672,-0.61238882)">
+            <rect id="400" width="14.329332" height="6.7077622" x="40.139557" y="41.044598"/>
+            <rect id="401" width="14.618905" height="6.7048869" x="61.226971" y="41.046036"/>
+            <rect id="402" width="11.735001" height="6.7350001" x="76.061951" y="41.030979"/>
+            <rect id="403" width="11.735001" height="6.7350001" x="94.777054" y="41.030979"/>
+            <rect id="404" width="11.735001" height="6.7350001" x="106.77705" y="41.030979"/>
+            <rect id="405" width="14.487102" height="6.7061915" x="118.72749" y="41.045383"/>
+            <rect id="406" width="14.465424" height="6.7064071" x="139.96837" y="41.045277"/>
+            <rect id="407" width="11.735001" height="6.7350001" x="40.125938" y="52.029377"/>
+            <rect id="408" width="11.735001" height="6.7350001" x="52.125938" y="52.029377"/>
+            <rect id="409" width="11.735001" height="6.7350001" x="64.125931" y="52.029377"/>
+            <rect id="410" width="11.735001" height="6.7350001" x="76.061951" y="52.029377"/>
+            <rect id="411" width="11.735001" height="6.7350001" x="94.777046" y="52.029377"/>
+            <rect id="412" width="11.735001" height="6.7350001" x="106.77705" y="52.029377"/>
+            <rect id="413" width="11.735001" height="6.7350001" x="118.7131" y="52.029377"/>
+            <rect id="414" width="11.735001" height="6.7350001" x="130.7131" y="52.029377"/>
+            <rect id="415" width="11.735001" height="6.7350001" x="142.7131" y="52.029377"/>
+            <rect id="416" width="11.735001" height="6.7350001" x="40.125931" y="59.028568"/>
+            <rect id="417" width="11.735001" height="6.7350001" x="52.125931" y="59.028568"/>
+            <rect id="418" width="11.735001" height="6.7350001" x="64.125931" y="59.028568"/>
+            <rect id="419" width="11.735001" height="6.7350001" x="76.061951" y="59.028568"/>
+            <rect id="420" width="11.735001" height="6.7350001" x="94.777054" y="59.028568"/>
+            <rect id="421" width="11.735001" height="6.7350001" x="106.77705" y="59.028568"/>
+            <rect id="422" width="11.735001" height="6.7350001" x="118.71309" y="59.028568"/>
+            <rect id="423" width="11.735001" height="6.7350001" x="130.71309" y="59.028568"/>
+            <rect id="424" width="11.735001" height="6.7350001" x="142.71309" y="59.028568"/>
+            <rect id="425" width="14.611753" height="5.6433153" x="61.236446" y="69.478386"/>
+            <rect id="426" width="11.733239" height="5.6725407" x="76.06514" y="69.463768"/>
+            <rect id="427" width="11.733239" height="5.6725407" x="94.777428" y="69.463768"/>
+            <rect id="428" width="11.733239" height="5.6725407" x="106.77562" y="69.463768"/>
+            <rect id="429" width="14.480034" height="5.6445827" x="118.72513" y="69.477745"/>
         </a>
-        <a id="salle5" transform="translate(-0.15216407,-40.72336)">
-            <rect id="500" width="14.329332" height="6.7077622" x="40.139557" y="41.044598"/>
-            <rect id="501" width="14.618905" height="6.7048869" x="61.226971" y="41.046036"/>
-            <rect id="502" width="11.735001" height="6.7350001" x="76.061951" y="41.030979"/>
-            <rect id="503" width="11.735001" height="6.7350001" x="94.777054" y="41.030979"/>
-            <rect id="504" width="11.735001" height="6.7350001" x="106.77705" y="41.030979"/>
-            <rect id="505" width="14.487102" height="6.7061915" x="118.72749" y="41.045383"/>
-            <rect id="506" width="14.465424" height="6.7064071" x="139.96837" y="41.045277"/>
-            <rect id="507" width="11.735001" height="6.7350001" x="40.125938" y="52.029377"/>
-            <rect id="508" width="11.735001" height="6.7350001" x="52.125938" y="52.029377"/>
-            <rect id="509" width="11.735001" height="6.7350001" x="64.125931" y="52.029377"/>
-            <rect id="510" width="11.735001" height="6.7350001" x="76.061951" y="52.029377"/>
-            <rect id="511" width="11.735001" height="6.7350001" x="94.777046" y="52.029377"/>
-            <rect id="512" width="11.735001" height="6.7350001" x="106.77705" y="52.029377"/>
-            <rect id="513" width="11.735001" height="6.7350001" x="118.7131" y="52.029377"/>
-            <rect id="514" width="11.735001" height="6.7350001" x="130.7131" y="52.029377"/>
-            <rect id="515" width="11.735001" height="6.7350001" x="142.7131" y="52.029377"/>
-            <rect id="516" width="11.735001" height="6.7350001" x="40.125931" y="59.028568"/>
-            <rect id="517" width="11.735001" height="6.7350001" x="52.125931" y="59.028568"/>
-            <rect id="518" width="11.735001" height="6.7350001" x="64.125931" y="59.028568"/>
-            <rect id="519" width="11.735001" height="6.7350001" x="76.061951" y="59.028568"/>
-            <rect id="520" width="11.735001" height="6.7350001" x="94.777054" y="59.028568"/>
-            <rect id="521" width="11.735001" height="6.7350001" x="106.77705" y="59.028568"/>
-            <rect id="522" width="11.735001" height="6.7350001" x="118.71309" y="59.028568"/>
-            <rect id="523" width="11.735001" height="6.7350001" x="130.71309" y="59.028568"/>
-            <rect id="524" width="11.735001" height="6.7350001" x="142.71309" y="59.028568"/>
-            <rect id="525" width="14.611753" height="6.1603575" x="61.236446" y="69.479721"/>
-            <rect id="526" width="11.733239" height="6.1922603" x="76.06514" y="69.463768"/>
-            <rect id="527" width="11.733239" height="6.1922603" x="94.777428" y="69.463768"/>
-            <rect id="528" width="11.733239" height="6.1922603" x="106.77562" y="69.463768"/>
-            <rect id="529" width="14.480034" height="6.1617413" x="118.72513" y="69.479027"/>
+        <a id="salle5">
+            <rect style="display:inline;fill:#00ffdd;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="500" width="34.44854" height="44.448536" x="120.27573" y="-204.72427" transform="rotate(90)"/>
         </a>
-        <a id="salle6" transform="translate(-0.12082672,-0.61238882)">
-            <rect id="600" width="14.329332" height="6.7077622" x="40.139557" y="41.044598"/>
-            <rect id="601" width="14.618905" height="6.7048869" x="61.226971" y="41.046036"/>
-            <rect id="602" width="11.735001" height="6.7350001" x="76.061951" y="41.030979"/>
-            <rect id="603" width="11.735001" height="6.7350001" x="94.777054" y="41.030979"/>
-            <rect id="604" width="11.735001" height="6.7350001" x="106.77705" y="41.030979"/>
-            <rect id="605" width="14.487102" height="6.7061915" x="118.72749" y="41.045383"/>
-            <rect id="606" width="14.465424" height="6.7064071" x="139.96837" y="41.045277"/>
-            <rect id="607" width="11.735001" height="6.7350001" x="40.125938" y="52.029377"/>
-            <rect id="608" width="11.735001" height="6.7350001" x="52.125938" y="52.029377"/>
-            <rect id="609" width="11.735001" height="6.7350001" x="64.125931" y="52.029377"/>
-            <rect id="610" width="11.735001" height="6.7350001" x="76.061951" y="52.029377"/>
-            <rect id="611" width="11.735001" height="6.7350001" x="94.777046" y="52.029377"/>
-            <rect id="612" width="11.735001" height="6.7350001" x="106.77705" y="52.029377"/>
-            <rect id="613" width="11.735001" height="6.7350001" x="118.7131" y="52.029377"/>
-            <rect id="614" width="11.735001" height="6.7350001" x="130.7131" y="52.029377"/>
-            <rect id="615" width="11.735001" height="6.7350001" x="142.7131" y="52.029377"/>
-            <rect id="616" width="11.735001" height="6.7350001" x="40.125931" y="59.028568"/>
-            <rect id="617" width="11.735001" height="6.7350001" x="52.125931" y="59.028568"/>
-            <rect id="618" width="11.735001" height="6.7350001" x="64.125931" y="59.028568"/>
-            <rect id="619" width="11.735001" height="6.7350001" x="76.061951" y="59.028568"/>
-            <rect id="620" width="11.735001" height="6.7350001" x="94.777054" y="59.028568"/>
-            <rect id="621" width="11.735001" height="6.7350001" x="106.77705" y="59.028568"/>
-            <rect id="622" width="11.735001" height="6.7350001" x="118.71309" y="59.028568"/>
-            <rect id="623" width="11.735001" height="6.7350001" x="130.71309" y="59.028568"/>
-            <rect id="624" width="11.735001" height="6.7350001" x="142.71309" y="59.028568"/>
-            <rect id="625" width="14.611753" height="5.6433153" x="61.236446" y="69.478386"/>
-            <rect id="626" width="11.733239" height="5.6725407" x="76.06514" y="69.463768"/>
-            <rect id="627" width="11.733239" height="5.6725407" x="94.777428" y="69.463768"/>
-            <rect id="628" width="11.733239" height="5.6725407" x="106.77562" y="69.463768"/>
-            <rect id="629" width="14.480034" height="5.6445827" x="118.72513" y="69.477745"/>
+        <a id="salle6">
+            <rect style="display:inline;fill:#00ffdd;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="600" width="34.480034" height="39.480034" x="80.259987" y="-204.74001" transform="rotate(90)"/>
         </a>
     </g>
     <g id="layer1" transform="translate(0.09589299,-0.17511949)" style="display:inline">
@@ -169,30 +169,22 @@
             <rect style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.269516;stroke-dasharray:none;stroke-opacity:1" id="rect8691-4-6-81-2-8-7" width="14.259423" height="5.9553547" x="40.068665" y="28.807632" transform="translate(-0.15843877,-39.760773)"/>
             <rect style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.269186;stroke-dasharray:none;stroke-opacity:1" id="rect8691-4-6-81-2-8-7-2" width="14.259753" height="5.9406538" x="139.90424" y="28.647379" transform="translate(-0.25433176,-39.585654)"/>
         </a>
-        <a id="listeBatiment">
+        <g id="listeBatiment">
             <a id="batiment1">
                 <rect style="fill:#0200ff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90" width="114.12068" height="34.120594" x="40.10585" y="0.43970299"/>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:1;paint-order:markers stroke fill" x="79.416786" y="19.071075" id="text2607">
-                    <tspan id="tspan2605" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="79.416786" y="19.071075">salle 1</tspan>
-                </text>
+                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:1;paint-order:markers stroke fill" x="79.416786" y="19.071075" id="text2607">salle 1</text>
             </a>
             <a id="batiment2">
                 <rect style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90-3" width="114.12068" height="34.120594" x="40.10585" y="40.439705" transform="translate(0,-0.03637886)"/>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="76.190826" y="61.306095" id="text2607-5">
-                    <tspan id="tspan2605-2" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="76.190826" y="61.306095">salle 2</tspan>
-                </text>
+                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="76.190826" y="61.306095" id="text2607-5">salle 2</text>
             </a>
             <a id="batiment3">
                 <rect style="fill:#1aff00;fill-opacity:1;stroke:#000000;stroke-width:1.01345;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90-8" width="76.51796" height="34.107239" x="78.020905" y="-34.562332" transform="rotate(90)"/>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="-2.0122409" y="104.71066" id="text2607-4">
-                    <tspan id="tspan2605-9" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="-2.0122409" y="104.71066">salle 3</tspan>
-                </text>
+                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="-2.0122409" y="104.71066" id="text2607-4">salle 3</text>
             </a>
             <a id="batiment4">
                 <rect style="display:inline;fill:#e2ff00;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-7" width="113.7186" height="73.693298" x="40.645061" y="80.661644"/>
-                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="81.429306" y="119.30358" id="text2607-7">
-                    <tspan id="tspan2605-3" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="81.429306" y="119.30358">salle 4</tspan>
-                </text>
+                <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="81.429306" y="119.30358" id="text2607-7">salle 4</text>
             </a>
             <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="72.455544" y="172.65388" id="text2607-2">
                 <tspan id="tspan2605-1" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="72.455544" y="172.65388">Accueil</tspan>
@@ -203,6 +195,6 @@
             <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="164.49666" y="142.12839" id="text2607-41">
                 <tspan id="tspan2605-6" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="164.49666" y="142.12839">Salle 6</tspan>
             </text>
-        </a>
+        </g>
     </g>
 </svg>

@@ -40,4 +40,28 @@ const listeTypeStand = (req,res) => {
     })
 }
 
-export default {listStand, newStand,getStand ,listeTypeStand}
+const newCommentaire = (req,res) => {
+  db.livreOr.create({
+    idStand: req.params.id,
+      commentaire: req.body.commentaire,
+  }).then((result) => {
+    return res.status(200).send({success: 1})
+  }).catch((error) => {
+    console.error(error)
+    return res.status(404).send({success: 0})
+  })
+}
+
+const deleteStand = (req,res) => {
+    console.log(req.body)
+  db.stand.destroy({
+    where: {idStand: req.params.id}
+  }).then((result) => {
+    return res.status(200).send({success: 1})
+  }).catch((error) => {
+    console.error(error)
+    return res.status(404).send({success: 0})
+  })
+}
+
+export default {listStand, newStand,getStand ,listeTypeStand,newCommentaire,deleteStand}

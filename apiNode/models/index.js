@@ -63,6 +63,7 @@ let option={}
 await sequelize.sync(option)//{force:true}
 
 if(option.force===true) {
+    sequelize.options.logging= false
     db.role.create({idRole: 1, libelle: "admin"})
     db.role.create({idRole: 2, libelle: "prestataire"})
     db.role.create({idRole: 3, libelle: "user"})
@@ -90,11 +91,12 @@ if(option.force===true) {
     db.produit.create({idProduit: 7, libelleProduit: 'Poster The Refuge - OneShot', descriptionProduit: 'Poster du jeu OneShot montrant Niko arrivant dans le Refuge. Taille: 24cm*60cm', prix: 9, imageProduit: 'posterrefuge.jpg',idTypeProduit: 4})
     db.produit.create({idProduit: 8, libelleProduit: 'Halo - La chute de Reach', descriptionProduit: 'Livre portant sur lunivers des jeux Halo', prix: 20, imageProduit: 'livrehalolachutedereach.jpg',idTypeProduit: 5})
     db.produit.create({idProduit: 9, libelleProduit: 'Le Journal : Oeuvre de Cedric', descriptionProduit: 'Oeuvre de Cedric', prix: 20, imageProduit: 'lejournal.jpg',idTypeProduit: 5})
-    db.stand.create({idStand: 300, descriptionStand: 'c est une description du stand', idTypeStand: 1, idPrestataire: 1,nomStand: 'stand 1'})
-    db.evenement.create({idEvenement: 1, libelleEvenement: 'Tournoi Polytopia', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 1, idStand: 300})
+    await db.stand.create({idStand: 300, descriptionStand: 'c est une description du stand', idTypeStand: 1, idPrestataire: 1,nomStand: 'stand 1'})
+    await db.evenement.create({idEvenement: 1, libelleEvenement: 'Tournoi Polytopia', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 1, idStand: 300})
     // db.evenement.create({idEvenement: 2, libelleEvenement: 'Tournoi Mario Kart', heureDebut: '2022-06-22 17:00:00', heureFin: '2022-06-22 20:00:00', idTypeEvenement: 1, idStand: 1})
     // db.evenement.create({idEvenement: 3, libelleEvenement: 'Conférence de Cedric', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 2, idStand: 1})
-    db.livreOr.create({ commentaire: 'Super événement !', idStand:300})
+    await db.livreOr.create({ commentaire: 'Super événement !', idStand:300})
+    sequelize.options.logging=true;
 }
 // des erreurs sont survenues lorsque je ne met pas de await devant les create
 // il faudrait peut être faire un await sur chaque create
@@ -102,6 +104,5 @@ if(option.force===true) {
 // ou alors faire un for await (const element of array) {await element.create()} ---------PS : phrase genere par Copilot, donc peut etre une solution
 
 // quelqu'un m'a dit q'il utilise un script sql pour faire des insertions, en plus d'utiliser sequelize
-
 
 export default db;
