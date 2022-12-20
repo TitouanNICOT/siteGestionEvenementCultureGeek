@@ -4,6 +4,7 @@
         <p>Nom Stand = {{info.nomStand}}</p>
         <p>Description = {{info.descriptionStand}}</p>
         <p>Information prestataire = {{info.user.nom}} {{info.user.prenom}}</p>
+        <p>Type stand : {{typeStand}}</p>
         <div style="border: black 1px solid">
             <h3>Livre d'or :</h3>
             <p>Liste des commentaires sur le stand</p>
@@ -18,8 +19,8 @@
         <br>
         <div>
             <v-btn @click="retourCarte" >Retour à la carte</v-btn>
-            <v-btn>Acceder a la boutique</v-btn>
-            <v-btn>Acceder au(x) événement(s)</v-btn>
+            <v-btn v-if="typeStand==='boutique'" @click="clickBoutique">Acceder a la boutique</v-btn>
+            <v-btn v-if="typeStand==='temporaire'">Acceder au(x) événement(s)</v-btn>
         </div>
     </div>
 </template>
@@ -30,13 +31,21 @@ import standsS from "../services/stands";
 export default {
     name: "StandDetailView",
     data:()=>({
-        info:{user:{},livreOr:[]},
+        info:{user:{},livreOr:[],type_stand:{}},
         commentaire:"",
         idStand:0
     }),
+    computed:{
+        typeStand(){
+            return this.info.type_stand.libelleTypeStand
+        }
+    },
     methods:{
         retourCarte(){
             this.$router.push({name:"carte"})
+        },
+        clickBoutique(){
+            this.$router.push({name:"boutique",params:{idStand:this.idStand}})
         },
         addCommentaire(){
             if (this.commentaire!=="") {

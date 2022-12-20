@@ -11,6 +11,7 @@ import users from './routes/user.router.js';
 import evenements from './routes/evenement.router.js';
 import stands from './routes/stand.router.js';
 import produits from './routes/produit.router.js';
+import boutique from './routes/boutique.router.js';
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
@@ -39,6 +40,7 @@ app.use("/users",users);
 app.use("/evenements",evenements);
 app.use("/stands",stands);
 app.use("/produits",produits);
+app.use("/boutique",boutique)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.get("/",(req, res)=>{

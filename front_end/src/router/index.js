@@ -27,6 +27,12 @@ const routes = [
     path: '/evenement',
     name: 'evenement',
     component: EvenementView
+  },
+  {
+    path:'/boutique/:idStand',
+    name:'boutique',
+    component: () => import('../views/BoutiqueView.vue'),
+    props: route => ({ idStand: parseInt(route.params.idStand) })
   }
 ]
 

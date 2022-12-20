@@ -3,7 +3,7 @@
         <v-text-field label="NomStand" v-model="nomStand"></v-text-field>
         <v-textarea label="Description" v-model="description"></v-textarea>
 <!--        utilisation d'un slot pour afficher nom et prenom du prestataire-->
-        <v-select label="Prestataire" :items="listePresta" item-text="nom" item-value="idUser" v-model="presta">
+        <v-select label="Prestataire" :items="listePresta" item-value="idUser" v-model="presta">
             <template v-slot:item="{item}">
                 <span>{{ item.nom }} {{item.prenom}}</span>
             </template>
