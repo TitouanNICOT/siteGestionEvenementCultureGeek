@@ -4,6 +4,7 @@ import CarteView from '../views/CarteView.vue'
 import AccueilView from "@/views/AccueilView";
 import StandDetailView from "@/views/StandDetailView";
 import EvenementView from "@/views/EvenementView.vue";
+import LoginView  from "@/views/LoginView.vue";
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/evenement',
     name: 'evenement',
     component: EvenementView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
   },
   {
     path:'/boutique/:idStand',
