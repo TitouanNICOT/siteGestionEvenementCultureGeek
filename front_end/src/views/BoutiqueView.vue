@@ -20,6 +20,7 @@
 
 <script>
 import axios from "axios";
+import {mapState} from "vuex";
 
 export default {
     name: "BoutiqueView",
@@ -31,12 +32,17 @@ export default {
     props:{
         idStand:Number
     },
+    computed:{
+        ...mapState(["stands"])
+    },
     created() {
-        axios.get("http://localhost:3000/boutique/"+this.idStand)
-            .then(responce => {
-                console.log(responce.data.data)
-                this.listProduit = responce.data.data
-            })
+        if (this.stands.find(s=>s.id===this.idStand)===undefined)
+            alert("Le stand n'existe pas")
+        else
+            axios.get("http://localhost:3000/boutique/"+this.idStand)
+                .then(responce => {
+                    this.listProduit = responce.data.data
+                })
     },
     methods:{
         retourStand(){
