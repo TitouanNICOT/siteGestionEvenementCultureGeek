@@ -9,6 +9,7 @@ export default new Vuex.Store({
         users: [],
         stands: [],
         listeTypeStand: [],
+        currentUser: null,
     },
     getters: {
         listePresta(state) {
@@ -32,6 +33,12 @@ export default new Vuex.Store({
             const indexStand = state.stands.indexOf(stand);
             state.stands.splice(indexStand, 1);
             // state.stands = state.stands.filter(stand => stand.idStand != idStand);
+        },
+        setCurrentUser(state, user) {
+            state.currentUser = user;
+        },
+        removeCurrentUser(state) {
+            state.currentUser = null;
         }
     },
     actions: {

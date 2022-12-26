@@ -1,9 +1,7 @@
 <template>
     <v-app>
         <v-app-bar app color="var(--primary-color)" dark>
-            <NavBar :titles="route"
-                    @menu-clicked="changeRoute">
-            </NavBar>
+            <NavBar></NavBar>
         </v-app-bar>
 
         <v-main>
@@ -14,35 +12,21 @@
 
 <script>
       import {mapActions} from 'vuex'
-      import router from "@/router";
       import NavBar from "@/components/NavBar";
 
       export default {
           name: 'App',
           components: {NavBar},
           data: () => ({
-              route:[{text: 'Home', color: 'grey'}
-                , {text: 'Carte', color: 'grey'}
-                , {text: 'Liste des Stands', color: 'grey'}
-                , {text: 'Liste des Evenements', color: 'grey'}
-                , {text: 'Se Connecter', color: 'green'}]
+
           }),
           methods: {
               // ...mapActions(['']),
               // ...mapActions(['']),
-              changeRoute(id) {
-                switch (id){
-                  case 1: router.push('/carte'); break
-                  case 2: router.push('/stand'); break
-                  case 3: router.push('/evenement'); break
-                  case 4: router.push('/login'); break
-                  default: router.push('/'); break
-                }
-              },
               ...mapActions(['loading'])
           },
           created() {
-            this.loading()
+            // this.loading()
           }
       };
 
