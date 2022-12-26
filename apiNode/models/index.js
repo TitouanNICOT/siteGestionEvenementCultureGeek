@@ -36,6 +36,8 @@ import {Produit} from "./produit.js"
 db.produit = Produit(Sequelize,sequelize)
 import {LivreOr} from "./livreOr.js"
 db.livreOr = LivreOr(Sequelize,sequelize)
+import {ReserverProduit} from "./reserverProduit.js"
+db.reserverProduit = ReserverProduit(Sequelize, sequelize)
 
 
 db.user.belongsTo(db.role, {foreignKey: 'idRole'})
@@ -61,6 +63,9 @@ db.stand.hasMany(db.produit, {foreignKey: 'idStand'})
 
 db.stand.hasMany(db.livreOr, {foreignKey: 'idStand',as: "livreOr"})
 db.livreOr.belongsTo(db.stand, {foreignKey: 'idStand'})
+
+db.produit.belongsToMany(db.user,{through:db.reserverProduit ,foreignKey: 'idProduit', otherKey: 'idUser', uniqueKey:"idReserveProd"})
+db.user.belongsToMany(db.produit,{through:db.reserverProduit ,foreignKey: 'idUser', otherKey: 'idProduit', uniqueKey:"idReserveProd"})
 
 let option={}
 // option.force=true

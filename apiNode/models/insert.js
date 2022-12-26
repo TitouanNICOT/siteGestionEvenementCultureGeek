@@ -35,6 +35,9 @@ const insert = async (db)=>{
     await db.produit.create({idStand:300, libelleProduit: 'Poster The Refuge - OneShot', descriptionProduit: 'Poster du jeu OneShot montrant Niko arrivant dans le Refuge. Taille: 24cm*60cm', prix: 9, imageProduit: 'posterrefuge.jpg',idTypeProduit: 4})
     await db.produit.create({idStand:300, libelleProduit: 'Halo - La chute de Reach', descriptionProduit: 'Livre portant sur lunivers des jeux Halo', prix: 20, imageProduit: 'livrehalolachutedereach.jpg',idTypeProduit: 5})
     await db.produit.create({idStand:300, libelleProduit: 'Le Journal : Oeuvre de Cedric', descriptionProduit: 'Oeuvre de Cedric', prix: 20, imageProduit: 'lejournal.jpg',idTypeProduit: 5})
+    await db.reserverProduit.create({quantite:6, idUser:1, idProduit:8})
+    await db.reserverProduit.create({quantite:5, idUser:1, idProduit:4})
+    await db.reserverProduit.create({quantite:7, idUser:1, idProduit:7})
 
 }
 export {insert};
