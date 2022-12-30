@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import CarteView from '../views/CarteView.vue'
 import AccueilView from "@/views/AccueilView";
 import StandDetailView from "@/views/StandDetailView";
+import StandView from "@/views/StandView";
 import EvenementView from "@/views/EvenementView.vue";
 import LoginView  from "@/views/LoginView.vue";
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/stand/:id',
     name: 'stand',
     component: StandDetailView
+  },
+  {
+    path: '/stand',
+    name: 'stand',
+    component: StandView
   },
   {
     path: '/evenement',

@@ -1,7 +1,7 @@
 <template>
   <v-row>
       <div>
-          <button v-for="(title, index) in titles" :key="index" @click="changeRoute"> {{ title.text }} </button>
+          <button v-for="(title, index) in titles" :key="index" @click="changeRoute(index)"> {{ title.text }} </button>
       </div>
       <div style="margin-left: auto">
           <button v-if="currentUser==null" @click="login">Connection</button>
@@ -33,7 +33,7 @@ export default {
     methods: {
       ...mapMutations(['removeCurrentUser']),
         changeRoute(id) {
-            router.push(this.route[id].route);
+            router.push(this.titles[id].route)
         },
         login() {
             router.push('/login');
