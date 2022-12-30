@@ -1,7 +1,7 @@
 <template>
     <div class="login-container my-5">
         <h1>Connexion</h1>
-        <form @submit.prevent="loginLocal">
+        <form @submit.prevent="login">
             <label for="username">Nom d'utilisateur :</label>
             <br>
             <input type="text" v-model="username" id="username" name="username">
@@ -17,6 +17,7 @@
 <script>
 import axios from "axios";
 import {mapMutations} from "vuex";
+import {roles} from "@/services/roles";
 // import {mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
@@ -30,22 +31,20 @@ export default {
     methods: {
         ...mapMutations(['setCurrentUser']),
         login() {
-            axios.post('http://localhost:3000/login', {
-                username: this.username,
+            axios.post('http://localhost:3000/connection/login', {
+                pseudo: this.username,
                 password: this.password
             }).then(response => {
-                    // Traitez la réponse de l'API, par exemple en enregistrant le jeton d'accès de l'utilisateur
-                    console.log(response.data);
-
-                    // Récupérez le jeton d'accès de la réponse de l'API
-                    // const accessToken = response.data.access_token;
-                    // Enregistrez le jeton d'accès de l'utilisateur (par exemple dans un cookie ou un stockage local)
-                    // this.setAccessToken(accessToken);
-                    // Redirigez l'utilisateur vers une autre page de votre application
-                    // this.$router.push('/dashboard');
-                }).catch(error => {
-                    console.error(error);
-                });
+                if (response.data.success) {
+                    response.data.data.role=roles.find(role=>role.id===response.data.data.idRole).name;
+                    this.setCurrentUser(response.data.data);
+                    this.$router.push({name: 'Accueil'});
+                } else {
+                    alert(response.data.data);
+                }
+            }).catch(() => {
+                alert('Mauvais identifiants');
+            });
         },
         loginLocal(){//independant de la bdd
             if (this.username === 'admin' && this.password === 'admin') {

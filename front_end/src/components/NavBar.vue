@@ -6,7 +6,7 @@
       <div style="margin-left: auto">
           <button v-if="currentUser==null" @click="login">Connection</button>
           <div v-else>
-              <span>Bienvenue {{currentUser.prenom}}</span>
+              <span>Bienvenue {{currentUser.pseudo}}</span>
               <button  @click="logout">Se déconnecter</button>
           </div>
       </div>

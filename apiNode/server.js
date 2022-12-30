@@ -13,6 +13,7 @@ import stands from './routes/stand.router.js';
 import produits from './routes/produit.router.js';
 import boutique from './routes/boutique.router.js';
 import reserverProduits from "./routes/reserverProduit.router.js";
+import loginRouter from "./routes/login.router.js";
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
@@ -43,6 +44,7 @@ app.use("/stands",stands);
 app.use("/produits",produits);
 app.use("/boutique",boutique)
 app.use("/reservations",reserverProduits);
+app.use("/connection",loginRouter)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.get("/",(req, res)=>{

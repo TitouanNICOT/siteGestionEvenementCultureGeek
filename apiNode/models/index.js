@@ -73,6 +73,7 @@ let option={}
 await sequelize.sync(option)//{force:true}
 
 if(option.force===true) {
+    console.log("Insertion des données")
     await insert(db)
 }
 sequelize.options.logging=true;
