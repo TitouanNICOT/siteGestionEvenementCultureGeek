@@ -49,6 +49,7 @@ export default {
     methods: {
         ...mapMutations(["addStand"]),
         selectionStand(event) {
+          console.log(this.stands)
             if (event.id === this.idSelected)
                 this.deselection()
             else {

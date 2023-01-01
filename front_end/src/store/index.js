@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state: {
         users: [],
         stands: [],
+        evenements: [],
         listeTypeStand: [],
         currentUser: null,
     },

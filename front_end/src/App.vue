@@ -26,7 +26,7 @@
               ...mapActions(['loading'])
           },
           created() {
-            // this.loading()
+            this.loading()
           }
       };
 
