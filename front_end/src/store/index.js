@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
+import {NONCONNECTE} from "@/services/roles";
 
 Vue.use(Vuex)
 
@@ -15,6 +16,11 @@ export default new Vuex.Store({
     getters: {
         listePresta(state) {
             return state.users.filter(user => user.idRole === 2)
+        },
+        currentRole(state) {
+            if (state.currentUser)
+                return state.currentUser.idRole
+            return NONCONNECTE
         }
     },
     mutations: {

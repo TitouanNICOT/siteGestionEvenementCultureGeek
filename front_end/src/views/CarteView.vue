@@ -10,13 +10,14 @@
             </p>
             <div v-else style="border: black 1px solid; margin: 20px; padding: 10px">
                 <h2 style="text-align: center">Stand : {{ idSelected }}</h2>
-                <div v-if="standSelected===undefined && role==='admin'">
-                    <FormStand @createStand="createStand" />
+                <div v-if="standSelected===undefined">
+                    <FormStand v-if="currentRole===ADMIN" @createStand="createStand" />
+                    <p v-else style="font-size: 30px">Ce stand n'existe pas</p>
                 </div>
                 <div v-else>
                     <p v-for="(val,key,index) in standSelected" :key="index">{{key}} : {{val}}</p>
                     <v-btn color="blue" @click="voirStand">Voir Plus</v-btn>
-                    <v-btn color="red" @click="supprimerStand">Supprimer</v-btn>
+                    <v-btn color="red" @click="supprimerStand" v-if="currentRole===ADMIN">Supprimer</v-btn>
                 </div>
             </div>
 
@@ -30,6 +31,7 @@ import FormStand from "@/components/formStand";
 import axios from "axios";
 import {mapGetters, mapMutations, mapState} from "vuex";
 import standsS from "@/services/stands";
+import {ADMIN} from "@/services/roles";
 
 export default {
     name: "CarteView",
@@ -38,12 +40,12 @@ export default {
             standSelected: undefined,
             idSelected: -1,
             modifSelection: {},
-            role:"admin",
+            ADMIN
         }
     },
     computed:{
         ...mapState(["stands"]),
-        ...mapGetters(["listePresta"])
+        ...mapGetters(["listePresta","currentRole"])
     },
     components: {FormStand, CarteSVG},
     methods: {

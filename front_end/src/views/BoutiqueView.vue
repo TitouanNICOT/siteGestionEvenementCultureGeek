@@ -36,7 +36,8 @@ export default {
         ...mapState(["stands"])
     },
     created() {
-        if (this.stands.find(s=>s.id===this.idStand)===undefined)
+        console.log(this.stands)
+        if (this.stands.find(s=>s.id==this.idStand)===undefined)
             alert("Le stand n'existe pas")
         else
             axios.get("http://localhost:3000/boutique/"+this.idStand)

@@ -2,20 +2,24 @@
   <v-row>
       <div>
           <button v-for="(title, index) in titles" :key="index" @click="changeRoute(index)"> {{ title.text }} </button>
+          <button v-if="currentRole === ADMIN">Liste Prestataire</button>
+          <button v-if="currentRole === PRESTA">Tableau de bord</button>
       </div>
       <div style="margin-left: auto">
+          <span>({{role}} : {{ currentRole }})  </span>
           <button v-if="currentUser==null" @click="login">Connection</button>
-          <div v-else>
+          <span v-else>
               <span>Bienvenue {{currentUser.pseudo}}</span>
               <button  @click="logout">Se déconnecter</button>
-          </div>
+          </span>
       </div>
   </v-row>
 </template>
 
 <script>
-import { mapMutations, mapState} from "vuex";
+import {mapGetters, mapMutations, mapState} from "vuex";
 import router from "@/router";
+import {roles, ADMIN, PRESTA} from "@/services/roles";
 
 export default {
   name: 'NavBar',
@@ -24,11 +28,16 @@ export default {
             titles:[{text: 'Home', color: 'grey', route:'/'}
                 , {text: 'Carte', color: 'grey', route:'/carte'}
                 , {text: 'Liste des Stands', color: 'grey', route:'/stand'}
-                , {text: 'Liste des Evenements', color: 'grey', route:'/evenement'}]
+                , {text: 'Liste des Evenements', color: 'grey', route:'/evenement'}],
+            ADMIN,PRESTA
         }
     },
     computed:{
         ...mapState(['currentUser']),
+        ...mapGetters(['currentRole']),
+        role(){
+            return roles.find(role => role.id === this.currentRole).name
+        }
     },
     methods: {
       ...mapMutations(['removeCurrentUser']),

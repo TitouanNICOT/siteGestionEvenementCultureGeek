@@ -5,7 +5,7 @@
     </div>
     <div v-for="(elem,index) in stand" :key="index">
       <div style="margin: 10px; float: left;">
-        <v-card class="mx-3" max-width="344" outlined>
+        <v-card class="mx-3" max-width="344" outlined @click="goToStand(elem.numStand)">
           <h3 style="text-align: center;">{{elem.nomStand}}</h3>
           <hr>
           <span>Numéro du stand : <strong>{{elem.numStand}}</strong></span>
@@ -43,6 +43,9 @@ export default {
   },
   methods: {
     ...mapMutations(["getStands"]),
+      goToStand(num){
+        this.$router.push({name: 'stand', params: {id: num}})
+      }
   },
   created() {
     console.log("created")
