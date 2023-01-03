@@ -38,6 +38,7 @@ export default {
                 if (response.data.success) {
                     response.data.data.role=roles.find(role=>role.id===response.data.data.idRole).name;
                     this.setCurrentUser(response.data.data);
+                    this.$cookies.set("currentUser", response.data.data,"20min");
                     this.$router.push({name: 'Accueil'});
                 } else {
                     alert(response.data.data);

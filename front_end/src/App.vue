@@ -11,7 +11,7 @@
 </template>
 
 <script>
-      import {mapActions} from 'vuex'
+import {mapActions, mapMutations} from 'vuex'
       import NavBar from "@/components/NavBar";
 
       export default {
@@ -21,12 +21,13 @@
 
           }),
           methods: {
-              // ...mapActions(['']),
-              // ...mapActions(['']),
-              ...mapActions(['loading'])
+              ...mapActions(['loading']),
+              ...mapMutations(['setCurrentUser']),
           },
           created() {
             this.loading()
+              console.log(this.$cookies)
+              this.setCurrentUser(this.$cookies.get("currentUser"));
           }
       };
 
