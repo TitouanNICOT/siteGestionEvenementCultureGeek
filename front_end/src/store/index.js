@@ -30,6 +30,9 @@ export default new Vuex.Store({
         setStands(state, stands) {
             state.stands = stands;
         },
+        setEvenements(state, evenement) {
+            state.evenements = evenement;
+        },
         addStand(state, stand) {
             state.stands.push(stand);
         },
@@ -56,6 +59,11 @@ export default new Vuex.Store({
                     if (responce.data.success === 1)
                         context.commit("setTypeStands", responce.data.data)
                 })
+            axios.get("http://localhost:3000/evenements")
+                .then(responce => {
+                    if (responce.data.success === 1)
+                        context.commit("setEvenements", responce.data.data)
+                })
             axios.get("http://localhost:3000/users")
                 .then(responce => {
                     if (responce.data.success === 1)
@@ -68,10 +76,14 @@ export default new Vuex.Store({
                         responce.data.data.forEach(d => datas.push({
                             id: d.idStand.toString(),
                             nomStand: d.nomStand,
+                            descriptionStand: d.descriptionStand,
+                            typeStand: d.type_stand,
+                            user: d.user,
                             couleur: "red",
-                            description: d.descriptionStand,
-                            prestataire: d.user === null ? "null" : d.user.nom + " " + d.user.prenom,
+                            libelleTypeStand: d.type_stand.libelleTypeStand,
+                            prestataire: d.user === null ? "null" : d.user.nom + " " + d.user.prenom
                         }))
+                        //datas.push(...responce.data.data)
                         context.commit("setStands", datas)
                     }
                 })
