@@ -1,6 +1,6 @@
 import db from "../models/index.js"
 
-const list = (req, res) => {
+const list = async (req, res) => {
     db.produit.findAll({include:db.type_produit}).then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
@@ -8,7 +8,7 @@ const list = (req, res) => {
     })
 }
 
-const getProduitById = (req, res) => {
+const getProduitById = async (req, res) => {
     const id = req.params.id;
     if (isNaN(id))
         return res.status(404).send({success: 0, data: "id is not a number"})
@@ -20,7 +20,7 @@ const getProduitById = (req, res) => {
     })
 }
 
-const newProduit = (req, res) => {
+const newProduit = async (req, res) => {
     console.log(req.body)
     db.produit.create({
         libelleProduit: req.body.libelleProduit,
@@ -35,7 +35,7 @@ const newProduit = (req, res) => {
     });
 }
 
-const modifProduit = (req, res) => {
+const modifProduit = async (req, res) => {
     const id = req.body.id
     if (isNaN(id))
         return res.status(404).send({success: 0})
@@ -56,7 +56,7 @@ const modifProduit = (req, res) => {
     });
 }
 
-const deleteProduit = (req, res) => {
+const deleteProduit = async (req, res) => {
     const id = req.params.id;
     if (isNaN(id))
         return res.status(404).send({success: 0})
@@ -70,7 +70,7 @@ const deleteProduit = (req, res) => {
     });
 }
 
-const listTypeProduit = (req,res) => {
+const listTypeProduit = async (req, res) => {
     db.type_produit.findAll().then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {

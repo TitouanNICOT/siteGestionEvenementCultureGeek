@@ -19,7 +19,7 @@ const login = async (req, res) => {
 }
 
 //route a modifier, (utilisé pour le developement du reste
-const newUser = (req,res) => {
+const newUser = async (req, res) => {
     bcrypt.hash("mdpadmin", 10, function(err, hash) {
         if (err)
             return res.status(404).send({success: 0, data: err})

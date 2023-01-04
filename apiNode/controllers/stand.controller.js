@@ -10,7 +10,7 @@ const listStand = (req,res) => {
 
 const newStand = async (req,res) => {
     console.log(req.body)
-    let newstand = await db.stand.create({
+    db.stand.create({
         idStand: req.body.id,
         descriptionStand: req.body.description,
         nomStand: req.body.nomStand,
@@ -30,7 +30,7 @@ const newStand = async (req,res) => {
         return res.status(404).send({success: 0})
     });
 }
-const getStand = (req,res) =>{
+const getStand = async (req, res) =>{
     db.stand.findByPk(req.params.id,{include:[db.user,db.type_stand,"livreOr"]})
         .then((result) => {
             return res.status(200).send({success: 1, data: result})
@@ -39,7 +39,7 @@ const getStand = (req,res) =>{
         })
 }
 
-const listeTypeStand = (req,res) => {
+const listeTypeStand = async (req, res) => {
     db.type_stand.findAll().then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
@@ -47,7 +47,7 @@ const listeTypeStand = (req,res) => {
     })
 }
 
-const newCommentaire = (req,res) => {
+const newCommentaire = async (req, res) => {
   db.livreOr.create({
     idStand: req.params.id,
       commentaire: req.body.commentaire,
@@ -59,7 +59,7 @@ const newCommentaire = (req,res) => {
   })
 }
 
-const deleteStand = (req,res) => {
+const deleteStand = async (req, res) => {
     console.log(req.body)
   db.stand.destroy({
     where: {idStand: req.params.id}

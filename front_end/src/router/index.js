@@ -27,7 +27,7 @@ const routes = [
   },
   {
     path: '/stand',
-    name: 'stand',
+    name: 'stands',
     component: StandView
   },
   {

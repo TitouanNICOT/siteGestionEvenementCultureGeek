@@ -12,12 +12,14 @@
                 <h2 style="text-align: center">Stand : {{ idSelected }}</h2>
                 <div v-if="standSelected===undefined">
                     <FormStand v-if="currentRole===ADMIN" @createStand="createStand" />
-                    <p v-else style="font-size: 30px">Ce stand n'existe pas</p>
+                    <p v-else>Ce stand n'existe pas</p>
                 </div>
                 <div v-else>
                     <p v-for="(val,key,index) in standSelected" :key="index">
                       <span v-if="liste.includes(key)">{{key}} : {{val}}</span>
                     </p>
+                    <p>Nom prestataire : {{standSelected.libellePresta()}}</p>
+                    <p>Type stand : {{standSelected.libelleTypeStand()}}</p>
                     <v-btn color="blue" @click="voirStand">Voir Plus</v-btn>
                     <v-btn color="red" @click="supprimerStand" v-if="currentRole===ADMIN">Supprimer</v-btn>
                 </div>
@@ -32,8 +34,8 @@ import CarteSVG from "../components/CarteSVG.vue"
 import FormStand from "@/components/formStand";
 import axios from "axios";
 import {mapGetters, mapMutations, mapState} from "vuex";
-import standsS from "@/services/stands";
 import {ADMIN} from "@/services/roles";
+import {deleteStand, Stand} from "@/services/stands";
 
 export default {
     name: "CarteView",
@@ -43,7 +45,7 @@ export default {
             idSelected: -1,
             modifSelection: {},
             ADMIN,
-          liste:["nomStand","descriptionStand","prestataire","libelleTypeStand"]
+          liste:["nomStand","descriptionStand"]
         }
     },
     computed:{
@@ -69,7 +71,7 @@ export default {
             this.idSelected=-1
         },
         supprimerStand(){
-            standsS.deleteStand(this.idSelected)
+            deleteStand(this.idSelected)
                 .then(responce=>{
                     if (responce.data.success===1){
                         this.$store.commit("removeStand",this.idSelected)
@@ -87,26 +89,11 @@ export default {
                 .then(responce => {
                   console.log(responce.data)
                   if (responce.data.success === 1) {
-                    data={
-                      id: responce.data.data.idStand.toString(),
-                      nomStand: responce.data.data.nomStand,
-                      descriptionStand: responce.data.data.descriptionStand,
-                      typeStand: responce.data.data.type_stand,
-                      user: responce.data.data.user,
-                      couleur: "red",
-                      libelleTypeStand: responce.data.data.type_stand.libelleTypeStand,
-                      prestataire: responce.data.data.user === null ? "null" : responce.data.data.user.nom + " " + responce.data.data.user.prenom
-                    }
-                    this.addStand(data)
-                    this.standSelected=data
+                    this.standSelected=Stand.fromAPI(responce.data.data)
+                    this.addStand(this.standSelected)
                   }
                     // alert(responce.data.success)
                 })
-            // const presta=this.listePresta.find(p=>p.idUser===data.prestataire)
-            // data.prestataire=presta.nom+" "+presta.prenom
-            // this.addStand(data)
-            // this.standSelected=data
-            // console.log(this.standSelected)
         },
         voirStand(){
             this.$router.push({name:"stand",params:{id:this.idSelected}})

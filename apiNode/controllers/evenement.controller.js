@@ -1,6 +1,6 @@
 import db from "../models/index.js"
 
-const list = (req, res) => {
+const list = async (req, res) => {
     db.evenement.findAll({include: [db.type_evenement, db.stand]},).then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
@@ -8,7 +8,7 @@ const list = (req, res) => {
     })
 }
 
-const getEvenementById = (req, res) => {
+const getEvenementById = async (req, res) => {
     const id = req.params.id;
     if (isNaN(id))
         return res.status(404).send({success: 0, data: "id is not a number"})
@@ -20,7 +20,7 @@ const getEvenementById = (req, res) => {
     })
 }
 
-const newEvenement = (req, res) => {
+const newEvenement = async (req, res) => {
     console.log(req.body)
     db.evenement.create({
         libelleEvenement: req.body.libelleEvenement,
@@ -36,7 +36,7 @@ const newEvenement = (req, res) => {
     });
 }
 
-const modifEvenement = (req, res) => {
+const modifEvenement = async (req, res) => {
     const id = req.body.id
     if (isNaN(id))
         return res.status(404).send({success: 0})
@@ -58,7 +58,7 @@ const modifEvenement = (req, res) => {
     });
 }
 
-const deleteEvenement = (req, res) => {
+const deleteEvenement = async (req, res) => {
     const id = req.params.id;
     if (isNaN(id))
         return res.status(404).send({success: 0})
@@ -72,7 +72,7 @@ const deleteEvenement = (req, res) => {
     });
 }
 
-const listTypeEvenement = (req,res) => {
+const listTypeEvenement = async (req, res) => {
     db.type_evenement.findAll().then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {

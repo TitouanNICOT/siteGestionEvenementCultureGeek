@@ -14,7 +14,7 @@
         <br>
         <v-row style="border: black 1px solid">
             <v-text-field v-model="commentaire" label="Commentaire"></v-text-field>
-            <v-btn @click="addCommentaire">Ajouter un commentaire</v-btn>
+            <v-btn @click="addCommentaireAction">Ajouter un commentaire</v-btn>
         </v-row>
         <br>
         <div>
@@ -26,7 +26,8 @@
 </template>
 
 <script>
-import standsS from "../services/stands";
+
+import {addCommentaire, getStand} from "@/services/stands";
 
 export default {
     name: "StandDetailView",
@@ -47,9 +48,9 @@ export default {
         clickBoutique(){
             this.$router.push({name:"boutique",params:{idStand:this.idStand}})
         },
-        addCommentaire(){
+        addCommentaireAction(){
             if (this.commentaire!=="") {
-                standsS.addCommentaire(this.idStand, this.commentaire)
+                addCommentaire(this.idStand, this.commentaire)
                     .then((responce) => {
                         if (responce.data.success === 1) {
                             this.info.livreOr.push({commentaire: this.commentaire})
@@ -62,7 +63,7 @@ export default {
     },
     created() {
         this.idStand=this.$route.params.id
-        standsS.getStand(this.idStand)
+        getStand(this.idStand)
             .then(responce => {
                 this.info=responce.data.data
             })

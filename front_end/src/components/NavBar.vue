@@ -49,6 +49,7 @@ export default {
         },
         logout() {
             this.removeCurrentUser();
+            this.$cookies.remove("currentUser");
             router.push('/').catch(()=>{});
         }
     }

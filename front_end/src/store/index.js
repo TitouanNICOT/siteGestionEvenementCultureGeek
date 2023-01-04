@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
 import {NONCONNECTE} from "@/services/roles";
+import {Stand} from "@/services/stands";
 
 Vue.use(Vuex)
 
@@ -72,19 +73,8 @@ export default new Vuex.Store({
             axios.get("http://localhost:3000/stands")
                 .then(responce => {
                     if (responce.data.success === 1) {
-                        const datas = []
-                        responce.data.data.forEach(d => datas.push({
-                            id: d.idStand.toString(),
-                            nomStand: d.nomStand,
-                            descriptionStand: d.descriptionStand,
-                            typeStand: d.type_stand,
-                            user: d.user,
-                            couleur: "red",
-                            libelleTypeStand: d.type_stand.libelleTypeStand,
-                            prestataire: d.user === null ? "null" : d.user.nom + " " + d.user.prenom
-                        }))
-                        //datas.push(...responce.data.data)
-                        context.commit("setStands", datas)
+                        const data= responce.data.data.map(d => Stand.fromAPI(d))
+                        context.commit("setStands", data)
                     }
                 })
             console.log("fin chargement")

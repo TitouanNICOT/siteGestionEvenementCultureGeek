@@ -10,9 +10,9 @@
           <hr>
           <span>Numéro du stand : <strong>{{elem.id}}</strong></span>
           <br>
-          <span>Type de stand : <strong>{{elem.libelleTypeStand}}</strong></span>
+          <span>Type de stand : <strong>{{elem.libelleTypeStand()}}</strong></span>
           <br>
-          <span>Nom Prestataire : <strong>{{elem.prestataire}}</strong></span>
+          <span>Nom Prestataire : <strong>{{elem.libellePresta()}}</strong></span>
           <br>
           <span>Pseudo Prestataire : <strong>{{elem.user.pseudo}}</strong></span>
           <br>
@@ -28,6 +28,8 @@
 <script>
 
 import {mapState} from "vuex";
+
+
 export default {
   name: "StandView",
   computed:{
@@ -38,6 +40,9 @@ export default {
         this.$router.push({name: 'stand', params: {id: num}})
       }
   },
+  created() {
+    console.log("created")
+  }
 }
 </script>
 

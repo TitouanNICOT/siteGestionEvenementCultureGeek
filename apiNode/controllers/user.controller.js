@@ -1,6 +1,6 @@
 import db from "../models/index.js"
 
-const list = (req, res) => {
+const list = async (req, res) => {
     const role=req.query.role
     db.user.findAll({include: db.role}).then((results) => {
         if (role && ["admin","prestataire","visiteur"].includes(role))
@@ -11,7 +11,7 @@ const list = (req, res) => {
     })
 }
 
-const getUserById = (req, res) => {
+const getUserById = async (req, res) => {
     const id = req.params.id;
     if (isNaN(id))
         return res.status(404).send({success: 0, data: "id is not a number"})
@@ -23,7 +23,7 @@ const getUserById = (req, res) => {
     })
 }
 
-const newUser = (req, res) => {
+const newUser = async (req, res) => {
     console.log(req.body)
     db.user.create({
         nom: req.body.nom,
@@ -41,7 +41,7 @@ const newUser = (req, res) => {
     });
 }
 
-const modifUser = (req, res) => {
+const modifUser = async (req, res) => {
     const id = req.body.id
     if (isNaN(id))
         return res.status(404).send({success: 0})
@@ -65,7 +65,7 @@ const modifUser = (req, res) => {
     });
 }
 
-const deleteUser = (req, res) => {
+const deleteUser = async (req, res) => {
     const id = req.params.id;
     if (isNaN(id))
         return res.status(404).send({success: 0})
@@ -79,7 +79,7 @@ const deleteUser = (req, res) => {
     });
 }
 
-const listRole = (req,res) => {
+const listRole = async (req, res) => {
    db.role.findAll().then((results) => {
        return res.status(200).send({success: 1, data: results})
    }).catch((error) => {

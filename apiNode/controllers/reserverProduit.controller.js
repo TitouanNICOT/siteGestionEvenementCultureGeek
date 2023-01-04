@@ -1,6 +1,6 @@
 import db from "../models/index.js"
 
-const list = (req, res) => {
+const list = async (req, res) => {
     db.reserverProduit.findAll().then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
@@ -8,7 +8,7 @@ const list = (req, res) => {
     })
 }
 
-const getReservationProduitById = (req, res) => {
+const getReservationProduitById = async (req, res) => {
     const id = req.params.id;
     if (isNaN(id))
         return res.status(404).send({success: 0, data: "id is not a number"})
@@ -22,7 +22,7 @@ const getReservationProduitById = (req, res) => {
     })
 }
 
-const getReservationProduitByUser = (req, res) => {
+const getReservationProduitByUser = async (req, res) => {
     const idUser = req.params.idUser;
     if (isNaN(idUser))
         return res.status(404).send({success: 0, data: "id is not a number"})
@@ -34,7 +34,7 @@ const getReservationProduitByUser = (req, res) => {
     })
 }
 
-const getReservationProduitByProduit = (req, res) => {
+const getReservationProduitByProduit = async (req, res) => {
     const idProduit = req.params.idProduit;
     if (isNaN(idProduit))
         return res.status(404).send({success: 0, data: "id is not a number"})
@@ -46,7 +46,7 @@ const getReservationProduitByProduit = (req, res) => {
     })
 }
 
-const newReservationProduit = (req, res) => {
+const newReservationProduit = async (req, res) => {
     console.log(req.body)
     db.reserverProduit.create({
         quantite: req.body.quantite,
@@ -60,7 +60,7 @@ const newReservationProduit = (req, res) => {
     });
 }
 
-const modifReservationProduit = (req, res) => {
+const modifReservationProduit = async (req, res) => {
     const id = req.body.id
     if (isNaN(id))
         return res.status(404).send({success: 0})
@@ -83,7 +83,7 @@ const modifReservationProduit = (req, res) => {
     });
 }
 
-const deleteReservationProduit = (req, res) => {
+const deleteReservationProduit = async (req, res) => {
     const id = req.params.id;
     if (isNaN(id))
         return res.status(404).send({success: 0})
