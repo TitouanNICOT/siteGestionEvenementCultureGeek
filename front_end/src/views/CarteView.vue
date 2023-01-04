@@ -15,7 +15,9 @@
                     <p v-else style="font-size: 30px">Ce stand n'existe pas</p>
                 </div>
                 <div v-else>
-                    <p v-for="(val,key,index) in standSelected" :key="index">{{key}} : {{val}}</p>
+                    <p v-for="(val,key,index) in standSelected" :key="index">
+                      <span v-if="liste.includes(key)">{{key}} : {{val}}</span>
+                    </p>
                     <v-btn color="blue" @click="voirStand">Voir Plus</v-btn>
                     <v-btn color="red" @click="supprimerStand" v-if="currentRole===ADMIN">Supprimer</v-btn>
                 </div>
@@ -40,7 +42,8 @@ export default {
             standSelected: undefined,
             idSelected: -1,
             modifSelection: {},
-            ADMIN
+            ADMIN,
+          liste:["nomStand","descriptionStand","prestataire","libelleTypeStand"]
         }
     },
     computed:{
@@ -77,17 +80,33 @@ export default {
         },
         createStand(data) {
             console.log("creation stand")
-            data=Object.assign(data,{id: this.idSelected, couleur: "red"})
+          data.id=this.idSelected
+            // data=Object.assign(data,{id: this.idSelected, couleur: "red"})
             // data.prestataire=d.user.nom+" "+d.user.prenom
             axios.post("http://localhost:3000/stands", data)
                 .then(responce => {
-                    alert(responce.data.success)
+                  console.log(responce.data)
+                  if (responce.data.success === 1) {
+                    data={
+                      id: responce.data.data.idStand.toString(),
+                      nomStand: responce.data.data.nomStand,
+                      descriptionStand: responce.data.data.descriptionStand,
+                      typeStand: responce.data.data.type_stand,
+                      user: responce.data.data.user,
+                      couleur: "red",
+                      libelleTypeStand: responce.data.data.type_stand.libelleTypeStand,
+                      prestataire: responce.data.data.user === null ? "null" : responce.data.data.user.nom + " " + responce.data.data.user.prenom
+                    }
+                    this.addStand(data)
+                    this.standSelected=data
+                  }
+                    // alert(responce.data.success)
                 })
-            const presta=this.listePresta.find(p=>p.idUser===data.prestataire)
-            data.prestataire=presta.nom+" "+presta.prenom
-            this.addStand(data)
-            this.standSelected=data
-            console.log(this.standSelected)
+            // const presta=this.listePresta.find(p=>p.idUser===data.prestataire)
+            // data.prestataire=presta.nom+" "+presta.prenom
+            // this.addStand(data)
+            // this.standSelected=data
+            // console.log(this.standSelected)
         },
         voirStand(){
             this.$router.push({name:"stand",params:{id:this.idSelected}})
