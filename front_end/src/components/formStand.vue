@@ -7,6 +7,9 @@
             <template v-slot:item="{item}">
                 <span>{{ item.nom }} {{item.prenom}}</span>
             </template>
+            <template v-slot:selection="{item}">
+                <span>{{ item.nom }} {{item.prenom}}</span>
+            </template>
         </v-select>
         <v-select label="Stand" :items="listeTypeStand" item-text="libelleTypeStand" item-value="idTypeStand" v-model="typeStand"></v-select>
             <v-btn color="grey" @click="createStand">Creer Stand</v-btn>

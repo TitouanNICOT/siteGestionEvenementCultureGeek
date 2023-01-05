@@ -1,5 +1,12 @@
 import axios from "axios";
 
+const couleurStand = {
+    1: "red",
+    2: "blue",
+    3: "green",
+    4: "yellow",
+}
+
 class Stand{
     constructor(idStand, nomStand, descriptionStand, typeStand, user, idEvenement) {
         this.id = idStand;
@@ -8,7 +15,6 @@ class Stand{
         this.typeStand = typeStand;
         this.user = user;
         this.idEvenement = idEvenement;
-        this.couleur= "red";
     }
 
     static fromAPI(data){
@@ -35,6 +41,10 @@ class Stand{
 
     libelleTypeStand(){
         return this.typeStand===undefined ? "null" : this.typeStand.libelleTypeStand
+    }
+
+    getCouleur(){
+        return couleurStand[this.typeStand.idTypeStand]
     }
 
 }

@@ -225,7 +225,7 @@ export default {
     watch:{
         tabCouleur(){
             this.tabCouleur.forEach(stand=>{
-                document.getElementById(stand.id).style.fill=stand.couleur;
+                document.getElementById(stand.id).style.fill=stand.getCouleur();
             })
         },
         selection(){
@@ -238,7 +238,7 @@ export default {
     },
     mounted(){
             this.tabCouleur.forEach(stand=>{
-                document.getElementById(stand.id).style.fill=stand.couleur;
+                document.getElementById(stand.id).style.fill=stand.getCouleur();
             })
         // Object.keys(this.tabCouleur).forEach(stand=>{
         //         document.getElementById(stand).style.fill=this.tabCouleur[stand];
