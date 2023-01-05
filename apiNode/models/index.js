@@ -3,12 +3,16 @@ import dotenv from "dotenv";
 import {insert} from "./insert.js";
 dotenv.config();
 
-const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    dialect: 'postgres',
-    port: process.env.DB_PORT,
-    logging: false
-})
+const sequelize = new Sequelize(
+    process.env.DB_DATABASE,
+    process.env.DB_USERNAME,
+    process.env.DB_PASSWORD, {
+        host: process.env.DB_HOST,
+        dialect: 'postgres',
+        port: process.env.DB_PORT,
+        logging: false
+    }
+)
 const db = {sequelize, Sequelize};
 
 try {
@@ -68,8 +72,8 @@ db.produit.belongsToMany(db.user,{through:db.reserverProduit ,foreignKey: 'idPro
 db.user.belongsToMany(db.produit,{through:db.reserverProduit ,foreignKey: 'idUser', otherKey: 'idProduit', uniqueKey:"idReserveProd"})
 
 let option={}
-// option.force=true
-// option.alter=true
+option.force=true
+option.alter=true
 await sequelize.sync(option)//{force:true}
 
 if(option.force===true) {

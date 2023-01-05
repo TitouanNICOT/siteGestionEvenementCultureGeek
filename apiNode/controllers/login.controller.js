@@ -6,9 +6,7 @@ const login = async (req, res) => {
     const mdp = req.body.password;
     db.user.findOne({where: {pseudo: pseudo}})
         .then(user=> {
-            console.log("user", user)
             bcrypt.compare(mdp, user.password, function (err, result) {
-                console.log(result)
                 if (result) {
                     return res.status(200).send({success: 1, data: user})
                 } else {
@@ -18,14 +16,35 @@ const login = async (req, res) => {
         })
 }
 
-//route a modifier, (utilisé pour le developement du reste
-const newUser = async (req, res) => {
-    bcrypt.hash("mdpadmin", 10, function(err, hash) {
-        if (err)
-            return res.status(404).send({success: 0, data: err})
-        console.log(hash)
-        return res.status(200).send({success:1,data:hash})
+
+const register = async (req, res) => {
+    const nom = req.body.nom;
+    const prenom = req.body.prenom;
+    const pseudo = req.body.pseudo;
+    const password = req.body.password;
+    const email = req.body.email;
+    const role = req.body.idRole;
+    const isNotif = req.body.isNotif;
+    bcrypt.hash(password, 10, function(err, hash) {
+        if (err){
+            return res.status(500).send({success: 0, data: err})
+        }
+        else {
+            db.user.create({
+                nom: nom,
+                prenom: prenom,
+                pseudo: pseudo,
+                password: hash,
+                email: email,
+                isNotif: isNotif,
+                idRole: role
+            }).then(user => {
+                return res.status(200).send({success: 1, data: user})
+            }).catch(err => {
+                return res.status(501).send({success: 0, data: err})
+            });
+        }
     });
 }
 
-export default {login,newUser}
+export default {login, register}

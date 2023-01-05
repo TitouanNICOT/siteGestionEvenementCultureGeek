@@ -3,14 +3,14 @@
         <h1>Connexion</h1>
         <form @submit.prevent="login">
             <label for="username">Nom d'utilisateur :</label>
-            <br>
             <input type="text" v-model="username" id="username" name="username">
             <br>
-            <label for="password">Mot de passe :</label><br>
+            <label for="password">Mot de passe :</label>
             <input type="password" v-model="password" id="password" name="password">
-            <br><br>
+            <br>
             <input type="submit" value="Se connecter">
         </form>
+        pas de compte ? <router-link to="/register">S'inscrire !</router-link>
     </div>
 </template>
 
@@ -47,14 +47,13 @@ export default {
                 alert('Mauvais identifiants');
             });
         },
-        loginLocal(){//independant de la bdd
+        loginLocal(){ //independant de la bdd
             if (this.username === 'admin' && this.password === 'admin') {
                 this.setCurrentUser({prenom: this.username, password: this.password,role: 'admin'});
                 this.$router.push({name: 'Accueil'});
             } else {
                 alert('Mauvais identifiants');
             }
-
         }
     }
 }

@@ -6,6 +6,7 @@ import StandDetailView from "@/views/StandDetailView";
 import StandView from "@/views/StandView";
 import EvenementView from "@/views/EvenementView.vue";
 import LoginView  from "@/views/LoginView.vue";
+import RegisterView from "@/views/RegisterView.vue";
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterView
   },
   {
     path:'/boutique/:idStand',

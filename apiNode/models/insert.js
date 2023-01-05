@@ -2,7 +2,7 @@ const insert = async (db)=>{
     await db.role.create({idRole: 1, libelle: "admin"})
     await db.role.create({idRole: 2, libelle: "prestataire"})
     await db.role.create({idRole: 3, libelle: "user"})
-    await db.user.create({nom: 'Esuercal', prenom: 'Yann', pseudo:'yann', password: 'yann', email: 'yann@qerf.vv', isNotif: true, idRole: 2})
+    await db.user.create({nom: 'Esuercal', prenom: 'Yann', pseudo:'yann', password: '$2b$10$q4z7DU75NlOyvebNaQ9enezFFDZsKS2MQHH.0x142ZZviAsqdzt1S',/*mdp:mdppresta*/ email: 'yann@qerf.vv', isNotif: true, idRole: 2})
     await db.user.create({nom: 'Admin', prenom: 'Admin', pseudo:'admin', password: '$2b$10$RIXprpxdp4.NVQn9tJK8..d6cGeSXBJuqAVOyK9.roVheiaVx0lqS',/*mdp:mdpadmin*/ email: 'admin@qerf.vv', isNotif: true, idRole: 1})//admin
     //partie stand
     await db.type_stand.create({idTypeStand: 1, libelleTypeStand: 'boutique'})
