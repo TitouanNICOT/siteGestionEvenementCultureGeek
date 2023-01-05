@@ -1,5 +1,6 @@
 import express from "express";
 import standController from "../controllers/stand.controller.js";
+import {droitAdmin, verificationDroit} from "../middleware/authentification.js";
 import evenementController from "../controllers/evenement.controller.js";
 
 var router = express.Router()
@@ -32,6 +33,53 @@ router.get("/",standController.listStand)
  *          '404':
  *              description: Erreur lors de l'envoi des stands
  */
+
+router.get("/:id",standController.getStand)
+/**
+ * @swagger
+ * /stands/{id}:
+ *  get:
+ *      description: Retourne le stand ayant l'id correspondant à celui du path
+ *      tags:
+ *          - Stands
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            type: integer
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Stand retourné avec succés
+ *          '404':
+ *              description: Erreur lors de l'envoi du stand
+ */
+router.post("/:id/commentaire",standController.newCommentaire)
+/**
+ * @swagger
+ * /stands/{id}/commentaire:
+ *  post:
+ *      description: Ajoute un commentaire à un stand
+ *      tags:
+ *          - Stands
+ *          - Commentaires
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            type: int
+ *            required: true
+ *          - in: formData
+ *            name: commentaire
+ *            type: string
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Commentaire ajouté avec succés au stand
+ *          '404':
+ *              description: Erreur lors de l'ajout du commentare au stand
+ */
+
+//la suite des routes necessite une authentification de role admin
+router.use(verificationDroit,droitAdmin)
 
 router.post("/",standController.newStand)
 /**
@@ -89,50 +137,5 @@ router.delete("/:id",standController.deleteStand)
  *              description: Erreur lors de la suppression du stand
  */
 
-//route a faire avec swagger
-//utilise aussi la table commantaire
-router.get("/:id",standController.getStand)
-/**
- * @swagger
- * /stands/{id}:
- *  get:
- *      description: Retourne le stand ayant l'id correspondant à celui du path
- *      tags:
- *          - Stands
- *      parameters:
- *          - in: path
- *            name: id
- *            type: integer
- *            required: true
- *      responses:
- *          '200':
- *              description: Stand retourné avec succés
- *          '404':
- *              description: Erreur lors de l'envoi du stand
- */
-router.post("/:id/commentaire",standController.newCommentaire)
-/**
- * @swagger
- * /stands/{id}/commentaire:
- *  post:
- *      description: Ajoute un commentaire à un stand
- *      tags:
- *          - Stands
- *          - Commentaires
- *      parameters:
- *          - in: path
- *            name: id
- *            type: int
- *            required: true
- *          - in: formData
- *            name: commentaire
- *            type: string
- *            required: true
- *      responses:
- *          '200':
- *              description: Commentaire ajouté avec succés au stand
- *          '404':
- *              description: Erreur lors de l'ajout du commentare au stand
- */
 
 export default router;

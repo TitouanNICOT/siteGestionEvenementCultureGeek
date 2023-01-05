@@ -1,5 +1,6 @@
 import db from "../models/index.js"
 import bcrypt from "bcrypt"
+import {generateToken} from "../middleware/authentification.js";
 
 const login = async (req, res) => {
     const pseudo = req.body.pseudo;
@@ -8,7 +9,7 @@ const login = async (req, res) => {
         .then(user=> {
             bcrypt.compare(mdp, user.password, function (err, result) {
                 if (result) {
-                    return res.status(200).send({success: 1, data: user})
+                    return res.status(200).send({success: 1, data: user,token:generateToken(user)})
                 } else {
                     return res.status(403).send({success: 0, data: "wrong password"})
                 }
@@ -39,7 +40,7 @@ const register = async (req, res) => {
                 isNotif: isNotif,
                 idRole: role
             }).then(user => {
-                return res.status(200).send({success: 1, data: user})
+                return res.status(200).send({success: 1, data: user,token:generateToken(user)})
             }).catch(err => {
                 return res.status(501).send({success: 0, data: err})
             });

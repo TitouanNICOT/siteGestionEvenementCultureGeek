@@ -26,8 +26,8 @@ import {mapActions, mapMutations} from 'vuex'
           },
           created() {
             this.loading()
-              console.log(this.$cookies)
               this.setCurrentUser(this.$cookies.get("currentUser"));
+              console.log(this.$cookies.get("currentUser"));
           }
       };
 

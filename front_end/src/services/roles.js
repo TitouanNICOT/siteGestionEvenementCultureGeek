@@ -1,9 +1,9 @@
-const roles=[
-    {id:1, name:"admin"},
-    {id:2, name:"prestataire"},
-    {id:3, name:"client"},
-    {id:4, name:"visiteur"}
-]
+const roles =  {
+    1: "admin",
+    2: "prestataire",
+    3: "client",
+    4: "visiteur"
+}
 
 const ADMIN=1,PRESTA=2,CLIENT=3,NONCONNECTE=4
 

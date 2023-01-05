@@ -50,7 +50,7 @@ export default {
     },
     computed:{
         ...mapState(["stands"]),
-        ...mapGetters(["listePresta","currentRole"])
+        ...mapGetters(["listePresta","currentRole","currentTokenUser"])
     },
     components: {FormStand, CarteSVG},
     methods: {
@@ -83,10 +83,9 @@ export default {
         createStand(data) {
             console.log("creation stand")
           data.id=this.idSelected
-            // data=Object.assign(data,{id: this.idSelected, couleur: "red"})
-            // data.prestataire=d.user.nom+" "+d.user.prenom
-            axios.post("http://localhost:3000/stands", data)
-                .then(responce => {
+            axios.post("http://localhost:3000/stands", data,
+                {headers: {authorization:this.currentTokenUser}}
+            ).then(responce => {
                   console.log(responce.data)
                   if (responce.data.success === 1) {
                     this.standSelected=Stand.fromAPI(responce.data.data)

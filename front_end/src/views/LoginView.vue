@@ -36,9 +36,10 @@ export default {
                 password: this.password
             }).then(response => {
                 if (response.data.success) {
-                    response.data.data.role=roles.find(role=>role.id===response.data.data.idRole).name;
+                    response.data.data.role=roles[response.data.data.idRole];
+                    response.data.data.token=response.data.token;
                     this.setCurrentUser(response.data.data);
-                    this.$cookies.set("currentUser", response.data.data,"20min");
+                    this.$cookies.set("currentUser", response.data.data,"1h");
                     this.$router.push({name: 'Accueil'});
                 } else {
                     alert(response.data.data);

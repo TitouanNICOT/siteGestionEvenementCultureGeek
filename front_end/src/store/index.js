@@ -22,6 +22,11 @@ export default new Vuex.Store({
             if (state.currentUser)
                 return state.currentUser.idRole
             return NONCONNECTE
+        },
+        currentTokenUser(state) {
+            if (state.currentUser)
+                return state.currentUser.token
+            return ""
         }
     },
     mutations: {

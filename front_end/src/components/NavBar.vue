@@ -6,7 +6,7 @@
           <button v-if="currentRole === PRESTA">Tableau de bord</button>
       </div>
       <div style="margin-left: auto">
-          <span>({{role}} : {{ currentRole }})  </span>
+          <span>({{roles[currentRole]}} : {{ currentRole }})  </span>
           <button v-if="currentUser==null" @click="login">Connection</button>
           <span v-else>
               <span>Bienvenue {{currentUser.pseudo}}</span>
@@ -29,15 +29,12 @@ export default {
                 , {text: 'Carte', color: 'grey', route:'/carte'}
                 , {text: 'Liste des Stands', color: 'grey', route:'/stand'}
                 , {text: 'Liste des Evenements', color: 'grey', route:'/evenement'}],
-            ADMIN,PRESTA
+            ADMIN,PRESTA,roles
         }
     },
     computed:{
         ...mapState(['currentUser']),
-        ...mapGetters(['currentRole']),
-        role(){
-            return roles.find(role => role.id === this.currentRole).name
-        }
+        ...mapGetters(['currentRole'])
     },
     methods: {
       ...mapMutations(['removeCurrentUser']),
