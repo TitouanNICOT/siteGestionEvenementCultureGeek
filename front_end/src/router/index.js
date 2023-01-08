@@ -51,6 +51,11 @@ const routes = [
     name:'boutique',
     component: () => import('../views/BoutiqueView.vue'),
     props: route => ({ idStand: parseInt(route.params.idStand) })
+  },
+  {
+    path:'/reservations',
+    name:'reservation',
+    component: () => import('../views/ReserverProduitView.vue')
   }
 ]
 

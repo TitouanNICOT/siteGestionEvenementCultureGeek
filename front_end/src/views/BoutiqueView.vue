@@ -10,6 +10,7 @@
                         <v-card-subtitle>{{produit.type_produit.libelleTypeProduit}}</v-card-subtitle>
                         <v-card-text>{{produit.descriptionProduit}}</v-card-text>
                         <v-card-text>{{produit.prix}} €</v-card-text>
+                        <v-btn v-bind:to="{ name: 'reservation', params: { idProduit: produit.idProduit, idStand: idStand } }">Réserver</v-btn>
                     </v-card>
                 </v-col>
             </v-row>
