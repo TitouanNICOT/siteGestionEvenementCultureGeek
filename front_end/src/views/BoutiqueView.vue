@@ -8,9 +8,11 @@
                     <v-card style="height: 100%">
                         <v-card-title>{{produit.libelleProduit}}</v-card-title>
                         <v-card-subtitle>{{produit.type_produit.libelleTypeProduit}}</v-card-subtitle>
-                        <v-card-text>{{produit.descriptionProduit}}</v-card-text>
-                        <v-card-text>{{produit.prix}} €</v-card-text>
-                        <v-btn v-bind:to="{ name: 'reservation', params: { idProduit: produit.idProduit, idStand: idStand } }">Réserver</v-btn>
+                        <v-card-text>{{produit.descriptionProduit}}<br>
+                            {{produit.prix}} €</v-card-text>
+                        <v-card-actions>
+                            <v-btn v-if="currentRole!==NONCONNECTE" :to="{ name: 'reservation', params: { idProduit: produit.idProduit, idStand: idStand } }">Réserver</v-btn>
+                        </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>
@@ -21,30 +23,32 @@
 
 <script>
 import axios from "axios";
-import {mapState} from "vuex";
+import {mapGetters, mapState} from "vuex";
+import {NONCONNECTE} from "@/services/roles";
 
 export default {
     name: "BoutiqueView",
     data() {
         return {
             listProduit: [],
+            NONCONNECTE
         }
     },
-    props:{
-        idStand:Number
-    },
     computed:{
-        ...mapState(["stands"])
+        ...mapState(["stands"]),
+        ...mapGetters(["currentRole"]),
+        idStand(){
+            return this.$route.params.idStand;
+        }
     },
     created() {
-        console.log(this.stands)
-        if (this.stands.find(s=>s.id==this.idStand)===undefined)
-            alert("Le stand n'existe pas")
-        else
-            axios.get("http://localhost:3000/boutique/"+this.idStand)
-                .then(responce => {
-                    this.listProduit = responce.data.data
-                })
+        axios.get("http://localhost:3000/boutique/" + this.idStand)
+            .then(responce => {
+                this.listProduit = responce.data.data
+            }).catch(()=> {
+                this.$router.push({name: 'stands'})
+                alert("Le stand n'existe pas")
+            })
     },
     methods:{
         retourStand(){

@@ -7,6 +7,18 @@ import StandView from "@/views/StandView";
 import EvenementView from "@/views/EvenementView.vue";
 import LoginView  from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
+import BoutiqueView from "@/views/BoutiqueView";
+// import {NONCONNECTE} from "@/services/roles";
+// import store from "@/store";
+//
+// const checkAuthUser = (to,from,next) => {
+//   console.log("debut verification")
+//   if (store.getters.currentRole === NONCONNECTE) {
+//     next({path: '/login'})
+//   } else {
+//     next()
+//   }
+// }
 
 Vue.use(VueRouter)
 
@@ -49,13 +61,13 @@ const routes = [
   {
     path:'/boutique/:idStand',
     name:'boutique',
-    component: () => import('../views/BoutiqueView.vue'),
-    props: route => ({ idStand: parseInt(route.params.idStand) })
+    component: BoutiqueView
   },
   {
-    path:'/reservations',
+    path:'/reservations/:idStand/p/:idProduit',
     name:'reservation',
-    component: () => import('../views/ReserverProduitView.vue')
+    component: () => import('../views/ReserverProduitView.vue'),
+    // beforeEnter: checkAuthUser
   }
 ]
 

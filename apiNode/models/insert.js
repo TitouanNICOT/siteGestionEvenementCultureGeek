@@ -4,6 +4,7 @@ const insert = async (db)=>{
     await db.role.create({idRole: 3, libelle: "user"})
     await db.user.create({nom: 'Esuercal', prenom: 'Yann', pseudo:'yann', password: '$2b$10$q4z7DU75NlOyvebNaQ9enezFFDZsKS2MQHH.0x142ZZviAsqdzt1S',/*mdp:mdppresta*/ email: 'yann@qerf.vv', isNotif: true, idRole: 2})
     await db.user.create({nom: 'Admin', prenom: 'Admin', pseudo:'admin', password: '$2b$10$RIXprpxdp4.NVQn9tJK8..d6cGeSXBJuqAVOyK9.roVheiaVx0lqS',/*mdp:mdpadmin*/ email: 'admin@qerf.vv', isNotif: true, idRole: 1})//admin
+    await db.user.create({nom: 'User', prenom: 'User', pseudo:'user', password: '$2b$10$EoU4bT5KRoJE.90xLNzmmO.TqFzuQPUM3U/JJusjSGVzsphex07QW',/*mdp:mdpuser*/ email: 'user@qerf.vv', isNotif: true, idRole: 3})//user
     //partie stand
     await db.type_stand.create({idTypeStand: 1, libelleTypeStand: 'boutique'})
     await db.type_stand.create({idTypeStand: 2, libelleTypeStand: 'tournois'})
@@ -40,6 +41,7 @@ const insert = async (db)=>{
     await db.produit.create({idStand:300, libelleProduit: 'Le Journal : Oeuvre de Cedric', descriptionProduit: 'Oeuvre de Cedric', prix: 20, imageProduit: 'lejournal.jpg',idTypeProduit: 5})
     await db.reserverProduit.create({quantite:6, idUser:1, idProduit:8})
     await db.reserverProduit.create({quantite:5, idUser:1, idProduit:4})
+    await db.reserverProduit.create({quantite:7, idUser:1, idProduit:7})
     await db.reserverProduit.create({quantite:7, idUser:1, idProduit:7})
 
 }

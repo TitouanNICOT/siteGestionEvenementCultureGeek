@@ -3,6 +3,11 @@ export const ReserverProduit = (Sequelize,sequelize)=>{
         quantite: {
             type: Sequelize.INTEGER,
             allowNull: false
+        },
+        idReserveProd: {
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         }
     })
 }

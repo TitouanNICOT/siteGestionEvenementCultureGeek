@@ -13,10 +13,8 @@ const getReservationProduitById = async (req, res) => {
     if (isNaN(id))
         return res.status(404).send({success: 0, data: "id is not a number"})
 
-    db.sequelize.query('SELECT * from "reserverProduits" where concat("idUser","idProduit")=?',
-        { replacements: [id] }
-    ).then((results) => {
-        return res.status(200).send({success: 1, data: results[0]})
+    db.reserverProduit.findByPk(id).then((results) => {
+        return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
         return res.status(404).send({success: 0, data: error})
     })
@@ -71,9 +69,7 @@ const modifReservationProduit = async (req, res) => {
     console.log(req.body)
     db.sequelize.query('update "reserverProduits" ' +
         'set quantite = ?, "idUser" = ?, "idProduit" = ? ' +
-        'where concat("idUser","idProduit") = ( ' +
-        'select concat("idUser","idProduit") from "reserverProduits" ' +
-        'where concat("idUser","idProduit")=?);',
+        'where "idReserveProd"=?;',
         { replacements: [quantite, idUser, idProduit, id] }
     ).then(()=>{
         return res.status(200).send({success: 1})
@@ -88,10 +84,7 @@ const deleteReservationProduit = async (req, res) => {
     if (isNaN(id))
         return res.status(404).send({success: 0})
 
-    db.sequelize.query('DELETE from "reserverProduits" where concat("idUser", "idProduit") = ( ' +
-        'SELECT concat("idUser", "idProduit") from "reserverProduits" ' +
-        'where concat("idUser", "idProduit") = ?);',
-        {replacements: [id]})
+    db.reserverProduit.destroy({where: {idReserveProd: id}})
     .then(() => {
         return res.status(200).send({success: 1})
     }).catch((error) => {

@@ -79,15 +79,19 @@ router.put("/",reserverProd.modifReservationProduit)
  *          - in: formData
  *            name: quantite
  *            type: int
- *            required: true
+ *            required: false
  *          - in: formData
  *            name: idUser
  *            type: int
- *            required: true
+ *            required: false
  *          - in: formData
  *            name: idProduit
  *            type: int
- *            required: true
+ *            required: false
+ *          - in: formData
+ *            name: id
+ *            type: int
+ *            required: false
  *      responses:
  *          '200':
  *              description: Réservation de produits modifié avec succés

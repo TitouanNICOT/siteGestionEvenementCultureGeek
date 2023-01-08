@@ -68,8 +68,14 @@ db.stand.hasMany(db.produit, {foreignKey: 'idStand'})
 db.stand.hasMany(db.livreOr, {foreignKey: 'idStand',as: "livreOr"})
 db.livreOr.belongsTo(db.stand, {foreignKey: 'idStand'})
 
-db.produit.belongsToMany(db.user,{through:db.reserverProduit ,foreignKey: 'idProduit', otherKey: 'idUser', uniqueKey:"idReserveProd"})
-db.user.belongsToMany(db.produit,{through:db.reserverProduit ,foreignKey: 'idUser', otherKey: 'idProduit', uniqueKey:"idReserveProd"})
+// db.produit.belongsToMany(db.user,{through:db.reserverProduit ,foreignKey: 'idProduit', otherKey: 'idUser', uniqueKey:"idReserveProd"})
+// db.user.belongsToMany(db.produit,{through:db.reserverProduit ,foreignKey: 'idUser', otherKey: 'idProduit', uniqueKey:"idReserveProd"})
+
+db.produit.hasMany(db.reserverProduit, {foreignKey: 'idProduit'})
+db.reserverProduit.belongsTo(db.produit, {foreignKey: 'idProduit'})
+
+db.user.hasMany(db.reserverProduit, {foreignKey: 'idUser'})
+db.reserverProduit.belongsTo(db.user, {foreignKey: 'idUser'})
 
 let option={}
 option.force=true
