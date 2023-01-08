@@ -13,8 +13,8 @@
         </div>
         <br>
         <v-row style="border: black 1px solid">
-            <v-text-field v-model="commentaire" label="Commentaire"></v-text-field>
-            <v-btn @click="addCommentaireAction">Ajouter un commentaire</v-btn>
+            <v-text-field v-model="commentaire" label="Commentaire" v-on:keyup.enter="addCommentaireAction"></v-text-field>
+            <v-btn @click="addCommentaireAction">Ajouter</v-btn>
         </v-row>
         <br>
         <div>

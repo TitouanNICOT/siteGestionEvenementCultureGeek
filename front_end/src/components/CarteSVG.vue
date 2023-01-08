@@ -3,11 +3,13 @@
         <svg @click="action" width="205.0959mm" height="177.36548mm" viewBox="0 0 205.0959 177.36548" version="1.1" id="svg5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
             <defs id="defs2"/>
             <g id="listeStand" transform="translate(0.09589299,-0.17511949)">
-                <a id="a1054-3" style="fill:#aaaaaa;stroke:#000000;stroke-width:1;paint-order:markers stroke fill">
+                <a id="a1054-3" style="fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;paint-order:markers stroke fill">
                     <rect id="rect90-8-3" width="76.51796" height="34.107239" x="78.020905" y="-34.562332" transform="rotate(90)"/>
                     <rect style="display:inline;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90-7-4" width="113.7186" height="73.693298" x="40.645065" y="80.661644"/>
                     <rect id="rect90-3-0" width="114.12068" height="34.120594" x="40.10585" y="40.439705" transform="translate(0,-0.03637886)"/>
                     <rect id="rect90-0" width="114.12068" height="34.120594" x="40.10585" y="0.43970299"/>
+                    <rect style="display:inline;fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-7-9" width="34.44854" height="44.448536" x="120.27573" y="-204.72427" transform="rotate(90)"/>
+                    <rect style="display:inline;fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-3" width="34.480034" height="39.480034" x="80.259987" y="-204.74001" transform="rotate(90)"/>
                 </a>
                 <a id="salle1" transform="translate(0.32488251,39.641536)">
                     <rect id="100" width="14.329332" height="6.7077622" x="40.139557" y="41.044598"/>
@@ -138,10 +140,10 @@
                     <rect id="429" width="14.480034" height="5.6445827" x="118.72513" y="69.477745"/>
                 </a>
                 <a id="salle5">
-                    <rect style="display:inline;fill:#00ffdd;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="500" width="34.44854" height="44.448536" x="120.27573" y="-204.72427" transform="rotate(90)"/>
+                    <rect id="500" width="31" height="40" x="124.27573" y="-204.72427" transform="rotate(90)"/>
                 </a>
                 <a id="salle6">
-                    <rect style="display:inline;fill:#00ffdd;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="600" width="34.480034" height="39.480034" x="80.259987" y="-204.74001" transform="rotate(90)"/>
+                    <rect id="600" width="27.956337" height="33.041695" x="80.171867" y="-204.82812" transform="rotate(90)"/>
                 </a>
             </g>
             <g id="layer1" transform="translate(0.09589299,-0.17511949)" style="display:inline">
@@ -172,28 +174,32 @@
                 <g id="listeBatiment">
                     <a id="batiment1">
                         <rect style="fill:#0200ff;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90" width="114.12068" height="34.120594" x="40.10585" y="0.43970299"/>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:0.8;stroke-width:1;paint-order:markers stroke fill" x="79.416786" y="19.071075" id="text2607">Hall 1</text>
+                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:0.8;stroke-width:1;paint-order:markers stroke fill" x="79.416786" y="19.071075" id="text2607">Hall 3</text>
                     </a>
                     <a id="batiment2">
                         <rect style="fill:#ff0000;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90-3" width="114.12068" height="34.120594" x="40.10585" y="40.439705" transform="translate(0,-0.03637886)"/>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="76.190826" y="61.306095" id="text2607-5">Hall 2</text>
+                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="76.190826" y="61.306095" id="text2607-5">Hall 4</text>
                     </a>
                     <a id="batiment3">
                         <rect style="fill:#1aff00;fill-opacity:0.8;stroke:#000000;stroke-width:1.01345;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90-8" width="76.51796" height="34.107239" x="78.020905" y="-34.562332" transform="rotate(90)"/>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="1.0122409" y="104.71066" id="text2607-4">Hall 3</text>
+                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="1.0122409" y="104.71066" id="text2607-4">Hall 2</text>
                     </a>
                     <a id="batiment4">
                         <rect style="display:inline;fill:#e2ff00;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-7" width="113.7186" height="73.693298" x="40.645061" y="80.661644"/>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="81.429306" y="119.30358" id="text2607-7">Hall 4</text>
+                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="81.429306" y="119.30358" id="text2607-7">Hall 1</text>
+                    </a>
+                    <a id="batiment5" style="display:inline">
+                        <rect style="display:inline;fill:#00ffdd;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-7-1" width="34.44854" height="44.448536" x="120.27573" y="-204.72427" transform="rotate(90)"/>
+                        <rect style="display:inline;fill:#ff00d5;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-8" width="34.480034" height="39.480034" x="80.259987" y="-204.74001" transform="rotate(90)"/>
+                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="167.11592" y="102.83978" id="text2607-72">
+                            <tspan id="tspan2605-7" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="167.11592" y="102.83978">Halle 6</tspan>
+                        </text>
+                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="164.49666" y="142.12839" id="text2607-41">
+                            <tspan id="tspan2605-6" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="164.49666" y="142.12839">Halle 5</tspan>
+                        </text>
                     </a>
                     <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="72.455544" y="172.65388" id="text2607-2">
                         <tspan id="tspan2605-1" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="72.455544" y="172.65388">Accueil</tspan>
-                    </text>
-                    <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="167.11592" y="102.83978" id="text2607-72">
-                        <tspan id="tspan2605-7" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="167.11592" y="102.83978">Hall 5</tspan>
-                    </text>
-                    <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="164.49666" y="142.12839" id="text2607-41">
-                        <tspan id="tspan2605-6" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="164.49666" y="142.12839">Hall 6</tspan>
                     </text>
                 </g>
             </g>

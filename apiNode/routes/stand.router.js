@@ -79,7 +79,7 @@ router.post("/:id/commentaire",standController.newCommentaire)
  */
 
 //la suite des routes necessite une authentification de role admin
-router.use(verificationDroit,droitAdmin)
+// router.use(verificationDroit,droitAdmin)
 
 router.post("/",standController.newStand)
 /**

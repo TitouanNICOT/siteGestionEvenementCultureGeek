@@ -11,7 +11,7 @@ router.get("/",reserverProd.list)
  *  get:
  *      description: Liste toutes les réservations de produits
  *      tags:
- *          - Produits
+ *          - Reservation
  *      responses:
  *          '200':
  *              description: Réservations de produits retourné avec succés
@@ -26,7 +26,7 @@ router.get("/:id",reserverProd.getReservationProduitById)
  *  get:
  *      description: Retourne la réservations de produits ayant l'id correspondant à celui du path
  *      tags:
- *          - Produits
+ *          - Reservation
  *      parameters:
  *          - in: path
  *            name: id
@@ -46,7 +46,7 @@ router.post("/",reserverProd.newReservationProduit)
  *  post:
  *      description: Ajoute une réservation de produits dans la base de données
  *      tags:
- *          - Produits
+ *          - Reservation
  *      parameters:
  *          - in: formData
  *            name: quantite
@@ -74,7 +74,7 @@ router.put("/",reserverProd.modifReservationProduit)
  *  put:
  *      description: Modifie les données d'une réservation de produits
  *      tags:
- *          - Produits
+ *          - Reservation
  *      parameters:
  *          - in: formData
  *            name: quantite
@@ -102,7 +102,7 @@ router.delete("/:id",reserverProd.deleteReservationProduit)
  *  delete:
  *      description: Supprime une réservation de produits de la base de données
  *      tags:
- *          - Produits
+ *          - Reservation
  *      parameters:
  *          - in: path
  *            name: id
@@ -122,7 +122,7 @@ router.get('/user/:idUser',reserverProd.getReservationProduitByUser);
  *  get:
  *      description: Retourne la réservations de produits concernant l'utilisateur ayant l'id correspondant à celui du path
  *      tags:
- *          - Produits
+ *          - Reservation
  *      parameters:
  *          - in: path
  *            name: idUser
@@ -142,7 +142,7 @@ router.get('/produit/:idProduit',reserverProd.getReservationProduitByProduit);
  *  get:
  *      description: Retourne la réservations de produits concernant le produit ayant l'id correspondant à celui du path
  *      tags:
- *          - Produits
+ *          - Reservation
  *      parameters:
  *          - in: path
  *            name: idProduit
