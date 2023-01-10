@@ -39,7 +39,8 @@ router.get("/:id",standController.getStand)
  * @swagger
  * /stands/{id}:
  *  get:
- *      description: Retourne le stand ayant l'id correspondant à celui du path
+ *      description: Retourne le stand avec l'id correspondant et tous ses commentaires
+ *      summary: Route non triviale
  *      tags:
  *          - Stands
  *      parameters:
@@ -53,6 +54,7 @@ router.get("/:id",standController.getStand)
  *          '404':
  *              description: Erreur lors de l'envoi du stand
  */
+
 router.post("/:id/commentaire",standController.newCommentaire)
 /**
  * @swagger
@@ -61,7 +63,6 @@ router.post("/:id/commentaire",standController.newCommentaire)
  *      description: Ajoute un commentaire à un stand
  *      tags:
  *          - Stands
- *          - Commentaires
  *      parameters:
  *          - in: path
  *            name: id

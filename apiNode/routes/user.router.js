@@ -55,6 +55,28 @@ router.get("/:id",usersC.getUserById)
  *              description: Erreur lors de l'envoi de l'utilisateur
  */
 
+router.get("/:id/commentaire",usersC.getAllCommentaire)
+/**
+ * @swagger
+ * /users/{id}/commentaire:
+ *  get:
+ *     description: retourne tous les commentaires de tous les stands d'un prestataire
+ *     summary: Route non triviale
+ *     tags:
+ *       - Users
+ *     parameters:
+ *          - in: path
+ *            name: id
+ *            type: integer
+ *            required: true
+ *     responses:
+ *          '200':
+ *              description: Utilisateur supprimé avec succés
+ *          '404':
+ *              description: Erreur lors de la suppression de l'utilisateur
+ *
+ */
+
 router.post("/",usersC.newUser)
 /**
  * @swagger
@@ -160,8 +182,6 @@ router.delete("/:id",usersC.deleteUser)
  *          '404':
  *              description: Erreur lors de la suppression de l'utilisateur
  */
-
-router.get("/:id/commentaire",usersC.getAllCommentaire)
 
 
 export default router;

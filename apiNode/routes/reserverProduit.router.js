@@ -24,7 +24,7 @@ router.get("/:id",reserverProd.getReservationProduitById)
  * @swagger
  * /reservations/{id}:
  *  get:
- *      description: Retourne la réservations de produits ayant l'id correspondant à celui du path
+ *      description: Retourne la réservations de produits ayant l'id correspondant
  *      tags:
  *          - Reservation
  *      parameters:
@@ -37,6 +37,67 @@ router.get("/:id",reserverProd.getReservationProduitById)
  *              description: Réservation de produits retourné avec succés
  *          '404':
  *              description: Erreur lors de l'envoi de la réservation de produits
+ */
+
+router.get('/user/:idUser',reserverProd.getReservationProduitByUser);
+/**
+ * @swagger
+ * /reservations/user/{idUser}:
+ *  get:
+ *      description: Retourne toutes les réservations d'un utilisateur avec l'id correspondant
+ *      tags:
+ *          - Reservation
+ *      parameters:
+ *          - in: path
+ *            name: idUser
+ *            type: integer
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Réservation de produits concernant l'utilisateur retourné avec succés
+ *          '404':
+ *              description: Erreur lors de l'envoi de la réservation de produits concernant l'utilisateur
+ */
+
+router.get("/prestataire/:idPresta",reserverProd.getReservationProduitByPrestataire)
+/**
+ * @swagger
+ * /reservations/prestataire/{idPresta}:
+ *  get:
+ *    description: Retourne la liste des réservations de produits de tous les stands d'un prestataire
+ *    tags:
+ *      - Reservation
+ *    parameters:
+ *        - in: path
+ *          name: idPresta
+ *          type: integer
+ *          required: true
+ *    responses:
+ *          '200':
+ *              description: Réservation de produits concernant le produit retourné avec succés
+ *          '404':
+ *              description: Erreur lors de l'envoi de la réservation de produits concernant le produit
+ */
+
+router.get('/produit/:idProduit',reserverProd.getReservationProduitByProduit);
+/**
+ * @swagger
+ * /reservations/produit/{idProduit}:
+ *  get:
+ *      description: Retourne toutes les réservations du produit avec l'id correspondant
+ *      summary: Route non triviale
+ *      tags:
+ *          - Reservation
+ *      parameters:
+ *          - in: path
+ *            name: idProduit
+ *            type: integer
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Réservation de produits concernant le produit retourné avec succés
+ *          '404':
+ *              description: Erreur lors de l'envoi de la réservation de produits concernant le produit
  */
 
 router.post("/",reserverProd.newReservationProduit)
@@ -104,7 +165,7 @@ router.delete("/:id",reserverProd.deleteReservationProduit)
  * @swagger
  * /reservations/{id}:
  *  delete:
- *      description: Supprime une réservation de produits de la base de données
+ *      description: Supprime une réservation de produits
  *      tags:
  *          - Reservation
  *      parameters:
@@ -117,48 +178,6 @@ router.delete("/:id",reserverProd.deleteReservationProduit)
  *              description: Réservation de produits supprimé avec succés
  *          '404':
  *              description: Erreur lors de la suppression de la réservation de produits
- */
-
-router.get('/user/:idUser',reserverProd.getReservationProduitByUser);
-/**
- * @swagger
- * /reservations/user/{idUser}:
- *  get:
- *      description: Retourne la réservations de produits concernant l'utilisateur ayant l'id correspondant à celui du path
- *      tags:
- *          - Reservation
- *      parameters:
- *          - in: path
- *            name: idUser
- *            type: integer
- *            required: true
- *      responses:
- *          '200':
- *              description: Réservation de produits concernant l'utilisateur retourné avec succés
- *          '404':
- *              description: Erreur lors de l'envoi de la réservation de produits concernant l'utilisateur
- */
-
-router.get("/prestataire/:idPresta",reserverProd.getReservationProduitByPrestataire)
-
-router.get('/produit/:idProduit',reserverProd.getReservationProduitByProduit);
-/**
- * @swagger
- * /reservations/produit/{idProduit}:
- *  get:
- *      description: Retourne la réservations de produits concernant le produit ayant l'id correspondant à celui du path
- *      tags:
- *          - Reservation
- *      parameters:
- *          - in: path
- *            name: idProduit
- *            type: integer
- *            required: true
- *      responses:
- *          '200':
- *              description: Réservation de produits concernant le produit retourné avec succés
- *          '404':
- *              description: Erreur lors de l'envoi de la réservation de produits concernant le produit
  */
 
 export default router;
