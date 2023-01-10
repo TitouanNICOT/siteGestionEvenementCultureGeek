@@ -5,14 +5,18 @@
         <p>Description = {{info.descriptionStand}}</p>
         <p>Information prestataire = {{info.user.nom}} {{info.user.prenom}}</p>
         <p>Type stand : {{typeStand}}</p>
-        <div style="border: black 1px solid">
-            <h3>Livre d'or :</h3>
+        <div style="border: black 1px solid; padding: 10px">
+            <h2>Livre d'or :</h2>
             <p>Liste des commentaires sur le stand</p>
             <div v-if="info.livreOr.length===0">Pas de commantaire</div>
-            <v-card v-for="(com,index) in info.livreOr" :key="index" width="45%">{{com.commentaire}}</v-card>
+            <v-row>
+                <v-col v-for="(com,index) in info.livreOr" :key="index" cols="6">
+                    <v-card class="pa-3">{{com.commentaire}}</v-card>
+                </v-col>
+            </v-row>
         </div>
         <br>
-        <v-row style="border: black 1px solid">
+        <v-row style="border: black 1px solid; margin: 1px; padding: 5px">
             <v-text-field v-model="commentaire" label="Commentaire" v-on:keyup.enter="addCommentaireAction"></v-text-field>
             <v-btn @click="addCommentaireAction">Ajouter</v-btn>
         </v-row>

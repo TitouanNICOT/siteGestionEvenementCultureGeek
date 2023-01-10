@@ -17,7 +17,7 @@
 <script>
 import axios from "axios";
 import {mapMutations} from "vuex";
-import {roles} from "@/services/roles";
+import {PRESTA, roles} from "@/services/roles";
 // import {mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
@@ -36,11 +36,16 @@ export default {
                 password: this.password
             }).then(response => {
                 if (response.data.success) {
-                    response.data.data.role=roles[response.data.data.idRole];
-                    response.data.data.token=response.data.token;
-                    this.setCurrentUser(response.data.data);
-                    this.$cookies.set("currentUser", response.data.data,"1h");
-                    this.$router.push({name: 'Accueil'});
+                    let data = response.data.data;
+                    data.role=roles[data.idRole];
+                    data.token=response.data.token;
+                    this.setCurrentUser(data);
+                    this.$cookies.set("currentUser", data,"1h");
+                    if (data.idRole === PRESTA) {
+                        this.$router.push('/prestataire');
+                    } else {
+                        this.$router.push('/');
+                    }
                 } else {
                     alert(response.data.data);
                 }

@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <svg @click="action" width="205.0959mm" height="177.36548mm" viewBox="0 0 205.0959 177.36548" version="1.1" id="svg5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+        <svg @click="action" @mouseover="actionSurvol" width="205.0959mm" height="177.36548mm" viewBox="0 0 205.0959 177.36548" version="1.1" id="svg5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
             <defs id="defs2"/>
             <g id="listeStand" transform="translate(0.09589299,-0.17511949)">
                 <a id="a1054-3" style="fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;paint-order:markers stroke fill">
@@ -191,12 +191,8 @@
                     <a id="batiment5" style="display:inline">
                         <rect style="display:inline;fill:#00ffdd;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-7-1" width="34.44854" height="44.448536" x="120.27573" y="-204.72427" transform="rotate(90)"/>
                         <rect style="display:inline;fill:#ff00d5;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-8" width="34.480034" height="39.480034" x="80.259987" y="-204.74001" transform="rotate(90)"/>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="167.11592" y="102.83978" id="text2607-72">
-                            <tspan id="tspan2605-7" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="167.11592" y="102.83978">Halle 6</tspan>
-                        </text>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="164.49666" y="142.12839" id="text2607-41">
-                            <tspan id="tspan2605-6" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="164.49666" y="142.12839">Halle 5</tspan>
-                        </text>
+                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="167.11592" y="102.83978" id="text2607-72">Halle 6</text>
+                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="164.49666" y="142.12839" id="text2607-41">Halle 5</text>
                     </a>
                     <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="72.455544" y="172.65388" id="text2607-2">
                         <tspan id="tspan2605-1" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="72.455544" y="172.65388">Accueil</tspan>
@@ -216,6 +212,11 @@ export default {
         selection:Object
     },
     methods:{
+        actionSurvol(event){
+            if (!isNaN(event.target.id)) {
+                this.$emit('survolStand', {id:event.target.id})
+            }
+        },
         action(event){
             console.log(event.target.id)
             if (event.path[1].id.includes("batiment")){

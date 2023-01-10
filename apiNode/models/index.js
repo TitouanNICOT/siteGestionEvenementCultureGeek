@@ -78,8 +78,8 @@ db.user.hasMany(db.reserverProduit, {foreignKey: 'idUser'})
 db.reserverProduit.belongsTo(db.user, {foreignKey: 'idUser'})
 
 let option={}
-option.force=true
-option.alter=true
+// option.force=true
+// option.alter=true
 await sequelize.sync(option)//{force:true}
 
 if(option.force===true) {

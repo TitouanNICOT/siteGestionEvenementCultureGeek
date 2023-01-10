@@ -39,6 +39,10 @@ class Stand{
         return this.user===undefined ? "null" : this.user.nom+" "+this.user.prenom
     }
 
+    idPresta(){
+        return this.user.idUser
+    }
+
     libelleTypeStand(){
         return this.typeStand===undefined ? "null" : this.typeStand.libelleTypeStand
     }

@@ -1,6 +1,6 @@
 <template>
     <div style="display: flex">
-        <CarteSVG @standSelected="selectionStand" @deselection="deselection" :tab-couleur="stands" :selection="modifSelection"
+        <CarteSVG @standSelected="selectionStand" @deselection="deselection" @survolStand="survolStand" :tab-couleur="stands" :selection="modifSelection"
                   style="border: black 1px solid; width: 210mm; margin: 20px"/>
 
         <div style="width: 100%; min-width: 300px">
@@ -64,6 +64,10 @@ export default {
                 this.standSelected = this.stands.find(s => s.id === event.id)
                 this.idSelected = event.id
             }
+        },
+        survolStand(event) {
+            if (event.id !== this.idSelected && this.stands.find(s => s.id === event.id) !== undefined)
+                this.selectionStand(event)
         },
         deselection(){
             this.modifSelection={deselected:this.idSelected}

@@ -1,16 +1,16 @@
 <template>
   <v-row>
       <div>
-          <button v-for="(title, index) in titles" :key="index" @click="changeRoute(index)"> {{ title.text }} </button>
-          <button v-if="currentRole === ADMIN">Liste Prestataire</button>
-          <button v-if="currentRole === PRESTA">Tableau de bord</button>
+          <v-btn v-for="(title, index) in titles" :key="index" @click="changeRouteId(index)"> {{ title.text }} </v-btn>
+          <v-btn v-if="currentRole === ADMIN" color="grey">Liste Prestataire</v-btn>
+          <v-btn v-if="currentRole === PRESTA" to="/prestataire">Tableau de bord</v-btn>
       </div>
       <div style="margin-left: auto">
           <span>({{roles[currentRole]}} : {{ currentRole }})  </span>
-          <button v-if="currentUser==null" @click="login">Connection</button>
+          <v-btn v-if="currentUser==null" to="/login">Connection</v-btn>
           <span v-else>
-              <span>Bienvenue {{currentUser.pseudo}}</span>
-              <button  @click="logout">Se déconnecter</button>
+              <span>{{currentUser.pseudo}}</span>
+              <v-btn  @click="logout">Se déconnecter</v-btn>
           </span>
       </div>
   </v-row>
@@ -38,11 +38,8 @@ export default {
     },
     methods: {
       ...mapMutations(['removeCurrentUser']),
-        changeRoute(id) {
-            router.push(this.titles[id].route)
-        },
-        login() {
-            router.push('/login');
+        changeRouteId(id) {
+            router.push(this.titles[id].route).catch(()=>{})
         },
         logout() {
             this.removeCurrentUser();
