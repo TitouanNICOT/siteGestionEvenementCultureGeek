@@ -87,4 +87,18 @@ const listRole = async (req, res) => {
    })
 }
 
-export default {list, newUser, getUserById, modifUser, deleteUser, listRole};
+const getAllCommentaire = (req,res) => {
+    const sql = 'SELECT "idLivreOr",commentaire,"stands"."idStand" FROM "livreOr" ' +
+        'inner join stands on stands."idStand"="livreOr"."idStand" '  +
+        'inner join users on stands."idPrestataire"=users."idUser" '  +
+        'WHERE "idUser" = ?'
+    db.sequelize.query(sql, {replacements: [parseInt(req.params.id)], type: db.sequelize.QueryTypes.SELECT})
+        .then((results) => {
+            console.log(results)
+            return res.status(200).send({success: 1, data: results})
+        }).catch((error) => {
+        return res.status(404).send({success: 0, data: error})
+    })
+}
+
+export default {list, newUser, getUserById, modifUser, deleteUser, listRole,getAllCommentaire};

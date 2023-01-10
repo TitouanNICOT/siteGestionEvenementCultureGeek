@@ -2,6 +2,7 @@
 // const usersC = require("../controllers/user.controller")
 import express from "express";
 import usersC from "../controllers/user.controller.js";
+import standController from "../controllers/stand.controller.js";
 
 var router = express.Router()
 router.get("/listRoles",usersC.listRole)
@@ -159,5 +160,8 @@ router.delete("/:id",usersC.deleteUser)
  *          '404':
  *              description: Erreur lors de la suppression de l'utilisateur
  */
+
+router.get("/:id/commentaire",usersC.getAllCommentaire)
+
 
 export default router;

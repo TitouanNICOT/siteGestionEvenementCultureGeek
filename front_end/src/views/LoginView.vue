@@ -2,8 +2,8 @@
     <div class="login-container my-5">
         <h1>Connexion</h1>
         <form @submit.prevent="login">
-            <label for="username">Nom d'utilisateur :</label>
-            <input type="text" v-model="username" id="username" name="username">
+            <label for="pseudo">Nom d'utilisateur :</label>
+            <input type="text" v-model="pseudo" id="pseudo" name="pseudo">
             <br>
             <label for="password">Mot de passe :</label>
             <input type="password" v-model="password" id="password" name="password">
@@ -24,15 +24,17 @@ export default {
     name: "LoginView",
     data() {
         return {
-            username: '',
+            pseudo: '',
             password: ''
         }
     },
     methods: {
         ...mapMutations(['setCurrentUser']),
         login() {
+            if (this.pseudo==="") {alert("pas de pseudo ecrit"); return}
+            if (this.password==="") {alert("pas de password ecrit"); return}
             axios.post('http://localhost:3000/connection/login', {
-                pseudo: this.username,
+                pseudo: this.pseudo,
                 password: this.password
             }).then(response => {
                 if (response.data.success) {
@@ -52,14 +54,6 @@ export default {
             }).catch(() => {
                 alert('Mauvais identifiants');
             });
-        },
-        loginLocal(){ //independant de la bdd
-            if (this.username === 'admin' && this.password === 'admin') {
-                this.setCurrentUser({prenom: this.username, password: this.password,role: 'admin'});
-                this.$router.push({name: 'Accueil'});
-            } else {
-                alert('Mauvais identifiants');
-            }
         }
     }
 }

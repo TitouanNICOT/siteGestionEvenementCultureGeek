@@ -63,13 +63,19 @@ import {mapActions, mapMutations} from 'vuex'
 
 h1 {
     font-family: Lexend, sans-serif;
-    font-size: 24px;
+    font-size: 35px;
     color: var(--primary-color);
 }
 
 h2 {
     font-family: Lexend, sans-serif;
-    font-size: 18px;
+    font-size: 25px;
+    color: var(--primary-color);
+}
+
+h3 {
+    font-family: Lexend, sans-serif;
+    font-size: 20px;
     color: var(--primary-color);
 }
 

@@ -139,6 +139,8 @@ router.get('/user/:idUser',reserverProd.getReservationProduitByUser);
  *              description: Erreur lors de l'envoi de la réservation de produits concernant l'utilisateur
  */
 
+router.get("/prestataire/:idPresta",reserverProd.getReservationProduitByPrestataire)
+
 router.get('/produit/:idProduit',reserverProd.getReservationProduitByProduit);
 /**
  * @swagger

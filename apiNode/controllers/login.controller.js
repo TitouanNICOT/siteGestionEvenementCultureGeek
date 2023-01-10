@@ -7,6 +7,7 @@ const login = async (req, res) => {
     const mdp = req.body.password;
     db.user.findOne({where: {pseudo: pseudo}})
         .then(user=> {
+            if (!user) return res.status(404).send({success: 0, data: "User not found"})
             bcrypt.compare(mdp, user.password, function (err, result) {
                 if (result) {
                     return res.status(200).send({success: 1, data: user,token:generateToken(user)})

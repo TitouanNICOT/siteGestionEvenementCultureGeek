@@ -20,9 +20,9 @@ const insert = async (db)=>{
     await db.type_evenement.create({idTypeEvenement: 2, libelleTypeEvenement: 'Conférence'})
     await db.type_evenement.create({idTypeEvenement: 3, libelleTypeEvenement: 'Prestation Invité'})
     await db.type_evenement.create({idTypeEvenement: 4, libelleTypeEvenement: 'Exposition'})
-    await db.evenement.create({idEvenement: 1, libelleEvenement: 'Tournoi Polytopia', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 1, idStand: 300})
-    await db.evenement.create({idEvenement: 2, libelleEvenement: 'Tournoi Mario Kart', heureDebut: '2022-06-22 17:00:00', heureFin: '2022-06-22 20:00:00', idTypeEvenement: 1, idStand: 300})
-    await db.evenement.create({idEvenement: 3, libelleEvenement: 'Conférence de Cedric', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 2, idStand: 300})
+    await db.evenement.create({idEvenement: 1, libelleEvenement: 'Tournoi Polytopia', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 1, idStand: 500})
+    await db.evenement.create({idEvenement: 2, libelleEvenement: 'Tournoi Mario Kart', heureDebut: '2022-06-22 17:00:00', heureFin: '2022-06-22 20:00:00', idTypeEvenement: 1, idStand: 500})
+    await db.evenement.create({idEvenement: 3, libelleEvenement: 'Conférence de Cedric', heureDebut: '2022-06-22 14:00:00', heureFin: '2022-06-22 16:00:00', idTypeEvenement: 2, idStand: 310})
     //partie boutique
     await db.type_produit.create({idTypeProduit: 1, libelleTypeProduit: 'Nourriture'})
     await db.type_produit.create({idTypeProduit: 2, libelleTypeProduit: 'Boisson'})

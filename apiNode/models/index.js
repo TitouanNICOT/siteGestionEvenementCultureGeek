@@ -86,7 +86,7 @@ if(option.force===true) {
     console.log("Insertion des données")
     await insert(db)
 }
-sequelize.options.logging=true;
+sequelize.options.logging=console.log;
 // des erreurs sont survenues lorsque je ne met pas de await devant les create
 // il faudrait peut être faire un await sur chaque create
 // ou alors faire un Promise.all ---------PS : phrase genere par Copilot, donc peut etre une solution

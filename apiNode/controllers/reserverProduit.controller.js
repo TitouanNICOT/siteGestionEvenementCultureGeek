@@ -93,11 +93,27 @@ const deleteReservationProduit = async (req, res) => {
     });
 }
 
+const getReservationProduitByPrestataire = (req,res) => {
+    const sql = 'SELECT quantite,"reserverProduits"."idUser",produits."idProduit","libelleProduit" FROM "reserverProduits" ' +
+        'inner join produits on produits."idProduit"="reserverProduits"."idProduit" '  +
+        'inner join stands on stands."idStand"=produits."idStand" '+
+        'inner join users on users."idUser"=stands."idPrestataire" '+
+        'WHERE users."idUser" = ?'
+    db.sequelize.query(sql, {replacements:[parseInt(req.params.idPresta)], type: db.sequelize.QueryTypes.SELECT})
+        .then((results) => {
+            console.log(results)
+            return res.status(200).send({success: 1, data: results})
+        }).catch((error) => {
+        return res.status(404).send({success: 0, data: error})
+    })
+}
+
 export default {list,
     newReservationProduit,
     getReservationProduitById,
     modifReservationProduit,
     deleteReservationProduit,
     getReservationProduitByUser,
-    getReservationProduitByProduit
+    getReservationProduitByProduit,
+    getReservationProduitByPrestataire
 };
