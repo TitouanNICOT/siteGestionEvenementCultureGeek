@@ -46,7 +46,9 @@ export default new Vuex.Store({
             state.listeTypeStand = typeStands;
         },
         removeStand(state, stand) {
-            const indexStand = state.stands.indexOf(stand);
+            console.log(stand)
+            const indexStand = state.stands.findIndex(s=>s.id===stand);
+            console.log(indexStand)
             state.stands.splice(indexStand, 1);
             // state.stands = state.stands.filter(stand => stand.idStand != idStand);
         },

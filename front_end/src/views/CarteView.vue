@@ -1,6 +1,6 @@
 <template>
     <div style="display: flex">
-        <CarteSVG @standSelected="selectionStand" @deselection="deselection" @survolStand="survolStand" :tab-couleur="stands" :selection="modifSelection"
+        <CarteSVG @standSelected="selectionStand" @deselection="deselection" :tab-couleur="stands" :selection="modifSelection"
                   style="border: black 1px solid; width: 210mm; margin: 20px"/>
 
         <div style="width: 100%; min-width: 300px">
@@ -78,9 +78,12 @@ export default {
             deleteStand(this.idSelected)
                 .then(responce=>{
                     if (responce.data.success===1){
+                      console.log(this.idSelected)
                         this.$store.commit("removeStand",this.idSelected)
                         document.getElementById(this.idSelected).style.fill="black"
+                      console.log(document.getElementById(this.idSelected))
                         this.deselection()
+                      console.log(this.stands)
                     }
                 })
         },
