@@ -20,14 +20,15 @@ const getReservationProduitById = async (req, res) => {
     })
 }
 
-const getReservationProduitByUser = async (req, res) => {
-    const idUser = req.params.idUser;
-    if (isNaN(idUser))
-        return res.status(404).send({success: 0, data: "id is not a number"})
-
-    db.reserverProduit.findAll({where: {idUser: idUser}}).then((results) => {
-        return res.status(200).send({success: 1, data: results})
-    }).catch((error) => {
+const getReservationProduitByUser = (req, res) => {
+    const sql = `SELECT quantite,"reserverProduits"."idUser",produits."idProduit","libelleProduit" FROM "reserverProduits"
+               INNER JOIN produits ON "reserverProduits"."idProduit" = produits."idProduit"
+               WHERE "reserverProduits"."idUser" = ?`;
+    db.sequelize.query(sql, {replacements:[parseInt(req.params.idUser)], type: db.sequelize.QueryTypes.SELECT})
+        .then((results) => {
+            console.log(results)
+            return res.status(200).send({success: 1, data: results})
+        }).catch((error) => {
         return res.status(404).send({success: 0, data: error})
     })
 }

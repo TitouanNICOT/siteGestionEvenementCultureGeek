@@ -10,7 +10,8 @@ import RegisterView from "@/views/RegisterView.vue";
 import BoutiqueView from "@/views/BoutiqueView";
 import HomePrestaView from "@/views/HomePrestaView";
 import cookies from "vue-cookies";
-import {PRESTA} from "@/services/roles";
+import {PRESTA, CLIENT} from "@/services/roles";
+import ProfilUserView from "@/views/ProfilUserView.vue";
 
 Vue.use(VueRouter)
 
@@ -66,6 +67,12 @@ const routes = [
         name:'prestataire',
         component: HomePrestaView,
         meta: { requiresAuth: true ,role:PRESTA}
+    },
+    {
+        path:'/user',
+        name:'user',
+        component: ProfilUserView,
+        meta: { requiresAuth: true ,role:CLIENT}
     }
 ]
 

@@ -4,6 +4,7 @@
           <v-btn v-for="(title, index) in titles" :key="index" @click="changeRouteId(index)"> {{ title.text }} </v-btn>
           <v-btn v-if="currentRole === ADMIN" color="grey">Liste Prestataire</v-btn>
           <v-btn v-if="currentRole === PRESTA" to="/prestataire">Tableau de bord</v-btn>
+          <v-btn v-if="currentRole === CLIENT" to="/user">Mon Profil</v-btn>
       </div>
       <div style="margin-left: auto">
           <span>({{roles[currentRole]}} : {{ currentRole }})  </span>
@@ -19,7 +20,7 @@
 <script>
 import {mapGetters, mapMutations, mapState} from "vuex";
 import router from "@/router";
-import {roles, ADMIN, PRESTA} from "@/services/roles";
+import {roles, ADMIN, PRESTA,CLIENT} from "@/services/roles";
 
 export default {
   name: 'NavBar',
@@ -29,7 +30,7 @@ export default {
                 , {text: 'Carte', color: 'grey', route:'/carte'}
                 , {text: 'Liste des Stands', color: 'grey', route:'/stand'}
                 , {text: 'Liste des Evenements', color: 'grey', route:'/evenement'}],
-            ADMIN,PRESTA,roles
+            ADMIN,PRESTA,CLIENT,roles
         }
     },
     computed:{
