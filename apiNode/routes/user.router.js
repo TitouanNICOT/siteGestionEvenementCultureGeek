@@ -120,16 +120,16 @@ router.post("/", usersC.newUser)
  *              description: Erreur lors de l'ajout de l'utilisateur
  */
 
-router.put("/", usersC.modifUser)
+router.patch("/:id", usersC.modifUser)
 /**
  * @swagger
  * /users/:
- *  put:
+ *  patch:
  *      description: Modifie les données d'un utilisateur
  *      tags:
  *          - Users
  *      parameters:
- *          - in: formData
+ *          - in: path
  *            name: id
  *            type: integer
  *            required: true
