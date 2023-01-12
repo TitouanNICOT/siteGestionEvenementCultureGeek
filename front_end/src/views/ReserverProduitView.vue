@@ -1,14 +1,28 @@
 <template>
-    <form class="form" @submit.prevent="makeReservation">
-        <label for="quantite">Quantité de produits à réserver :</label>
-        <input type="number" v-model.number="quantite" id="quantite" required/>
-        <button type="submit">Réserver</button>
-    </form>
+    <div>
+        <v-container>
+            <h1 style="text-align: center">{{produit.libelleProduit}}</h1>
+            <p>Type : {{produit.type_produit.libelleTypeProduit}}</p>
+            <p>Description : {{produit.descriptionProduit}}</p>
+            <p>Prix : {{produit.prix}} €</p>
+            <div style="border: black 1px solid">
+                <form class="form" @submit.prevent="makeReservation" v-if="currentRole!==NONCONNECTE">
+                    <h2>Reserver le produit : </h2>
+                    <label for="quantite">Quantité :
+                        <v-text-field v-model.number="quantite" id="quantite" required class="mx-3"/>
+                    </label>
+                    <button type="submit">Réserver</button>
+                </form>
+                <h3 v-else style="text-align: center">Vous devez être connecté pour réserver un produit</h3>
+            </div>
+        </v-container>
+    </div>
 </template>
 
 <script>
 import axios from "axios";
-import {mapState} from "vuex";
+import {mapGetters, mapState} from "vuex";
+import {NONCONNECTE} from "@/services/roles";
 
 export default {
     name: "ReserverProduitView",
@@ -16,11 +30,14 @@ export default {
     data() {
         return {
             quantite: 0,
-            idProduct: this.$route.params.idProduit
+            idProduct: this.$route.params.idProduit,
+            produit:{type_produit:{}},
+            NONCONNECTE
         };
     },
     computed: {
-        ...mapState(["currentUser"])
+        ...mapState(["currentUser"]),
+        ...mapGetters(["currentRole"])
     },
     methods: {
         async makeReservation() {
@@ -46,6 +63,16 @@ export default {
                 alert('Une erreur est survenue lors de l\'enregistrement de votre réservation');
             }
         }
+    },
+    created() {
+        axios.get(`http://localhost:3000/produits/${this.idProduct}`)
+            .then(response => {
+                console.log(response.data);
+                this.produit = response.data.data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 };
 </script>

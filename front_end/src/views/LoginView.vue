@@ -18,7 +18,7 @@
 <script>
 import axios from "axios";
 import {mapMutations} from "vuex";
-import {PRESTA, roles} from "@/services/roles";
+import {ADMIN, PRESTA, roles} from "@/services/roles";
 // import {mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
@@ -52,8 +52,10 @@ export default {
                     this.$cookies.set("currentUser", data, "1h");
                     if (data.idRole === PRESTA) {
                         this.$router.push('/prestataire');
+                    } else if (data.idRole === ADMIN) {
+                        this.$router.push('/admin');
                     } else {
-                        this.$router.push('/');
+                        this.$router.push('/user');
                     }
                 } else {
                     alert(response.data.data);

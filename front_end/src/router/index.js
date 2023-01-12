@@ -10,7 +10,8 @@ import RegisterView from "@/views/RegisterView.vue";
 import BoutiqueView from "@/views/BoutiqueView";
 import HomePrestaView from "@/views/HomePrestaView";
 import cookies from "vue-cookies";
-import {PRESTA, CLIENT} from "@/services/roles";
+import {ADMIN, PRESTA, CLIENT} from "@/services/roles";
+import HomeAdminView from "@/views/HomeAdminView";
 import ProfilUserView from "@/views/ProfilUserView.vue";
 
 Vue.use(VueRouter)
@@ -57,10 +58,9 @@ const routes = [
         component: BoutiqueView
     },
     {
-        path: '/reservations/:idStand/p/:idProduit',
-        name: 'reservation',
-        component: () => import('../views/ReserverProduitView.vue'),
-        meta: {requiresAuth: true},
+        path:'/reservations/:idStand/p/:idProduit',
+        name:'reservation',
+        component: () => import('../views/ReserverProduitView.vue')
     },
     {
         path: '/prestataire',
@@ -69,10 +69,26 @@ const routes = [
         meta: { requiresAuth: true ,role:PRESTA}
     },
     {
+        path:'/admin',
+        name:'admin',
+        component: HomeAdminView,
+        meta: { requiresAuth: true ,role: ADMIN}
+    },
+    {
         path:'/user',
         name:'user',
         component: ProfilUserView,
         meta: { requiresAuth: true ,role:CLIENT}
+    },
+    {
+        path: '/contact',
+        name: 'contact',
+        component: () => import('../views/ContactView.vue')
+    },
+    {
+        path: '/timeline',
+        name: 'timeline',
+        component: () => import('../views/TimelineTestView.vue')
     }
 ]
 

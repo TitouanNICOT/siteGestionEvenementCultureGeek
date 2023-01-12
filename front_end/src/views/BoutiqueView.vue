@@ -6,16 +6,11 @@
             <v-row>
                 <v-col v-for="(produit,index) in listProduit" :key="index" cols="3">
                     <v-card style="height: 100%">
-                        <v-card-title>{{ produit.libelleProduit }}</v-card-title>
-                        <v-card-subtitle>{{ produit.type_produit.libelleTypeProduit }}</v-card-subtitle>
-                        <v-card-text>{{ produit.descriptionProduit }}<br>
-                            {{ produit.prix }} €
-                        </v-card-text>
+                        <v-card-title>{{produit.libelleProduit}}</v-card-title>
+                        <v-card-subtitle>{{produit.type_produit.libelleTypeProduit}}</v-card-subtitle>
+                        <v-card-text>{{produit.prix}} €</v-card-text>
                         <v-card-actions>
-                            <v-btn v-if="currentRole!==NONCONNECTE"
-                                   :to="{ name: 'reservation', params: { idProduit: produit.idProduit, idStand: idStand } }">
-                                Réserver
-                            </v-btn>
+                            <v-btn :to="{ name: 'reservation', params: { idProduit: produit.idProduit, idStand: idStand } }">Afficher plus</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-col>

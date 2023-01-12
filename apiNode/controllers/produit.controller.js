@@ -13,7 +13,7 @@ const getProduitById = async (req, res) => {
     if (isNaN(id))
         return res.status(404).send({success: 0, data: "id is not a number"})
 
-    db.produit.findByPk(id).then((results) => {
+    db.produit.findByPk(id,{include:db.type_produit}).then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
         return res.status(404).send({success: 0, data: error})
