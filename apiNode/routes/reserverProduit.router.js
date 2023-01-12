@@ -4,7 +4,7 @@ import express from "express";
 import reserverProd from "../controllers/reserverProduit.controller.js";
 
 var router = express.Router()
-router.get("/",reserverProd.list)
+router.get("/", reserverProd.list)
 /**
  * @swagger
  * /reservations/:
@@ -19,7 +19,7 @@ router.get("/",reserverProd.list)
  *              description: Erreur lors de l'envoi des réservations de produits
  */
 
-router.get("/:id",reserverProd.getReservationProduitById)
+router.get("/:id", reserverProd.getReservationProduitById)
 /**
  * @swagger
  * /reservations/{id}:
@@ -39,7 +39,7 @@ router.get("/:id",reserverProd.getReservationProduitById)
  *              description: Erreur lors de l'envoi de la réservation de produits
  */
 
-router.get('/user/:idUser',reserverProd.getReservationProduitByUser);
+router.get('/user/:idUser', reserverProd.getReservationProduitByUser);
 /**
  * @swagger
  * /reservations/user/{idUser}:
@@ -59,7 +59,7 @@ router.get('/user/:idUser',reserverProd.getReservationProduitByUser);
  *              description: Erreur lors de l'envoi de la réservation de produits concernant l'utilisateur
  */
 
-router.get("/prestataire/:idPresta",reserverProd.getReservationProduitByPrestataire)
+router.get("/prestataire/:idPresta", reserverProd.getReservationProduitByPrestataire)
 /**
  * @swagger
  * /reservations/prestataire/{idPresta}:
@@ -79,7 +79,7 @@ router.get("/prestataire/:idPresta",reserverProd.getReservationProduitByPrestata
  *              description: Erreur lors de l'envoi de la réservation de produits concernant le produit
  */
 
-router.get('/produit/:idProduit',reserverProd.getReservationProduitByProduit);
+router.get('/produit/:idProduit', reserverProd.getReservationProduitByProduit);
 /**
  * @swagger
  * /reservations/produit/{idProduit}:
@@ -100,7 +100,7 @@ router.get('/produit/:idProduit',reserverProd.getReservationProduitByProduit);
  *              description: Erreur lors de l'envoi de la réservation de produits concernant le produit
  */
 
-router.post("/",reserverProd.newReservationProduit)
+router.post("/", reserverProd.newReservationProduit)
 /**
  * @swagger
  * /reservations/:
@@ -128,7 +128,7 @@ router.post("/",reserverProd.newReservationProduit)
  *              description: Erreur lors de l'ajout de la réservation de produits
  */
 
-router.put("/",reserverProd.modifReservationProduit)
+router.put("/", reserverProd.modifReservationProduit)
 /**
  * @swagger
  * /reservations/:
@@ -160,7 +160,7 @@ router.put("/",reserverProd.modifReservationProduit)
  *              description: Erreur lors de la modification de la réservation de produits
  */
 
-router.delete("/:id",reserverProd.deleteReservationProduit)
+router.delete("/:id", reserverProd.deleteReservationProduit)
 /**
  * @swagger
  * /reservations/{id}:

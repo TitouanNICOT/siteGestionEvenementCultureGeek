@@ -39,11 +39,11 @@ export default {
     name: "RegisterView",
     data() {
         return {
-            nom:'',
-            prenom:'',
+            nom: '',
+            prenom: '',
             username: '',
             password: '',
-            confirmPassword:'',
+            confirmPassword: '',
             email: '',
             idRole: 3,
             isNotif: false
@@ -64,7 +64,7 @@ export default {
                 }).then(response => {
                     if (response.data.success) {
                         response.data.data.role = roles[response.data.data.idRole]
-                        response.data.data.token=response.data.token;
+                        response.data.data.token = response.data.token;
                         this.setCurrentUser(response.data.data);
                         this.$cookies.set("currentUser", response.data.data, "1h");
                         this.$router.push({name: 'Accueil'});
@@ -76,7 +76,7 @@ export default {
                 });
             }
         },
-        validator(){
+        validator() {
             let string = '';
             let valid = true;
 
@@ -93,7 +93,7 @@ export default {
                 string += 'Le mot de passe doit contenir au moins 8 caractères.';
             }
 
-            if ( [...this.email.matchAll('@')].length !== 1 || (this.email.indexOf('.') === -1 && this.email.lastIndexOf('.') < this.email.indexOf('@'))) {
+            if ([...this.email.matchAll('@')].length !== 1 || (this.email.indexOf('.') === -1 && this.email.lastIndexOf('.') < this.email.indexOf('@'))) {
                 if (string !== '') {
                     string += '\n';
                 }
@@ -101,7 +101,7 @@ export default {
                 string += 'L\'adresse mail n\'est pas valide\n';
             }
 
-            if(string !== ''){
+            if (string !== '') {
                 alert(string);
             }
             return valid;

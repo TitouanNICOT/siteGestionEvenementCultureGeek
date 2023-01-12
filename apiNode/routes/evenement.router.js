@@ -4,7 +4,7 @@ import express from "express";
 import evenementController from "../controllers/evenement.controller.js";
 
 var router = express.Router()
-router.get("/listTypeEvenement",evenementController.listTypeEvenement)
+router.get("/listTypeEvenement", evenementController.listTypeEvenement)
 /**
  * @swagger
  * /evenements/listTypeEvenement/:
@@ -19,7 +19,7 @@ router.get("/listTypeEvenement",evenementController.listTypeEvenement)
  *              description: Erreur lors de l'envoi des types d'evenements
  */
 
-router.get("/",evenementController.list)
+router.get("/", evenementController.list)
 /**
  * @swagger
  * /evenements/:
@@ -34,7 +34,7 @@ router.get("/",evenementController.list)
  *              description: Erreur lors de l'envoi des évenements
  */
 
-router.get("/:id",evenementController.getEvenementById)
+router.get("/:id", evenementController.getEvenementById)
 /**
  * @swagger
  * /evenements/{id}:
@@ -54,7 +54,7 @@ router.get("/:id",evenementController.getEvenementById)
  *              description: Erreur lors de l'envoi de l'evenement
  */
 
-router.post("/",evenementController.newEvenement)
+router.post("/", evenementController.newEvenement)
 /**
  * @swagger
  * /evenements/:
@@ -90,7 +90,7 @@ router.post("/",evenementController.newEvenement)
  *              description: Erreur lors de l'ajout de l'evenement
  */
 
-router.put("/",evenementController.modifEvenement)
+router.put("/", evenementController.modifEvenement)
 /**
  * @swagger
  * /evenements/:
@@ -126,7 +126,7 @@ router.put("/",evenementController.modifEvenement)
  *              description: Erreur lors de la modification de l'evenement
  */
 
-router.delete("/:id",evenementController.deleteEvenement)
+router.delete("/:id", evenementController.deleteEvenement)
 /**
  * @swagger
  * /evenements/{id}:

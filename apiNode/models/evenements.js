@@ -1,4 +1,4 @@
-export const Evenement = (Sequelize,sequelize)=>{
+export const Evenement = (Sequelize, sequelize) => {
     return sequelize.define('evenement', {
         idEvenement: {
             type: Sequelize.INTEGER,
@@ -6,15 +6,15 @@ export const Evenement = (Sequelize,sequelize)=>{
             autoIncrement: true,
             allowNull: false
         },
-        libelleEvenement:{
+        libelleEvenement: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        heureDebut:{
+        heureDebut: {
             type: Sequelize.DATE,
             allowNull: false
         },
-        heureFin:{
+        heureFin: {
             type: Sequelize.DATE,
             allowNull: false
         }

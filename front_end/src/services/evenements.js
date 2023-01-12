@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getEvenement = (idEvenement) => {
-    return axios.get("http://localhost:3000/evenements/"+idEvenement)
+    return axios.get("http://localhost:3000/evenements/" + idEvenement)
 }
 
 const getAllEvenement = () => {
@@ -9,7 +9,7 @@ const getAllEvenement = () => {
 }
 
 const deleteEvenement = (idEvenement) => {
-    return axios.delete("http://localhost:3000/evenements/"+idEvenement)
+    return axios.delete("http://localhost:3000/evenements/" + idEvenement)
 }
 
-export default {getEvenement,deleteEvenement,getAllEvenement}
+export default {getEvenement, deleteEvenement, getAllEvenement}

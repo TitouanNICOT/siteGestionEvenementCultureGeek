@@ -1,4 +1,4 @@
-export const LivreOr = (Sequelize,sequelize)=>{
+export const LivreOr = (Sequelize, sequelize) => {
     return sequelize.define('livreOr', {
         idLivreOr: {
             type: Sequelize.INTEGER,
@@ -6,9 +6,9 @@ export const LivreOr = (Sequelize,sequelize)=>{
             autoIncrement: true,
             allowNull: false
         },
-        commentaire:{
+        commentaire: {
             type: Sequelize.STRING,
             allowNull: false
         }
-    },{freezeTableName: true})
+    }, {freezeTableName: true})
 }

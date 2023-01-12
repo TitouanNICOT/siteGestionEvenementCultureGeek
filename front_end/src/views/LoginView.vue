@@ -10,7 +10,8 @@
             <br>
             <input type="submit" value="Se connecter">
         </form>
-        pas de compte ? <router-link to="/register">S'inscrire !</router-link>
+        pas de compte ?
+        <router-link to="/register">S'inscrire !</router-link>
     </div>
 </template>
 
@@ -31,18 +32,24 @@ export default {
     methods: {
         ...mapMutations(['setCurrentUser']),
         login() {
-            if (this.pseudo==="") {alert("pas de pseudo ecrit"); return}
-            if (this.password==="") {alert("pas de password ecrit"); return}
+            if (this.pseudo === "") {
+                alert("pas de pseudo ecrit");
+                return
+            }
+            if (this.password === "") {
+                alert("pas de password ecrit");
+                return
+            }
             axios.post('http://localhost:3000/connection/login', {
                 pseudo: this.pseudo,
                 password: this.password
             }).then(response => {
                 if (response.data.success) {
                     let data = response.data.data;
-                    data.role=roles[data.idRole];
-                    data.token=response.data.token;
+                    data.role = roles[data.idRole];
+                    data.token = response.data.token;
                     this.setCurrentUser(data);
-                    this.$cookies.set("currentUser", data,"1h");
+                    this.$cookies.set("currentUser", data, "1h");
                     if (data.idRole === PRESTA) {
                         this.$router.push('/prestataire');
                     } else {

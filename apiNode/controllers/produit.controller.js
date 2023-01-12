@@ -1,7 +1,7 @@
 import db from "../models/index.js"
 
 const list = async (req, res) => {
-    db.produit.findAll({include:db.type_produit}).then((results) => {
+    db.produit.findAll({include: db.type_produit}).then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
         return res.status(404).send({success: 0, data: error})

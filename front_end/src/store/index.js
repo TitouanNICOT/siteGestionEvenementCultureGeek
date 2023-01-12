@@ -47,7 +47,7 @@ export default new Vuex.Store({
         },
         removeStand(state, stand) {
             console.log(stand)
-            const indexStand = state.stands.findIndex(s=>s.id===stand);
+            const indexStand = state.stands.findIndex(s => s.id === stand);
             console.log(indexStand)
             state.stands.splice(indexStand, 1);
             // state.stands = state.stands.filter(stand => stand.idStand != idStand);
@@ -80,7 +80,7 @@ export default new Vuex.Store({
             axios.get("http://localhost:3000/stands")
                 .then(responce => {
                     if (responce.data.success === 1) {
-                        const data= responce.data.data.map(d => Stand.fromAPI(d))
+                        const data = responce.data.data.map(d => Stand.fromAPI(d))
                         context.commit("setStands", data)
                     }
                 })

@@ -1,21 +1,23 @@
 <template>
     <v-container>
         <h1 style="text-align: center">Tableau de Bord Prestataire</h1>
-        <h2 style="text-align: center">Bienvenue {{currentUser.pseudo}}</h2>
+        <h2 style="text-align: center">Bienvenue {{ currentUser.pseudo }}</h2>
         <div class="border">
-            <p>Nom : {{currentUser.nom}}</p>
-            <p>Prenom : {{currentUser.prenom}}</p>
-            <p>Mail : {{currentUser.email}}</p>
+            <p>Nom : {{ currentUser.nom }}</p>
+            <p>Prenom : {{ currentUser.prenom }}</p>
+            <p>Mail : {{ currentUser.email }}</p>
         </div>
         <div class="border">
-            <h3>Liste commantaires :</h3><v-btn @click="changeVue">Afficher/cacher</v-btn>
+            <h3>Liste commantaires :</h3>
+            <v-btn @click="changeVue">Afficher/cacher</v-btn>
             <p v-if="commantaires.length === 0" style="text-align: center">Vous n'avez pas de commantaires</p>
             <div v-else-if="afficheCom">
                 <div v-for="(stand,index) in mesStands" :key="index">
-                    <h4 style="font-size: 20px">{{stand.nomStand}}</h4>
+                    <h4 style="font-size: 20px">{{ stand.nomStand }}</h4>
                     <v-row v-if="commantaires.filter(c=>c.idStand==stand.id).length>0">
-                        <v-col v-for="(com,index2) in commantaires.filter(c=>c.idStand==stand.id)" :key="index2" cols="4">
-                            <v-card class="pa-1">{{com.commentaire}}</v-card>
+                        <v-col v-for="(com,index2) in commantaires.filter(c=>c.idStand==stand.id)" :key="index2"
+                               cols="4">
+                            <v-card class="pa-1">{{ com.commentaire }}</v-card>
                         </v-col>
                     </v-row>
                     <p v-else>Pas de commentaire pour ce stand</p>
@@ -24,16 +26,17 @@
             </div>
         </div>
         <div class="border">
-            <h3>Liste des produits reservés dans boutique :</h3><v-btn @click="changeVue2">Afficher/cacher</v-btn>
+            <h3>Liste des produits reservés dans boutique :</h3>
+            <v-btn @click="changeVue2">Afficher/cacher</v-btn>
             <p v-if="produitsReserves.length === 0" style="text-align: center">Vous n'avez pas de produits reservés</p>
-            <v-data-table v-else-if="afficheReserve" :headers="header" :items="produitsReserves" />
+            <v-data-table v-else-if="afficheReserve" :headers="header" :items="produitsReserves"/>
         </div>
         <div class="border">
             <h3>Mes stands</h3>
             <p v-if="stands.length === 0" style="text-align: center">Vous n'avez pas de stands</p>
             <v-row v-else>
                 <v-col v-for="(stand,index) in mesStands" :key="index" cols="4">
-                    <v-card class="pa-3" @click="goStand(stand.id)">{{stand.nomStand}}</v-card>
+                    <v-card class="pa-3" @click="goStand(stand.id)">{{ stand.nomStand }}</v-card>
                 </v-col>
             </v-row>
         </div>
@@ -42,7 +45,7 @@
             <p v-if="mesEvenements.length === 0" style="text-align: center">Vous n'avez pas d'evenement</p>
             <v-row v-else>
                 <v-col v-for="(event,index) in mesEvenements" :key="index" cols="4">
-                    <v-card class="pa-3">{{event.libelleEvenement}}</v-card>
+                    <v-card class="pa-3">{{ event.libelleEvenement }}</v-card>
                 </v-col>
             </v-row>
         </div>
@@ -55,45 +58,45 @@ import axios from "axios";
 
 export default {
     name: "HomePrestaView",
-    computed:{
-        ...mapState(['currentUser','stands','evenements']),
-        mesStands(){
+    computed: {
+        ...mapState(['currentUser', 'stands', 'evenements']),
+        mesStands() {
             return this.stands.filter(stand => stand.idPresta() === this.currentUser.idUser)
         },
-        mesEvenements(){
-            return this.evenements.filter(event => this.mesStands.map(s=>parseInt(s.id)).includes(event.idStand))
+        mesEvenements() {
+            return this.evenements.filter(event => this.mesStands.map(s => parseInt(s.id)).includes(event.idStand))
         }
     },
-    data:()=>({
-        commantaires:[],
-        produitsReserves:[],
-        header:[
-            {text:'Nom du produit',value:'libelleProduit'},
-            {text:'Utilisateur',value:'idUser'},
-            {text:'Quantite',value:'quantite'}
+    data: () => ({
+        commantaires: [],
+        produitsReserves: [],
+        header: [
+            {text: 'Nom du produit', value: 'libelleProduit'},
+            {text: 'Utilisateur', value: 'idUser'},
+            {text: 'Quantite', value: 'quantite'}
         ],
-        afficheCom:true,
-        afficheReserve:true
+        afficheCom: true,
+        afficheReserve: true
     }),
-    methods:{
-        goStand(idStand){
+    methods: {
+        goStand(idStand) {
             console.log(idStand)
-            this.$router.push({name:"stand",params:{id:idStand}})
+            this.$router.push({name: "stand", params: {id: idStand}})
         },
-        changeVue(){
+        changeVue() {
             this.afficheCom = !this.afficheCom
         },
-        changeVue2(){
+        changeVue2() {
             this.afficheReserve = !this.afficheReserve
         }
     },
     mounted() {
-        axios.get("http://localhost:3000/users/"+this.currentUser.idUser+"/commentaire")
-            .then(res=>{
+        axios.get("http://localhost:3000/users/" + this.currentUser.idUser + "/commentaire")
+            .then(res => {
                 this.commantaires = res.data.data
             })
-        axios.get("http://localhost:3000/reservations/prestataire/"+this.currentUser.idUser)
-            .then(res=>{
+        axios.get("http://localhost:3000/reservations/prestataire/" + this.currentUser.idUser)
+            .then(res => {
                 this.produitsReserves = res.data.data
             })
     }

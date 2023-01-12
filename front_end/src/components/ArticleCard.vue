@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style scoped>
-.background-article-card{
+.background-article-card {
     position: relative;
     width: 300px;
     height: 175px;
@@ -24,7 +24,7 @@ export default {
     border-radius: 10px 10px 60px 10px;
 }
 
-.title-article-card{
+.title-article-card {
     position: relative;
 
     width: 274px;
@@ -44,7 +44,7 @@ export default {
     align-items: center;
 }
 
-.text-title-article-card{
+.text-title-article-card {
     position: relative;
 
     left: 24.8px;
