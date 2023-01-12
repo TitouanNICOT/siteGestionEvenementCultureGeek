@@ -33,6 +33,7 @@
         <div>
             <v-btn @click="retourCarte">Retour à la carte</v-btn>
             <v-btn v-if="typeStand==='boutique'" @click="clickBoutique">Acceder a la boutique</v-btn>
+            <v-btn @click="infoPresta(info.user.idUser)">Informations du Prestataires</v-btn>
         </div>
     </div>
 </template>
@@ -77,6 +78,9 @@ export default {
                     })
             }
         },
+      infoPresta(id){
+          this.$router.push("/infosPresta/"+id)
+      }
     },
     created() {
         this.idStand = this.$route.params.id

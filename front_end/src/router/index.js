@@ -13,6 +13,7 @@ import cookies from "vue-cookies";
 import {ADMIN, PRESTA, CLIENT} from "@/services/roles";
 import HomeAdminView from "@/views/HomeAdminView";
 import ProfilUserView from "@/views/ProfilUserView.vue";
+import PrestaPublicView from "@/views/PrestaPublicView.vue";
 
 Vue.use(VueRouter)
 
@@ -89,6 +90,12 @@ const routes = [
         path: '/timeline',
         name: 'timeline',
         component: () => import('../views/TimelineTestView.vue')
+    },
+    {
+        path: '/infosPresta/:idUser',
+        name: 'infosPresta',
+        component: PrestaPublicView,
+        props:true
     }
 ]
 
