@@ -130,6 +130,10 @@ router.put("/", usersC.modifUser)
  *          - Users
  *      parameters:
  *          - in: formData
+ *            name: id
+ *            type: integer
+ *            required: true
+ *          - in: formData
  *            name: nom
  *            type: string
  *            required: true
@@ -154,7 +158,7 @@ router.put("/", usersC.modifUser)
  *            required: true
  *          - in: formData
  *            name: idRole
- *            type: int
+ *            type: integer
  *            required: true
  *      responses:
  *          '200':

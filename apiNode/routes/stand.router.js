@@ -66,7 +66,7 @@ router.post("/:id/commentaire", standController.newCommentaire)
  *      parameters:
  *          - in: path
  *            name: id
- *            type: int
+ *            type: integer
  *            required: true
  *          - in: formData
  *            name: commentaire
@@ -93,7 +93,7 @@ router.post("/", standController.newStand)
  *      parameters:
  *          - in: formData
  *            name: idStand
- *            type: int
+ *            type: integer
  *            required: true
  *          - in: formData
  *            name: descriptionStand
@@ -105,11 +105,11 @@ router.post("/", standController.newStand)
  *            required: true
  *          - in: formData
  *            name: idPrestataire
- *            type: int
+ *            type: integer
  *            required: true
  *          - in: formData
  *            name: idTypeStand
- *            type: int
+ *            type: integer
  *            required: true
  *      responses:
  *          '200':

@@ -73,7 +73,7 @@ router.post("/", produitC.newProduit)
  *            required: true
  *          - in: formData
  *            name: prix
- *            type: int
+ *            type: integer
  *            required: true
  *          - in: formData
  *            name: imageProduit
@@ -96,6 +96,10 @@ router.put("/", produitC.modifProduit)
  *          - Produits
  *      parameters:
  *          - in: formData
+ *            name: id
+ *            type: integer
+ *            required: true
+ *          - in: formData
  *            name: libelleProduit
  *            type: string
  *            required: true
@@ -105,7 +109,7 @@ router.put("/", produitC.modifProduit)
  *            required: true
  *          - in: formData
  *            name: prix
- *            type: int
+ *            type: integer
  *            required: true
  *          - in: formData
  *            name: imageProduit

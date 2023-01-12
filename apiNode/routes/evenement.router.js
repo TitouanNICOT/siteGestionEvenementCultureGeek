@@ -69,19 +69,21 @@ router.post("/", evenementController.newEvenement)
  *            required: true
  *          - in: formData
  *            name: heureDebut
- *            type: date
+ *            description: format 'YYYY-MM-DD hh:mm:ss'
+ *            type: string
  *            required: true
  *          - in: formData
  *            name: heureFin
- *            type: date
+ *            description: format 'YYYY-MM-DD hh:mm:ss'
+ *            type: string
  *            required: true
  *          - in: formData
  *            name: idTypeEvenement
- *            type: int
+ *            type: integer
  *            required: true
  *          - in: formData
  *            name: idStand
- *            type: int
+ *            type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -100,24 +102,30 @@ router.put("/", evenementController.modifEvenement)
  *          - Evenements
  *      parameters:
  *          - in: formData
+ *            name: id
+ *            type: integer
+ *            required: true
+ *          - in: formData
  *            name: libelleEvenement
  *            type: string
  *            required: true
  *          - in: formData
  *            name: heureDebut
- *            type: date
+ *            description: format 'YYYY-MM-DD hh:mm:ss'
+ *            type: string
  *            required: true
  *          - in: formData
  *            name: heureFin
- *            type: date
+ *            description: format 'YYYY-MM-DD hh:mm:ss'
+ *            type: string
  *            required: true
  *          - in: formData
  *            name: idTypeEvenement
- *            type: int
+ *            type: integer
  *            required: true
  *          - in: formData
  *            name: idStand
- *            type: int
+ *            type: integer
  *            required: true
  *      responses:
  *          '200':

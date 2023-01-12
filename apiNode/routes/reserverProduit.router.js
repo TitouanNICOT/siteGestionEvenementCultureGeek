@@ -111,15 +111,15 @@ router.post("/", reserverProd.newReservationProduit)
  *      parameters:
  *          - in: formData
  *            name: quantite
- *            type: int
+ *            type: integer
  *            required: true
  *          - in: formData
  *            name: idUser
- *            type: int
+ *            type: integer
  *            required: true
  *          - in: formData
  *            name: idProduit
- *            type: int
+ *            type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -139,19 +139,19 @@ router.put("/", reserverProd.modifReservationProduit)
  *      parameters:
  *          - in: formData
  *            name: quantite
- *            type: int
+ *            type: integer
  *            required: false
  *          - in: formData
  *            name: idUser
- *            type: int
+ *            type: integer
  *            required: false
  *          - in: formData
  *            name: idProduit
- *            type: int
+ *            type: integer
  *            required: false
  *          - in: formData
  *            name: id
- *            type: int
+ *            type: integer
  *            required: false
  *      responses:
  *          '200':
