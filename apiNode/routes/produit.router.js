@@ -4,7 +4,7 @@ import express from "express";
 import produitC from "../controllers/produit.controller.js";
 
 var router = express.Router()
-router.get("/listTypeProduit",produitC.listTypeProduit)
+router.get("/listTypeProduit", produitC.listTypeProduit)
 /**
  * @swagger
  * /produits/listTypeProduit/:
@@ -19,7 +19,7 @@ router.get("/listTypeProduit",produitC.listTypeProduit)
  *              description: Erreur lors de l'envoi des types de produits
  */
 
-router.get("/",produitC.list)
+router.get("/", produitC.list)
 /**
  * @swagger
  * /produits/:
@@ -34,7 +34,7 @@ router.get("/",produitC.list)
  *              description: Erreur lors de l'envoi des produits
  */
 
-router.get("/:id",produitC.getProduitById)
+router.get("/:id", produitC.getProduitById)
 /**
  * @swagger
  * /produits/{id}:
@@ -54,7 +54,7 @@ router.get("/:id",produitC.getProduitById)
  *              description: Erreur lors de l'envoi du produit
  */
 
-router.post("/",produitC.newProduit)
+router.post("/", produitC.newProduit)
 /**
  * @swagger
  * /produits/:
@@ -86,7 +86,7 @@ router.post("/",produitC.newProduit)
  *              description: Erreur lors de l'ajout du produit
  */
 
-router.put("/",produitC.modifProduit)
+router.put("/", produitC.modifProduit)
 /**
  * @swagger
  * /produits/:
@@ -118,7 +118,7 @@ router.put("/",produitC.modifProduit)
  *              description: Erreur lors de la modification du produit
  */
 
-router.delete("/:id",produitC.deleteProduit)
+router.delete("/:id", produitC.deleteProduit)
 /**
  * @swagger
  * /produits/{id}:

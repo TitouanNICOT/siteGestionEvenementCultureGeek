@@ -1,4 +1,4 @@
-export const User = (Sequelize,sequelize)=>{
+export const User = (Sequelize, sequelize) => {
     return sequelize.define('user', {
         idUser: {
             // fields: 'id_user',
@@ -7,26 +7,26 @@ export const User = (Sequelize,sequelize)=>{
             autoIncrement: true,
             allowNull: false
         },
-        nom:{
+        nom: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        prenom:{
+        prenom: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        pseudo:{
+        pseudo: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        password:{
+        password: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        email:{
+        email: {
             type: Sequelize.STRING
         },
-        isNotif:{
+        isNotif: {
             type: Sequelize.BOOLEAN,
             allowNull: false
         }//idRole rajouter automatiquement

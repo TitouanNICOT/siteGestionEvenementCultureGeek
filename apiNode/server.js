@@ -32,6 +32,7 @@ const swaggerOption = {
 const swaggerDocs = swaggerJsdoc(swaggerOption);
 
 import cors from 'cors'
+import mailRouter from "./routes/mail.router.js";
 app.use(cors())
 
 
@@ -42,9 +43,10 @@ app.use("/users",users);
 app.use("/evenements",evenements);
 app.use("/stands",stands);
 app.use("/produits",produits);
-app.use("/boutique",boutique)
+app.use("/boutique",boutique);
 app.use("/reservations",reserverProduits);
-app.use("/connection",loginRouter)
+app.use("/connection",loginRouter);
+app.use("/mail", mailRouter)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.get("/",(req, res)=>{

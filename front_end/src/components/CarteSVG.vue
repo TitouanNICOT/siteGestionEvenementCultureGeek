@@ -1,15 +1,28 @@
 <template>
     <div id="app">
-        <svg @click="action" @mouseover="actionSurvol" width="205.0959mm" height="177.36548mm" viewBox="0 0 205.0959 177.36548" version="1.1" id="svg5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+        <svg @click="action" @mouseover="actionSurvol" width="205.0959mm" height="177.36548mm"
+             viewBox="0 0 205.0959 177.36548" version="1.1" id="svg5" xmlns:xlink="http://www.w3.org/1999/xlink"
+             xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
             <defs id="defs2"/>
             <g id="listeStand" transform="translate(0.09589299,-0.17511949)">
-                <a id="a1054-3" style="fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;paint-order:markers stroke fill">
-                    <rect id="rect90-8-3" width="76.51796" height="34.107239" x="78.020905" y="-34.562332" transform="rotate(90)"/>
-                    <rect style="display:inline;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90-7-4" width="113.7186" height="73.693298" x="40.645065" y="80.661644"/>
-                    <rect id="rect90-3-0" width="114.12068" height="34.120594" x="40.10585" y="40.439705" transform="translate(0,-0.03637886)"/>
+                <a id="a1054-3"
+                   style="fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;paint-order:markers stroke fill">
+                    <rect id="rect90-8-3" width="76.51796" height="34.107239" x="78.020905" y="-34.562332"
+                          transform="rotate(90)"/>
+                    <rect
+                        style="display:inline;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+                        id="rect90-7-4" width="113.7186" height="73.693298" x="40.645065" y="80.661644"/>
+                    <rect id="rect90-3-0" width="114.12068" height="34.120594" x="40.10585" y="40.439705"
+                          transform="translate(0,-0.03637886)"/>
                     <rect id="rect90-0" width="114.12068" height="34.120594" x="40.10585" y="0.43970299"/>
-                    <rect style="display:inline;fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-7-9" width="34.44854" height="44.448536" x="120.27573" y="-204.72427" transform="rotate(90)"/>
-                    <rect style="display:inline;fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-3" width="34.480034" height="39.480034" x="80.259987" y="-204.74001" transform="rotate(90)"/>
+                    <rect
+                        style="display:inline;fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+                        id="rect90-1-9-9-7-9" width="34.44854" height="44.448536" x="120.27573" y="-204.72427"
+                        transform="rotate(90)"/>
+                    <rect
+                        style="display:inline;fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+                        id="rect90-1-9-9-3" width="34.480034" height="39.480034" x="80.259987" y="-204.74001"
+                        transform="rotate(90)"/>
                 </a>
                 <a id="salle1" transform="translate(0.32488251,39.641536)">
                     <rect id="100" width="14.329332" height="6.7077622" x="40.139557" y="41.044598"/>
@@ -143,59 +156,114 @@
                     <rect id="500" width="31" height="40" x="124.27573" y="-204.72427" transform="rotate(90)"/>
                 </a>
                 <a id="salle6">
-                    <rect id="600" width="27.956337" height="33.041695" x="80.171867" y="-204.82812" transform="rotate(90)"/>
+                    <rect id="600" width="27.956337" height="33.041695" x="80.171867" y="-204.82812"
+                          transform="rotate(90)"/>
                 </a>
             </g>
             <g id="layer1" transform="translate(0.09589299,-0.17511949)" style="display:inline">
-                <rect style="fill:#ffffff;stroke:#000000;stroke-width:0.879241;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-6" width="49.125114" height="16.637096" x="67.722572" y="160.69931"/>
+                <rect style="fill:#ffffff;stroke:#000000;stroke-width:0.879241;stroke-dasharray:none;stroke-opacity:1"
+                      id="rect90-1-6" width="49.125114" height="16.637096" x="67.722572" y="160.69931"/>
                 <a id="a1477">
                     <rect id="rect5600" width="6.2308517" height="5.7209535" x="54.725842" y="34.751003"/>
-                    <rect id="rect5600-2-0" width="4.7255449" height="5.1060176" x="-139.86278" y="154.76547" transform="rotate(-90)"/>
-                    <rect id="rect5600-2-0-5" width="5.1294155" height="4.7336259" x="-160.12202" y="100.54308" transform="rotate(-90)"/>
-                    <rect id="rect5600-2-0-5-0" width="5.1294155" height="4.7336259" x="-160.12202" y="79.293556" transform="rotate(-90)"/>
-                    <rect id="rect5600-2-0-8" width="5.1294155" height="4.7336259" x="-160.12202" y="89.91832" transform="rotate(-90)"/>
+                    <rect id="rect5600-2-0" width="4.7255449" height="5.1060176" x="-139.86278" y="154.76547"
+                          transform="rotate(-90)"/>
+                    <rect id="rect5600-2-0-5" width="5.1294155" height="4.7336259" x="-160.12202" y="100.54308"
+                          transform="rotate(-90)"/>
+                    <rect id="rect5600-2-0-5-0" width="5.1294155" height="4.7336259" x="-160.12202" y="79.293556"
+                          transform="rotate(-90)"/>
+                    <rect id="rect5600-2-0-8" width="5.1294155" height="4.7336259" x="-160.12202" y="89.91832"
+                          transform="rotate(-90)"/>
                     <rect id="rect5600-2-1" width="4.7354169" height="4.7354169" x="178.94081" y="115.14059"/>
-                    <rect id="rect5600-2-6" width="4.7304974" height="10.102234" x="-99.865257" y="154.763" transform="rotate(-90)"/>
+                    <rect id="rect5600-2-6" width="4.7304974" height="10.102234" x="-99.865257" y="154.763"
+                          transform="rotate(-90)"/>
                     <rect id="rect5600-9" width="6.335166" height="5.7132688" x="133.37915" y="34.784355"/>
                     <rect id="rect5600-01" width="6.2494621" height="6.14644" x="54.79377" y="74.539696"/>
                     <rect id="rect5600-9-3" width="6.1733031" height="6.1432095" x="133.37311" y="74.517525"/>
-                    <rect id="rect5600-7" width="4.7354169" height="5.5127683" x="95.132294" y="-40.645061" transform="rotate(90)"/>
-                    <rect id="rect5600-7-3" width="4.2119093" height="5.5286231" x="133.83195" y="-40.652988" transform="rotate(90)"/>
+                    <rect id="rect5600-7" width="4.7354169" height="5.5127683" x="95.132294" y="-40.645061"
+                          transform="rotate(90)"/>
+                    <rect id="rect5600-7-3" width="4.2119093" height="5.5286231" x="133.83195" y="-40.652988"
+                          transform="rotate(90)"/>
                     <rect id="rect5600-0-0-1" width="6.7842093" height="5.2686129" x="87.743217" y="34.977173"/>
                     <rect id="rect5600-0-0-1-5" width="6.761642" height="6.3685017" x="87.754509" y="74.428665"/>
                 </a>
                 <a id="a1160-0" transform="translate(0.15843877,39.760773)">
-                    <rect style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.269516;stroke-dasharray:none;stroke-opacity:1" id="rect8691-4-6-81-2-8-7-8" width="14.259423" height="5.9553547" x="40.068665" y="28.807632"/>
-                    <rect style="display:inline;fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.344928;stroke-dasharray:none;stroke-opacity:1" id="rect8691-4-6-81-2-8-7-8-6" width="23.655075" height="5.8799429" x="52.332352" y="108.60744"/>
-                    <rect style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.269186;stroke-dasharray:none;stroke-opacity:1" id="rect8691-4-6-81-2-8-7-2-9" width="14.259753" height="5.9406538" x="139.90424" y="28.647379" transform="translate(-0.09589299,0.17511949)"/>
-                    <rect style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.269516;stroke-dasharray:none;stroke-opacity:1" id="rect8691-4-6-81-2-8-7" width="14.259423" height="5.9553547" x="40.068665" y="28.807632" transform="translate(-0.15843877,-39.760773)"/>
-                    <rect style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.269186;stroke-dasharray:none;stroke-opacity:1" id="rect8691-4-6-81-2-8-7-2" width="14.259753" height="5.9406538" x="139.90424" y="28.647379" transform="translate(-0.25433176,-39.585654)"/>
+                    <rect
+                        style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.269516;stroke-dasharray:none;stroke-opacity:1"
+                        id="rect8691-4-6-81-2-8-7-8" width="14.259423" height="5.9553547" x="40.068665" y="28.807632"/>
+                    <rect
+                        style="display:inline;fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.344928;stroke-dasharray:none;stroke-opacity:1"
+                        id="rect8691-4-6-81-2-8-7-8-6" width="23.655075" height="5.8799429" x="52.332352"
+                        y="108.60744"/>
+                    <rect
+                        style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.269186;stroke-dasharray:none;stroke-opacity:1"
+                        id="rect8691-4-6-81-2-8-7-2-9" width="14.259753" height="5.9406538" x="139.90424" y="28.647379"
+                        transform="translate(-0.09589299,0.17511949)"/>
+                    <rect
+                        style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.269516;stroke-dasharray:none;stroke-opacity:1"
+                        id="rect8691-4-6-81-2-8-7" width="14.259423" height="5.9553547" x="40.068665" y="28.807632"
+                        transform="translate(-0.15843877,-39.760773)"/>
+                    <rect
+                        style="fill:#808080;fill-opacity:1;stroke:#000000;stroke-width:0.269186;stroke-dasharray:none;stroke-opacity:1"
+                        id="rect8691-4-6-81-2-8-7-2" width="14.259753" height="5.9406538" x="139.90424" y="28.647379"
+                        transform="translate(-0.25433176,-39.585654)"/>
                 </a>
                 <g id="listeBatiment">
                     <a id="batiment1">
-                        <rect style="fill:#0200ff;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90" width="114.12068" height="34.120594" x="40.10585" y="0.43970299"/>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:0.8;stroke-width:1;paint-order:markers stroke fill" x="79.416786" y="19.071075" id="text2607">Hall 3</text>
+                        <rect
+                            style="fill:#0200ff;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-miterlimit:0;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+                            id="rect90" width="114.12068" height="34.120594" x="40.10585" y="0.43970299"/>
+                        <text xml:space="preserve"
+                              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:0.8;stroke-width:1;paint-order:markers stroke fill"
+                              x="79.416786" y="19.071075" id="text2607">Hall 3</text>
                     </a>
                     <a id="batiment2">
-                        <rect style="fill:#ff0000;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90-3" width="114.12068" height="34.120594" x="40.10585" y="40.439705" transform="translate(0,-0.03637886)"/>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="76.190826" y="61.306095" id="text2607-5">Hall 4</text>
+                        <rect
+                            style="fill:#ff0000;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+                            id="rect90-3" width="114.12068" height="34.120594" x="40.10585" y="40.439705"
+                            transform="translate(0,-0.03637886)"/>
+                        <text xml:space="preserve"
+                              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill"
+                              x="76.190826" y="61.306095" id="text2607-5">Hall 4</text>
                     </a>
                     <a id="batiment3">
-                        <rect style="fill:#1aff00;fill-opacity:0.8;stroke:#000000;stroke-width:1.01345;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90-8" width="76.51796" height="34.107239" x="78.020905" y="-34.562332" transform="rotate(90)"/>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="1.0122409" y="104.71066" id="text2607-4">Hall 2</text>
+                        <rect
+                            style="fill:#1aff00;fill-opacity:0.8;stroke:#000000;stroke-width:1.01345;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+                            id="rect90-8" width="76.51796" height="34.107239" x="78.020905" y="-34.562332"
+                            transform="rotate(90)"/>
+                        <text xml:space="preserve"
+                              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill"
+                              x="1.0122409" y="104.71066" id="text2607-4">Hall 2</text>
                     </a>
                     <a id="batiment4">
-                        <rect style="display:inline;fill:#e2ff00;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-7" width="113.7186" height="73.693298" x="40.645061" y="80.661644"/>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="81.429306" y="119.30358" id="text2607-7">Hall 1</text>
+                        <rect
+                            style="display:inline;fill:#e2ff00;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+                            id="rect90-7" width="113.7186" height="73.693298" x="40.645061" y="80.661644"/>
+                        <text xml:space="preserve"
+                              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:0.8;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill"
+                              x="81.429306" y="119.30358" id="text2607-7">Hall 1</text>
                     </a>
                     <a id="batiment5" style="display:inline">
-                        <rect style="display:inline;fill:#00ffdd;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-7-1" width="34.44854" height="44.448536" x="120.27573" y="-204.72427" transform="rotate(90)"/>
-                        <rect style="display:inline;fill:#ff00d5;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-8" width="34.480034" height="39.480034" x="80.259987" y="-204.74001" transform="rotate(90)"/>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="167.11592" y="102.83978" id="text2607-72">Halle 6</text>
-                        <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="164.49666" y="142.12839" id="text2607-41">Halle 5</text>
+                        <rect
+                            style="display:inline;fill:#00ffdd;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+                            id="rect90-1-9-9-7-1" width="34.44854" height="44.448536" x="120.27573" y="-204.72427"
+                            transform="rotate(90)"/>
+                        <rect
+                            style="display:inline;fill:#ff00d5;fill-opacity:0.8;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+                            id="rect90-1-9-9-8" width="34.480034" height="39.480034" x="80.259987" y="-204.74001"
+                            transform="rotate(90)"/>
+                        <text xml:space="preserve"
+                              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill"
+                              x="167.11592" y="102.83978" id="text2607-72">Halle 6</text>
+                        <text xml:space="preserve"
+                              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill"
+                              x="164.49666" y="142.12839" id="text2607-41">Halle 5</text>
                     </a>
-                    <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill" x="72.455544" y="172.65388" id="text2607-2">
-                        <tspan id="tspan2605-1" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1" x="72.455544" y="172.65388">Accueil</tspan>
+                    <text xml:space="preserve"
+                          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#000000;fill-opacity:1;stroke-width:1;stroke-dasharray:none;paint-order:markers stroke fill"
+                          x="72.455544" y="172.65388" id="text2607-2">
+                        <tspan id="tspan2605-1"
+                               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.3472px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1"
+                               x="72.455544" y="172.65388">Accueil</tspan>
                     </text>
                 </g>
             </g>
@@ -207,50 +275,50 @@
 
 export default {
     name: "CarteSVG",
-    props:{
-        tabCouleur:Array,
-        selection:Object
+    props: {
+        tabCouleur: Array,
+        selection: Object
     },
-    methods:{
-        actionSurvol(event){
+    methods: {
+        actionSurvol(event) {
             if (!isNaN(event.target.id)) {
-                this.$emit('survolStand', {id:event.target.id})
+                this.$emit('survolStand', {id: event.target.id})
             }
         },
-        action(event){
+        action(event) {
             console.log(event.target.id)
-            if (event.path[1].id.includes("batiment")){
-                document.getElementById("listeBatiment").childNodes.forEach(rect=>rect.style.display="block")
-                document.getElementById(event.path[1].id).style.display="none"
+            if (event.path[1].id.includes("batiment")) {
+                document.getElementById("listeBatiment").childNodes.forEach(rect => rect.style.display = "block")
+                document.getElementById(event.path[1].id).style.display = "none"
                 this.$emit("deselection")
             }
             if (!isNaN(event.target.id)) {
-                this.$emit('standSelected', {id:event.target.id})
+                this.$emit('standSelected', {id: event.target.id})
             }
         }
     },
-    watch:{
-        tabCouleur(){
-            this.tabCouleur.forEach(stand=>{
-                document.getElementById(stand.id).style.fill=stand.getCouleur();
+    watch: {
+        tabCouleur() {
+            this.tabCouleur.forEach(stand => {
+                document.getElementById(stand.id).style.fill = stand.getCouleur();
             })
         },
-        selection(){
-            if (this.selection.selected!==undefined) {
-              document.getElementById(this.selection.selected).style.stroke = "yellow";
+        selection() {
+            if (this.selection.selected !== undefined) {
+                document.getElementById(this.selection.selected).style.stroke = "yellow";
             }
-            if (this.selection.deselected!==-1)
-              document.getElementById(this.selection.deselected).style.stroke="none";
+            if (this.selection.deselected !== -1)
+                document.getElementById(this.selection.deselected).style.stroke = "none";
         },
     },
-    mounted(){
-            this.tabCouleur.forEach(stand=>{
-                document.getElementById(stand.id).style.fill=stand.getCouleur();
-            })
+    mounted() {
+        this.tabCouleur.forEach(stand => {
+            document.getElementById(stand.id).style.fill = stand.getCouleur();
+        })
         // Object.keys(this.tabCouleur).forEach(stand=>{
         //         document.getElementById(stand).style.fill=this.tabCouleur[stand];
         //     })
-        }
+    }
 }
 </script>
 

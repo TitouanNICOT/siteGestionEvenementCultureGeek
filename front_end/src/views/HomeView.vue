@@ -3,13 +3,13 @@
 </template>
 
 <script>
-  import showTable from '../components/showTable'
+import showTable from '../components/showTable'
 
-  export default {
+export default {
     name: 'HomeView',
 
     components: {
         showTable,
     },
-  }
+}
 </script>

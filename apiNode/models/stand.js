@@ -1,4 +1,4 @@
-export const Stand = (Sequelize,sequelize)=>{
+export const Stand = (Sequelize, sequelize) => {
     return sequelize.define('stand', {
         idStand: {
             type: Sequelize.INTEGER,
@@ -6,11 +6,11 @@ export const Stand = (Sequelize,sequelize)=>{
             autoIncrement: true,
             allowNull: false
         },
-        descriptionStand:{
+        descriptionStand: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        nomStand:{
+        nomStand: {
             type: Sequelize.STRING,
             allowNull: false
         }

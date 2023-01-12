@@ -7,7 +7,7 @@ const couleurStand = {
     4: "yellow",
 }
 
-class Stand{
+class Stand {
     constructor(idStand, nomStand, descriptionStand, typeStand, user, idEvenement) {
         this.id = idStand;
         this.nomStand = nomStand;
@@ -17,7 +17,7 @@ class Stand{
         this.idEvenement = idEvenement;
     }
 
-    static fromAPI(data){
+    static fromAPI(data) {
         return new Stand(data.idStand.toString(),
             data.nomStand,
             data.descriptionStand,
@@ -25,9 +25,10 @@ class Stand{
             data.user,
             data.idEvenement)
     }
-    toAPI(){
+
+    toAPI() {
         return {
-            idStand:this.id,
+            idStand: this.id,
             nomStand: this.nomStand,
             descriptionStand: this.descriptionStand,
             idTypeStand: this.typeStand.idTypeStand,
@@ -35,31 +36,32 @@ class Stand{
             idEvenement: this.idEvenement
         }
     }
-    libellePresta(){
-        return this.user===undefined ? "null" : this.user.nom+" "+this.user.prenom
+
+    libellePresta() {
+        return this.user === undefined ? "null" : this.user.nom + " " + this.user.prenom
     }
 
-    idPresta(){
+    idPresta() {
         return this.user.idUser
     }
 
-    libelleTypeStand(){
-        return this.typeStand===undefined ? "null" : this.typeStand.libelleTypeStand
+    libelleTypeStand() {
+        return this.typeStand === undefined ? "null" : this.typeStand.libelleTypeStand
     }
 
-    getCouleur(){
+    getCouleur() {
         return couleurStand[this.typeStand.idTypeStand]
     }
 
 }
 
-const addCommentaire = (idStand,texte) => {
-    return axios.post("http://localhost:3000/stands/"+idStand+"/commentaire",{
-        commentaire:texte
+const addCommentaire = (idStand, texte) => {
+    return axios.post("http://localhost:3000/stands/" + idStand + "/commentaire", {
+        commentaire: texte
     })
 }
 const getStand = (idStand) => {
-    return axios.get("http://localhost:3000/stands/"+idStand)
+    return axios.get("http://localhost:3000/stands/" + idStand)
 }
 
 const getAllStand = () => {
@@ -67,7 +69,7 @@ const getAllStand = () => {
 }
 
 const deleteStand = (idStand) => {
-    return axios.delete("http://localhost:3000/stands/"+idStand)
+    return axios.delete("http://localhost:3000/stands/" + idStand)
 }
 
-export {Stand,addCommentaire,getStand,deleteStand,getAllStand}
+export {Stand, addCommentaire, getStand, deleteStand, getAllStand}

@@ -12,30 +12,28 @@
 
 <script>
 import {mapActions, mapMutations} from 'vuex'
-      import NavBar from "@/components/NavBar";
+import NavBar from "@/components/NavBar";
 
-      export default {
-          name: 'App',
-          components: {NavBar},
-          data: () => ({
-
-          }),
-          methods: {
-              ...mapActions(['loading']),
-              ...mapMutations(['setCurrentUser']),
-          },
-          created() {
-            this.loading()
-              this.setCurrentUser(this.$cookies.get("currentUser"));
-              console.log(this.$cookies.get("currentUser"));
-          }
-      };
+export default {
+    name: 'App',
+    components: {NavBar},
+    data: () => ({}),
+    methods: {
+        ...mapActions(['loading']),
+        ...mapMutations(['setCurrentUser']),
+    },
+    created() {
+        this.loading()
+        this.setCurrentUser(this.$cookies.get("currentUser"));
+        // console.log(this.$cookies.get("currentUser"));
+    }
+};
 
 </script>
 
 <style>
 
-*{
+* {
     --primary-color: #401212;
 }
 
@@ -81,10 +79,11 @@ h3 {
 
 p, span, div, v-container {
     font-family: Galyon Book, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
+    letter-spacing: 0.9px;
 }
 
-hr{
+hr {
     border-color: var(--primary-color);
     margin-bottom: 10px;
 }

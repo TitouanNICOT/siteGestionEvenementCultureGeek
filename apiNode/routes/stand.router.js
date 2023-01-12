@@ -4,7 +4,7 @@ import {droitAdmin, verificationDroit} from "../middleware/authentification.js";
 import evenementController from "../controllers/evenement.controller.js";
 
 var router = express.Router()
-router.get("/typeStand",standController.listeTypeStand)
+router.get("/typeStand", standController.listeTypeStand)
 /**
  * @swagger
  * /stands/typeStand/:
@@ -19,7 +19,7 @@ router.get("/typeStand",standController.listeTypeStand)
  *              description: Erreur lors de l'envoi des types de stands
  */
 
-router.get("/",standController.listStand)
+router.get("/", standController.listStand)
 /**
  * @swagger
  * /stands/:
@@ -34,7 +34,7 @@ router.get("/",standController.listStand)
  *              description: Erreur lors de l'envoi des stands
  */
 
-router.get("/:id",standController.getStand)
+router.get("/:id", standController.getStand)
 /**
  * @swagger
  * /stands/{id}:
@@ -55,7 +55,7 @@ router.get("/:id",standController.getStand)
  *              description: Erreur lors de l'envoi du stand
  */
 
-router.post("/:id/commentaire",standController.newCommentaire)
+router.post("/:id/commentaire", standController.newCommentaire)
 /**
  * @swagger
  * /stands/{id}/commentaire:
@@ -82,7 +82,7 @@ router.post("/:id/commentaire",standController.newCommentaire)
 //la suite des routes necessite une authentification de role admin
 // router.use(verificationDroit,droitAdmin)
 
-router.post("/",standController.newStand)
+router.post("/", standController.newStand)
 /**
  * @swagger
  * /stands/:
@@ -118,7 +118,7 @@ router.post("/",standController.newStand)
  *              description: Erreur lors de l'ajout du stand
  */
 
-router.delete("/:id",standController.deleteStand)
+router.delete("/:id", standController.deleteStand)
 /**
  * @swagger
  * /stands/{id}:

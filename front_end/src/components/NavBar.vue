@@ -23,36 +23,42 @@ import router from "@/router";
 import {roles, ADMIN, PRESTA,CLIENT} from "@/services/roles";
 
 export default {
-  name: 'NavBar',
+    name: 'NavBar',
     data() {
         return {
-            titles:[{text: 'Home', color: 'grey', route:'/'}
-                , {text: 'Carte', color: 'grey', route:'/carte'}
-                , {text: 'Liste des Stands', color: 'grey', route:'/stand'}
-                , {text: 'Liste des Evenements', color: 'grey', route:'/evenement'}],
-            ADMIN,PRESTA,CLIENT,roles
+            titles: [{text: 'Home', color: 'grey', route: '/'}
+                , {text: 'Carte', color: 'grey', route: '/carte'}
+                , {text: 'Liste des Stands', color: 'grey', route: '/stand'}
+                , {text: 'Liste des Evenements', color: 'grey', route: '/evenement'}
+                , {text: 'Timeline', color: 'grey', route: '/timeline'}
+                , {text: 'Contact', color: 'grey', route: '/contact'}
+            ],
+            ADMIN, PRESTA, CLIENT, roles
         }
     },
-    computed:{
+    computed: {
         ...mapState(['currentUser']),
         ...mapGetters(['currentRole'])
     },
     methods: {
-      ...mapMutations(['removeCurrentUser']),
+        ...mapMutations(['removeCurrentUser']),
         changeRouteId(id) {
-            router.push(this.titles[id].route).catch(()=>{})
+            router.push(this.titles[id].route).catch(() => {
+            })
         },
         logout() {
             this.removeCurrentUser();
             this.$cookies.remove("currentUser");
-            router.push('/').catch(()=>{});
+            router.push('/').catch(() => {
+            });
         }
     }
 }
 </script>
 
 <style scoped>
-button{
-    padding: 7px; margin: 7px;
+button {
+    padding: 7px;
+    margin: 7px;
 }
 </style>

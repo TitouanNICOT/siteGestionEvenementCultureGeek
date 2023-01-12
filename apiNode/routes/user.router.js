@@ -5,7 +5,7 @@ import usersC from "../controllers/user.controller.js";
 import standController from "../controllers/stand.controller.js";
 
 var router = express.Router()
-router.get("/listRoles",usersC.listRole)
+router.get("/listRoles", usersC.listRole)
 /**
  * @swagger
  * /users/listRoles/:
@@ -20,7 +20,7 @@ router.get("/listRoles",usersC.listRole)
  *              description: Erreur lors de l'envoi des rôles
  */
 
-router.get("/",usersC.list)
+router.get("/", usersC.list)
 /**
  * @swagger
  * /users/:
@@ -35,7 +35,7 @@ router.get("/",usersC.list)
  *              description: Erreur lors de l'envoi des utilisateurs
  */
 
-router.get("/:id",usersC.getUserById)
+router.get("/:id", usersC.getUserById)
 /**
  * @swagger
  * /users/{id}:
@@ -55,7 +55,7 @@ router.get("/:id",usersC.getUserById)
  *              description: Erreur lors de l'envoi de l'utilisateur
  */
 
-router.get("/:id/commentaire",usersC.getAllCommentaire)
+router.get("/:id/commentaire", usersC.getAllCommentaire)
 /**
  * @swagger
  * /users/{id}/commentaire:
@@ -77,7 +77,7 @@ router.get("/:id/commentaire",usersC.getAllCommentaire)
  *
  */
 
-router.post("/",usersC.newUser)
+router.post("/", usersC.newUser)
 /**
  * @swagger
  * /users/:
@@ -120,7 +120,7 @@ router.post("/",usersC.newUser)
  *              description: Erreur lors de l'ajout de l'utilisateur
  */
 
-router.put("/",usersC.modifUser)
+router.put("/", usersC.modifUser)
 /**
  * @swagger
  * /users/:
@@ -163,7 +163,7 @@ router.put("/",usersC.modifUser)
  *              description: Erreur lors de la modification de l'utilisateur
  */
 
-router.delete("/:id",usersC.deleteUser)
+router.delete("/:id", usersC.deleteUser)
 /**
  * @swagger
  * /users/{id}:

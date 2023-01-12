@@ -71,8 +71,8 @@ const modifReservationProduit = async (req, res) => {
     db.sequelize.query('update "reserverProduits" ' +
         'set quantite = ?, "idUser" = ?, "idProduit" = ? ' +
         'where "idReserveProd"=?;',
-        { replacements: [quantite, idUser, idProduit, id] }
-    ).then(()=>{
+        {replacements: [quantite, idUser, idProduit, id]}
+    ).then(() => {
         return res.status(200).send({success: 1})
     }).catch((error) => {
         console.error(error)
@@ -86,21 +86,21 @@ const deleteReservationProduit = async (req, res) => {
         return res.status(404).send({success: 0})
 
     db.reserverProduit.destroy({where: {idReserveProd: id}})
-    .then(() => {
-        return res.status(200).send({success: 1})
-    }).catch((error) => {
+        .then(() => {
+            return res.status(200).send({success: 1})
+        }).catch((error) => {
         console.error(error)
         return res.status(404).send({success: 0})
     });
 }
 
-const getReservationProduitByPrestataire = (req,res) => {
+const getReservationProduitByPrestataire = (req, res) => {
     const sql = 'SELECT quantite,"reserverProduits"."idUser",produits."idProduit","libelleProduit" FROM "reserverProduits" ' +
-        'inner join produits on produits."idProduit"="reserverProduits"."idProduit" '  +
-        'inner join stands on stands."idStand"=produits."idStand" '+
-        'inner join users on users."idUser"=stands."idPrestataire" '+
+        'inner join produits on produits."idProduit"="reserverProduits"."idProduit" ' +
+        'inner join stands on stands."idStand"=produits."idStand" ' +
+        'inner join users on users."idUser"=stands."idPrestataire" ' +
         'WHERE users."idUser" = ?'
-    db.sequelize.query(sql, {replacements:[parseInt(req.params.idPresta)], type: db.sequelize.QueryTypes.SELECT})
+    db.sequelize.query(sql, {replacements: [parseInt(req.params.idPresta)], type: db.sequelize.QueryTypes.SELECT})
         .then((results) => {
             console.log(results)
             return res.status(200).send({success: 1, data: results})
@@ -109,7 +109,8 @@ const getReservationProduitByPrestataire = (req,res) => {
     })
 }
 
-export default {list,
+export default {
+    list,
     newReservationProduit,
     getReservationProduitById,
     modifReservationProduit,

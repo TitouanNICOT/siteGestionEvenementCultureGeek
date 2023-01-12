@@ -5,7 +5,7 @@ import AccueilView from "@/views/AccueilView";
 import StandDetailView from "@/views/StandDetailView";
 import StandView from "@/views/StandView";
 import EvenementView from "@/views/EvenementView.vue";
-import LoginView  from "@/views/LoginView.vue";
+import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import BoutiqueView from "@/views/BoutiqueView";
 import HomePrestaView from "@/views/HomePrestaView";
@@ -52,19 +52,19 @@ const routes = [
         component: RegisterView
     },
     {
-        path:'/boutique/:idStand',
-        name:'boutique',
+        path: '/boutique/:idStand',
+        name: 'boutique',
         component: BoutiqueView
     },
     {
-        path:'/reservations/:idStand/p/:idProduit',
-        name:'reservation',
+        path: '/reservations/:idStand/p/:idProduit',
+        name: 'reservation',
         component: () => import('../views/ReserverProduitView.vue'),
-        meta: { requiresAuth: true },
+        meta: {requiresAuth: true},
     },
     {
-        path:'/prestataire',
-        name:'prestataire',
+        path: '/prestataire',
+        name: 'prestataire',
         component: HomePrestaView,
         meta: { requiresAuth: true ,role:PRESTA}
     },
@@ -94,7 +94,7 @@ router.beforeEach((to, from, next) => {
             next()
         else
             next({path: '/login'})
-    }else
+    } else
         next()
 })
 

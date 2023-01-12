@@ -1,10 +1,10 @@
 import db from "../models/index.js"
 
 const list = async (req, res) => {
-    const role=req.query.role
+    const role = req.query.role
     db.user.findAll({include: db.role}).then((results) => {
-        if (role && ["admin","prestataire","visiteur"].includes(role))
-            results=results.filter((user)=>user.role.libelle===role)
+        if (role && ["admin", "prestataire", "visiteur"].includes(role))
+            results = results.filter((user) => user.role.libelle === role)
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
         return res.status(404).send({success: 0, data: error})
@@ -80,17 +80,17 @@ const deleteUser = async (req, res) => {
 }
 
 const listRole = async (req, res) => {
-   db.role.findAll().then((results) => {
-       return res.status(200).send({success: 1, data: results})
-   }).catch((error) => {
-         return res.status(404).send({success: 0, data: error})
-   })
+    db.role.findAll().then((results) => {
+        return res.status(200).send({success: 1, data: results})
+    }).catch((error) => {
+        return res.status(404).send({success: 0, data: error})
+    })
 }
 
-const getAllCommentaire = (req,res) => {
+const getAllCommentaire = (req, res) => {
     const sql = 'SELECT "idLivreOr",commentaire,"stands"."idStand" FROM "livreOr" ' +
-        'inner join stands on stands."idStand"="livreOr"."idStand" '  +
-        'inner join users on stands."idPrestataire"=users."idUser" '  +
+        'inner join stands on stands."idStand"="livreOr"."idStand" ' +
+        'inner join users on stands."idPrestataire"=users."idUser" ' +
         'WHERE "idUser" = ?'
     db.sequelize.query(sql, {replacements: [parseInt(req.params.id)], type: db.sequelize.QueryTypes.SELECT})
         .then((results) => {
@@ -101,4 +101,4 @@ const getAllCommentaire = (req,res) => {
     })
 }
 
-export default {list, newUser, getUserById, modifUser, deleteUser, listRole,getAllCommentaire};
+export default {list, newUser, getUserById, modifUser, deleteUser, listRole, getAllCommentaire};

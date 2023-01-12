@@ -1,13 +1,13 @@
-export const Role = (Sequelize,sequelize)=>{
+export const Role = (Sequelize, sequelize) => {
     return sequelize.define('roles', {
         idRole: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             allowNull: false
         },
-        libelle:{
+        libelle: {
             type: Sequelize.STRING,
             allowNull: false
         }
-    },{ timestamps: false, freezeTableName: true })
+    }, {timestamps: false, freezeTableName: true})
 }

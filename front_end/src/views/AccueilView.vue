@@ -58,14 +58,14 @@ export default {
     margin-bottom: 125px;
 }
 
-.d-grid{
+.d-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
     margin-top: 50px;
 }
 
-.Date{
+.Date {
     position: absolute;
     color: white;
     top: 315px;

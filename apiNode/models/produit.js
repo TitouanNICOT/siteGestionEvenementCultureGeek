@@ -1,4 +1,4 @@
-export const Produit = (Sequelize,sequelize)=>{
+export const Produit = (Sequelize, sequelize) => {
     return sequelize.define('produit', {
         idProduit: {
             type: Sequelize.INTEGER,
@@ -6,19 +6,19 @@ export const Produit = (Sequelize,sequelize)=>{
             autoIncrement: true,
             allowNull: false
         },
-        libelleProduit:{
+        libelleProduit: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        descriptionProduit:{
+        descriptionProduit: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        prix:{
-            type: Sequelize.DECIMAL(6,2),
+        prix: {
+            type: Sequelize.DECIMAL(6, 2),
             allowNull: false
         },
-        imageProduit:{
+        imageProduit: {
             type: Sequelize.STRING,
             allowNull: false
         }
