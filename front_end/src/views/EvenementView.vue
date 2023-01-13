@@ -8,7 +8,10 @@
                 <v-text-field style="margin-right: 10px" label="libelle d'Evenement" outlined v-model="inputFilter"/>
                 <v-select style="margin-right: 10px" label="Type d'Evenement" :items="listTypeEvenement" outlined
                           v-model="typeEvenement"></v-select>
-                <v-btn style="margin-top: 10px" cols="4" sm="4" color="red" @click="typeEvenement = '' ">X</v-btn>
+                <v-btn v-if="typeEvenement || inputFilter" style="margin-top: 10px" cols="4" sm="4" color="red" @click="typeEvenement = ''; inputFilter = '';">
+                    <v-icon>mdi-delete</v-icon>
+                    Réinitialiser
+                </v-btn>
             </v-col>
         </div>
         <v-row class="mx-5">

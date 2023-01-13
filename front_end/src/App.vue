@@ -80,7 +80,7 @@ h3 {
 p, span, div, v-container {
     font-family: Galyon Book, sans-serif;
     font-size: 16px;
-    letter-spacing: 0.9px;
+    letter-spacing: 1px;
 }
 
 hr {

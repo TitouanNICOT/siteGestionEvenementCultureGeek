@@ -1,8 +1,7 @@
 /* Réinitialise les tables afin que les valeurs mises dans les tables ne soient
 pas comptées en double. à mettre en commentaire si besoin. */
 -- DELETE * FROM *;
-\
-i tables.sql
+\i tables.sql
 
 
 -- user_role

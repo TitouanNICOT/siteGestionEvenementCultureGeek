@@ -3,8 +3,6 @@ import nodemailer from "nodemailer";
 const sendEMail = async (req, res) => {
     const {email, sujet, message} = req.body;
 
-    console.log(email, sujet, message);
-
     const transporter = nodemailer.createTransport({
         pool: true,
         host: "smtp.gmail.com",
