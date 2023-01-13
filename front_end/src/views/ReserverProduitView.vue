@@ -5,6 +5,7 @@
             <p>Type : {{produit.type_produit.libelleTypeProduit}}</p>
             <p>Description : {{produit.descriptionProduit}}</p>
             <p>Prix : {{produit.prix}} €</p>
+            <p>Stock Restant : {{produit.quantite}}</p>
             <div style="border: black 1px solid">
                 <form class="form" @submit.prevent="makeReservation" v-if="currentRole!==NONCONNECTE">
                     <h2>Reserver le produit : </h2>
@@ -41,6 +42,14 @@ export default {
     },
     methods: {
         async makeReservation() {
+            if (this.quantite<=0) {
+                alert("La quantité doit être supérieure à 0")
+                return;
+            }
+            if (this.quantite>this.produit.quantite) {
+                alert("Pas de stock suffisant")
+                return;
+            }
             await this.saveReservation(this.idProduct, this.quantite);
 
             console.log("quantite", this.quantite);

@@ -51,7 +51,15 @@ const newReservationProduit = async (req, res) => {
         quantite: req.body.quantite,
         idUser: req.body.idUser,
         idProduit: req.body.idProduit
-    }).then(() => {
+    }).then(async () => {
+        const produit = await db.produit.findByPk(req.body.idProduit)
+        if (produit.quantite - req.body.quantite < 0)
+            return res.status(404).send({success: 0, data: "quantite insuffisante"})
+        db.produit.update({
+            quantite: produit.quantite - req.body.quantite
+        },{
+            where: {idProduit: req.body.idProduit}
+        })
         return res.status(200).send({success: 1})
     }).catch((error) => {
         console.error(error)

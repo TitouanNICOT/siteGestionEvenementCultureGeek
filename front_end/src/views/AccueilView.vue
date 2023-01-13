@@ -5,7 +5,7 @@
                 <v-row class="justify-center">
                     <img class="logo" src="/GEEKY_EVENT.png" alt=""/>
                     <div class="background-logo"/>
-                    <h1 class="Date"> Du 1er au 3 Février à VilleADéterminer !</h1>
+                    <h1 class="Date"> Du 1er au 3 Février à BonRepas !</h1>
                 </v-row>
                 <div>
                     <h1>Description</h1>

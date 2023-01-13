@@ -21,6 +21,10 @@ export const Produit = (Sequelize, sequelize) => {
         imageProduit: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        quantite: {
+            type: Sequelize.INTEGER,
+            allowNull: false
         }
     })
 }

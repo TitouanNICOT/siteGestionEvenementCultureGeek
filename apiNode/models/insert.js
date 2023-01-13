@@ -29,6 +29,15 @@ const insert = async (db) => {
         isNotif: true,
         idRole: 3
     })//user
+    await db.user.create({
+        nom: 'Demo',
+        prenom: 'Demo',
+        pseudo: 'demo',
+        password:'$2b$10$kgLawUqfMerTbLk.4KfyueNqhtql5r4a2HA.aGE4pWg6iF2z2g1j2',/*demodemo*/
+        email: 'demo@aa.fr',
+        isNotif: true,
+        idRole: 3
+    })
     //partie stand
     await db.type_stand.create({idTypeStand: 1, libelleTypeStand: 'boutique'})
     await db.type_stand.create({idTypeStand: 2, libelleTypeStand: 'tournois'})
@@ -105,7 +114,8 @@ const insert = async (db) => {
         descriptionProduit: 'Une crêpe faite sur place. Peut être assaisonnée de pâte à tartiner ou de sucre selon choix. PEUT CONTENIR : GLUTEN',
         prix: 1.90,
         imageProduit: 'crepe.jpg',
-        idTypeProduit: 1
+        idTypeProduit: 1,
+        quantite: 50
     })
     await db.produit.create({
         idStand: 300,
@@ -113,7 +123,8 @@ const insert = async (db) => {
         descriptionProduit: 'Gaufrettes enrobée de chocolat et de noisette ',
         prix: 1.5,
         imageProduit: 'kbueno.jpg',
-        idTypeProduit: 1
+        idTypeProduit: 1,
+        quantite: 50
     })
     await db.produit.create({
         idStand: 300,
@@ -121,7 +132,8 @@ const insert = async (db) => {
         descriptionProduit: 'Boisson sucrée. Rend 120 HP.',
         prix: 2,
         imageProduit: 'coca.jpg',
-        idTypeProduit: 2
+        idTypeProduit: 2,
+        quantite: 45
     })
     await db.produit.create({
         idStand: 300,
@@ -129,7 +141,8 @@ const insert = async (db) => {
         descriptionProduit: 'limonade au citron et au citron vert.',
         prix: 2,
         imageProduit: 'sprite.jpg',
-        idTypeProduit: 2
+        idTypeProduit: 2,
+        quantite: 50
     })
     await db.produit.create({
         idStand: 300,
@@ -137,7 +150,8 @@ const insert = async (db) => {
         descriptionProduit: 'T-Shirt occasionel pour un événement sur Splatoon 2. Taille: L.',
         prix: 35,
         imageProduit: 'tshirtsplatoon2.jpg',
-        idTypeProduit: 2
+        idTypeProduit: 2,
+        quantite: 28
     })
     await db.produit.create({
         idStand: 300,
@@ -145,7 +159,8 @@ const insert = async (db) => {
         descriptionProduit: 'Un porte-clés, dont une mini-figurine représentant Le Défecueux de Slay the Spire y est accroché (6cm)',
         prix: 5,
         imageProduit: 'portecledefect.jpg',
-        idTypeProduit: 3
+        idTypeProduit: 3,
+        quantite: 50
     })
     await db.produit.create({
         idStand: 300,
@@ -153,7 +168,8 @@ const insert = async (db) => {
         descriptionProduit: 'Poster du jeu OneShot montrant Niko arrivant dans le Refuge. Taille: 24cm*60cm',
         prix: 9,
         imageProduit: 'posterrefuge.jpg',
-        idTypeProduit: 4
+        idTypeProduit: 4,
+        quantite: 30
     })
     await db.produit.create({
         idStand: 300,
@@ -161,7 +177,8 @@ const insert = async (db) => {
         descriptionProduit: 'Livre portant sur lunivers des jeux Halo',
         prix: 20,
         imageProduit: 'livrehalolachutedereach.jpg',
-        idTypeProduit: 5
+        idTypeProduit: 5,
+        quantite: 50
     })
     await db.produit.create({
         idStand: 300,
@@ -169,7 +186,8 @@ const insert = async (db) => {
         descriptionProduit: 'Oeuvre de Cedric',
         prix: 20,
         imageProduit: 'lejournal.jpg',
-        idTypeProduit: 5
+        idTypeProduit: 5,
+        quantite: 32
     })
     await db.reserverProduit.create({quantite: 6, idUser: 1, idProduit: 8})
     await db.reserverProduit.create({quantite: 5, idUser: 1, idProduit: 4})

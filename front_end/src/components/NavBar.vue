@@ -8,7 +8,7 @@
       </div>
       <div style="margin-left: auto">
           <span>({{roles[currentRole]}} : {{ currentRole }})  </span>
-          <v-btn v-if="currentUser==null" to="/login">Connection</v-btn>
+          <v-btn v-if="currentUser==null" to="/login">Connexion</v-btn>
           <span v-else>
               <span>{{currentUser.pseudo}}</span>
               <v-btn  @click="logout">Se déconnecter</v-btn>

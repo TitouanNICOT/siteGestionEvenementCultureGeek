@@ -66,6 +66,7 @@ export default {
                         response.data.data.role = roles[response.data.data.idRole]
                         response.data.data.token = response.data.token;
                         this.setCurrentUser(response.data.data);
+                        this.$store.state.users.push(response.data.data);
                         this.$cookies.set("currentUser", response.data.data, "1h");
                         this.$router.push({name: 'Accueil'});
                     } else {

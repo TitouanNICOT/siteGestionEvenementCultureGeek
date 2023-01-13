@@ -9,8 +9,11 @@ const getBoutiqueByIdStand = async (req, res) => {
             console.log(results)
             return res.status(404).send({success: 0, data: "le stand n'existe pas ou n'est pas une boutique"})
         } else {
-            db.produit.findAll({where: {idStand: id}, include: db.type_produit})
-                .then((results) => {
+            db.produit.findAll({
+                where: {idStand: id},
+                include: db.type_produit,
+                order:[["idProduit","ASC"]]
+            }).then((results) => {
                     return res.status(200).send({success: 1, data: results})
                 }).catch((error) => {
                 return res.status(404).send({success: 0, data: error})

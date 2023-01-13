@@ -8,8 +8,10 @@
                     <v-card style="height: 100%">
                         <v-card-title>{{produit.libelleProduit}}</v-card-title>
                         <v-card-subtitle>{{produit.type_produit.libelleTypeProduit}}</v-card-subtitle>
-                        <v-card-text>{{produit.prix}} €</v-card-text>
+                        <v-card-text>{{produit.prix}} €<v-spacer></v-spacer></v-card-text>
                         <v-card-actions>
+                            <span>Stock : {{produit.quantite}}</span>
+                            <v-spacer></v-spacer>
                             <v-btn :to="{ name: 'reservation', params: { idProduit: produit.idProduit, idStand: idStand } }">Afficher plus</v-btn>
                         </v-card-actions>
                     </v-card>
