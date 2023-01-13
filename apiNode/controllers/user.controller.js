@@ -42,19 +42,23 @@ const newUser = async (req, res) => {
 }
 
 const modifUser = async (req, res) => {
-    const id = req.body.id
+    const id = req.params.id
     if (isNaN(id))
         return res.status(404).send({success: 0})
 
+    var {nom, prenom, pseudo, password, email, isNotif, idRole} = req.body
+    const user = await db.user.findByPk(id)
+    console.log(user)
+
     console.log(req.body)
     db.user.update({
-        nom: req.body.nom,
-        prenom: req.body.prenom,
-        pseudo: req.body.pseudo,
-        password: req.body.password,
-        email: req.body.email,
-        isNotif: req.body.isNotif,
-        idRole: req.body.role
+        nom: nom ? nom : user.nom,
+        prenom: prenom ? prenom : user.prenom,
+        pseudo: pseudo ? pseudo : user.pseudo,
+        password: password ? password : user.password,
+        email: email ? email : user.email,
+        isNotif: isNotif ? isNotif : user.isNotif,
+        idRole: idRole ? idRole : user.idRole
     }, {
         where: {idUser: id}
     }).then((result) => {

@@ -2,7 +2,7 @@
   <v-row>
       <div>
           <v-btn v-for="(title, index) in titles" :key="index" @click="changeRouteId(index)"> {{ title.text }} </v-btn>
-          <v-btn v-if="currentRole === ADMIN" color="grey">Liste Prestataire</v-btn>
+          <v-btn v-if="currentRole === ADMIN" to="/admin">Liste utilisateur</v-btn>
           <v-btn v-if="currentRole === PRESTA" to="/prestataire">Tableau de bord</v-btn>
           <v-btn v-if="currentRole === CLIENT" to="/user">Mon Profil</v-btn>
       </div>
