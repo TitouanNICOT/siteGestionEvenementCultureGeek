@@ -12,6 +12,7 @@ export default new Vuex.Store({
         stands: [],
         evenements: [],
         listeTypeStand: [],
+        listeTypeProduit: [],
         currentUser: null,
     },
     getters: {
@@ -45,12 +46,14 @@ export default new Vuex.Store({
         setTypeStands(state, typeStands) {
             state.listeTypeStand = typeStands;
         },
+        setTypeProduits(state, typeProduits) {
+            state.listeTypeProduit = typeProduits;
+        },
         removeStand(state, stand) {
             console.log(stand)
             const indexStand = state.stands.findIndex(s => s.id === stand);
             console.log(indexStand)
             state.stands.splice(indexStand, 1);
-            // state.stands = state.stands.filter(stand => stand.idStand != idStand);
         },
         setCurrentUser(state, user) {
             state.currentUser = user;
@@ -66,6 +69,11 @@ export default new Vuex.Store({
                 .then(responce => {
                     if (responce.data.success === 1)
                         context.commit("setTypeStands", responce.data.data)
+                })
+            axios.get("http://localhost:3000/produits/listTypeProduit")
+                .then(responce => {
+                    if (responce.data.success === 1)
+                        context.commit("setTypeProduits", responce.data.data)
                 })
             axios.get("http://localhost:3000/evenements")
                 .then(responce => {

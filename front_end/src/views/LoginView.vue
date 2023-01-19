@@ -55,7 +55,10 @@ export default {
                     } else if (data.idRole === ADMIN) {
                         this.$router.push('/admin');
                     } else {
-                        this.$router.push('/user');
+                        if (this.$route.query.redirect)
+                            this.$router.push(this.$route.query.redirect);
+                        else
+                            this.$router.push('/user');
                     }
                 } else {
                     alert(response.data.data);

@@ -26,7 +26,10 @@ const newProduit = async (req, res) => {
         libelleProduit: req.body.libelleProduit,
         descriptionProduit: req.body.descriptionProduit,
         prix: req.body.prix,
-        imageProduit: req.body.imageProduit,
+        imageProduit: "vide",
+        quantite: req.body.quantite,
+        idTypeProduit: req.body.idTypeProduit,
+        idStand: req.body.idStand
     }).then(() => {
         return res.status(200).send({success: 1})
     }).catch((error) => {
@@ -45,7 +48,9 @@ const modifProduit = async (req, res) => {
         libelleProduit: req.body.libelleProduit,
         descriptionProduit: req.body.descriptionProduit,
         prix: req.body.prix,
-        imageProduit: req.body.imageProduit,
+        imageProduit: "vide",
+        quantite: req.body.quantite,
+        idTypeProduit: req.body.idTypeProduit,
     }, {
         where: {idProduit: id}
     }).then(() => {

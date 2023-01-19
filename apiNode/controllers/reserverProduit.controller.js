@@ -21,7 +21,7 @@ const getReservationProduitById = async (req, res) => {
 }
 
 const getReservationProduitByUser = (req, res) => {
-    const sql = `SELECT quantite,"reserverProduits"."idUser",produits."idProduit","libelleProduit" FROM "reserverProduits"
+    const sql = `SELECT "reserverProduits".quantite,"reserverProduits"."idUser",produits."idProduit","libelleProduit" FROM "reserverProduits"
                INNER JOIN produits ON "reserverProduits"."idProduit" = produits."idProduit"
                WHERE "reserverProduits"."idUser" = ?`;
     db.sequelize.query(sql, {replacements:[parseInt(req.params.idUser)], type: db.sequelize.QueryTypes.SELECT})
@@ -103,7 +103,7 @@ const deleteReservationProduit = async (req, res) => {
 }
 
 const getReservationProduitByPrestataire = (req, res) => {
-    const sql = 'SELECT quantite,"reserverProduits"."idUser",produits."idProduit","libelleProduit" FROM "reserverProduits" ' +
+    const sql = 'SELECT "reserverProduits".quantite,"reserverProduits"."idUser",produits."idProduit","libelleProduit" FROM "reserverProduits" ' +
         'inner join produits on produits."idProduit"="reserverProduits"."idProduit" ' +
         'inner join stands on stands."idStand"=produits."idStand" ' +
         'inner join users on users."idUser"=stands."idPrestataire" ' +

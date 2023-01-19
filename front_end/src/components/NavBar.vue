@@ -8,7 +8,7 @@
       </div>
       <div style="margin-left: auto">
           <span>({{roles[currentRole]}} : {{ currentRole }})  </span>
-          <v-btn v-if="currentUser==null" to="/login">Connexion</v-btn>
+          <v-btn v-if="currentUser==null" @click="connexion">Connexion</v-btn>
           <span v-else>
               <span>{{currentUser.pseudo}}</span>
               <v-btn  @click="logout">Se déconnecter</v-btn>
@@ -19,7 +19,6 @@
 
 <script>
 import {mapGetters, mapMutations, mapState} from "vuex";
-import router from "@/router";
 import {roles, ADMIN, PRESTA,CLIENT} from "@/services/roles";
 
 export default {
@@ -43,14 +42,17 @@ export default {
     methods: {
         ...mapMutations(['removeCurrentUser']),
         changeRouteId(id) {
-            router.push(this.titles[id].route).catch(() => {
+            this.$router.push(this.titles[id].route).catch(() => {
             })
         },
         logout() {
             this.removeCurrentUser();
             this.$cookies.remove("currentUser");
-            router.push('/').catch(() => {
+            this.$router.push('/').catch(() => {
             });
+        },
+        connexion(){
+            this.$router.push({name:'login',query:{redirect:this.$route.path}})
         }
     }
 }

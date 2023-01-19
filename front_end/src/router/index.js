@@ -59,11 +59,6 @@ const routes = [
         component: BoutiqueView
     },
     {
-        path:'/reservations/:idStand/p/:idProduit',
-        name:'reservation',
-        component: () => import('../views/ReserverProduitView.vue')
-    },
-    {
         path: '/prestataire',
         name: 'prestataire',
         component: HomePrestaView,
