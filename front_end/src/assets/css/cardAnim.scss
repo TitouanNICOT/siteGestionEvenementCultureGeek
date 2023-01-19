@@ -1,0 +1,21 @@
+.article-card:hover {
+  cursor: pointer;
+
+  .title-article-card{
+    position: relative;
+    left: 16px;
+    top: -54px;
+
+    background: rgba(0, 0, 0, 0.90);
+  }
+
+  .background-article-card{
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .topper-title-article-card{
+    left: 16px;
+    top: 127px;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.80);
+  }
+}

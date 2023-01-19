@@ -18,10 +18,15 @@
                     <p>Mauris eget lorem tellus. Praesent et lectus rutrum, finibus enim eu, iaculis turpis. Duis
                         dapibus rutrum auctor. Pellentesque sit amet viverra arcu. Nulla facilisi. Morbi nisi ex,
                         condimentum pharetra ex at, mollis dictum ex. Pellentesque rutrum iaculis volutpat.</p>
-                    <h1>Dernières Actualitées</h1>
+                    <h1>Evenements en cours et à venir</h1>
                     <hr>
                     <div class="d-grid">
-                        <ArticleCard v-for="i in 5" :key="i"></ArticleCard>
+                        <span v-for="(event, index) in listEvents" :key="index">
+                            <ArticleCard :titre="event.libelleEvenement"
+                                         :lien="event.idStand.toString()">
+
+                            </ArticleCard>
+                        </span>
                     </div>
                 </div>
             </v-col>
@@ -32,11 +37,23 @@
 <script>
 
 import ArticleCard from "@/components/ArticleCard";
+import axios from "axios";
 
 export default {
     name: "AccueilView",
     components: {
         ArticleCard
+    },
+    data() {
+        return {
+            listEvents: []
+        }
+    },
+    mounted() {
+        axios.get("http://localhost:3000/evenements/")
+            .then(res => {
+                this.listEvents = res.data.data
+            })
     }
 }
 </script>
@@ -50,21 +67,6 @@ export default {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(../../public/dg1w1v1l19j0_SLI_m.jpg);
 }
 
-.logo {
-    width: 620px;
-    height: 100%;
-    z-index: 1;
-    margin-top: 50px;
-    margin-bottom: 125px;
-}
-
-.d-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-    margin-top: 50px;
-}
-
 .Date {
     position: absolute;
     color: white;
@@ -73,4 +75,39 @@ export default {
     z-index: 1;
 }
 
+.logo {
+    width: 620px;
+    height: 100%;
+    z-index: 1;
+    margin-top: 50px;
+    margin-bottom: 125px;
+}
+
+@media (min-width: 600px) {
+    .d-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 20px;
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 900px) {
+    .d-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .d-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        margin-top: 50px;
+    }
+}
 </style>
+<style lang="scss"> @import "~@/assets/css/cardAnim.scss"; </style>

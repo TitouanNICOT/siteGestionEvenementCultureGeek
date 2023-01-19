@@ -1,15 +1,28 @@
 <template>
     <v-container>
-        <div>
-            <img class="background-article-card" src="/2000006249456.webp" alt="">
-            <div class="title-article-card"><h1 class="text-title-article-card">Titre d'article</h1></div>
+        <div class="article-card">
+            <div class="topper-title-article-card"></div>
+            <img v-if="image" class="background-article-card" :src="image" :alt="image" @click="goArticle">
+            <img v-else class="background-article-card" src="/2000006249456.webp" alt="default.webp" @click="goArticle">
+            <div class="title-article-card" @click="goArticle"><h3 class="text-title-article-card">{{ titre }}</h3></div>
+
         </div>
     </v-container>
 </template>
 
 <script>
 export default {
-    name: "ArticleCard"
+    name: "ArticleCard",
+    props:{
+        titre: String,
+        lien: String,
+        image: String
+    },
+    methods: {
+        goArticle() {
+            this.$router.push({name: "stand", params: {id: this.lien}})
+        }
+    }
 }
 </script>
 
@@ -18,10 +31,13 @@ export default {
     position: relative;
     width: 300px;
     height: 175px;
-
+    z-index: 1;
     left: 17px;
     border: 1px solid #401212;
     border-radius: 10px 10px 60px 10px;
+
+    transition-property: border-radius;
+    transition-duration: 0.4s;
 }
 
 .title-article-card {
@@ -29,7 +45,7 @@ export default {
 
     width: 274px;
     height: 42px;
-
+    z-index: 2;
     left: 4px;
     top: -63px;
 
@@ -42,13 +58,34 @@ export default {
 
     justify-content: center;
     align-items: center;
+
+    transition-property: left, top, background;
+    transition-duration: 0.5s;
+}
+
+
+.topper-title-article-card {
+    position: relative;
+    z-index: 0;
+    width: 0;
+    height: 0;
+
+    left: 4px;
+    top: 118px;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.65);
+
+    transition-property: left, top, background;
+    transition-duration: 0.5s;
 }
 
 .text-title-article-card {
     position: relative;
-
-    left: 24.8px;
+    top: 5px;
+    left: 25px;
 
     color: white;
 }
+
 </style>
