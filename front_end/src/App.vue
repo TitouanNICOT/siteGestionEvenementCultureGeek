@@ -47,11 +47,11 @@ export default {
 
 @font-face {
     font-family: 'Lexend';
-    src: url('assets/fonts/Lexend-Thin.ttf') format('truetype'),
+    src: url('assets/fonts/Lexend-Regular.ttf') format('truetype'),
+    url('assets/fonts/Lexend-Thin.ttf') format('truetype'),
     url('assets/fonts/Lexend-ExtraLight.ttf') format('truetype'),
     url('assets/fonts/Lexend-Light.ttf') format('truetype'),
     url('assets/fonts/Lexend-Medium.ttf') format('truetype'),
-    url('assets/fonts/Lexend-Regular.ttf') format('truetype'),
     url('assets/fonts/Lexend-SemiBold.ttf') format('truetype'),
     url('assets/fonts/Lexend-Bold.ttf') format('truetype'),
     url('assets/fonts/Lexend-ExtraBold.ttf') format('truetype'),
