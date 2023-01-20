@@ -9,15 +9,15 @@ const sendEMail = async (req, res) => {
         port: 465,
         secure: true,
         auth: {
-            user: "darksider.ytgame",
-            pass: "qclvjeupzfbwcdhj",
+            user: "contact.squadron70",
+            pass: "osrnscavukhfudvj",
         }
     });
 
     try {
         transporter.sendMail({
             from: email,
-            to: "darksider.ytgame@gmail.com",
+            to: "contact.squadron70",
             subject: sujet,
             html: `<div>
         <div style="background-color:#f7f7f7;margin:0;padding:70px 0 70px 0;width:100%">
