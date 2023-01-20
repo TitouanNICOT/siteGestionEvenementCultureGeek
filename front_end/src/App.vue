@@ -39,9 +39,9 @@ export default {
 
 @font-face {
     font-family: 'Galyon Book';
-    src: url('assets/fonts/Galyon-Bold.otf') format('opentype'),
+    src:url('assets/fonts/Galyon-Book.otf') format('opentype'),
+    url('assets/fonts/Galyon-Bold.otf') format('opentype'),
     url('assets/fonts/Galyon-Bold-Italic.otf') format('opentype'),
-    url('assets/fonts/Galyon-Book.otf') format('opentype'),
     url('assets/fonts/Galyon-Book-Italic.otf') format('opentype');
 }
 
