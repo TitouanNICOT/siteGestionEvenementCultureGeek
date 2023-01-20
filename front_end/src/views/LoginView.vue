@@ -2,7 +2,7 @@
     <div class="login-container my-5">
         <h1>Connexion</h1>
         <img v-if="failedEnoughTimes()" style="text-align:center; width:250px; height:250px;" src="https://en.meming.world/images/en/b/b8/You_Are_Not_a_Clown._You_Are_The_Entire_Circus.jpg" alt="You are not a clown, you are the entire circus">
-        <form @submit.prevent="login">
+        <form v-if="!failedEnoughTimes()" @submit.prevent="login">
             <label for="pseudo">Nom d'utilisateur :</label>
             <input type="text" v-model="pseudo" id="pseudo" name="pseudo">
             <br>
@@ -36,7 +36,7 @@ export default {
 
         failedEnoughTimes(){
           console.log(this.fail);
-          return this.fail >= 5;
+          return this.fail >= 3;
         },
 
         login() {
