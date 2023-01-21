@@ -8,14 +8,15 @@
             <p>Mail : {{ currentUser.email }}</p>
         </div>
         <div class="border">
-            <h3>Liste commantaires :</h3>
+            <h3>Liste commentaires :</h3>
             <v-btn @click="changeVue">Afficher/cacher</v-btn>
-            <p v-if="commantaires.length === 0" style="text-align: center">Vous n'avez pas de commantaires</p>
+            <p v-if="commantaires.length === 0" style="text-align: center">Vous n'avez pas de commentaires</p>
             <div v-else-if="afficheCom">
+                <p>Cliquez sur un commentaire pour l'éffacer</p>
                 <div v-for="(stand,index) in mesStands" :key="index">
                     <h4 style="font-size: 20px">{{ stand.nomStand }}</h4>
-                    <v-row v-if="commantaires.filter(c=>c.idStand===stand.id).length>0">
-                        <v-col v-for="(com,index2) in commantaires.filter(c=>c.idStand===stand.id)" :key="index2"
+                    <v-row v-if="commantaires.filter(c=>c.idStand==stand.id).length>0">
+                        <v-col v-for="(com,index2) in commantaires.filter(c=>c.idStand==stand.id)" :key="index2"
                                cols="4">
                             <v-card class="pa-1" @click="supprimerCom(com)">{{ com.commentaire }}</v-card>
                         </v-col>
@@ -130,10 +131,8 @@ export default {
             }
         },
         changeVue() {this.afficheCom = !this.afficheCom},
-        changeVue2() {this.afficheReserve = !this.afficheReserve}
-        changeVue3(){
-          this.afficheEvenement = !this.afficheEvenement
-        }
+        changeVue2() {this.afficheReserve = !this.afficheReserve},
+        changeVue3(){this.afficheEvenement = !this.afficheEvenement}
 
     },
     mounted() {
