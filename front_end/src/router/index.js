@@ -84,7 +84,7 @@ const routes = [
     {
         path: '/timeline',
         name: 'timeline',
-        component: () => import('../views/TimelineTestView.vue')
+        component: () => import('../views/TimelineView.vue')
     },
     {
         path: '/infosPresta/:idUser',

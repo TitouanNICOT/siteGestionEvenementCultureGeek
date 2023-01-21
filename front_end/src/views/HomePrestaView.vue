@@ -47,20 +47,21 @@
             <p v-if="mesEvenements.length === 0" style="text-align: center">Vous n'avez pas d'evenement</p>
             <v-data-table v-else-if="afficheEvenement" :headers="headerEvenements" :items="getAllEvenementsData()"/>
         </div>
-      <div class="border">
-        <p v-if="mesEvenements.length === 0" style="text-align: center">Vous n'avez pas pas d'evenement</p>
-        <v-row v-else>
-          <v-col v-for="(event,index) in mesEvenements" :key="index" cols="4">
-            <v-card class="pa-3">{{ event.libelleEvenement }}</v-card>
-          </v-col>
-        </v-row>
-      </div>
+        <div class="border">
+            <p v-if="mesEvenements.length === 0" style="text-align: center">Vous n'avez pas pas d'evenement</p>
+            <v-row v-else>
+                <v-col v-for="(event,index) in mesEvenements" :key="index" cols="4">
+                    <v-card class="pa-3">{{ event.libelleEvenement }}</v-card>
+                </v-col>
+            </v-row>
+        </div>
     </v-container>
 </template>
 
 <script>
 import {mapState} from "vuex";
 import axios from "axios";
+import moment from "moment";
 
 export default {
     name: "HomePrestaView",
@@ -85,36 +86,36 @@ export default {
         afficheReserve: true,
         afficheEvenement: true,
 
-      headerEvenements:[
-        {text: 'Nom de l\'évenement ', value: 'libelleEvenement'},
-        {text: 'Nombre de participants', value: 'nbUser'},
-        {text:'Capacité maximale',value:'nbPlace'},
-        {text:'Stand',value:'stand'},
-        {text:'Début',value:'heureDebut'},
-        {text:'Fin',value:'heureFin'}
-      ]
+        headerEvenements: [
+            {text: 'Nom de l\'évenement ', value: 'libelleEvenement'},
+            {text: 'Nombre de participants', value: 'nbUser'},
+            {text: 'Capacité maximale', value: 'nbPlace'},
+            {text: 'Stand', value: 'stand'},
+            {text: 'Début', value: 'heureDebut'},
+            {text: 'Fin', value: 'heureFin'}
+        ]
     }),
     methods: {
 
-        getAllEvenementsData(){
-          let tab = []
+        getAllEvenementsData() {
+            let tab = []
 
-          for(let i = 0; i < this.mesEvenements.length;i++){
-            tab.push(this.getEvenementData(this.mesEvenements[i]))
-          }
+            for (let i = 0; i < this.mesEvenements.length; i++) {
+                tab.push(this.getEvenementData(this.mesEvenements[i]))
+            }
 
-          return tab
+            return tab
         },
 
-        getEvenementData(event){
-          return {
-            "libelleEvenement": event.libelleEvenement,
-            "nbUser":event["reservations"].length,
-            "stand":event.stand.nomStand,
-            "nbPlace":event.stand.nbPlace,
-            "heureDebut":event.heureDebut,
-            "heureFin":event.heureFin
-          };
+        getEvenementData(event) {
+            return {
+                "libelleEvenement": event.libelleEvenement,
+                "nbUser": event["reservations"].length,
+                "stand": event.stand.nomStand,
+                "nbPlace": event.stand.nbPlace,
+                "heureDebut": moment(event.heureDebut).utc().format('DD/MM/YYYY HH:mm:ss'),
+                "heureFin": moment(event.heureFin).utc().format('DD/MM/YYYY HH:mm:ss')
+            };
         },
 
 
@@ -123,16 +124,22 @@ export default {
             this.$router.push({name: "stand", params: {id: idStand}})
         },
         supprimerCom(com) {
-            if (confirm("Voulez vous supprimer ce commentaire ? :\n"+com.commentaire)) {
+            if (confirm("Voulez vous supprimer ce commentaire ? :\n" + com.commentaire)) {
                 axios.delete("http://localhost:3000/stands/commentaire/" + com.idLivreOr)
                     .then(() => {
                         this.commantaires = this.commantaires.filter(c => c.idLivreOr !== com.idLivreOr)
                     })
             }
         },
-        changeVue() {this.afficheCom = !this.afficheCom},
-        changeVue2() {this.afficheReserve = !this.afficheReserve},
-        changeVue3(){this.afficheEvenement = !this.afficheEvenement}
+        changeVue() {
+            this.afficheCom = !this.afficheCom
+        },
+        changeVue2() {
+            this.afficheReserve = !this.afficheReserve
+        },
+        changeVue3() {
+            this.afficheEvenement = !this.afficheEvenement
+        }
 
     },
     mounted() {

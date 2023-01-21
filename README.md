@@ -16,7 +16,8 @@ Développement d'un site web visant la gestion d'événements autour de la cultu
 - Inscription/Connection
 - Carte
 - Filtre sur stands/evenements
--> Toutes les fonctionnalités utilisent l'api
+- Programme
+→ Toutes les fonctionnalités utilisent l'api
 
 ## Informations autres
 Le service contact fonctionne et envoie un mail, mais il l'envoie sur une adresse mail personnelle.

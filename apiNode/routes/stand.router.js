@@ -34,6 +34,21 @@ router.get("/", standController.listStand)
  *              description: Erreur lors de l'envoi des stands
  */
 
+router.get("/withEvents", standController.getStandWithEvents)
+/**
+ * @swagger
+ * /stands/withEvents:
+ *  get:
+ *      description: Retourne tous les stands avec leurs evenements
+ *      tags:
+ *          - Stands
+ *      responses:
+ *          '200':
+ *              description: Stands retourné avec succés
+ *          '404':
+ *              description: Erreur lors de l'envoi des stands
+ */
+
 router.get("/:id", standController.getStand)
 /**
  * @swagger

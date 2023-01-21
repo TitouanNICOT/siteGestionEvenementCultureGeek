@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-card id="feedBack" style="display: none">
-            <v-card-text id="feedBackText"></v-card-text>
+        <v-card v-if="feedback" id="feedBack" :class="this.class">
+            <v-card-text id="feedBackText">{{feedbackMessage}}</v-card-text>
         </v-card>
         <v-text-field label="Email" v-model="email" placeholder="exemple@exemple.com"></v-text-field>
         <v-text-field id="Sujet" label="Sujet" v-model="sujet" placeholder="Horaires et planning"></v-text-field>
@@ -22,7 +22,10 @@ export default {
             email: "",
             sujet: "",
             message: "",
-            phMessage: "Bonjour, je souhaiterais avoir plus d'informations sur les horaires et le planning de l'événement."
+            phMessage: "Bonjour, je souhaiterais avoir plus d'informations sur les horaires et le planning de l'événement.",
+            feedbackMessage: "",
+            feedback: false,
+            class: ""
         }
     },
     mounted() {
@@ -34,9 +37,8 @@ export default {
     },
     methods: {
         sendMail() {
-            document.getElementById("feedBack").style.display = "none";
-            document.getElementById("feedBack").classList.remove("error");
-            document.getElementById("feedBack").classList.remove("success");
+            this.feedback = false;
+            this.class = "";
             setTimeout(async () => {
                 if (this.checkForm()) {
                     await axios.post("http://localhost:3000/mail", {
@@ -44,12 +46,11 @@ export default {
                         sujet: this.sujet,
                         message: this.message
                     }).then(response => {
-                        console.log(response)
-                        if (response.status === 200) {
+                        if (response.data.success) {
                             this.email = "";
                             this.sujet = "";
                             this.message = "";
-                            this.displayMessage("Votre message a bien été envoyé !", " success");
+                            this.displayMessage("Votre message a bien été envoyé !", "success");
                         } else {
                             this.displayMessage("Une erreur est survenue lors de l'envoi du mail. Veuillez réessayer ultérieurement. Status :" + response.status + ".");
                         }
@@ -93,9 +94,9 @@ export default {
                 className = " " + className;
             }
 
-            document.getElementById("feedBackText").innerHTML = message;
-            document.getElementById("feedBack").className += className;
-            document.getElementById("feedBack").style.display = "block";
+            this.feedbackMessage = message;
+            this.class = className;
+            this.feedback = true;
         }
     }
 }

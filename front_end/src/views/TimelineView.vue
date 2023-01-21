@@ -17,7 +17,7 @@
 import TimelineElement from "@/components/TimelineElement.vue";
 
 export default {
-    name: "TimelineTestView",
+    name: "TimelineView",
     components: {TimelineElement}
 }
 </script>

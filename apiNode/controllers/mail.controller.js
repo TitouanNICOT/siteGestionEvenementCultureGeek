@@ -17,7 +17,7 @@ const sendEMail = async (req, res) => {
     try {
         transporter.sendMail({
             from: email,
-            to: "contact.squadron70",
+            to: "contact.squadron70@gmail.com",
             subject: sujet,
             html: `<div>
         <div style="background-color:#f7f7f7;margin:0;padding:70px 0 70px 0;width:100%">
@@ -67,7 +67,7 @@ const sendEMail = async (req, res) => {
                                                                 <p style="margin:0 0 16px">
                                                                     provided by
                                                                 </p>
-                                                                <img style="max-width: 200px;" src="https://www.zupimages.net/up/23/02/pv4g.png" alt="GeekyEvent">
+                                                                <img style="width: 200px;" src="https://www.zupimages.net/up/23/02/pv4g.png" alt="GeekyEvent">
                                                             </div>
                                                         </td>
                                                     </tr>

@@ -20,17 +20,17 @@
                 class="scene"
                 style="background-color: lightcoral"
             >
-                {{ scene.name }}
+                {{ scene.nomStand }}
             </div>
             <div class="calendar-element">
                 <div
                     class="calendar-event"
-                    v-for="(event, j) in scene.events"
+                    v-for="(event, j) in scene.evenements"
                     :style="{backgroundColor: getRandomColor(), left: event.left, width: event.width}"
                     :key="j"
                 >
           <span>
-            {{ event.name }}
+            {{ event.libelleEvenement }}
           </span>
                 </div>
             </div>
@@ -70,7 +70,7 @@ section {
 }
 
 .scene {
-    z-index: 999;
+    z-index: 1;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -117,6 +117,8 @@ section {
 </style>
 
 <script>
+import axios from "axios";
+
 export default {
     name: 'TimelineElement',
     components: {},
@@ -124,41 +126,50 @@ export default {
         return {
             hours: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
             scenes: [
-                {
-                    name: 'Scene 1',
-                    events: [
-                        {
-                            name: 'test',
-                            start: new Date(2023, 0, 7, 15, 0, 0),
-                            end: new Date(2023, 0, 7, 18, 30, 0),
-                            left: 0,
-                            width: 0
-                        },
-                        {
-                            name: 'test2',
-                            start: new Date(2023, 0, 7, 18, 30, 0),
-                            end: new Date(2023, 0, 7, 19, 30, 0),
-                            left: 0,
-                            width: 0
-                        }
-                    ]
-                },
-                {
-                    name: 'Scene 2',
-                    events: [
-                        {
-                            name: 'Naël on the rocks',
-                            start: new Date(2023, 0, 7, 10, 0, 0),
-                            end: new Date(2023, 0, 7, 22, 30, 0),
-                            left: 0,
-                            width: 0
-                        }
-                    ]
-                },
+                // {
+                //     nomStand: 'Scene 1',
+                //     evenements: [
+                //         {
+                //             libelleEvenement: 'test',
+                //             heureDebut: new Date(2023, 0, 7, 15, 0, 0),
+                //             heureFin: new Date(2023, 0, 7, 18, 30, 0),
+                //             left: 0,
+                //             width: 0
+                //         },
+                //         {
+                //             libelleEvenement: 'test2',
+                //             heureDebut: new Date(2023, 0, 7, 18, 30, 0),
+                //             heureFin: new Date(2023, 0, 7, 19, 30, 0),
+                //             left: 0,
+                //             width: 0
+                //         }
+                //     ]
+                // },
+                // {
+                //     name: 'Scene 2',
+                //     events: [
+                //         {
+                //             libelleEvenement: 'Naël on the rocks',
+                //             heureDebut: new Date(2023, 0, 7, 10, 0, 0),
+                //             heureFin: new Date(2023, 0, 7, 22, 30, 0),
+                //             left: 0,
+                //             width: 0
+                //         }
+                //     ]
+                // },
             ]
         }
     },
-    beforeMount() {
+    async beforeMount() {
+        this.scenes = await axios.get('http://localhost:3000/stands/withEvents')
+            .then(response => {
+                return response.data.data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+        // console.log(this.scenes);
         this.updateEvents();
     },
     methods: {
@@ -167,9 +178,14 @@ export default {
         },
         updateEvents() {
             this.scenes.forEach((scene) => {
-                scene.events.forEach((event) => {
-                    event.width = (Math.abs(event.start - event.end) / 1000 / 60 / 60 * 180) + 'px';
-                    event.left = ((event.start.getHours() + (event.start.getMinutes() / 60)) - 14) * 180 + 'px';
+                scene.evenements.forEach((event) => {
+                    let heureDebut = new Date(event.heureDebut);
+                    let heureFin = new Date(event.heureFin);
+                    heureDebut.setHours(heureDebut.getHours()+2);
+                    heureFin.setHours(heureFin.getHours()+2);
+
+                    event.width = (Math.abs(heureDebut - heureFin) / 1000 / 60 / 60 * 180) + 'px';
+                    event.left = ((heureDebut.getHours() + (heureFin.getMinutes() / 60)) - 14) * 180 + 'px';
                 });
             })
         }
