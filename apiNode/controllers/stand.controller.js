@@ -59,6 +59,17 @@ const newCommentaire = async (req, res) => {
     })
 }
 
+const deleteCommentaire = (req,res) => {
+    db.livreOr.destroy({
+        where: {idLivreOr: req.params.id}
+    }).then((result) => {
+        return res.status(200).send({success: 1})
+    }).catch((error) => {
+        console.error(error)
+        return res.status(404).send({success: 0})
+    })
+}
+
 const deleteStand = async (req, res) => {
     console.log(req.body)
     db.stand.destroy({
@@ -71,4 +82,4 @@ const deleteStand = async (req, res) => {
     })
 }
 
-export default {listStand, newStand, getStand, listeTypeStand, newCommentaire, deleteStand}
+export default {listStand, newStand, getStand, listeTypeStand, newCommentaire, deleteStand,deleteCommentaire}

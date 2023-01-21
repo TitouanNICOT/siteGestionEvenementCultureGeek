@@ -1,28 +1,15 @@
 <template>
     <div id="app">
-        <svg @click="action" @mouseover="actionSurvol" width="205.0959mm" height="177.36548mm"
-             viewBox="0 0 205.0959 177.36548" version="1.1" id="svg5" xmlns:xlink="http://www.w3.org/1999/xlink"
-             xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+        <svg @click="action" @mouseover="actionSurvol" width="205.0959mm" height="177.36548mm" viewBox="0 0 205.0959 177.36548" version="1.1" id="svg5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
             <defs id="defs2"/>
             <g id="listeStand" transform="translate(0.09589299,-0.17511949)">
-                <a id="a1054-3"
-                   style="fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;paint-order:markers stroke fill">
-                    <rect id="rect90-8-3" width="76.51796" height="34.107239" x="78.020905" y="-34.562332"
-                          transform="rotate(90)"/>
-                    <rect
-                        style="display:inline;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-                        id="rect90-7-4" width="113.7186" height="73.693298" x="40.645065" y="80.661644"/>
-                    <rect id="rect90-3-0" width="114.12068" height="34.120594" x="40.10585" y="40.439705"
-                          transform="translate(0,-0.03637886)"/>
+                <a id="a1054-3" style="fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;paint-order:markers stroke fill">
+                    <rect id="rect90-8-3" width="76.51796" height="34.107239" x="78.020905" y="-34.562332" transform="rotate(90)"/>
+                    <rect style="display:inline;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" id="rect90-7-4" width="113.7186" height="73.693298" x="40.645065" y="80.661644"/>
+                    <rect id="rect90-3-0" width="114.12068" height="34.120594" x="40.10585" y="40.439705" transform="translate(0,-0.03637886)"/>
                     <rect id="rect90-0" width="114.12068" height="34.120594" x="40.10585" y="0.43970299"/>
-                    <rect
-                        style="display:inline;fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-                        id="rect90-1-9-9-7-9" width="34.44854" height="44.448536" x="120.27573" y="-204.72427"
-                        transform="rotate(90)"/>
-                    <rect
-                        style="display:inline;fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-                        id="rect90-1-9-9-3" width="34.480034" height="39.480034" x="80.259987" y="-204.74001"
-                        transform="rotate(90)"/>
+                    <rect style="display:inline;fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-7-9" width="34.44854" height="44.448536" x="120.27573" y="-204.72427" transform="rotate(90)"/>
+                    <rect style="display:inline;fill:#aaaaaa;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1" id="rect90-1-9-9-3" width="34.480034" height="39.480034" x="80.259987" y="-204.74001" transform="rotate(90)"/>
                 </a>
                 <a id="salle1" transform="translate(0.32488251,39.641536)">
                     <rect id="100" width="14.329332" height="6.7077622" x="40.139557" y="41.044598"/>
@@ -287,9 +274,11 @@ export default {
         },
         action(event) {
             console.log(event.target.id)
-            if (event.path[1].id.includes("batiment")) {
+            //la premiere version ne fonctionne plus sur certain navigateur
+            let parentNode = event.path ? event.path[1].id : event.target.parentNode.id
+            if (parentNode.includes("batiment")) {
                 document.getElementById("listeBatiment").childNodes.forEach(rect => rect.style.display = "block")
-                document.getElementById(event.path[1].id).style.display = "none"
+                document.getElementById(parentNode).style.display = "none"
                 this.$emit("deselection")
             }
             if (!isNaN(event.target.id)) {
