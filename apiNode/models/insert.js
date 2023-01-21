@@ -48,28 +48,32 @@ const insert = async (db) => {
         descriptionStand: 'c est une description du stand',
         idTypeStand: 1,
         idPrestataire: 1,
-        nomStand: 'stand 300'
+        nomStand: 'stand 300',
+        nbPlace:80
     })
     await db.stand.create({
         idStand: 310,
         descriptionStand: 'c est une description du stand',
         idTypeStand: 3,
         idPrestataire: 1,
-        nomStand: 'stand 310'
+        nomStand: 'stand 310',
+        nbPlace:80
     })
     await db.stand.create({
         idStand: 500,
         descriptionStand: 'c est une salle pour organiser des tournois',
         idTypeStand: 2,
         idPrestataire: 1,
-        nomStand: 'Salle tournois'
+        nomStand: 'Salle tournois',
+        nbPlace:160
     })
     await db.stand.create({
         idStand: 600,
         descriptionStand: 'c est une salle pour organiser des tournois',
         idTypeStand: 2,
         idPrestataire: 1,
-        nomStand: 'Salle tournois'
+        nomStand: 'Salle tournois',
+        nbPlace:160
     })
     await db.livreOr.create({commentaire: 'Super événement !', idStand: 300})
     //partie evenement
@@ -194,5 +198,10 @@ const insert = async (db) => {
     await db.reserverProduit.create({quantite: 7, idUser: 1, idProduit: 7})
     await db.reserverProduit.create({quantite: 7, idUser: 1, idProduit: 7})
 
+
+    await db.reservation.create({idUser:4,idEvenement:2})
+    await db.reservation.create({idUser:4,idEvenement:1})
+    await db.reservation.create({idUser:2,idEvenement:2})
+    await db.reservation.create({idUser:3,idEvenement:2})
 }
 export {insert};

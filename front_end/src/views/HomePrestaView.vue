@@ -14,8 +14,8 @@
             <div v-else-if="afficheCom">
                 <div v-for="(stand,index) in mesStands" :key="index">
                     <h4 style="font-size: 20px">{{ stand.nomStand }}</h4>
-                    <v-row v-if="commantaires.filter(c=>c.idStand==stand.id).length>0">
-                        <v-col v-for="(com,index2) in commantaires.filter(c=>c.idStand==stand.id)" :key="index2"
+                    <v-row v-if="commantaires.filter(c=>c.idStand===stand.id).length>0">
+                        <v-col v-for="(com,index2) in commantaires.filter(c=>c.idStand===stand.id)" :key="index2"
                                cols="4">
                             <v-card class="pa-1">{{ com.commentaire }}</v-card>
                         </v-col>
@@ -42,13 +42,18 @@
         </div>
         <div class="border">
             <h3>Mes Evenements</h3>
+            <v-btn @click="changeVue3">Afficher/cacher</v-btn>
             <p v-if="mesEvenements.length === 0" style="text-align: center">Vous n'avez pas d'evenement</p>
-            <v-row v-else>
-                <v-col v-for="(event,index) in mesEvenements" :key="index" cols="4">
-                    <v-card class="pa-3">{{ event.libelleEvenement }}</v-card>
-                </v-col>
-            </v-row>
+            <v-data-table v-else-if="afficheEvenement" :headers="headerEvenements" :items="getAllEvenementsData()"/>
         </div>
+      <div class="border">
+        <p v-if="mesEvenements.length === 0" style="text-align: center">Vous n'avez pas pas d'evenement</p>
+        <v-row v-else>
+          <v-col v-for="(event,index) in mesEvenements" :key="index" cols="4">
+            <v-card class="pa-3">{{ event.libelleEvenement }}</v-card>
+          </v-col>
+        </v-row>
+      </div>
     </v-container>
 </template>
 
@@ -59,7 +64,7 @@ import axios from "axios";
 export default {
     name: "HomePrestaView",
     computed: {
-        ...mapState(['currentUser', 'stands', 'evenements']),
+        ...mapState(['currentUser', 'stands', 'evenements', 'users']),
         mesStands() {
             return this.stands.filter(stand => stand.idPresta() === this.currentUser.idUser)
         },
@@ -76,9 +81,42 @@ export default {
             {text: 'Quantite', value: 'quantite'}
         ],
         afficheCom: true,
-        afficheReserve: true
+        afficheReserve: true,
+        afficheEvenement: true,
+
+      headerEvenements:[
+        {text: 'Nom de l\'évenement ', value: 'libelleEvenement'},
+        {text: 'Nombre de participants', value: 'nbUser'},
+        {text:'Capacité maximale',value:'nbPlace'},
+        {text:'Stand',value:'stand'},
+        {text:'Début',value:'heureDebut'},
+        {text:'Fin',value:'heureFin'}
+      ]
     }),
     methods: {
+
+        getAllEvenementsData(){
+          let tab = []
+
+          for(let i = 0; i < this.mesEvenements.length;i++){
+            tab.push(this.getEvenementData(this.mesEvenements[i]))
+          }
+
+          return tab
+        },
+
+        getEvenementData(event){
+          return {
+            "libelleEvenement": event.libelleEvenement,
+            "nbUser":event["reservations"].length,
+            "stand":event.stand.nomStand,
+            "nbPlace":event.stand.nbPlace,
+            "heureDebut":event.heureDebut,
+            "heureFin":event.heureFin
+          };
+        },
+
+
         goStand(idStand) {
             console.log(idStand)
             this.$router.push({name: "stand", params: {id: idStand}})
@@ -88,7 +126,11 @@ export default {
         },
         changeVue2() {
             this.afficheReserve = !this.afficheReserve
+        },
+        changeVue3(){
+          this.afficheEvenement = !this.afficheEvenement
         }
+
     },
     mounted() {
         axios.get("http://localhost:3000/users/" + this.currentUser.idUser + "/commentaire")

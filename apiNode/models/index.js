@@ -53,6 +53,9 @@ db.livreOr = LivreOr(Sequelize, sequelize)
 import {ReserverProduit} from "./reserverProduit.js"
 
 db.reserverProduit = ReserverProduit(Sequelize, sequelize)
+import {Reservation} from "./reservation.js"
+
+db.reservation = Reservation(Sequelize,sequelize)
 
 
 db.user.belongsTo(db.role, {foreignKey: 'idRole'})
@@ -87,6 +90,11 @@ db.reserverProduit.belongsTo(db.produit, {foreignKey: 'idProduit'})
 
 db.user.hasMany(db.reserverProduit, {foreignKey: 'idUser'})
 db.reserverProduit.belongsTo(db.user, {foreignKey: 'idUser'})
+
+db.evenement.hasMany(db.reservation,{foreignKey:'idEvenement'})
+db.reservation.belongsTo(db.evenement,{foreignKey:'idEvenement'})
+
+
 
 let option = {}
 option.force = true

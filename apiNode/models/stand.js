@@ -13,6 +13,10 @@ export const Stand = (Sequelize, sequelize) => {
         nomStand: {
             type: Sequelize.STRING,
             allowNull: false
-        }
+        },
+        nbPlace: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
     })
 }
