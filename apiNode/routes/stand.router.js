@@ -138,5 +138,25 @@ router.delete("/:id", standController.deleteStand)
  *              description: Erreur lors de la suppression du stand
  */
 
+router.delete("/commentaire/:id", standController.deleteCommentaire)
+/**
+ * @swagger
+ * /stands/{id}:
+ *  delete:
+ *      description: Supprime un commentaire de la base de données
+ *      tags:
+ *          - Stands
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            type: integer
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Stand supprimé avec succés
+ *          '404':
+ *              description: Erreur lors de la suppression du stand
+ */
+
 
 export default router;

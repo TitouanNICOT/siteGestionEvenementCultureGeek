@@ -17,7 +17,7 @@
                     <v-row v-if="commantaires.filter(c=>c.idStand==stand.id).length>0">
                         <v-col v-for="(com,index2) in commantaires.filter(c=>c.idStand==stand.id)" :key="index2"
                                cols="4">
-                            <v-card class="pa-1">{{ com.commentaire }}</v-card>
+                            <v-card class="pa-1" @click="supprimerCom(com)">{{ com.commentaire }}</v-card>
                         </v-col>
                     </v-row>
                     <p v-else>Pas de commentaire pour ce stand</p>
@@ -83,12 +83,16 @@ export default {
             console.log(idStand)
             this.$router.push({name: "stand", params: {id: idStand}})
         },
-        changeVue() {
-            this.afficheCom = !this.afficheCom
+        supprimerCom(com) {
+            if (confirm("Voulez vous supprimer ce commentaire ? :\n"+com.commentaire)) {
+                axios.delete("http://localhost:3000/stands/commentaire/" + com.idLivreOr)
+                    .then(() => {
+                        this.commantaires = this.commantaires.filter(c => c.idLivreOr !== com.idLivreOr)
+                    })
+            }
         },
-        changeVue2() {
-            this.afficheReserve = !this.afficheReserve
-        }
+        changeVue() {this.afficheCom = !this.afficheCom},
+        changeVue2() {this.afficheReserve = !this.afficheReserve}
     },
     mounted() {
         axios.get("http://localhost:3000/users/" + this.currentUser.idUser + "/commentaire")
