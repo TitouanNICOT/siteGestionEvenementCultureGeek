@@ -7,16 +7,21 @@
         <v-main>
             <router-view/>
         </v-main>
+
+        <v-footer color="var(--primary-color)" dark>
+            <Footer></Footer>
+        </v-footer>
     </v-app>
 </template>
 
 <script>
 import {mapActions, mapMutations} from 'vuex'
 import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 
 export default {
     name: 'App',
-    components: {NavBar},
+    components: {NavBar,Footer},
     data: () => ({}),
     methods: {
         ...mapActions(['loading']),
