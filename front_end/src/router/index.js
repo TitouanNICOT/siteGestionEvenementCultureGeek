@@ -14,6 +14,7 @@ import {ADMIN, PRESTA, CLIENT} from "@/services/roles";
 import HomeAdminView from "@/views/HomeAdminView";
 import ProfilUserView from "@/views/ProfilUserView.vue";
 import PrestaPublicView from "@/views/PrestaPublicView.vue";
+import EvenementDetailView from "@/views/EvenementDetailView.vue";
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,11 @@ const routes = [
         path: '/evenement',
         name: 'evenement',
         component: EvenementView
+    },
+    {
+        path: '/evenement/:id',
+        name: 'evenementById',
+        component: EvenementDetailView
     },
     {
         path: '/login',

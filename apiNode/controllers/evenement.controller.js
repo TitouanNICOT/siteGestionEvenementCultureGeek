@@ -13,10 +13,11 @@ const getEvenementById = async (req, res) => {
     if (isNaN(id))
         return res.status(404).send({success: 0, data: "id is not a number"})
 
-    db.evenement.findByPk(id).then((results) => {
-        return res.status(200).send({success: 1, data: results})
-    }).catch((error) => {
-        return res.status(404).send({success: 0, data: error})
+    db.evenement.findByPk(id, {include: [db.type_evenement, db.reservation, db.stand,]})
+        .then((results) => {
+            return res.status(200).send({success: 1, data: results})
+        }).catch((error) => {
+            return res.status(404).send({success: 0, data: error})
     })
 }
 

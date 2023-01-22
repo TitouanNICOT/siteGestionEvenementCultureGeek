@@ -8,7 +8,7 @@
         <div style="border: black 1px solid; padding: 10px">
             <h2>Livre d'or :</h2>
             <p>Liste des commentaires sur le stand</p>
-            <div v-if="info.livreOr.length===0"> Pas de commantaire</div>
+            <div v-if="info.livreOr.length===0"> Pas de commentaire</div>
             <v-row v-else>
                 <v-col v-for="(com,index) in info.livreOr" :key="index" cols="6">
                     <v-card class="pa-3">{{ com.commentaire }}</v-card>
