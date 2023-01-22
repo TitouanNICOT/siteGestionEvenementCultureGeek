@@ -15,7 +15,7 @@ export default {
     name: "ArticleCard",
     props:{
         titre: String,
-        lien: String,
+        lien: Number,
         image: String
     },
     methods: {
