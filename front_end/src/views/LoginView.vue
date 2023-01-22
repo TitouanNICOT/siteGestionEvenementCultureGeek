@@ -35,7 +35,6 @@ export default {
         ...mapMutations(['setCurrentUser']),
 
         failedEnoughTimes(){
-          console.log(this.fail);
           return this.fail >= 3;
         },
 

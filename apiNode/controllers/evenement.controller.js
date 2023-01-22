@@ -1,7 +1,7 @@
 import db from "../models/index.js"
 
 const list = async (req, res) => {
-    db.evenement.findAll({include: [db.type_evenement, db.stand, db.reservation]},).then((results) => {
+    db.evenement.findAll({include: [db.type_evenement, db.user,db.stand]}).then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
         return res.status(404).send({success: 0, data: error})
@@ -13,7 +13,7 @@ const getEvenementById = async (req, res) => {
     if (isNaN(id))
         return res.status(404).send({success: 0, data: "id is not a number"})
 
-    db.evenement.findByPk(id, {include: [db.type_evenement, db.reservation, db.stand,]})
+    db.evenement.findByPk(id, {include: [db.type_evenement, db.stand,db.user]})
         .then((results) => {
             return res.status(200).send({success: 1, data: results})
         }).catch((error) => {
@@ -81,4 +81,32 @@ const listTypeEvenement = async (req, res) => {
     })
 }
 
-export default {list, newEvenement, getEvenementById, modifEvenement, deleteEvenement, listTypeEvenement};
+const addUserInEvent = async (req, res) => {
+    db.reservation.create({
+        idEvenement: req.params.id,
+        idUser: req.body.idUser
+    }).then(() => {
+        console.log("ok")
+        return res.status(200).send({success: 1})
+    }).catch((error) => {
+        console.error(error)
+        return res.status(404).send({success: 0})
+    })
+}
+
+const removeUserInEvent = async (req, res) => {
+    db.reservation.destroy({
+        where: {
+            idEvenement: req.params.id,
+            idUser: req.body.idUser
+        }
+    }).then(() => {
+        console.log("ok")
+        return res.status(200).send({success: 1})
+    }).catch((error) => {
+        console.error(error)
+        return res.status(404).send({success: 0})
+    })
+}
+
+export default {list, newEvenement, getEvenementById, modifEvenement, deleteEvenement, listTypeEvenement,addUserInEvent,removeUserInEvent};

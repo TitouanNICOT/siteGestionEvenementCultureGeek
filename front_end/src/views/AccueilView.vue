@@ -21,9 +21,9 @@
                     <h1>Evenements en cours et à venir</h1>
                     <hr>
                     <div class="d-grid">
-                        <span v-for="(event, index) in listEvents" :key="index">
+                        <span v-for="(event, index) in evenements" :key="index">
                             <ArticleCard :titre="event.libelleEvenement"
-                                         :lien="event.idStand.toString()">
+                                         :lien="event.idEvenement">
 
                             </ArticleCard>
                         </span>
@@ -37,7 +37,7 @@
 <script>
 
 import ArticleCard from "@/components/ArticleCard";
-import axios from "axios";
+import {mapState} from "vuex";
 
 export default {
     name: "AccueilView",
@@ -49,12 +49,15 @@ export default {
             listEvents: []
         }
     },
-    mounted() {
-        axios.get("http://localhost:3000/evenements/")
-            .then(res => {
-                this.listEvents = res.data.data
-            })
-    }
+    computed: {
+        ...mapState(['evenements'])
+    },
+    // mounted() {
+    //     axios.get("http://localhost:3000/evenements/")
+    //         .then(res => {
+    //             this.listEvents = res.data.data
+    //         })
+    // }
 }
 </script>
 

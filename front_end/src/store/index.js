@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from "axios";
 import {NONCONNECTE} from "@/services/roles";
 import {Stand} from "@/services/stands";
+import {Evenement} from "@/services/evenements";
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
         stands: [],
         evenements: [],
         listeTypeStand: [],
+        listeTypeEvenement: [],
         listeTypeProduit: [],
         currentUser: null,
     },
@@ -46,6 +48,9 @@ export default new Vuex.Store({
         setTypeStands(state, typeStands) {
             state.listeTypeStand = typeStands;
         },
+        setTypeEvenement(state, typeEvenement) {
+            state.listeTypeEvenement = typeEvenement;
+        },
         setTypeProduits(state, typeProduits) {
             state.listeTypeProduit = typeProduits;
         },
@@ -75,10 +80,18 @@ export default new Vuex.Store({
                     if (responce.data.success === 1)
                         context.commit("setTypeProduits", responce.data.data)
                 })
+            axios.get("http://localhost:3000/evenements/listTypeEvenement")
+                .then(responce => {
+                    if (responce.data.success === 1) {
+                        context.commit("setTypeEvenement", responce.data.data)
+                    }
+                })
             axios.get("http://localhost:3000/evenements")
                 .then(responce => {
-                    if (responce.data.success === 1)
-                        context.commit("setEvenements", responce.data.data)
+                    if (responce.data.success === 1) {
+                        const data = responce.data.data.map(d => Evenement.fromAPI(d))
+                        context.commit("setEvenements", data)
+                    }
                 })
             axios.get("http://localhost:3000/users")
                 .then(responce => {

@@ -19,15 +19,13 @@
                 <v-card class="pa-3" outlined @click="goToEvent(elem.idEvenement)">
                     <h3 style="text-align: center;">{{ elem.libelleEvenement }}</h3>
                     <hr>
-                    <span>Type d'événement : <strong>{{ elem.type_evenement.libelleTypeEvenement }}</strong></span>
+                    <span>Type d'événement : <strong>{{ elem.getLibelleTypeEvenement() }}</strong></span>
                     <br>
                     <span>Numéro du stand : <strong>{{ elem.idStand }}</strong></span>
                     <br>
-                    <span>Type de stand : <strong>{{
-                            listeTypeStand[(elem.stand.idTypeStand) - 1].libelleTypeStand
-                        }}</strong></span>
+                    <span>Type de stand : <strong>{{listeTypeStand[(elem.stand.idTypeStand) - 1].libelleTypeStand }}</strong></span>
                     <br>
-                    <span>Nom du stand : <strong>{{ elem.stand.nomStand }}</strong></span>
+                    <span>Nom du stand : <strong>{{ elem.getNomStand() }}</strong></span>
                     <br>
                     <span>Description stand : <strong>{{ elem.stand.descriptionStand }}</strong></span>
                     <br>
@@ -47,7 +45,6 @@ export default {
     name: "EvenementView",
     data: () => {
         return {
-            evenement: [],
             inputFilter: "",
             typeEvenement: '',
         }
@@ -59,11 +56,12 @@ export default {
             return this.evenements.filter(elem => this.verifFiltre(elem))
         },
         listTypeEvenement() {
-            return this.evenements.map(elem => elem.type_evenement.libelleTypeEvenement)
+            return this.evenements.map(elem => elem.getLibelleTypeEvenement())
         }
     },
     methods: {
         goToEvent(num) {
+            console.log("aaaa",num)
             this.$router.push({name: "evenementById", params: {id: num}})
         },
         goToStand(num) {
@@ -74,7 +72,7 @@ export default {
                 return true
             } else {
                 let libelle = elem.libelleEvenement.toLowerCase().includes(this.inputFilter.toLowerCase())
-                let type = elem.type_evenement.libelleTypeEvenement.toLowerCase().includes(this.typeEvenement.toLowerCase())
+                let type = elem.getLibelleTypeEvenement().toLowerCase().includes(this.typeEvenement.toLowerCase())
                 return libelle && type;
             }
         }

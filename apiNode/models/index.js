@@ -24,39 +24,37 @@ try {
 }
 
 import {User} from "./users.js"
-
 db.user = User(Sequelize, sequelize)
+
 import {Role} from "./roles.js"
-
 db.role = Role(Sequelize, sequelize)
+
 import {Stand} from "./stand.js"
-
 db.stand = Stand(Sequelize, sequelize)
+
 import {Type_stand} from "./type_stand.js"
-
 db.type_stand = Type_stand(Sequelize, sequelize)
+
 import {Evenement} from "./evenements.js"
-
 db.evenement = Evenement(Sequelize, sequelize)
+
 import {Type_evenement} from "./type_evenement.js"
-
 db.type_evenement = Type_evenement(Sequelize, sequelize)
+
 import {Type_produit} from "./type_produit.js"
-
 db.type_produit = Type_produit(Sequelize, sequelize)
+
 import {Produit} from "./produit.js"
-
 db.produit = Produit(Sequelize, sequelize)
+
 import {LivreOr} from "./livreOr.js"
-
 db.livreOr = LivreOr(Sequelize, sequelize)
+
 import {ReserverProduit} from "./reserverProduit.js"
-
 db.reserverProduit = ReserverProduit(Sequelize, sequelize)
+
 import {Reservation} from "./reservation.js"
-
-db.reservation = Reservation(Sequelize,sequelize)
-
+db.reservation = Reservation(Sequelize, sequelize)
 
 db.user.belongsTo(db.role, {foreignKey: 'idRole'})
 db.role.hasMany(db.user, {foreignKey: 'idRole'})
@@ -91,9 +89,8 @@ db.reserverProduit.belongsTo(db.produit, {foreignKey: 'idProduit'})
 db.user.hasMany(db.reserverProduit, {foreignKey: 'idUser'})
 db.reserverProduit.belongsTo(db.user, {foreignKey: 'idUser'})
 
-db.evenement.hasMany(db.reservation,{foreignKey:'idEvenement'})
-db.reservation.belongsTo(db.evenement,{foreignKey:'idEvenement'})
-
+db.user.belongsToMany(db.evenement, {through: db.reservation, foreignKey: 'idUser'})
+db.evenement.belongsToMany(db.user, {through: db.reservation, foreignKey: 'idEvenement'})
 
 
 let option = {}

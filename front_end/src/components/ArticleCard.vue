@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         goArticle() {
-            this.$router.push({name: "stand", params: {id: this.lien}})
+            this.$router.push({name: "evenementById", params: {id: this.lien}})
         }
     }
 }

@@ -154,4 +154,7 @@ router.delete("/:id", evenementController.deleteEvenement)
  *              description: Erreur lors de la suppression de l'evenement
  */
 
+router.post("/reservation/:id", evenementController.addUserInEvent)
+router.delete("/reservation/:id", evenementController.removeUserInEvent)
+
 export default router;
