@@ -2,19 +2,19 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CarteView from '../views/CarteView.vue'
 import AccueilView from "@/views/AccueilView";
-import StandDetailView from "@/views/StandDetailView";
-import StandView from "@/views/StandView";
-import EvenementView from "@/views/EvenementView.vue";
+import StandDetailView from "@/views/stands/StandDetailView";
+import StandView from "@/views/stands/StandView";
+import EvenementView from "@/views/evenements/EvenementView.vue";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import BoutiqueView from "@/views/BoutiqueView";
-import HomePrestaView from "@/views/HomePrestaView";
+import HomePrestaView from "@/views/users/HomePrestaView";
 import cookies from "vue-cookies";
 import {ADMIN, PRESTA, CLIENT} from "@/services/roles";
-import HomeAdminView from "@/views/HomeAdminView";
-import ProfilUserView from "@/views/ProfilUserView.vue";
-import PrestaPublicView from "@/views/PrestaPublicView.vue";
-import EvenementDetailView from "@/views/EvenementDetailView.vue";
+import HomeAdminView from "@/views/users/HomeAdminView";
+import ProfilUserView from "@/views/users/ProfilUserView.vue";
+import PrestaPublicView from "@/views/users/PrestaPublicView.vue";
+import EvenementDetailView from "@/views/evenements/EvenementDetailView.vue";
 
 Vue.use(VueRouter)
 
@@ -90,7 +90,7 @@ const routes = [
     {
         path: '/timeline',
         name: 'timeline',
-        component: () => import('../views/TimelineView.vue')
+        component: () => import('../views/evenements/TimelineView.vue')
     },
     {
         path: '/infosPresta/:idUser',
