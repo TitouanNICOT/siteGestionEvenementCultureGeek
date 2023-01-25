@@ -55,9 +55,7 @@ export default new Vuex.Store({
             state.listeTypeProduit = typeProduits;
         },
         removeStand(state, stand) {
-            console.log(stand)
             const indexStand = state.stands.findIndex(s => s.id === stand);
-            console.log(indexStand)
             state.stands.splice(indexStand, 1);
         },
         setCurrentUser(state, user) {
@@ -65,46 +63,41 @@ export default new Vuex.Store({
         },
         removeCurrentUser(state) {
             state.currentUser = null;
+        },
+        linkStandAndEvent(state) {
+            console.log(state.stands)
+            console.log(state.evenements)
+            state.evenements.forEach(event => {
+                event.setStand( state.stands.find(stand => stand.id === event.idStand) )
+            })
         }
     },
     actions: {
-        loading(context) {
+        async loading(context) {
             console.log("debut chargement")
-            axios.get("http://localhost:3000/stands/typeStand")
-                .then(responce => {
-                    if (responce.data.success === 1)
-                        context.commit("setTypeStands", responce.data.data)
-                })
-            axios.get("http://localhost:3000/produits/listTypeProduit")
-                .then(responce => {
-                    if (responce.data.success === 1)
-                        context.commit("setTypeProduits", responce.data.data)
-                })
-            axios.get("http://localhost:3000/evenements/listTypeEvenement")
-                .then(responce => {
-                    if (responce.data.success === 1) {
-                        context.commit("setTypeEvenement", responce.data.data)
-                    }
-                })
-            axios.get("http://localhost:3000/evenements")
-                .then(responce => {
-                    if (responce.data.success === 1) {
-                        const data = responce.data.data.map(d => Evenement.fromAPI(d))
-                        context.commit("setEvenements", data)
-                    }
-                })
-            axios.get("http://localhost:3000/users")
-                .then(responce => {
-                    if (responce.data.success === 1)
-                        context.commit("setUsers", responce.data.data)
-                })
-            axios.get("http://localhost:3000/stands")
-                .then(responce => {
-                    if (responce.data.success === 1) {
-                        const data = responce.data.data.map(d => Stand.fromAPI(d))
-                        context.commit("setStands", data)
-                    }
-                })
+
+            var res = await axios.get("http://localhost:3000/stands/typeStand")
+            context.commit("setTypeStands", res.data.data)
+
+            res = await axios.get("http://localhost:3000/produits/listTypeProduit")
+            context.commit("setTypeProduits", res.data.data)
+
+            res = await axios.get("http://localhost:3000/evenements/listTypeEvenement")
+            context.commit("setTypeEvenement", res.data.data)
+
+            res = await axios.get("http://localhost:3000/users")
+            context.commit("setUsers", res.data.data)
+
+            res = await axios.get("http://localhost:3000/evenements")
+            var data = res.data.data.map(d => Evenement.fromAPI(d))
+            context.commit("setEvenements", data)
+
+            res = await axios.get("http://localhost:3000/stands")
+            data = res.data.data.map(d => Stand.fromAPI(d))
+            context.commit("setStands", data)
+
+            context.commit("linkStandAndEvent")
+
             console.log("fin chargement")
         }
     },

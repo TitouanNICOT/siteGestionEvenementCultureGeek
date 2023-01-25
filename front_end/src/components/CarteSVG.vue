@@ -282,7 +282,7 @@ export default {
                 this.$emit("deselection")
             }
             if (!isNaN(event.target.id)) {
-                this.$emit('standSelected', {id: event.target.id})
+                this.$emit('standSelected', {id: parseInt(event.target.id)})
             }
         }
     },
@@ -304,9 +304,6 @@ export default {
         this.tabCouleur.forEach(stand => {
             document.getElementById(stand.id).style.fill = stand.getCouleur();
         })
-        // Object.keys(this.tabCouleur).forEach(stand=>{
-        //         document.getElementById(stand).style.fill=this.tabCouleur[stand];
-        //     })
     }
 }
 </script>

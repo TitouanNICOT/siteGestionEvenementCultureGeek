@@ -15,11 +15,9 @@ const newStand = async (req, res) => {
         descriptionStand: req.body.description,
         nomStand: req.body.nomStand,
         idPrestataire: req.body.prestataire,
-        idTypeStand: req.body.typeStand
+        idTypeStand: req.body.typeStand,
+        nbPlace: req.body.nbPlace ? req.body.nbPlace : 0
     }).then((result) => {
-        // return res.status(200).send({success: 1, result: result})
-        // req.params.id=result.idStand
-        // return getStand(req,res)
         db.stand.findByPk(req.body.id, {include: [db.user, db.type_stand]}).then((result) => {
             return res.status(200).send({success: 1, data: result})
         }).catch((error) => {
@@ -31,7 +29,7 @@ const newStand = async (req, res) => {
     });
 }
 const getStand = async (req, res) => {
-    db.stand.findByPk(req.params.id, {include: [db.user, db.type_stand, "livreOr"]})
+    db.stand.findByPk(req.params.id, {include: [db.user, db.type_stand]})
         .then((result) => {
             return res.status(200).send({success: 1, data: result})
         }).catch((error) => {
@@ -96,4 +94,14 @@ const getStandWithEvents = async (req, res) => {
     })
 }
 
-export default {listStand, newStand, getStand, listeTypeStand, newCommentaire, deleteStand,deleteCommentaire, getStandWithEvents}
+const getCommentaire = (req,res) => {
+  db.livreOr.findAll({
+    where: {idStand: req.params.id},
+  }).then((results) => {
+    return res.status(200).send({success: 1, data: results})
+  }).catch((error) => {
+    return res.status(404).send({success: 0, data: error})
+  })
+}
+
+export default {listStand, newStand, getStand, listeTypeStand, newCommentaire, deleteStand,deleteCommentaire, getStandWithEvents,getCommentaire}

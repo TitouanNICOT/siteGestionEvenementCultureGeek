@@ -34,6 +34,8 @@ router.get("/", evenementController.list)
  *              description: Erreur lors de l'envoi des évenements
  */
 
+router.get("/reservation", evenementController.listReservation)
+
 router.get("/:id", evenementController.getEvenementById)
 /**
  * @swagger
@@ -53,6 +55,8 @@ router.get("/:id", evenementController.getEvenementById)
  *          '404':
  *              description: Erreur lors de l'envoi de l'evenement
  */
+
+router.get("/:id/reservation/",evenementController.getReservationByEvenement)
 
 router.post("/", evenementController.newEvenement)
 /**

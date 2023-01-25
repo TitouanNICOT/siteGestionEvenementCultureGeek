@@ -94,6 +94,9 @@ router.post("/:id/commentaire", standController.newCommentaire)
  *              description: Erreur lors de l'ajout du commentare au stand
  */
 
+router.get("/:id/commentaire", standController.getCommentaire)
+
+
 //la suite des routes necessite une authentification de role admin
 // router.use(verificationDroit,droitAdmin)
 

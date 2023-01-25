@@ -77,7 +77,7 @@ export default {
             return this.mesEvenements.map(event => {
                 return{
                 "libelleEvenement": event.libelleEvenement,
-                "nbUser": event["reservations"].length,
+                "nbUser": this.reservationEvenement.filter(r=>r.idEvenement===event.idEvenement).length,
                 "stand": event.stand.nomStand,
                 "nbPlace": event.stand.nbPlace,
                 "heureDebut": moment(event.heureDebut).utc().format('DD/MM/YYYY HH:mm:ss'),
@@ -88,6 +88,7 @@ export default {
     data: () => ({
         commantaires: [],
         produitsReserves: [],
+        reservationEvenement: [],
         header: [
             {text: 'Nom du produit', value: 'libelleProduit'},
             {text: 'Utilisateur', value: 'idUser'},
@@ -141,6 +142,10 @@ export default {
         axios.get("http://localhost:3000/reservations/prestataire/" + this.currentUser.idUser)
             .then(res => {
                 this.produitsReserves = res.data.data
+            })
+        axios.get("http://localhost:3000/evenements/reservation")
+            .then(res => {
+                this.reservationEvenement = res.data.data
             })
     }
 }

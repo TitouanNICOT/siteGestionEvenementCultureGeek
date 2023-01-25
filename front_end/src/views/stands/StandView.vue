@@ -90,9 +90,6 @@ export default {
             this.typeStand = '';
             this.presta = '';
         }
-    },
-    created() {
-        console.log("created")
     }
 }
 </script>

@@ -8,22 +8,24 @@ const couleurStand = {
 }
 
 class Stand {
-    constructor(idStand, nomStand, descriptionStand, typeStand, user, idEvenement) {
-        this.id = idStand;
+    constructor(idStand, nomStand, descriptionStand, typeStand, user,nbPlace) {
+        this.id = idStand;// type = Int
         this.nomStand = nomStand;
         this.descriptionStand = descriptionStand;
         this.typeStand = typeStand;
         this.user = user;
-        this.idEvenement = idEvenement;
+        this.listEvenement = [];
+        this.nbPlace=nbPlace;
     }
 
     static fromAPI(data) {
-        return new Stand(data.idStand.toString(),
+        return new Stand(data.idStand,
             data.nomStand,
             data.descriptionStand,
             data.type_stand,
             data.user,
-            data.idEvenement)
+            data.nbPlace
+        )
     }
 
     toAPI() {
@@ -32,8 +34,7 @@ class Stand {
             nomStand: this.nomStand,
             descriptionStand: this.descriptionStand,
             idTypeStand: this.typeStand.idTypeStand,
-            idUser: this.user.idUser,
-            idEvenement: this.idEvenement
+            idUser: this.user.idUser
         }
     }
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 class Evenement {
-    constructor(idEvenement, libelleEvenement, heureDebut, heureFin,idStand,typeEvenement,reservations,stand) {
+    constructor(idEvenement, libelleEvenement, heureDebut, heureFin,idStand,typeEvenement,reservations) {
         this.idEvenement = idEvenement;
         this.libelleEvenement = libelleEvenement;
         this.heureDebut = heureDebut;
@@ -9,7 +9,7 @@ class Evenement {
         this.idStand = idStand;
         this.typeEvenement = typeEvenement;
         this.reservations = reservations;
-        this.stand = stand;
+        this.stand = undefined;
     }
 
     static fromAPI(data) {
@@ -19,8 +19,7 @@ class Evenement {
             data.heureFin,
             data.idStand,
             data.type_evenement,
-            data.users,
-            data.stand
+            data.users
         )
     }
 
@@ -39,10 +38,10 @@ class Evenement {
         return this.stand.typeStand;
     }
 
-    //
-    // setStand(stand){
-    //     this.stand = stand;
-    // }
+    setStand(stand){
+        this.stand = stand;
+        stand.listEvenement.push(this);
+    }
 
     // toAPI() {
     //     return {

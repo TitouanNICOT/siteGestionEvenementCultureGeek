@@ -16,14 +16,14 @@
         </div>
         <v-row class="mx-5">
             <v-col v-for="(elem,index) in evenementsfiltre" :key="index" cols="3">
-                <v-card class="pa-3" outlined @click="goToEvent(elem.idEvenement)">
+                <v-card class="pa-3" outlined @click="goToEvent(elem.idEvenement)" v-if="elem.stand">
                     <h3 style="text-align: center;">{{ elem.libelleEvenement }}</h3>
                     <hr>
                     <span>Type d'événement : <strong>{{ elem.getLibelleTypeEvenement() }}</strong></span>
                     <br>
                     <span>Numéro du stand : <strong>{{ elem.idStand }}</strong></span>
                     <br>
-                    <span>Type de stand : <strong>{{listeTypeStand[(elem.stand.idTypeStand) - 1].libelleTypeStand }}</strong></span>
+                    <span>Type de stand : <strong>{{ elem.stand.libelleTypeStand() }}</strong></span>
                     <br>
                     <span>Nom du stand : <strong>{{ elem.getNomStand() }}</strong></span>
                     <br>
@@ -61,7 +61,6 @@ export default {
     },
     methods: {
         goToEvent(num) {
-            console.log("aaaa",num)
             this.$router.push({name: "evenementById", params: {id: num}})
         },
         goToStand(num) {

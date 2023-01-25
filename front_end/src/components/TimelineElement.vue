@@ -125,39 +125,7 @@ export default {
     data() {
         return {
             hours: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
-            scenes: [
-                // {
-                //     nomStand: 'Scene 1',
-                //     evenements: [
-                //         {
-                //             libelleEvenement: 'test',
-                //             heureDebut: new Date(2023, 0, 7, 15, 0, 0),
-                //             heureFin: new Date(2023, 0, 7, 18, 30, 0),
-                //             left: 0,
-                //             width: 0
-                //         },
-                //         {
-                //             libelleEvenement: 'test2',
-                //             heureDebut: new Date(2023, 0, 7, 18, 30, 0),
-                //             heureFin: new Date(2023, 0, 7, 19, 30, 0),
-                //             left: 0,
-                //             width: 0
-                //         }
-                //     ]
-                // },
-                // {
-                //     name: 'Scene 2',
-                //     events: [
-                //         {
-                //             libelleEvenement: 'Naël on the rocks',
-                //             heureDebut: new Date(2023, 0, 7, 10, 0, 0),
-                //             heureFin: new Date(2023, 0, 7, 22, 30, 0),
-                //             left: 0,
-                //             width: 0
-                //         }
-                //     ]
-                // },
-            ]
+            scenes: []
         }
     },
     async beforeMount() {

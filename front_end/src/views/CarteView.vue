@@ -34,7 +34,7 @@
 import CarteSVG from "../components/CarteSVG.vue"
 import FormStand from "@/components/formStand";
 import axios from "axios";
-import {mapGetters, mapMutations, mapState} from "vuex";
+import {mapGetters, mapMutations,mapState} from "vuex";
 import {ADMIN} from "@/services/roles";
 import {deleteStand, Stand} from "@/services/stands";
 
@@ -53,11 +53,10 @@ export default {
         ...mapState(["stands"]),
         ...mapGetters(["listePresta", "currentRole", "currentTokenUser"])
     },
-    components: {FormStand, CarteSVG},
+    components: {FormStand,CarteSVG},
     methods: {
         ...mapMutations(["addStand"]),
         selectionStand(event) {
-            console.log(this.stands)
             if (event.id === this.idSelected)
                 this.deselection()
             else {
@@ -91,9 +90,8 @@ export default {
         createStand(data) {
             console.log("creation stand")
             data.id = this.idSelected
-            axios.post("http://localhost:3000/stands", data,
-                {headers: {authorization: this.currentTokenUser}}
-            ).then(responce => {
+            axios.post("http://localhost:3000/stands", data)
+                .then(responce => {
                 console.log(responce.data)
                 if (responce.data.success === 1) {
                     this.standSelected = Stand.fromAPI(responce.data.data)
