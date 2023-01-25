@@ -26,7 +26,7 @@
 
 <script>
 
-import axios from "axios";
+import myaxios from "@/services/axios";
 import {mapState} from "vuex";
 
 export default {
@@ -54,7 +54,7 @@ export default {
             if(this.prix < 0 || this.quantite < 0){
                 alert("Veuillez entrer des valeurs positives");return;
             }
-            axios.put("http://localhost:3000/produits", {
+            myaxios.put("/produits", {
                 libelleProduit: this.nom,
                 descriptionProduit: this.description,
                 prix: this.prix,
@@ -73,7 +73,7 @@ export default {
     watch: {
         async show(newVal){
             if (newVal){
-                axios.get(`http://localhost:3000/produits/${this.idProduit}`)
+                myaxios.get(`/produits/${this.idProduit}`)
                     .then(response => {
                         console.log(response.data);
                         this.nom = response.data.data.libelleProduit;

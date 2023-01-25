@@ -29,7 +29,7 @@
 
 <script>
 import {mapState} from "vuex";
-// import axios from "axios";
+// import myaxios from "@/services/axios";
 
 export default {
   name: "HomePrestaView",

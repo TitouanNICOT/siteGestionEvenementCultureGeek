@@ -33,10 +33,10 @@
 <script>
 import CarteSVG from "../components/CarteSVG.vue"
 import FormStand from "@/components/formStand";
-import axios from "axios";
+import myaxios from "@/services/axios";
 import {mapGetters, mapMutations,mapState} from "vuex";
 import {ADMIN} from "@/services/roles";
-import {deleteStand, Stand} from "@/services/stands";
+import Stand from "@/services/stands";
 
 export default {
     name: "CarteView",
@@ -75,7 +75,7 @@ export default {
             this.idSelected = -1
         },
         supprimerStand() {
-            deleteStand(this.idSelected)
+            myaxios.delete("/stands/" + this.idSelected)
                 .then(responce => {
                     if (responce.data.success === 1) {
                         console.log(this.idSelected)
@@ -90,7 +90,7 @@ export default {
         createStand(data) {
             console.log("creation stand")
             data.id = this.idSelected
-            axios.post("http://localhost:3000/stands", data)
+            myaxios.post("/stands", data)
                 .then(responce => {
                 console.log(responce.data)
                 if (responce.data.success === 1) {

@@ -40,9 +40,8 @@
 
 <script>
 
-import {addCommentaire} from "@/services/stands";
 import {mapState} from "vuex";
-import axios from "axios";
+import myaxios from "@/services/axios";
 
 export default {
     name: "StandDetailView",
@@ -66,8 +65,9 @@ export default {
         },
         addCommentaireAction() {
             if (this.commentaire !== "") {
-                addCommentaire(this.idStand, this.commentaire)
-                    .then((responce) => {
+                myaxios.post(`/stands/${this.idStand}/commentaire`, {
+                    commentaire: this.commentaire
+                }).then((responce) => {
                         if (responce.data.success === 1) {
                             this.livreOr.push({commentaire: this.commentaire})
                             this.commentaire = ""
@@ -84,7 +84,7 @@ export default {
         }
     },
     created() {
-        axios.get(`http://localhost:3000/stands/${this.idStand}/commentaire`)
+        myaxios.get(`/stands/${this.idStand}/commentaire`)
             .then((responce) => {
                 this.livreOr = responce.data.data
             })

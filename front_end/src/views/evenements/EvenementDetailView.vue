@@ -28,7 +28,7 @@
 <script>
 import {mapGetters, mapState} from "vuex";
 import {NONCONNECTE} from "@/services/roles";
-import axios from "axios";
+import myaxios from "@/services/axios";
 
 export default {
     name: "EvenementDetailView",
@@ -56,7 +56,7 @@ export default {
         },
         // fetchEventInfo(id) {
         //     console.log(id)
-        //   axios.get("http://localhost:3000/evenements/" + id)
+        //   myaxios.get("/evenements/" + id)
         //     .then(response => {
         //       this.info = response.data.data
         //         this.dejaReserve=this.info.users.filter(res => res.idUser === this.currentUser.idUser).length > 0
@@ -72,7 +72,7 @@ export default {
                 return;
             }
             try {
-                await axios.post(`http://localhost:3000/evenements/reservation/${this.idEvenement}`, {
+                await myaxios.post(`/evenements/reservation/${this.idEvenement}`, {
                     idUser: this.currentUser.idUser
                 });
                 this.reservations.push({idUser: this.currentUser.idUser, idEvenement: this.idEvenement})
@@ -85,7 +85,7 @@ export default {
         },
         async annulerReservationEvent() {
             try {
-                await axios.delete(`http://localhost:3000/evenements/reservation/${this.idEvenement}`,
+                await myaxios.delete(`/evenements/reservation/${this.idEvenement}`,
                     {data: {idUser: this.currentUser.idUser}}
                 );
                 this.reservations.splice(this.reservations.findIndex(res => res.idUser === this.currentUser.idUser), 1)
@@ -99,7 +99,7 @@ export default {
     },
     created() {
         this.idEvenement = this.$route.params.id
-        axios.get(`http://localhost:3000/evenements/${this.idEvenement}/reservation`)
+        myaxios.get(`/evenements/${this.idEvenement}/reservation`)
             .then(response => {
                 this.reservations = response.data.data
                 if (this.currentUser) {

@@ -24,7 +24,7 @@ export default {
         }
     },
     mounted() {
-        axios.get("http://localhost:3000/users")
+        myaxios.get("/users")
             .then(response => {
                 if (response.data.success === 1)
                     this.data = response.data.data

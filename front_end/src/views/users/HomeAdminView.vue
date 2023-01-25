@@ -28,7 +28,7 @@
 
 import {mapState} from "vuex";
 import {CLIENT, PRESTA} from "@/services/roles";
-import axios from "axios";
+import myaxios from "@/services/axios";
 
 export default {
     name: 'HomeView',
@@ -49,7 +49,7 @@ export default {
     },
     methods:{
         goPresta(idUser){
-            axios.patch('http://localhost:3000/users/'+idUser, {
+            myaxios.patch('/users/'+idUser, {
                 idRole: PRESTA
             }).then(() => {
                 this.$store.state.users.find(user => user.idUser === idUser).idRole = PRESTA;

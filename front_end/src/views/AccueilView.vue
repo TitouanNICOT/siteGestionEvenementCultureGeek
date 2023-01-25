@@ -53,7 +53,7 @@ export default {
         ...mapState(['evenements'])
     },
     // mounted() {
-    //     axios.get("http://localhost:3000/evenements/")
+    //     axios.get("/evenements/")
     //         .then(res => {
     //             this.listEvents = res.data.data
     //         })

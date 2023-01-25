@@ -60,7 +60,7 @@
 
 <script>
 import {mapState} from "vuex";
-import axios from "axios";
+import myaxios from "@/services/axios";
 import moment from "moment";
 
 export default {
@@ -117,7 +117,7 @@ export default {
         },
         supprimerCom(com) {
             if (confirm("Voulez vous supprimer ce commentaire ? :\n" + com.commentaire)) {
-                axios.delete("http://localhost:3000/stands/commentaire/" + com.idLivreOr)
+                myaxios.delete("/stands/commentaire/" + com.idLivreOr)
                     .then(() => {
                         this.commantaires = this.commantaires.filter(c => c.idLivreOr !== com.idLivreOr)
                     })
@@ -135,15 +135,15 @@ export default {
 
     },
     mounted() {
-        axios.get("http://localhost:3000/users/" + this.currentUser.idUser + "/commentaire")
+        myaxios.get("/users/" + this.currentUser.idUser + "/commentaire")
             .then(res => {
                 this.commantaires = res.data.data
             })
-        axios.get("http://localhost:3000/reservations/prestataire/" + this.currentUser.idUser)
+        myaxios.get("/reservations/prestataire/" + this.currentUser.idUser)
             .then(res => {
                 this.produitsReserves = res.data.data
             })
-        axios.get("http://localhost:3000/evenements/reservation")
+        myaxios.get("/evenements/reservation")
             .then(res => {
                 this.reservationEvenement = res.data.data
             })

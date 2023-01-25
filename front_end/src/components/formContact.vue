@@ -12,7 +12,7 @@
 
 <script>
 import {mapState, mapGetters} from "vuex";
-import axios from "axios";
+import myaxios from "@/services/axios";
 
 export default {
     name: "formStand",
@@ -41,7 +41,7 @@ export default {
             this.class = "";
             setTimeout(async () => {
                 if (this.checkForm()) {
-                    await axios.post("http://localhost:3000/mail", {
+                    await myaxios.post("/mail", {
                         email: this.email,
                         sujet: this.sujet,
                         message: this.message

@@ -117,7 +117,7 @@ section {
 </style>
 
 <script>
-import axios from "axios";
+import myaxios from "@/services/axios";
 
 export default {
     name: 'TimelineElement',
@@ -129,7 +129,7 @@ export default {
         }
     },
     async beforeMount() {
-        this.scenes = await axios.get('http://localhost:3000/stands/withEvents')
+        this.scenes = await myaxios.get('/stands/withEvents')
             .then(response => {
                 return response.data.data;
             })

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import myaxios from "@/services/axios";
 import {mapMutations} from "vuex";
 import {roles} from "@/services/roles";
 // import {mapGetters, mapMutations, mapState} from "vuex";
@@ -53,7 +53,7 @@ export default {
         ...mapMutations(['setCurrentUser']),
         registerUser() {
             if (this.validator()) {
-                axios.post('http://localhost:3000/connection/register', {
+                myaxios.post('/connection/register', {
                     nom: this.nom,
                     prenom: this.prenom,
                     pseudo: this.username,

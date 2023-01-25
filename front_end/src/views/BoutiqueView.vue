@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import myaxios from "@/services/axios";
 import {mapGetters, mapState} from "vuex";
 import {NONCONNECTE, PRESTA} from "@/services/roles";
 import DetailProduit from "@/components/boutique/DetailProduit";
@@ -57,7 +57,7 @@ export default {
             this.$router.push({name: "stand", params: {id: this.idStand}})
         },
         refresh(){
-            axios.get("http://localhost:3000/boutique/" + this.idStand)
+            myaxios.get("/boutique/" + this.idStand)
                 .then(responce => {
                     this.listProduit = responce.data.data
                 }).catch(() => {

@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import myaxios from "@/services/axios";
 import {mapGetters, mapState} from "vuex";
 import {NONCONNECTE, PRESTA} from "@/services/roles";
 
@@ -63,7 +63,7 @@ export default {
                 return;
             }
             try {
-                const response = await axios.post(`http://localhost:3000/reservations/`, {
+                const response = await myaxios.post(`/reservations/`, {
                     quantite: this.quantite,
                     idUser: this.currentUser.idUser,
                     idProduit: this.idProduit
@@ -79,7 +79,7 @@ export default {
         },
         supprimer(){
             if (confirm("Etes-vous sur de supprimer le produit ?")) {
-                axios.delete(`http://localhost:3000/produits/${this.idProduit}`)
+                myaxios.delete(`/produits/${this.idProduit}`)
                     .then(() => {
                         alert("Le produit a bien été supprimé");
                         this.showDetail = false;
@@ -94,7 +94,7 @@ export default {
     watch: {
         async showDetail(newVal){
             if (newVal){
-                axios.get(`http://localhost:3000/produits/${this.idProduit}`)
+                myaxios.get(`/produits/${this.idProduit}`)
                     .then(response => {
                         console.log(response.data);
                         this.produit = response.data.data;

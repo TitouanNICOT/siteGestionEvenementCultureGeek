@@ -1,5 +1,3 @@
-import axios from "axios";
-
 class Evenement {
     constructor(idEvenement, libelleEvenement, heureDebut, heureFin,idStand,typeEvenement,reservations) {
         this.idEvenement = idEvenement;
@@ -56,16 +54,4 @@ class Evenement {
 
 }
 
-    const getEvenement = (idEvenement) => {
-    return axios.get("http://localhost:3000/evenements/" + idEvenement)
-}
-
-const getAllEvenement = () => {
-    return axios.get("http://localhost:3000/evenements/")
-}
-
-const deleteEvenement = (idEvenement) => {
-    return axios.delete("http://localhost:3000/evenements/" + idEvenement)
-}
-
-export {Evenement,getEvenement, deleteEvenement, getAllEvenement}
+export default Evenement

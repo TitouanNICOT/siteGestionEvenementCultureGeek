@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import myaxios from 'axios';
 import {mapState} from "vuex";
 
 export default {
@@ -34,7 +34,7 @@ export default {
         ]
     }),
     mounted() {
-        axios.get("http://localhost:3000/reservations/user/" + this.currentUser.idUser)
+        myaxios.get("/reservations/user/" + this.currentUser.idUser)
             .then(res => {
                 this.produitsReserves = res.data.data;
                 console.log(this.produitsReserves);

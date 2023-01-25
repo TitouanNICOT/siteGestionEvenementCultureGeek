@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import myaxios from "@/services/axios";
 import {mapMutations} from "vuex";
 import {ADMIN, PRESTA, roles} from "@/services/roles";
 // import {mapGetters, mapMutations, mapState} from "vuex";
@@ -49,7 +49,7 @@ export default {
                 alert("pas de password ecrit");
                 return
             }
-            axios.post('http://localhost:3000/connection/login', {
+            myaxios.post('/connection/login', {
                 pseudo: this.pseudo,
                 password: this.password
             }).then(response => {
