@@ -41,6 +41,10 @@ class Stand {
         return this.user === undefined ? "null" : this.user.nom + " " + this.user.prenom
     }
 
+    pseudoUser() {
+        return this.user === undefined ? "null" : this.user.pseudo
+    }
+
     idPresta() {
         return this.user.idUser
     }

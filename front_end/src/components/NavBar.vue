@@ -3,11 +3,11 @@
       <div>
           <v-btn v-for="(title, index) in titles" :key="index" @click="changeRouteId(index)"> {{ title.text }} </v-btn>
           <v-btn v-if="currentRole === ADMIN" to="/admin">Liste utilisateur</v-btn>
-          <v-btn v-if="currentRole === PRESTA" to="/prestataire">Tableau de bord</v-btn>
+          <v-btn v-if="currentRole === PRESTA" to="/prestataire/home">Tableau de bord</v-btn>
           <v-btn v-if="currentRole === CLIENT" to="/user">Mon Profil</v-btn>
       </div>
       <div style="margin-left: auto">
-          <span>({{roles[currentRole]}} : {{ currentRole }})  </span>
+<!--          <span>({{roles[currentRole]}} : {{ currentRole }})  </span>-->
           <v-btn v-if="currentUser==null" @click="connexion">Connexion</v-btn>
           <span v-else>
               <span>{{currentUser.pseudo}}</span>
@@ -27,8 +27,10 @@ export default {
         return {
             titles: [{text: 'Home', color: 'grey', route: '/'}
                 , {text: 'Carte', color: 'grey', route: '/carte'}
-                , {text: 'Liste des Stands', color: 'grey', route: '/stand'}
-                , {text: 'Liste des Evenements', color: 'grey', route: '/evenement'}
+                , {text: 'L stands', color: 'grey', route: '/stand'}
+                , {text: 'L evenements', color: 'grey', route: '/evenement'}
+                , {text: 'L boutiques', color: 'grey', route: '/boutique'}
+                , {text: 'L prestataires', color: 'grey', route: '/prestataire'}
                 , {text: 'Timeline', color: 'grey', route: '/timeline'}
                 , {text: 'Contact', color: 'grey', route: '/contact'}
             ],
@@ -60,7 +62,7 @@ export default {
 
 <style scoped>
 button {
-    padding: 7px;
-    margin: 7px;
+    padding: 4px;
+    margin: 4px;
 }
 </style>

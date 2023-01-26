@@ -30,7 +30,7 @@ class Evenement {
     }
 
     getNomStand(){
-        return this.stand.nomStand;
+        return this.stand ? this.stand.nomStand : "null";
     }
     getTypeStand(){
         return this.stand.typeStand;
