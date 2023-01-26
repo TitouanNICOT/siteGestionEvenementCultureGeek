@@ -4,24 +4,24 @@
         <v-container>
             <v-row>
                 <v-btn @click="retourStand" color="yellow">Retour au stand</v-btn>
-                <AjouterProduit :idStand="idStand" v-if="currentRole===PRESTA" @refresh="refresh"/>
+                <AjouterProduit :idStand="idStand" v-if="currentRole===PRESTA"/>
             </v-row>
-            <v-row>
-                <v-col v-for="(produit,index) in listProduit" :key="index" cols="3">
+            <ListeDataView :filtreInfo="filtreInfo" :data="listProduit" @refresh="refresh">
+                <template v-slot:default="{elem}">
                     <v-card style="height: 100%">
-                        <v-card-title> {{produit.libelleProduit}}</v-card-title>
-                        <v-card-subtitle>{{produit.type_produit.libelleTypeProduit}}</v-card-subtitle>
-                        <v-card-text>{{produit.prix}} €</v-card-text>
+                        <v-card-title> {{elem.libelleProduit}}</v-card-title>
+                        <v-card-subtitle>{{elem.type_produit.libelleTypeProduit}}</v-card-subtitle>
+                        <v-card-text>{{elem.prix}} €</v-card-text>
                         <v-card-actions>
-                            <span>Stock : {{produit.quantite}}</span>
+                            <span>Stock : {{elem.quantite}}</span>
                             <v-spacer></v-spacer>
-<!--                            <v-btn :to="{ name: 'reservation', params: { idProduit: produit.idProduit, idStand: idStand } }">Afficher plus</v-btn>-->
-                            <ModiferProduit :idProduit="produit.idProduit" v-if="currentRole===PRESTA" @refresh="refresh"/>
-                            <DetailProduit :idProduit="produit.idProduit" :idStand="idStand" @refresh="refresh"/>
+<!--                            <v-btn :to="{ name: 'reservation', params: { idProduit: elem.idProduit, idStand: idStand } }">Afficher plus</v-btn>-->
+                            <ModiferProduit :idProduit="elem.idProduit" v-if="currentRole===PRESTA" @refresh="refresh"/>
+                            <DetailProduit :idProduit="elem.idProduit" :idStand="idStand" @refresh="refresh"/>
                         </v-card-actions>
                     </v-card>
-                </v-col>
-            </v-row>
+                </template>
+            </ListeDataView>
         </v-container>
     </div>
 
@@ -34,15 +34,20 @@ import {NONCONNECTE, PRESTA} from "@/services/roles";
 import DetailProduit from "@/components/boutique/DetailProduit";
 import AjouterProduit from "@/components/boutique/AjouterProduit";
 import ModiferProduit from "@/components/boutique/ModiferProduit";
+import ListeDataView from "@/components/ListeDataView";
 
 export default {
     name: "BoutiqueView",
-    components: {DetailProduit,AjouterProduit,ModiferProduit},
+    components: {ListeDataView, DetailProduit,AjouterProduit,ModiferProduit},
     data() {
         return {
             listProduit: [],
-            NONCONNECTE,
-            PRESTA
+            filtreInfo: [{type: "text", label: "Nom", attribut: "libelleProduit"},
+                {type: "text", label: "Description", attribut: "descriptionProduit"},
+                {type: "select", label: "Type de produit", attribut: "libelleTypeProduit",
+                    items: ["Nourriture", "Boisson", "Vêtement", "Accessoire","Poster","Livre"]},
+                {type: "text", label: "Prix", attribut: "prix"}],
+            NONCONNECTE, PRESTA
         }
     },
     computed: {
@@ -59,7 +64,10 @@ export default {
         refresh(){
             myaxios.get("/boutique/" + this.idStand)
                 .then(responce => {
-                    this.listProduit = responce.data.data
+                    this.listProduit = responce.data.data.map(elem => {return {
+                        ...elem,
+                        libelleTypeProduit:  elem.type_produit.libelleTypeProduit
+                    }});
                 }).catch(() => {
                 this.$router.push({name: 'stands'})
                 alert("Le stand n'existe pas")

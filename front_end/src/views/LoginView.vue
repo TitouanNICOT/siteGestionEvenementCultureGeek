@@ -60,7 +60,7 @@ export default {
                     this.setCurrentUser(data);
                     this.$cookies.set("currentUser", data, "1h");
                     if (data.idRole === PRESTA) {
-                        this.$router.push('/prestataire');
+                        this.$router.push('/prestataire/home');
                     } else if (data.idRole === ADMIN) {
                         this.$router.push('/admin');
                     } else {

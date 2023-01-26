@@ -15,6 +15,9 @@ import HomeAdminView from "@/views/users/HomeAdminView";
 import ProfilUserView from "@/views/users/ProfilUserView.vue";
 import PrestaPublicView from "@/views/users/PrestaPublicView.vue";
 import EvenementDetailView from "@/views/evenements/EvenementDetailView.vue";
+import ListBoutique from "@/views/ListBoutique";
+import ListPresta from "@/views/ListPresta";
+// import TestListDataView from "@/views/TestListDataView";
 
 Vue.use(VueRouter)
 
@@ -60,6 +63,11 @@ const routes = [
         component: RegisterView
     },
     {
+        path: '/boutique',
+        name: 'boutiques',
+        component: ListBoutique
+    },
+    {
         path: '/boutique/:idStand',
         name: 'boutique',
         component: BoutiqueView
@@ -67,6 +75,11 @@ const routes = [
     {
         path: '/prestataire',
         name: 'prestataire',
+        component: ListPresta,
+    },
+    {
+        path: '/prestataire/home',
+        name: 'HomePrestataire',
         component: HomePrestaView,
         meta: { requiresAuth: true ,role:PRESTA}
     },
