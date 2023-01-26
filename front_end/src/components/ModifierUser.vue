@@ -9,15 +9,12 @@
       </v-card-title>
       <v-card-text>
         <div style="border: black 1px solid">
-            <label for="nom">Nom :
               <v-text-field label="Nom : " v-model="nom"   required class="mx-3"/>
-            </label>
-            <label for="prenom">Prenom :
               <v-text-field label="Prenom : " v-model="prenom"  required class="mx-3"/>
-            </label>
-            <label for="email">Email :
               <v-text-field label="Email : " v-model="email"   required class="mx-3"/>
-            </label>
+              <v-text-field label="Mot de passe : " v-model="password1"   required class="mx-3"/>
+              <v-text-field label="Répétez Mot de passe : " v-model="password2"   required class="mx-3"/>
+              <v-checkbox label="Notifications" v-model="isNotif"  required class="mx-3"/>
         </div>
       </v-card-text>
       <v-card-actions>
@@ -32,6 +29,7 @@
 <script>
 import myaxios from "@/services/axios";
 import {mapState} from "vuex";
+import bcrypt from "bcryptjs";
 
 export default {
   name: "ModifierUser",
@@ -40,6 +38,9 @@ export default {
       nom: "",
       prenom: "",
       email: "",
+      isNotif: false,
+      password1:"",
+      password2:"",
       showModifier: false
     };
   },
@@ -54,12 +55,28 @@ export default {
         return;
       }
 
+      console.log(this.isNotif)
+
+      let password = this.currentUser.password;
+
+      if(this.password1 !== "" && this.password1 === this.password2){
+        bcrypt.hash(this.password1, 10, function (err, hash) {
+          if (err) {
+            alert("Erreur mot de passe")
+          } else {
+            password = hash;
+          }
+        })
+      }
+
       try {
         const response = await myaxios.patch(`/users/${this.currentUser.idUser}`, {
           id: this.currentUser.idUser,
           nom: this.nom,
           prenom: this.prenom,
           email: this.email,
+          isNotif: this.isNotif,
+          password: password
         });
         console.log(response);
         alert('Votre modification a bien été enregistrée');
@@ -67,6 +84,8 @@ export default {
         this.currentUser.nom = this.nom;
         this.currentUser.prenom = this.prenom;
         this.currentUser.email = this.email;
+        this.currentUser.isNotif = this.isNotif;
+        this.currentUser.password = password;
         this.$emit("refresh");
       } catch (error) {
         console.error(error);
@@ -80,6 +99,9 @@ export default {
         this.nom = this.currentUser.nom;
         this.prenom = this.currentUser.prenom;
         this.email = this.currentUser.email;
+        this.isNotif = this.currentUser.isNotif;
+        this.password1 = "";
+        this.password2 = "";
       }
     }
   }
