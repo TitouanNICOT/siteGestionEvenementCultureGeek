@@ -28,7 +28,7 @@
 
 <script>
 import myaxios from "@/services/axios";
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 import bcrypt from "bcryptjs";
 
 export default {
@@ -49,6 +49,8 @@ export default {
   },
 
   methods: {
+    ...mapMutations(['setCurrentUser']),
+
     async modifier() {
       if (this.nom === "" || this.prenom === "" || this.email === "") {
         alert("Informations manquantes")
@@ -81,11 +83,9 @@ export default {
         console.log(response);
         alert('Votre modification a bien été enregistrée');
         this.showModifier = false;
-        this.currentUser.nom = this.nom;
-        this.currentUser.prenom = this.prenom;
-        this.currentUser.email = this.email;
-        this.currentUser.isNotif = this.isNotif;
-        this.currentUser.password = password;
+        let data = response.data.data;
+        this.setCurrentUser(data);
+        this.$cookies.set("currentUser", data, "1h");
         this.$emit("refresh");
       } catch (error) {
         console.error(error);

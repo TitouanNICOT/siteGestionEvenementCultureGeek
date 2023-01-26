@@ -61,8 +61,9 @@ const modifUser = async (req, res) => {
         idRole: idRole ? idRole : user.idRole
     }, {
         where: {idUser: id}
-    }).then((result) => {
-        return res.status(200).send({success: 1})
+    }).then(async() => {
+        const data = await db.user.findByPk(id)
+        return res.status(200).send({success: 1, data: data})
     }).catch((error) => {
         console.error(error)
         return res.status(404).send({success: 0})
