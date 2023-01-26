@@ -6,7 +6,10 @@
             <p>Nom : {{ currentUser.nom }}</p>
             <p>Prenom : {{ currentUser.prenom }}</p>
             <p>Mail : {{ currentUser.email }}</p>
+
+          <ModifierUser/>
         </div>
+
         <div class="border">
             <h3>Liste commentaires :</h3>
             <v-btn @click="changeVue">Afficher/cacher</v-btn>
@@ -62,9 +65,11 @@
 import {mapState} from "vuex";
 import myaxios from "@/services/axios";
 import moment from "moment";
+import ModifierUser from "@/components/ModifierUser.vue";
 
 export default {
     name: "HomePrestaView",
+  components: {ModifierUser},
     computed: {
         ...mapState(['currentUser', 'stands', 'evenements', 'users']),
         mesStands() {

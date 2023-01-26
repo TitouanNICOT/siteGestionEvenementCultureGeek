@@ -8,6 +8,7 @@
             <p>Prénom : {{currentUser.prenom}}</p>
             <p>Mail : {{currentUser.email}}</p>
         </div>
+        <ModifierUser/>
         <br>
         <h3>Mes Reservations</h3>
         <div v-if="produitsReserves.length !== 0" style="text-align: center">
@@ -20,9 +21,11 @@
 <script>
 import myaxios from 'axios';
 import {mapState} from "vuex";
+import ModifierUser from "@/components/ModifierUser.vue";
 
 export default {
     name: 'ProfilUserView',
+  components: {ModifierUser},
     computed: {
         ...mapState(['currentUser'])
     },

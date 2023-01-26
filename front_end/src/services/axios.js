@@ -3,7 +3,7 @@ import store from "@/store";
 
 const myaxios = axios.create({
     baseURL: 'http://localhost:3000',
-    withCredentials: true,
+    //withCredentials: true,
 });
 
 myaxios.interceptors.request.use(
