@@ -65,7 +65,7 @@ export default {
 
 .background-logo {
     position: absolute;
-    width: 1100px;
+    width: 100%;
     height: 393px;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(../../public/dg1w1v1l19j0_SLI_m.jpg);
 }

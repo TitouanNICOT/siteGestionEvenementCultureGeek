@@ -1,11 +1,14 @@
 <template>
     <v-app>
-        <v-app-bar app color="var(--primary-color)" dark>
-            <NavBar></NavBar>
+        <NavBar :drawer="drawer"></NavBar>
+        <v-app-bar app
+                   hide-on-scroll
+        >
+            <v-app-bar-nav-icon v-if="drawer === false" @click="drawer = true"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon v-else @click="drawer = false"></v-app-bar-nav-icon>
         </v-app-bar>
-
         <v-main>
-            <router-view/>
+            <router-view :drawer="drawer"/>
         </v-main>
 
         <v-footer color="var(--primary-color)" dark>
@@ -22,7 +25,9 @@ import Footer from "@/components/Footer";
 export default {
     name: 'App',
     components: {NavBar,Footer},
-    data: () => ({}),
+    data: () => ({
+        drawer: false
+    }),
     methods: {
         ...mapActions(['loading']),
         ...mapMutations(['setCurrentUser']),

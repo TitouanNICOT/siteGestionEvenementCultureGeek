@@ -1,20 +1,39 @@
 <template>
-  <v-row>
-      <div>
-          <v-btn v-for="(title, index) in titles" :key="index" @click="changeRouteId(index)"> {{ title.text }} </v-btn>
-          <v-btn v-if="currentRole === ADMIN" to="/admin">Liste utilisateur</v-btn>
-          <v-btn v-if="currentRole === PRESTA" to="/prestataire/home">Tableau de bord</v-btn>
-          <v-btn v-if="currentRole === CLIENT" to="/user">Mon Profil</v-btn>
-      </div>
-      <div style="margin-left: auto">
-<!--          <span>({{roles[currentRole]}} : {{ currentRole }})  </span>-->
-          <v-btn v-if="currentUser==null" @click="connexion">Connexion</v-btn>
-          <span v-else>
-              <span>{{currentUser.pseudo}}</span>
-              <v-btn  @click="logout">Se déconnecter</v-btn>
-          </span>
-      </div>
-  </v-row>
+  <v-navigation-drawer
+      :value="drawer"
+      absolute
+      app
+      width="20%"
+      height="100%"
+      color="var(--primary-color)"
+      dark
+  >
+    <v-list>
+      <img class="logo" src="/GEEKY_EVENT.png" alt=""/>
+      <v-list-item v-for="(title, index) in titles" :key="index" @click="changeRouteId(index)">
+        <v-list-item-title> {{ title.text }} </v-list-item-title>
+      </v-list-item>
+      <v-list-item v-if="currentRole === ADMIN" to="/admin">
+        <v-list-item-title>Liste utilisateur</v-list-item-title>
+      </v-list-item>
+      <v-list-item v-if="currentRole === PRESTA" to="/prestataire/home">
+        <v-list-item-title>Tableau de bord</v-list-item-title>
+      </v-list-item>
+      <v-list-item v-if="currentRole === CLIENT" to="/user">
+        <v-list-item-title>Mon Profil</v-list-item-title>
+      </v-list-item>
+    </v-list>
+    <v-divider></v-divider>
+    <v-list>
+      <v-list-item v-if="currentUser==null" @click="connexion">
+        <v-list-item-title>Connexion</v-list-item-title>
+      </v-list-item>
+      <v-list-item v-else>
+        <v-list-item-title>{{currentUser.pseudo}}</v-list-item-title>
+        <v-list-item-title @click="logout">Se déconnecter</v-list-item-title>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <script>
@@ -35,6 +54,11 @@ export default {
                 , {text: 'Contact', color: 'grey', route: '/contact'}
             ],
             ADMIN, PRESTA, CLIENT, roles
+        }
+    },
+    props: {
+        drawer: {
+          type: Boolean
         }
     },
     computed: {
@@ -64,5 +88,13 @@ export default {
 button {
     padding: 4px;
     margin: 4px;
+}
+.logo {
+  width: 100px;
+  height: 100%;
+  /*z-index: 1;*/
+  margin-top: 10px;
+  margin-left: 60px;
+  /*margin-bottom: 125px;*/
 }
 </style>
