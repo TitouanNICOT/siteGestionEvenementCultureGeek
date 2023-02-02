@@ -60,16 +60,24 @@ export default {
       console.log(this.isNotif)
 
       let password = this.currentUser.password;
+      console.log(password);
 
-      if(this.password1 !== "" && this.password1 === this.password2){
+      if((this.password1 !== "" || this.password2 !== "") && this.password1 !== this.password2){
+        alert("Erreur, les 2 mots de passes ne sont pas les même.")
+        return;
+      }else if(this.password1 !== "" && this.password2 === this.password1){
         bcrypt.hash(this.password1, 10, function (err, hash) {
           if (err) {
             alert("Erreur mot de passe")
           } else {
             password = hash;
+            console.log(password);
           }
         })
       }
+
+      const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+      await delay(250)
 
       try {
         const response = await myaxios.patch(`/users/${this.currentUser.idUser}`, {
@@ -92,6 +100,8 @@ export default {
         alert('Une erreur est survenue lors de la modification');
       }
     }
+
+
   },
   watch: {
     async showModifier(newVal){
