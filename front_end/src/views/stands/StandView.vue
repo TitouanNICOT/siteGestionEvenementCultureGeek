@@ -1,27 +1,7 @@
 <template>
     <div>
-        <div style="text-align: center; margin: 10px;width: auto; padding: 10px">
-            <h1 style="text-align: center">Liste Stand</h1>
-        </div>
-        <div>
-            <v-col class="d-flex" cols="12" sm="11">
-                <v-text-field cols="4" style="margin-right: 10px" label="Nom du Stand" outlined v-model="inputFilter"/>
-
-                <v-select style="margin-right: 10px;" label="Type du Stand" :items="listTypeStand" outlined
-                          v-model="typeStand"></v-select>
-
-                <v-select style="margin-right: 10px;" label="Prestataire" :items="listPresta" outlined
-                          v-model="presta"></v-select>
-
-                <v-btn v-if="presta || typeStand || inputFilter" style="margin-top: 10px" cols="4" sm="4" color="red"
-                       @click="resetFilters">
-                    <v-icon>mdi-delete</v-icon>
-                    Réinitialiser
-                </v-btn>
-            </v-col>
-        </div>
-        <v-row class="mx-5">
-            <v-col v-for="(elem,index) in standsfiltre" :key="index" cols="3">
+        <ListeDataView :data="stands" :filtreInfo="filtreInfo" nomPage="Liste stand">
+            <template v-slot:default="{elem}">
                 <v-card class="pa-3" style="height: 100%" outlined @click="goToStand(elem.id)">
                     <h3 style="text-align: center;">{{ elem.nomStand }}</h3>
                     <hr>
@@ -37,63 +17,34 @@
                     <br>
                     <span>Description : <strong>{{ elem.descriptionStand }}</strong></span>
                 </v-card>
-            </v-col>
-        </v-row>
+            </template>
+        </ListeDataView>
     </div>
 </template>
 
 <script>
-
+import ListeDataView from "@/components/ListeDataView";
 import {mapState} from "vuex";
 
-
 export default {
-    name: "StandView",
-    icons: {
-        iconfont: 'mdi',
-    },
-    data: () => {
+    name: "TestListDataView",
+    components: {ListeDataView},
+    data: ()=>{
         return {
-            inputFilter: "",
-            typeStand: '',
-            presta: ''
+            filtreInfo: [{type: "text", label: "Nom",attribut: "nomStand"},
+                {type: "text", label: "Description",attribut: "descriptionStand"},
+                {type: "select", label: "Type de stand",attribut: "libelleTypeStand",
+                    items: ["boutique", "tournois", "tournois", "temporaire"]},
+                {type:"text",label:"Prestataire",attribut:"libellePresta"}]
         }
     },
-    computed: {
+    computed:{
         ...mapState(["stands"]),
-        standsfiltre() {
-            return this.stands.filter(elem => this.verifFiltre(elem))
-        },
-        listTypeStand() {
-            return this.stands.map(elem => elem.libelleTypeStand())
-        },
-        listPresta() {
-            return this.stands.map(elem => elem.libellePresta())
-        }
     },
     methods: {
         goToStand(num) {
             this.$router.push({name: 'stand', params: {id: num}})
-        },
-        verifFiltre(elem) {
-            if (this.inputFilter === "" && this.typeStand === '' && this.presta === '') {
-                return true
-            } else {
-                let libelle = elem.nomStand.toLowerCase().includes(this.inputFilter.toLowerCase())
-                let type = elem.libelleTypeStand().toLowerCase().includes(this.typeStand.toLowerCase())
-                let presta = elem.libellePresta().toLowerCase().includes(this.presta.toLowerCase())
-                return libelle && type && presta;
-            }
-        },
-        resetFilters() {
-            this.inputFilter = "";
-            this.typeStand = '';
-            this.presta = '';
         }
     }
 }
 </script>
-
-<style scoped>
-
-</style>

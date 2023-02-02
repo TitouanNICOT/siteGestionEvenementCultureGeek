@@ -110,6 +110,11 @@ const routes = [
         name: 'infosPresta',
         component: PrestaPublicView,
         props:true
+    },
+    {
+        path: '/test',
+        name: 'test',
+        component: () => import('../views/PageStatTemp.vue')
     }
 ]
 
