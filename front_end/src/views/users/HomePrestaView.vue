@@ -8,6 +8,7 @@
             <p>Mail : {{ currentUser.email }}</p>
 
           <ModifierUser/>
+          <v-btn @click="goToStat" style="margin-left: 6px;background-color: darkcyan">Voir mes statistiques</v-btn>
         </div>
 
         <div class="border">
@@ -136,6 +137,9 @@ export default {
         },
         changeVue3() {
             this.afficheEvenement = !this.afficheEvenement
+        },
+        goToStat() {
+          this.$router.push("/test")
         }
 
     },

@@ -3,11 +3,14 @@
         <h1> Page de stat</h1>
         <v-row>
             <v-col cols="6">
-                <PieChart :donnee="dataPie.data" :color="['#000000','#222222','#444444','#666666']" :label="dataPie.label" height="90%"/>
+                <span>Nombre de produit vendu :</span>
+                <PieChart :donnee="dataPie.data" :color="['#1e3d59','#f5f0e1','#ff6e40','#ffc13b']" :label="dataPie.label" height="90%"/>
             </v-col>
             <v-col cols="6">
-                <BarChart :donnee="[{data:dataPie.data,label:'aaa',backgroundColor:'#555555' }]" :labels="dataPie.label" height="300px"/>
-                <LineChart :donnee="[{data:dataPie.data,label:'aaa',backgroundColor:'#555555' }]" :labels="dataPie.label" height="300px"/>
+                <span>Nombre de reservation par événements :</span>
+                <BarChart :donnee="[{data:dataBar1.data,label:'Data One',backgroundColor:'#1e3d59' }]" :labels="dataBar1.label" height="300px"/>
+                <span>Nombre de commentaire par stand :</span>
+                <BarChart :donnee="[{data:dataBar2.data,label:'Data One',backgroundColor:'#ffc13b' }]" :labels="dataBar2.label" height="300px"/>
             </v-col>
         </v-row>
     </div>
@@ -17,25 +20,79 @@
 import {mapState} from "vuex";
 import PieChart from "@/components/graph/PieChart";
 import BarChart from "@/components/graph/BarChart";
-
 import {Chart as ChartJS, registerables} from 'chart.js'
-import LineChart from "@/components/graph/LineChart";
+import myaxios from "@/services/axios";
+
 ChartJS.register(...registerables)
 
 export default {
     name: "PageStatTemp",
-    components: {LineChart, PieChart,BarChart},
+    components: {PieChart,BarChart},
+    data: () => ({
+      produitsReserves: [],
+      reservationEvenement: [],
+      commantaires: [],
+    }),
     computed: {
-        ...mapState(['stands','listeTypeStand']),
+        ...mapState(['stands','listeTypeStand','currentUser','evenements']),
         dataPie(){
             let data = [];
-            let label = []
-            this.listeTypeStand.forEach(typeStand => {
-                data.push(this.stands.filter(stand => stand.typeStand.idTypeStand === typeStand.idTypeStand).length);
-                label.push(typeStand.libelleTypeStand);
+            let label = [];
+            console.log(this.produitsReserves)
+            console.log(this.currentUser.idUser)
+            this.produitsReserves.forEach(produit => {
+                if (label.includes(produit.libelleProduit)){
+                    data[label.indexOf(produit.libelleProduit)] += produit.quantite;
+                }else {
+                  data.push(produit.quantite);
+                  label.push(produit.libelleProduit);
+                }
             });
             return {data,label};
-        }
+        },
+        dataBar1(){
+            let data = [];
+            let label = []
+            this.mesEvenements.forEach(event => {
+                data.push(this.reservationEvenement.filter(r=>r.idEvenement===event.idEvenement).length);
+                label.push(event.libelleEvenement);
+            });
+            return {data,label};
+        },
+        dataBar2(){
+            let data = [];
+            let label = []
+            this.commantaires.forEach(comm => {
+              if (label.includes(comm.idStand)){
+                data[label.indexOf(comm.idStand)] += 1;
+              }
+              else {
+                data.push(1);
+                label.push(comm.idStand);
+              }
+            });
+            return {data,label};
+        },
+        mesEvenements() {
+          return this.evenements.filter(event => this.mesStands.map(s => parseInt(s.id)).includes(event.idStand))
+        },
+      mesStands() {
+        return this.stands.filter(stand => stand.idPresta() === this.currentUser.idUser)
+      },
+    },
+    mounted() {
+      myaxios.get("/users/" + this.currentUser.idUser + "/commentaire")
+          .then(res => {
+            this.commantaires = res.data.data
+          })
+      myaxios.get("/reservations/prestataire/" + this.currentUser.idUser)
+          .then(res => {
+            this.produitsReserves = res.data.data
+          })
+      myaxios.get("/evenements/reservation")
+          .then(res => {
+            this.reservationEvenement = res.data.data
+          })
     }
 }
 </script>

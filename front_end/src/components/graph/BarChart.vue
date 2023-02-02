@@ -17,6 +17,7 @@ export default {
     },
     props: {
         // chartId: String,
+        color: Array,
         donnee: Array, // tableau de struc {label: "", data: [], backgroundColor:"}
         labels: Array,
         width: {
