@@ -16,7 +16,15 @@ export const Stand = (Sequelize, sequelize) => {
         },
         nbPlace: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            allowNull: true
         },
+    },{
+        validate: {
+            nbPlaceTest(){
+                if (this.nbPlace === undefined && [2,3].includes(this.idTypeStand)){
+                    throw new Error('Le nombre de place doit être donné')
+                }
+            }
+        }
     })
 }
