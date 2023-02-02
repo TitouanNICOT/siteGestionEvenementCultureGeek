@@ -33,13 +33,13 @@
 
             <v-spacer></v-spacer>
 
-            <v-app-bar-title v-if="currentUser==null" @click="connexion">
-                <v-btn outlined style="color: white">Connexion</v-btn>
-            </v-app-bar-title>
-            <v-app-bar-title v-else style="display: flex">
-                <span>{{ currentUser.pseudo }}</span>
+            <div v-if="currentUser==null">
+                <v-btn outlined style="color: white" @click="connexion">Connexion</v-btn>
+            </div>
+            <div v-else style="display: flex">
+                <span style="margin: 8px">{{ currentUser.pseudo }}</span>
                 <v-btn @click="logout" outlined>Se déconnecter</v-btn>
-            </v-app-bar-title>
+            </div>
         </v-app-bar>
     </div>
 </template>
@@ -87,6 +87,7 @@ export default {
             });
         },
         connexion() {
+            console.log("aaaa")
             this.$router.push({name: 'login', query: {redirect: this.$route.path}})
         }
     }
