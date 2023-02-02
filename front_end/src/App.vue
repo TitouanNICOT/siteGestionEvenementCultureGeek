@@ -1,12 +1,7 @@
 <template>
     <v-app>
         <NavBar :drawer="drawer"></NavBar>
-        <v-app-bar app
-                   hide-on-scroll
-        >
-            <v-app-bar-nav-icon v-if="drawer === false" @click="drawer = true"></v-app-bar-nav-icon>
-            <v-app-bar-nav-icon v-else @click="drawer = false"></v-app-bar-nav-icon>
-        </v-app-bar>
+
         <v-main>
             <router-view :drawer="drawer"/>
         </v-main>

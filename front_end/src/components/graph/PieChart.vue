@@ -3,7 +3,7 @@
         <Pie
             :data="chartData"
             :options="{responsive: true}"
-            ref="chart"
+            style="border: grey solid 1px"
         />
     </div>
 </template>

@@ -3,6 +3,7 @@
         <Bar v-if="labels.length>0"
             :data="chartData"
             :options="{responsive: true}"
+             style="border: grey solid 1px"
         />
     </div>
 </template>

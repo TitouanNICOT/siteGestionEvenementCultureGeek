@@ -1,44 +1,52 @@
 <template>
-  <v-navigation-drawer
-      :value="drawer"
-      absolute
-      app
-      width="20%"
-      height="100%"
-      color="var(--primary-color)"
-      dark
-  >
-    <v-list>
-      <img class="logo" src="/GEEKY_EVENT.png" alt=""/>
-      <v-list-item v-for="(title, index) in titles" :key="index" @click="changeRouteId(index)">
-        <v-list-item-title> {{ title.text }} </v-list-item-title>
-      </v-list-item>
-      <v-list-item v-if="currentRole === ADMIN" to="/admin">
-        <v-list-item-title>Liste utilisateur</v-list-item-title>
-      </v-list-item>
-      <v-list-item v-if="currentRole === PRESTA" to="/prestataire/home">
-        <v-list-item-title>Tableau de bord</v-list-item-title>
-      </v-list-item>
-      <v-list-item v-if="currentRole === CLIENT" to="/user">
-        <v-list-item-title>Mon Profil</v-list-item-title>
-      </v-list-item>
-    </v-list>
-    <v-divider></v-divider>
-    <v-list>
-      <v-list-item v-if="currentUser==null" @click="connexion">
-        <v-list-item-title>Connexion</v-list-item-title>
-      </v-list-item>
-      <v-list-item v-else>
-        <v-list-item-title>{{currentUser.pseudo}}</v-list-item-title>
-        <v-list-item-title @click="logout">Se déconnecter</v-list-item-title>
-      </v-list-item>
-    </v-list>
-  </v-navigation-drawer>
+    <div>
+        <v-navigation-drawer
+            :value="drawer"
+            absolute
+            width="20%"
+            height="100%"
+            color="var(--primary-color)"
+            dark>
+            <v-list>
+                <img class="logo" src="/GEEKY_EVENT.png" alt=""/>
+                <v-list-item v-for="(title, index) in titles" :key="index" @click="changeRouteId(index)">
+                    <v-list-item-title> {{ title.text }}</v-list-item-title>
+                </v-list-item>
+                <v-list-item v-if="currentRole === ADMIN" to="/admin">
+                    <v-list-item-title>Liste utilisateur</v-list-item-title>
+                </v-list-item>
+                <v-list-item v-if="currentRole === PRESTA" to="/prestataire/home">
+                    <v-list-item-title>Tableau de bord</v-list-item-title>
+                </v-list-item>
+                <v-list-item v-if="currentRole === CLIENT" to="/user">
+                    <v-list-item-title>Mon Profil</v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
+
+        <v-app-bar app
+                   hide-on-scroll
+                   color="var(--primary-color)"
+                   dark>
+
+            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+            <v-spacer></v-spacer>
+
+            <v-app-bar-title v-if="currentUser==null" @click="connexion">
+                <v-btn outlined style="color: white">Connexion</v-btn>
+            </v-app-bar-title>
+            <v-app-bar-title v-else style="display: flex">
+                <span>{{ currentUser.pseudo }}</span>
+                <v-btn @click="logout" outlined>Se déconnecter</v-btn>
+            </v-app-bar-title>
+        </v-app-bar>
+    </div>
 </template>
 
 <script>
 import {mapGetters, mapMutations, mapState} from "vuex";
-import {roles, ADMIN, PRESTA,CLIENT} from "@/services/roles";
+import {roles, ADMIN, PRESTA, CLIENT} from "@/services/roles";
 
 export default {
     name: 'NavBar',
@@ -53,14 +61,15 @@ export default {
                 , {text: 'Timeline', color: 'grey', route: '/timeline'}
                 , {text: 'Contact', color: 'grey', route: '/contact'}
             ],
-            ADMIN, PRESTA, CLIENT, roles
+            ADMIN, PRESTA, CLIENT, roles,
+            drawer: false
         }
     },
-    props: {
-        drawer: {
-          type: Boolean
-        }
-    },
+    // props: {
+    //     drawer: {
+    //       type: Boolean
+    //     }
+    // },
     computed: {
         ...mapState(['currentUser']),
         ...mapGetters(['currentRole'])
@@ -77,8 +86,8 @@ export default {
             this.$router.push('/').catch(() => {
             });
         },
-        connexion(){
-            this.$router.push({name:'login',query:{redirect:this.$route.path}})
+        connexion() {
+            this.$router.push({name: 'login', query: {redirect: this.$route.path}})
         }
     }
 }
@@ -89,12 +98,13 @@ button {
     padding: 4px;
     margin: 4px;
 }
+
 .logo {
-  width: 100px;
-  height: 100%;
-  /*z-index: 1;*/
-  margin-top: 10px;
-  margin-left: 60px;
-  /*margin-bottom: 125px;*/
+    width: 100px;
+    height: 100%;
+    /*z-index: 1;*/
+    margin-top: 10px;
+    margin-left: 60px;
+    /*margin-bottom: 125px;*/
 }
 </style>

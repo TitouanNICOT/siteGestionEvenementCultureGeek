@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-container>
         <h1> Page de stat</h1>
         <v-row>
             <v-col cols="6">
@@ -7,13 +7,12 @@
                 <PieChart :donnee="dataPie.data" :color="['#1e3d59','#f5f0e1','#ff6e40','#ffc13b']" :label="dataPie.label" height="90%"/>
             </v-col>
             <v-col cols="6">
-                <span>Nombre de reservation par événements :</span>
-                <BarChart :donnee="[{data:dataBar1.data,label:'Data One',backgroundColor:'#1e3d59' }]" :labels="dataBar1.label" height="300px"/>
-                <span>Nombre de commentaire par stand :</span>
-                <BarChart :donnee="[{data:dataBar2.data,label:'Data One',backgroundColor:'#ffc13b' }]" :labels="dataBar2.label" height="300px"/>
+                <BarChart :donnee="[{data:dataBar1.data,label:'Nombre de reservation par événements',backgroundColor:'#1e3d59' }]" :labels="dataBar1.label" height="300px"/>
+
+                <BarChart :donnee="[{data:dataBar2.data,label:'Nombre de commentaire par stand',backgroundColor:'#ffc13b' }]" :labels="dataBar2.label" height="300px"/>
             </v-col>
         </v-row>
-    </div>
+    </v-container>
 </template>
 
 <script>
