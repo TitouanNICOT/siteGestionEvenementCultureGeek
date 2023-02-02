@@ -7,6 +7,8 @@
                 <span>Pseudo : <strong>{{ elem.pseudo }}</strong></span>
                 <br>
                 <span>Id : <strong>{{elem.idUser}}</strong></span>
+                <br>
+                <span>Nb stands : {{stands.filter(s=>s.idPresta()===elem.idUser).length}}</span>
             </v-card>
         </template>
     </ListeDataView>
@@ -14,7 +16,7 @@
 
 <script>
 import ListeDataView from "@/components/ListeDataView";
-import {mapGetters} from "vuex";
+import {mapGetters, mapState} from "vuex";
 export default {
     name: "ListPresta",
     components: {ListeDataView},
@@ -27,7 +29,8 @@ export default {
         }
     },
     computed:{
-        ...mapGetters(["listePresta"])
+        ...mapGetters(["listePresta"]),
+            ...mapState(["stands"])
     }
 }
 </script>

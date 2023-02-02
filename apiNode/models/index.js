@@ -1,6 +1,6 @@
 import {Sequelize} from "sequelize";
 import dotenv from "dotenv";
-import {insert} from "./insert.js";
+import {insert} from "./insert/index.js";
 
 dotenv.config();
 

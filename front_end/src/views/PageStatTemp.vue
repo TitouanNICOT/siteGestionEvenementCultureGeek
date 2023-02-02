@@ -3,14 +3,13 @@
         <h1> Page de stat</h1>
         <v-row>
             <v-col cols="6">
-                <PieChart :donnee="dataPie.data" :color="['#000000','#222222','#444444','#666666']" :label="dataPie.label"/>
+                <PieChart :donnee="dataPie.data" :color="['#000000','#222222','#444444','#666666']" :label="dataPie.label" height="90%"/>
             </v-col>
             <v-col cols="6">
-                <BarChart :donnee="[{data:dataPie.data,label:'aaa',backgroundColor:'#555555' }]" :labels="dataPie.label" height="auto"/>
-                <LineChart :donnee="[{data:dataPie.data,label:'aaa',backgroundColor:'#555555' }]" :labels="dataPie.label"/>
+                <BarChart :donnee="[{data:dataPie.data,label:'aaa',backgroundColor:'#555555' }]" :labels="dataPie.label" height="300px"/>
+                <LineChart :donnee="[{data:dataPie.data,label:'aaa',backgroundColor:'#555555' }]" :labels="dataPie.label" height="300px"/>
             </v-col>
         </v-row>
-        <p>Fin</p>
     </div>
 </template>
 
