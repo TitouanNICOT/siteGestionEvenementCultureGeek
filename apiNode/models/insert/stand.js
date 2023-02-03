@@ -9,7 +9,8 @@ export default async (db) => {
         descriptionStand: 'c est une description du stand',
         idTypeStand: 1,
         idPrestataire: 1,
-        nomStand: 'stand 300'
+        nomStand: 'stand 300',
+        nbPlace: 0
     })
     await db.stand.create({
         idStand: 310,
@@ -40,7 +41,8 @@ export default async (db) => {
         descriptionStand: 'ici on vend rien',
         idTypeStand: 1,
         idPrestataire: 6,
-        nomStand: 'Stand de vente'
+        nomStand: 'Stand de vente',
+        nbPlace: 0
     })
     await db.stand.create({
         idStand: 315,

@@ -40,8 +40,12 @@ const newProduit = async (req, res) => {
 
 const modifProduit = async (req, res) => {
     const id = req.body.id
-    if (isNaN(id))
-        return res.status(404).send({success: 0})
+
+    db.produit.findByPk(id).then((result) => {
+        if (result === null) {
+            return res.status(404).send({success: 0, message: "produit inexistant"})
+        }
+    });
 
     console.log(req.body)
     db.produit.update({

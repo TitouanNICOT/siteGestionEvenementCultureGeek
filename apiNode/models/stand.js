@@ -22,7 +22,7 @@ export const Stand = (Sequelize, sequelize) => {
         validate: {
             nbPlaceTest(){
                 if (this.nbPlace === undefined && [2,3].includes(this.idTypeStand)){
-                    throw new Error('Le nombre de place doit être donné')
+                    throw new Error('Le nombre de place doit être donné');
                 }
             }
         }

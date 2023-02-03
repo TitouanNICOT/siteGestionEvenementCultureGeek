@@ -17,6 +17,7 @@ import PrestaPublicView from "@/views/users/PrestaPublicView.vue";
 import EvenementDetailView from "@/views/evenements/EvenementDetailView.vue";
 import ListBoutique from "@/views/ListBoutique";
 import ListPresta from "@/views/ListPresta";
+import NewEventView from "@/views/evenements/NewEventView.vue";
 // import TestListDataView from "@/views/TestListDataView";
 
 Vue.use(VueRouter)
@@ -36,6 +37,11 @@ const routes = [
         path: '/stand/:id',
         name: 'stand',
         component: StandDetailView
+    },
+    {
+        path: '/stand/:id/nouvelleEvenement',
+        name: 'nouvelleEvenement',
+        component: NewEventView
     },
     {
         path: '/stand',

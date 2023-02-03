@@ -1,9 +1,9 @@
 import express from "express";
 import standController from "../controllers/stand.controller.js";
-import {droitAdmin, verificationDroit} from "../middleware/authentification.js";
-import evenementController from "../controllers/evenement.controller.js";
+// import {droitAdmin, verificationDroit} from "../middleware/authentification.js";
+// import evenementController from "../controllers/evenement.controller.js";
 
-var router = express.Router()
+const router = express.Router()
 router.get("/typeStand", standController.listeTypeStand)
 /**
  * @swagger
@@ -65,7 +65,7 @@ router.get("/:id", standController.getStand)
  *            required: true
  *      responses:
  *          '200':
- *              description: Stand retourné avec succés
+ *              description: Stand retourné comme une crèpe avec succés
  *          '404':
  *              description: Erreur lors de l'envoi du stand
  */
@@ -96,6 +96,36 @@ router.post("/:id/commentaire", standController.newCommentaire)
 
 router.get("/:id/commentaire", standController.getCommentaire)
 
+//la suite des routes necessite une authentification de role prestataire
+// router.use(verificationDroit,droitPresta)
+
+router.patch("/:id", standController.updateStand)
+/**
+ * @swagger
+ * /stands/:
+ *  patch:
+ *      description: modifie un stand
+ *      tags:
+ *          - Stands
+ *      parameters:
+ *          - in: path
+ *            name: idStand
+ *            type: integer
+ *            required: true
+ *          - in: formData
+ *            name: nomStand
+ *            type: string
+ *            required: true
+ *          - in: formData
+ *            name: descriptionStand
+ *            type: string
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: stand mis a jour avec succès
+ *          '404':
+ *              description: Erreur lors de la mise a jour du stand
+ */
 
 //la suite des routes necessite une authentification de role admin
 // router.use(verificationDroit,droitAdmin)
