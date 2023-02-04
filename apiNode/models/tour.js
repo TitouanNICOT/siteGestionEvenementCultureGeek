@@ -26,9 +26,5 @@ export const Tour = (Sequelize, sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: true
         }
-        // nDansTour: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: false
-        // }
     })
 }

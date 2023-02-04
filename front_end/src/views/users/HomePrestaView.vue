@@ -139,7 +139,7 @@ export default {
             this.afficheEvenement = !this.afficheEvenement
         },
         goToStat() {
-          this.$router.push("/test")
+          this.$router.push("/pageStatistique")
         }
 
     },

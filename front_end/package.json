@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@ssthouse/vue-tree-chart": "^0.6.8",
     "axios": "^1.2.0",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.2.0",
@@ -19,6 +20,7 @@
     "vue-chartjs": "^5.2.0",
     "vue-cookies": "^1.8.2",
     "vue-router": "^3.5.1",
+    "vue-tree-chart": "^1.2.9",
     "vuetify": "^2.6.0",
     "vuex": "^3.6.2"
   },

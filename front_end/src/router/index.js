@@ -118,9 +118,14 @@ const routes = [
         props:true
     },
     {
+        path: '/pageStatistique',
+        name: 'pageStatistique',
+        component: () => import('../views/PageStatTemp.vue')
+    },
+    {
         path: '/test',
         name: 'test',
-        component: () => import('../views/PageStatTemp.vue')
+        component: () => import('../views/TournoiView.vue')
     }
 ]
 

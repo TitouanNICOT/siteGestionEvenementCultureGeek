@@ -18,16 +18,33 @@ export default async (db) => {
         nbTour: 3
     })
 
-    const dataTout=[
-        {idJoueur1: 7, idJoueur2: 8, idTournoi: 1, nTour: 1,idTourApres:5},
-        {idJoueur1: 9, idJoueur2: 10, idTournoi: 1, nTour: 1,idTourApres:5},
+    const dataTour=[
+        {idJoueur1: 7, idJoueur2: 8, idTournoi: 1, nTour: 1,idTourApres:5,gagnant:7},
+        {idJoueur1: 9, idJoueur2: 10, idTournoi: 1, nTour: 1,idTourApres:5,gagnant: 9},
         {idJoueur1: 11, idJoueur2: 12, idTournoi: 1, nTour: 1,idTourApres:6},
         {idJoueur1: 13, idJoueur2: 14, idTournoi: 1, nTour: 1,idTourApres:6},
-        {idJoueur1:8, idJoueur2:9, idTournoi:1, nTour:2,idTourApres:7},
+        {idJoueur1:8, idJoueur2:9, idTournoi:1, nTour:2,idTourApres:7,gagnant:9},
         {idJoueur1:11, idJoueur2:13, idTournoi:1, nTour:2,idTourApres:7},
         {idJoueur1:9, idJoueur2:11, idTournoi:1, nTour:3}
     ]
-    await db.tour.bulkCreate(dataTout)
+    // const dataTour = [
+    //     {idJoueur: 7, idTournoi: 1, nTour: 1, idTourApres:9},
+    //     {idJoueur: 8, idTournoi: 1, nTour: 1, idTourApres:9},
+    //     {idJoueur: 9, idTournoi: 1, nTour: 1, idTourApres:10},
+    //     {idJoueur: 10, idTournoi: 1, nTour: 1, idTourApres:10},
+    //     {idJoueur: 11, idTournoi: 1, nTour: 1, idTourApres:11},
+    //     {idJoueur: 12, idTournoi: 1, nTour: 1, idTourApres:11},
+    //     {idJoueur: 13, idTournoi: 1, nTour: 1, idTourApres:12},
+    //     {idJoueur: 14, idTournoi: 1, nTour: 1, idTourApres:12},
+    //     {idJoueur: 8, idTournoi: 1, nTour: 2, idTourApres:13},
+    //     {idJoueur: 9, idTournoi: 1, nTour: 2, idTourApres:13},
+    //     { idTournoi: 1, nTour: 2, idTourApres:14},
+    //     { idTournoi: 1, nTour: 2, idTourApres:14},
+    //     { idTournoi: 1, nTour: 3, idTourApres:15},
+    //     { idTournoi: 1, nTour: 3, idTourApres:15},
+    //     { idTournoi: 1, nTour: 4}
+    // ]
+    await db.tour.bulkCreate(dataTour)
 
 
 }
