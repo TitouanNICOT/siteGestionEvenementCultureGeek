@@ -56,6 +56,12 @@ db.reserverProduit = ReserverProduit(Sequelize, sequelize)
 import {Reservation} from "./reservation.js"
 db.reservation = Reservation(Sequelize, sequelize)
 
+import {Tournoi} from "./tournoi.js"
+db.tournoi = Tournoi(Sequelize, sequelize)
+
+import {Tour} from "./tour.js"
+db.tour = Tour(Sequelize, sequelize)
+
 db.user.belongsTo(db.role, {foreignKey: 'idRole'})
 db.role.hasMany(db.user, {foreignKey: 'idRole'})
 
@@ -92,10 +98,16 @@ db.reserverProduit.belongsTo(db.user, {foreignKey: 'idUser'})
 db.user.belongsToMany(db.evenement, {through: db.reservation, foreignKey: 'idUser'})
 db.evenement.belongsToMany(db.user, {through: db.reservation, foreignKey: 'idEvenement'})
 
+db.evenement.hasOne(db.tournoi, {foreignKey: 'idEvenement'})
+db.tournoi.belongsTo(db.evenement, {foreignKey: 'idEvenement'})
+
+db.tournoi.hasMany(db.tour, {foreignKey: 'idTournoi'})
+db.tour.belongsTo(db.tournoi, {foreignKey: 'idTournoi'})
+
 
 let option = {}
-option.force = true
-option.alter = true
+// option.force = true
+// option.alter = true
 await sequelize.sync(option)//{force:true}
 
 if (option.force === true) {
