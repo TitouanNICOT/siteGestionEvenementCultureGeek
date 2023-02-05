@@ -159,6 +159,76 @@ router.delete("/:id", evenementController.deleteEvenement)
  */
 
 router.post("/reservation/:id", evenementController.addUserInEvent)
+/**
+ * @swagger
+ * /reservation/{id}:
+ *  post:
+ *      description: Ajoute une réservation à un événement
+ *      tags:
+ *          - Reservation
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            type: integer
+ *            required: true
+ *            description: id de l'événement
+ *          - in : formData
+ *            name: idUser
+ *            type: integer
+ *            required: true
+ *            description: id de l'utilisateur qui réserve
+ *      responses:
+ *          '200':
+ *              description: Reservation ajoutée avec succés
+ *          '404':
+ *              description: Erreur lors de l'ajout de la reservation
+ */
+
 router.delete("/reservation/:id", evenementController.removeUserInEvent)
+/**
+ * @swagger
+ * /reservation/{id}:
+ *  delete:
+ *      description: Supprime une réservation d'un événement
+ *      tags:
+ *          - Reservation
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            type: integer
+ *            required: true
+ *            description: id de l'événement
+ *          - in : formData
+ *            name: idUser
+ *            type: integer
+ *            required: true
+ *            description: id de l'utilisateur qui réserve
+ *      responses:
+ *          '200':
+ *              description: Reservation supprimée avec succés
+ *          '404':
+ *              description: Erreur lors de la suppression de la reservation
+ */
+
+router.delete("/reservation/:id/all", evenementController.removeAllUsersInEvent)
+/**
+ * @swagger
+ * /reservation/{id}/all:
+ *  delete:
+ *      description: Supprime toutes les réservations d'un événement
+ *      tags:
+ *          - Reservation
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            type: integer
+ *            required: true
+ *            description: id de l'événement
+ *      responses:
+ *          '200':
+ *              description: Reservations supprimées avec succés
+ *          '404':
+ *              description: Erreur lors de la suppression des reservations
+ */
 
 export default router;

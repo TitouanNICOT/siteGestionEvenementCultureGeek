@@ -79,8 +79,8 @@ export default {
 }
 
 .logo {
-    width: 620px;
-    height: 100%;
+    max-width: 70%;
+    height: auto;
     z-index: 1;
     margin-top: 50px;
     margin-bottom: 125px;

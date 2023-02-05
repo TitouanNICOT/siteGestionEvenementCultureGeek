@@ -4,9 +4,12 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import VueCookies from 'vue-cookies'
+import DatetimePicker from 'vuetify-datetime-picker'
 
 Vue.config.productionTip = false
+
 Vue.use(VueCookies)
+Vue.use(DatetimePicker)
 new Vue({
     router,
     store,

@@ -7,8 +7,9 @@
             height="100vh"
             color="var(--primary-color)"
             dark
+            style="z-index: 2"
             class="sidebar">
-            <v-list class="centrer">
+            <v-list class="" style="padding-top: 40%">
                 <img class="logo" src="/GEEKY_EVENT.png" alt=""/>
                 <v-list-item style="margin-bottom: 15px" v-if="currentRole === ADMIN" to="/admin">
                     <v-icon style="margin: 10px">mdi-account-multiple</v-icon>
@@ -108,9 +109,9 @@ button {
 .logo {
     width: 100px;
     height: 100%;
-    /*z-index: 1;*/
     margin-top: 10px;
     margin-left: 100px;
+    padding-bottom: 50px;
 }
 
 .sidebar {
@@ -118,10 +119,5 @@ button {
     top: 0;
     left: 0;
     bottom: 0;
-}
-
-.centrer {
-    padding-top: 50%;
-    padding-bottom: 50%;
 }
 </style>

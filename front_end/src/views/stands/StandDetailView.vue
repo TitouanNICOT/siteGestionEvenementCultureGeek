@@ -1,5 +1,5 @@
 <template>
-    <div style="margin: auto;width: 800px; padding: 10px" v-if="info">
+    <div style="margin: auto; max-width: 800px; padding: 10px" v-if="info">
         <h1 style="text-align: center">{{ isEditing ? "Editing " : ""}}Stand n°{{ info.id }}</h1>
         <div v-if="!isEditing">
             <p>Nom Stand = {{ info.nomStand }}</p>
@@ -59,7 +59,11 @@
                     <v-card class="pa-3" @click="goToEvent(event.idEvenement)">{{ event.libelleEvenement }}</v-card>
                 </v-col>
             </v-row>
-            <v-btn @click="$router.push({name: 'nouvelleEvenement', params: {idStand: idStand}})">Ajouter un evenement</v-btn>
+            <p v-else>Pas d'Evenements de prévu.</p>
+            <v-btn v-if="currentRole===2 && currentUser.idUser===info.user.idUser"
+                   @click="$router.push({name: 'nouvelleEvenement', params: {idStand: idStand}})">
+                Ajouter un evenement
+            </v-btn>
         </div>
         <br>
         <div>
@@ -85,10 +89,10 @@
 
 <script>
 
-import {mapGetters, mapState} from "vuex";
+import { mapGetters, mapState} from "vuex";
+import router from "@/router";
 import myaxios from "@/services/axios";
 import axios from "@/services/axios";
-import router from "@/router";
 
 export default {
     name: "StandDetailView",
