@@ -8,7 +8,7 @@
             <p>Type d'événement : {{ info.getLibelleTypeEvenement() }}</p>
             <p>Date de début : {{ format(new Date(info.heureDebut), 'yyyy/MM/dd HH:mm') }}</p>
             <p>Date de fin : {{ format(new Date(info.heureFin), 'yyyy/MM/dd HH:mm') }}</p>
-            <p>Lieu : {{ info.stand.nomStand }}</p>
+            <p>Lieu : {{ info.stand ? info.stand.nomStand : " " }}</p>
         </div>
         <div v-else>
             <v-form ref="form" lazy-validation>
@@ -88,13 +88,13 @@
             </v-btn>
             <p v-else>Vous devez être connecté pour réserver une place.</p>
             <v-btn @click="goToStand(info.stand.id)">Voir Stand</v-btn>
-            <v-btn v-if="currentRole===2 && currentUser.idUser===info.stand.user.idUser"
+            <v-btn v-if="currentRole===2 && isOwner"
                    @click="toggleEdition"
                    color="var(--primary-color)"
                    style="color: white">
                 {{ isEditing ? "Valider" : "Editer"}}
             </v-btn>
-            <v-btn v-if="isEditing && currentRole===2 && currentUser.idUser===info.stand.user.idUser"
+            <v-btn v-if="isEditing && currentRole===2 && isOwner"
                    @click="cancelEdition"
                    color="var(--primary-color)"
                    style="color: white">
@@ -104,9 +104,10 @@
                 v-model="dialog"
                 persistent
                 max-width="450"
+                v-if="!isEditing && currentRole === 2 && isOwner"
             >
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-if="!isEditing && currentRole === 2 && currentUser.idUser === info.stand.user.idUser"
+                    <v-btn
                            color="var(--primary-color)"
                            dark
                            v-bind="attrs"
@@ -206,6 +207,9 @@ export default {
             let stands = this.stands.filter(stand => stand.idPresta() === this.currentUser.idUser)
             return stands.map(stand => stand.nomStand)
         },
+        isOwner() {
+            return this.info.stand ? this.currentUser.idUser === this.info.stand.user.idUser : false
+        }
     },
     methods: {
         format,

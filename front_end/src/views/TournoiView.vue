@@ -1,11 +1,11 @@
 <template>
     <div style=" padding: 20px" >
-        <TreeChart :json="info">
+        <TreeChart :json="info" v-if="false">
         </TreeChart>
         <VueTree :dataset="info"
                  :config="{ nodeWidth: 85, nodeHeight: 40, levelHeight: 120 }"
                  linkStyle="straight"
-                 :style="'width:'+width+'px; height: 500px; border: 1px solid gray;'"
+                 :style="'width:'+width+'px; height: 500px; border: 1px solid gray; margin: 0 auto;'"
                  ref="vueTree">
             <template v-slot:node="{node}">
                 <div class="node" :style="cssMethode(node)">
