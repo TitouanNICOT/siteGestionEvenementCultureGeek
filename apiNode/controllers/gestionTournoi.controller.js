@@ -1,39 +1,26 @@
 import db from "../models/index.js";
 
-// const genereArbreNiveau = (nTour, data,idTourApres) => {
-//     return data.filter(tour => tour.idTourApres === idTourApres).map(tour => {
-//         tour.name=tour.idJoueur?tour.idJoueur:' -';
-//         if (nTour > 1) {
-//             tour.children = genereArbreNiveau(nTour - 1, data,tour.idTour)
-//         }
-//         return tour
-//     })
-// }
-const genereArbreNiveau = (nTour, data,idTourApres) => {
+const genereArbreNiveau = (nTour, data,idTourApres) => {  //v2
     return data.filter(tour => tour.idTourApres === idTourApres).map(tour => {
-        tour.name=tour.gagnant ? tour.gagnant : ' -';
-        tour.gagne=0
-        if (nTour > 1) {
-            tour.children = genereArbreNiveau(nTour - 1, data,tour.idTour)
-        }else{
-            tour.children=[
-                {name:tour.idJoueur1,cote:"1"},
-                {name:tour.idJoueur2,cote:"2"}
-            ]
-        }
-        if (tour.idJoueur1===tour.gagnant) {
-            tour.children[0].gagne = 1
-            tour.children[1].gagne = -1
-        }else if (tour.idJoueur2===tour.gagnant) {
-            tour.children[1].gagne = 1
-            tour.children[0].gagne = -1
+        tour.name=tour.idJoueur?tour.idJoueur:' -';
+        if (nTour > 0) {
+            tour.children = genereArbreNiveau(nTour - 1, data, tour.idTour)
+            if (tour.idJoueur && tour.children.map(child => child.idJoueur).includes(tour.idJoueur)) {//couleur
+                tour.children.forEach(child => child.gagne = -1)
+                tour.children.find(child => child.idJoueur === tour.idJoueur).gagne = 1
+            }
+            if (nTour===1){ //decalage case pour les feuilles (pour obtimiser au max l'espace)
+                tour.children[0].cote="1"
+                tour.children[1].cote="2"
+            }
         }
         return tour
     })
 }
 
 const genereArbre = async (req,res) => {
-    const tournoi = await db.tournoi.findOne({where: {idTournoi: 1}})
+    const idTournoi = req.params.idTournoi
+    const tournoi = await db.tournoi.findOne({where: {idTournoi: idTournoi}})
     db.tour.findAll({
         where: {idTournoi: 1},//req.params.idTournoi
         raw: true
@@ -48,4 +35,33 @@ const genereArbre = async (req,res) => {
     })
 }
 
-export {genereArbre}
+const generationTournoiNiveau = async (nTour, idTournoi, idTourApres,premierTour) => {
+    for (let i = 0; i < 2; i++) {
+        const {idTour} = await db.tour.create({idTournoi: idTournoi, idTourApres: idTourApres})
+        if (nTour > 0)
+            await generationTournoiNiveau(nTour - 1, idTournoi, idTour,premierTour)
+        else
+            premierTour.push(idTour)
+    }
+}
+
+const generationTournoi = async (req, res) => {
+    const idTournoi = req.params.idTournoi
+    const tournoi = await db.tournoi.findOne({where: {idTournoi: idTournoi}})
+    const nbTour = tournoi.nbTour // 3=> 8personnes
+    let premierTour = []
+
+    const inscription = await db.inscriptionTournoi.findAll({where: {idTournoi: idTournoi}, raw: true})
+    if (inscription.length !== 2 ** nbTour)
+        return res.status(500).send({success: 0, data: "Le nombre d'inscrits ne correspond pas au nombre de places du tournoi"})
+
+    const {idTour} = await db.tour.create({idTournoi: idTournoi})
+    await generationTournoiNiveau(nbTour-1, idTournoi, idTour,premierTour)
+
+    for (let i = 0; i < premierTour.length; i++) {
+        await db.tour.update({idJoueur: inscription[i].idUser}, {where: {idTour: premierTour[i]}})
+    }
+    return res.status(200).send({success: 1})
+}
+
+export {genereArbre,generationTournoi}

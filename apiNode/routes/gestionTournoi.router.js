@@ -1,7 +1,9 @@
 import express from "express";
-import {genereArbre} from "../controllers/gestionTournoi.controller.js";
+import {genereArbre,generationTournoi} from "../controllers/gestionTournoi.controller.js";
 
 const router = express.Router();
 router.get("/",genereArbre)
+
+router.post("/",generationTournoi)
 
 export default router;

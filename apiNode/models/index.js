@@ -53,14 +53,16 @@ db.livreOr = LivreOr(Sequelize, sequelize)
 import {ReserverProduit} from "./reserverProduit.js"
 db.reserverProduit = ReserverProduit(Sequelize, sequelize)
 
-import {Reservation} from "./reservation.js"
-db.reservation = Reservation(Sequelize, sequelize)
+
+db.reservation = sequelize.define('reservationEvenement', {},{timestamps:false})
 
 import {Tournoi} from "./tournoi.js"
 db.tournoi = Tournoi(Sequelize, sequelize)
 
 import {Tour} from "./tour.js"
 db.tour = Tour(Sequelize, sequelize)
+
+db.inscriptionTournoi = sequelize.define('inscriptionTournoi', {},{timestamps:false})
 
 db.user.belongsTo(db.role, {foreignKey: 'idRole'})
 db.role.hasMany(db.user, {foreignKey: 'idRole'})
@@ -104,9 +106,12 @@ db.tournoi.belongsTo(db.evenement, {foreignKey: 'idEvenement'})
 db.tournoi.hasMany(db.tour, {foreignKey: 'idTournoi'})
 db.tour.belongsTo(db.tournoi, {foreignKey: 'idTournoi'})
 
+db.user.belongsToMany(db.tournoi, {through: db.inscriptionTournoi, foreignKey: 'idUser'})
+db.tournoi.belongsToMany(db.user, {through: db.inscriptionTournoi, foreignKey: 'idTournoi'})
+
 
 let option = {}
-// option.force = true
+option.force = true
 // option.alter = true
 await sequelize.sync(option)//{force:true}
 

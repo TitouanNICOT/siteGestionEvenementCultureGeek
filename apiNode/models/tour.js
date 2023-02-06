@@ -1,3 +1,6 @@
+//v1=2joueur par ligne
+//v2=1joueur par ligne (->donc deux ligne)
+//v3=table en plus
 export const Tour = (Sequelize, sequelize) => {
     return sequelize.define('tour', {
         idTour: {
@@ -6,25 +9,25 @@ export const Tour = (Sequelize, sequelize) => {
             autoIncrement: true,
             allowNull: false
         },
-        idJoueur1: {
+        idJoueur: { //v1 et v2
             type: Sequelize.INTEGER,
             allowNull: true
         },
-        idJoueur2: {
+        // idJoueur2: { //v1
+        //     type: Sequelize.INTEGER,
+        //     allowNull: true
+        // },
+        // nTour: {
+        //     type: Sequelize.INTEGER,
+        //     allowNull: false
+        // },
+        idTourApres: { //v1 et v2
             type: Sequelize.INTEGER,
             allowNull: true
         },
-        nTour: {
-            type: Sequelize.INTEGER,
-            allowNull: false
-        },
-        idTourApres: {
-            type: Sequelize.INTEGER,
-            allowNull: true
-        },
-        gagnant: {
-            type: Sequelize.INTEGER,
-            allowNull: true
-        }
-    })
+        // gagnant: { //v1
+        //     type: Sequelize.INTEGER,
+        //     allowNull: true
+        // }
+    },{timestamps:false})
 }

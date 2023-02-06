@@ -3,9 +3,9 @@
         <TreeChart :json="info" v-if="false">
         </TreeChart>
         <VueTree :dataset="info"
-                 :config="{ nodeWidth: 85, nodeHeight: 40, levelHeight: 120 }"
+                 :config="{ nodeWidth: 70, nodeHeight: 40, levelHeight: 120 }"
                  linkStyle="straight"
-                 :style="'width:'+width+'px; height: 500px; border: 1px solid gray; margin: 0 auto;'"
+                 style="width:100%; height: 600px; border: 1px solid gray; margin: 0 auto;"
                  ref="vueTree">
             <template v-slot:node="{node}">
                 <div class="node" :style="cssMethode(node)">
@@ -25,8 +25,7 @@ import {mapState} from "vuex";
 export default {
     name: "TournoiView",
     data: () => ({
-        info: {},
-        width: 1200,
+        info: {}
     }),
     components: {TreeChart, VueTree},
     computed:{
@@ -42,7 +41,7 @@ export default {
 
         },
         cssMethode(node){
-            let css = node.cote ? {position:"relative",left: node.cote==='1'? "-20px":"20px"} : {}
+            let css = node.cote ? {position:"relative",left: node.cote==='1'? "-13px":"13px"} : {}
             if (node.gagne===1)
                 css.backgroundColor= "gold"
             else if (node.gagne===-1)
@@ -59,7 +58,7 @@ export default {
         });
     },
     mounted() {
-        console.log(this.$refs.vueTree.$data.initialTransformStyle.transform = "scale(1) translate(" + this.width / 2 + "px, -50px)")
+        console.log(this.$refs.vueTree.$data.initialTransformStyle.transform = "scale(1) translate(" + 1500 / 2 + "px, -50px)")
     }
 }
 </script>
@@ -68,7 +67,8 @@ export default {
 .node {
     border: 1px solid black;
     background-color: white;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
+    width: 85px;
 }
 </style>
