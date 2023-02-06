@@ -51,7 +51,7 @@ export default {
     },
 
     created() {
-        myaxios.get("/gestionTournoi").then((response) => {
+        myaxios.get("/gestionTournoi/1").then((response) => {
             this.info = response.data.data;
         }).catch((error) => {
             console.log(error)

@@ -22,7 +22,7 @@ const genereArbre = async (req,res) => {
     const idTournoi = req.params.idTournoi
     const tournoi = await db.tournoi.findOne({where: {idTournoi: idTournoi}})
     db.tour.findAll({
-        where: {idTournoi: 1},//req.params.idTournoi
+        where: {idTournoi: idTournoi},//req.params.idTournoi
         raw: true
     }).then(data => {
         const arbre = genereArbreNiveau(tournoi.nbTour, data,null)[0]
