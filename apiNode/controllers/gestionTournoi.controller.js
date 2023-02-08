@@ -64,4 +64,17 @@ const generationTournoi = async (req, res) => {
     return res.status(200).send({success: 1})
 }
 
-export {genereArbre,generationTournoi}
+const majTourTounois = (req,res) => {
+  const idTour = req.params.idTour
+    const idJoueur = req.query.idJoueur
+    db.tour.update({idJoueur: idJoueur}, {where: {idTour: idTour}}).then(async data => {
+        res.status(200).send({success: 1})
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Une erreur est survenue lors de la récupération des tours."
+        });
+        console.error(err)
+    })
+}
+
+export {genereArbre,generationTournoi,majTourTounois}
