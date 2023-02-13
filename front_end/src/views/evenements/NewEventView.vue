@@ -1,74 +1,49 @@
 <template>
-    <div style="margin: auto;width: 800px; padding: 10px">
+    <div style="margin: auto; max-width: 800px; padding: 10px">
         <h1 style="text-align: center">Nouvelle Evenement</h1>
-        <v-form ref="form" v-model="valide">
+        <v-form ref="form" v-model="valide" lazy-validation>
             <v-text-field
                 v-model="EventName"
                 :rules="nameRule"
-                :counter="10"
                 label="Nom de l'évenement"
                 required>
             </v-text-field>
-            <v-menu
-                v-model="menu"
-                :close-on-content-click="false"
-                :nudge-right="40"
-                transition="scale-transition"
-                offset-y
-                min-width="auto"
-                required
-            >
-                <template v-slot:activator="{ on, attrs }">
-                    <v-text-field
-                        v-model="startTime"
-                        label="heure de début"
-                        prepend-icon="mdi-calendar"
-                        readonly
-                        v-bind="attrs"
-                        v-on="on"
-                        required
-                    ></v-text-field>
+            <v-datetime-picker
+                label="Date et heure de début"
+                v-model="startDatetime"
+                date-format="dd/MM/yyyy"
+                :class="additionnalValidation() ? 'error--text' : ''"
+                :text-field-props="{rules:datePikerRule, required: true}"
+                :date-picker-props="{min:'2023-02-01', max: getMaxDate()}"
+                :time-picker-props="{format:'24hr'}"
+                required>
+                <template slot="dateIcon">
+                    <v-icon>mdi-calendar</v-icon>
                 </template>
-                <v-time-picker
-                    v-model="startTime"
-                    :max="endTime"
-                    format="24hr"
-                    @input="menu = false"
-                    required
-                ></v-time-picker>
-            </v-menu>
-            <v-menu
-                v-model="menu2"
-                :close-on-content-click="false"
-                :nudge-right="40"
-                transition="scale-transition"
-                offset-y
-                min-width="auto"
-                required
-            >
-                <template v-slot:activator="{ on, attrs }">
-                    <v-text-field
-                        v-model="endTime"
-                        label="heure de Fin"
-                        prepend-icon="mdi-calendar"
-                        readonly
-                        v-bind="attrs"
-                        v-on="on"
-                        required
-                    ></v-text-field>
+                <template slot="timeIcon">
+                    <v-icon>mdi-clock</v-icon>
                 </template>
-                <v-time-picker
-                    v-model="endTime"
-                    :min="startTime"
-                    format="24hr"
-                    @input="menu2 = false"
-                    required
-                ></v-time-picker>
-            </v-menu>
+            </v-datetime-picker>
+            <v-datetime-picker
+                label="Date et heure de Fin"
+                v-model="endDatetime"
+                date-format="dd/MM/yyyy"
+                :text-field-props="{rules:datePikerRule, required: true}"
+                :date-picker-props="{min: getMinDate(), max:'2023-02-03'}"
+                :time-picker-props="{format:'24hr'}"
+                required>
+                <template slot="dateIcon">
+                    <v-icon>mdi-calendar</v-icon>
+                </template>
+                <template slot="timeIcon">
+                    <v-icon>mdi-clock</v-icon>
+                </template>
+            </v-datetime-picker>
             <v-select
                 v-model="eventType"
                 :items="listTypeEvenement"
                 label="Type d'évenement"
+                :rules="selectRule"
                 required>
             </v-select>
             <v-text-field
@@ -77,7 +52,7 @@
                 disabled
                 required>
             </v-text-field>
-            <v-btn @submit.prevent="">Valider</v-btn>
+            <v-btn @click="addEvent()">Valider</v-btn>
             <v-btn @click="$router.push({name: 'evenement'})"
                    color="var(--primary-color)"
                    style="color: white">
@@ -89,7 +64,10 @@
 
 <script>
 import router from "@/router";
+import {format, compareAsc} from "date-fns";
 import {mapState} from "vuex";
+import {log10} from "chart.js/helpers";
+import axios from "axios";
 
 export default {
     name: "NewEventView",
@@ -100,10 +78,16 @@ export default {
             nameRule: [
                 nom => !!nom || 'Le nom de l\'évenement est requis',
             ],
+            datePikerRule: [
+                date => !!date || 'La date de début et de fin sont requises',
+            ],
+            selectRule: [
+                select => !!select || 'Le type d\'évenement est requis',
+            ],
             menu: false,
             menu2: false,
-            startTime: null,
-            endTime: null,
+            startDatetime: null,
+            endDatetime: null,
             eventType: null,
         }
     },
@@ -117,13 +101,53 @@ export default {
         },
     },
     methods: {
+        compareAsc,
+        format,
+        log10,
         router() {
             return router
-        }
+        },
+        addEvent() {
+
+            if (this.$refs.form.validate() && this.additionnalValidation())
+                axios.post('http://127.0.0.1:3000/evenements', {
+                    libelleEvenement: this.EventName,
+                    heureDebut: this.startDatetime,
+                    heureFin: this.endDatetime,
+                    idTypeEvenement: this.listeTypeEvenement.find(typeEvenement => typeEvenement.libelleTypeEvenement === this.eventType).idTypeEvenement ,
+                    idStand: this.idStand
+                }).then( () => {
+                    alert('Évènement ajouté avec succès')
+                    this.$router.push({name: 'evenement'})
+                }).catch(error => {
+                    console.log(error)
+                })
+
+        },
+        getMinDate(){
+            if (this.startDatetime){
+                return format(this.startDatetime, 'yyyy-MM-dd')
+            }
+            return '2023-02-01'
+        },
+        getMaxDate(){
+
+            if (this.endDatetime){
+                return format(this.endDatetime, 'yyyy-MM-dd')
+            }
+            return '2023-02-03'
+        },
+        additionnalValidation() {
+            let isValid = this.compareAsc(this.startDatetime, this.endDatetime) === -1;
+            if (!isValid) {
+                alert('La date de début doit être inférieure à la date de fin')
+            }
+            return isValid
+        },
     }
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

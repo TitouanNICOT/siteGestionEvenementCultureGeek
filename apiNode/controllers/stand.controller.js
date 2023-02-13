@@ -83,7 +83,7 @@ const newCommentaire = async (req, res) => {
     })
 }
 
-const deleteCommentaire = (req,res) => {
+const deleteCommentaire = (req, res) => {
     db.livreOr.destroy({
         where: {idLivreOr: req.params.id}
     }).then((/*result*/) => {
@@ -120,19 +120,19 @@ const getStandWithEvents = async (req, res) => {
     })
 }
 
-const getCommentaire = (req,res) => {
-  db.livreOr.findAll({
-    where: {idStand: req.params.id},
-  }).then((results) => {
-    return res.status(200).send({success: 1, data: results})
-  }).catch((error) => {
-    return res.status(404).send({success: 0, data: error})
-  })
+const getCommentaire = (req, res) => {
+    db.livreOr.findAll({
+        where: {idStand: req.params.id},
+    }).then((results) => {
+        return res.status(200).send({success: 1, data: results})
+    }).catch((error) => {
+        return res.status(404).send({success: 0, data: error})
+    })
 }
 
 export default {
     listStand, newStand, getStand,
     listeTypeStand, newCommentaire, deleteStand,
-    deleteCommentaire, getStandWithEvents,getCommentaire,
+    deleteCommentaire, getStandWithEvents, getCommentaire,
     updateStand
 }

@@ -14,6 +14,9 @@ import produits from './routes/produit.router.js';
 import boutique from './routes/boutique.router.js';
 import reserverProduits from "./routes/reserverProduit.router.js";
 import loginRouter from "./routes/login.router.js";
+import cors from 'cors'
+import mailRouter from "./routes/mail.router.js";
+import gestionTournoiRouter from "./routes/gestionTournoi.router.js";
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
@@ -31,8 +34,6 @@ const swaggerOption = {
 };
 const swaggerDocs = swaggerJsdoc(swaggerOption);
 
-import cors from 'cors'
-import mailRouter from "./routes/mail.router.js";
 app.use(cors())
 
 
@@ -48,6 +49,7 @@ app.use("/reservations",reserverProduits);
 app.use("/connection",loginRouter);
 app.use("/mail", mailRouter)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("/gestionTournoi",gestionTournoiRouter);
 
 app.get("/",(req, res)=>{
     res.status(200).send("salut");
