@@ -55,6 +55,8 @@ const generationTournoi = async (req, res) => {
     if (inscription.length !== 2 ** nbTour)
         return res.status(500).send({success: 0, data: "Le nombre d'inscrits ne correspond pas au nombre de places du tournoi"})
 
+    await db.tour.destroy({where: {idTournoi: idTournoi}})
+
     const {idTour} = await db.tour.create({idTournoi: idTournoi})
     await generationTournoiNiveau(nbTour-1, idTournoi, idTour,premierTour)
 

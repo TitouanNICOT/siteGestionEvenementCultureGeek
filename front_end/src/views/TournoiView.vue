@@ -1,22 +1,29 @@
 <template>
-    <div style=" padding: 20px" >
-        <div>Selectionner le gagnant du match :
-            <span v-if="selected">
-                <v-btn @click="majTourTounois(joueur1)">{{ joueur1 }}</v-btn> ou
-                <v-btn @click="majTourTounois(joueur2)">{{ joueur2 }}</v-btn>
-            </span>
-        </div>
-        <TreeChart :json="info" v-if="false">
-        </TreeChart>
-        <VueTree :dataset="info"
+    <div style=" padding: 20px">
+        <v-btn @click="genererTournois" v-if="!info">Generer Tournois</v-btn>
+        <VueTree v-else
+                :dataset="info"
                  :config="{ nodeWidth: 70, nodeHeight: 40, levelHeight: 120 }"
                  linkStyle="straight"
                  :collapse-enabled="false"
                  style="width:100%; height: 600px; border: 1px solid gray; margin: 0 auto;"
                  ref="vueTree">
             <template v-slot:node="{node}">
-                <div class="node" :style="cssMethode(node)" @click="caseSelected(node)">
-                    {{ formateAffichage(node) }}
+                <div class="node" :style="cssMethode(node)">
+                    <span v-if="nodeSelected(node)">
+                        <span v-for="(children,index) in node.children" :key="index">
+                            <v-btn @click="majTourTounois(children.idJoueur,node)">
+                                {{users.find(u => u.idUser === children.idJoueur).pseudo}}
+                            </v-btn>
+                            <span v-if="index < node.children.length-1"> OU </span>
+                        </span>
+                    </span>
+                    <span v-else-if="users.find(u => u.idUser === node.idJoueur)">
+                        {{formatUser(users.find(u => u.idUser === node.idJoueur))}}
+                    </span>
+                    <span v-else>
+                        -----
+                    </span>
                 </div>
             </template>
         </VueTree>
@@ -25,7 +32,6 @@
 
 <script>
 import myaxios from "@/services/axios";
-import TreeChart from "vue-tree-chart";
 import VueTree from "@ssthouse/vue-tree-chart";
 import {mapState} from "vuex";
 
@@ -33,55 +39,54 @@ export default {
     name: "TournoiView",
     data: () => ({
         info: {},
-        joueur1: "",
-        joueur2: "",
-        selected: false,
-        node:undefined
     }),
-    components: {TreeChart, VueTree},
-    computed:{
+    components: {VueTree},
+    computed: {
         ...mapState(["users"])
     },
-    methods:{
-        formateAffichage(node){
-            const user = this.users.find(u=>u.idUser=== node.idJoueur)
-            return user ? user.pseudo +"\n"+ user.idUser : "-----"
+    methods: {
+        formatUser(user) {
+            return user.pseudo + "\n" + user.idUser
         },
-        cssMethode(node){
-            let css = node.cote ? {position:"relative",left: node.cote==='1'? "-13px":"13px"} : {}
-            if (node.gagne===1)
-                css.backgroundColor= "gold"
-            else if (node.gagne===-1)
-                css.backgroundColor= "lightcoral"
-            css.width = node.children ? "100px" : "85px"
+        cssMethode(node) {
+            let css = node.cote ? {position: "relative", left: node.cote === '1' ? "-13px" : "13px"} : {}
+            if (node.gagne === 1)
+                css.backgroundColor = "gold"
+            else if (node.gagne === -1)
+                css.backgroundColor = "lightcoral"
+            // css.width = node.children ? "100px" : "85px"
             return css
         },
-        caseSelected(node) {
-            if (!node.idJoueur && node.children && node.children.length === 2) {
-                this.selected = true
-                this.joueur1 = node.children[0].idJoueur
-                this.joueur2 = node.children[1].idJoueur
-                this.node = node
-            }else {
-                this.selected = false
-            }
+        nodeSelected(node) {
+            if (node.idJoueur || !node.children) return false;
+            for (const c of node.children)
+                if (!c.idJoueur) return false
+            return true;
         },
-            majTourTounois(idJoueur){
-                myaxios.get("/gestionTournoi/maj/"+this.node.idTour+"?idJoueur="+idJoueur)
-                    .then(()=>{
-                        this.selected = false
-                        this.node.idJoueur = idJoueur
-                        this.node.children.forEach(c=>c.gagne = c.idJoueur===idJoueur? 1:-1)
-                    })
-            }
+        majTourTounois(idJoueur, node) {
+            myaxios.get("/gestionTournoi/maj/" + node.idTour + "?idJoueur=" + idJoueur)
+                .then(() => {
+                    node.idJoueur = idJoueur
+                    node.children.forEach(c => c.gagne = c.idJoueur === idJoueur ? 1 : -1)
+                })
         },
-
+        genererTournois(){
+            this.$route.params.idTournoi=1;
+            myaxios.post("/gestionTournoi/"+this.$route.params.idTournoi)
+                .then(() => {
+                    this.loadInfo()
+                })
+        },
+        loadInfo(){
+            myaxios.get("/gestionTournoi/1").then((response) => {
+                this.info = response.data.data;
+            }).catch((error) => {
+                console.log(error)
+            });
+        }
+    },
     created() {
-        myaxios.get("/gestionTournoi/1").then((response) => {
-            this.info = response.data.data;
-        }).catch((error) => {
-            console.log(error)
-        });
+        this.loadInfo()
     },
     mounted() {
         console.log(this.$refs.vueTree.$data.initialTransformStyle.transform = "scale(1) translate(" + 1500 / 2 + "px, -50px)")
