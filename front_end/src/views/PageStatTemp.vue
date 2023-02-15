@@ -11,6 +11,7 @@
 
                 <BarChart :donnee="[{data:dataBar2.data,label:'Nombre de commentaire par stand',backgroundColor:'#ffc13b' }]" :labels="dataBar2.label" height="300px"/>
             </v-col>
+            Revenu estimé : {{revenuEstime}}€
         </v-row>
     </v-container>
 </template>
@@ -31,6 +32,7 @@ export default {
       produitsReserves: [],
       reservationEvenement: [],
       commantaires: [],
+      produits: [],
     }),
     computed: {
         ...mapState(['stands','listeTypeStand','currentUser','evenements']),
@@ -75,9 +77,23 @@ export default {
         mesEvenements() {
           return this.evenements.filter(event => this.mesStands.map(s => parseInt(s.id)).includes(event.idStand))
         },
-      mesStands() {
-        return this.stands.filter(stand => stand.idPresta() === this.currentUser.idUser)
-      },
+        mesStands() {
+          return this.stands.filter(stand => stand.idPresta() === this.currentUser.idUser)
+        },
+        revenuEstime(){
+          let revenu = 0;
+          console.log(this.produitsReserves)
+          console.log(this.produits)
+          this.produits.forEach(produit => {
+            console.log(produit)
+            this.produitsReserves.forEach(produitReserve => {
+              if (produitReserve.idProduit === produit.idProduit){
+                revenu += produitReserve.quantite * produit.prix;
+              }
+            })
+          })
+          return revenu;
+        }
     },
     mounted() {
       myaxios.get("/users/" + this.currentUser.idUser + "/commentaire")
@@ -91,6 +107,10 @@ export default {
       myaxios.get("/evenements/reservation")
           .then(res => {
             this.reservationEvenement = res.data.data
+          })
+      myaxios.get("/produits")
+          .then(res => {
+            this.produits = res.data.data
           })
     }
 }
