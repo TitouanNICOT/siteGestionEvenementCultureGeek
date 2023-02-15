@@ -3,7 +3,8 @@ import {genereArbre} from "../../controllers/gestionTournoi.controller.js";
 export default async (db) => {
     await db.tournoi.create({
         nomTournoi: 'TournoiTest',
-        nbTour: 4
+        nbTour: 4,
+        idEvenement:2
     })
 
 

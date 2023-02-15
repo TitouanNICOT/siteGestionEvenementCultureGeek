@@ -1,5 +1,44 @@
 import db from "../models/index.js";
 
+
+const listById = async (req, res) => {
+    const id = req.params.id;
+    db.inscriptionTournoi.findAll({where: {idTournoi:id}}).then((results) => {
+        return res.status(200).send({success: 1, data: results})
+    }).catch((error) => {
+        return res.status(404).send({success: 0, data: error})
+    })
+}
+
+const add = async (req, res) => {
+    console.log(req.body)
+    db.inscriptionTournoi.create({
+        idUser: req.body.idUser,
+        idTournoi: req.body.idTournoi,
+    }).then((result) => {
+        return res.status(200).send({success: 1})
+    }).catch((error) => {
+        console.error(error)
+        return res.status(404).send({success: 0})
+    });
+}
+
+const deleteUser = async(req, res) => {
+    const idUser = req.params.idUser;
+    const idTournoi = req.params.idTournoi;
+    if (isNaN(idUser) || isNaN(idTournoi))
+        return res.status(404).send({success: 0})
+    db.inscriptionTournoi.destroy({
+        where: {idUser: idUser,idTournoi:idTournoi}
+    }).then((result) => {
+        return res.status(200).send({success: 1})
+    }).catch((error) => {
+        console.error(error)
+        return res.status(404).send({success: 0})
+    });
+}
+
+
 const genereArbreNiveau = (nTour, data,idTourApres) => {  //v2
     return data.filter(tour => tour.idTourApres === idTourApres).map(tour => {
         tour.name=tour.idJoueur?tour.idJoueur:' -';
@@ -77,4 +116,4 @@ const majTourTounois = (req,res) => {
     })
 }
 
-export {genereArbre,generationTournoi,majTourTounois}
+export {listById,add,deleteUser, genereArbre,generationTournoi,majTourTounois}

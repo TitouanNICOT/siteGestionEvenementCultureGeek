@@ -1,7 +1,7 @@
 import db from "../models/index.js"
 
 const list = async (req, res) => {
-    db.evenement.findAll({include: [db.type_evenement, db.user]}).then((results) => {
+    db.evenement.findAll({include: [db.type_evenement, db.user, db.tournoi]}).then((results) => {
         return res.status(200).send({success: 1, data: results})
     }).catch((error) => {
         return res.status(404).send({success: 0, data: error})
@@ -13,7 +13,7 @@ const getEvenementById = async (req, res) => {
     if (isNaN(id))
         return res.status(404).send({success: 0, data: "id is not a number"})
 
-    db.evenement.findByPk(id, {include: [db.type_evenement, db.user]})
+    db.evenement.findByPk(id, {include: [db.type_evenement, db.user, db.tournoi]})
         .then((results) => {
             return res.status(200).send({success: 1, data: results})
         }).catch((error) => {

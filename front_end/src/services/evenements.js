@@ -1,5 +1,5 @@
 class Evenement {
-    constructor(idEvenement, libelleEvenement, heureDebut, heureFin,idStand,typeEvenement,reservations) {
+    constructor(idEvenement, libelleEvenement, heureDebut, heureFin,idStand,typeEvenement,reservations,tournoi) {
         this.idEvenement = idEvenement;
         this.libelleEvenement = libelleEvenement;
         this.heureDebut = heureDebut;
@@ -8,6 +8,7 @@ class Evenement {
         this.typeEvenement = typeEvenement;
         this.reservations = reservations;
         this.stand = undefined;
+        this.tournoi = tournoi;
     }
 
     static fromAPI(data) {
@@ -17,7 +18,8 @@ class Evenement {
             data.heureFin,
             data.idStand,
             data.type_evenement,
-            data.users
+            data.users,
+            data.tournoi
         )
     }
 
