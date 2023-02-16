@@ -77,8 +77,11 @@
                 <p>Deja prise : {{ reservations.length }}</p>
                 <p>Restant : {{ info.stand.nbPlace - reservations.length }}</p>
             </div>
-          <v-btn v-if="currentRole!==NONCONNECTE && !dejaReserve" @click="reservationEvent">Réserver sa place</v-btn>
-          <v-btn v-else-if="currentRole!==NONCONNECTE && dejaReserve" @click="annulerReservationEvent">Annuler sa
+            <div v-if="currentRole!==NONCONNECTE && !dejaReserve">
+                <v-btn @click="reservationEvent" v-if="!dejaParticipe">Réserver sa place</v-btn>
+                <span v-else>Vous etes deja inscrit comme joueur</span>
+            </div>
+            <v-btn v-else-if="currentRole!==NONCONNECTE && dejaReserve" @click="annulerReservationEvent">Annuler sa
             réservation
           </v-btn>
           <p v-else>Vous devez être connecté pour réserver une place.</p>
@@ -90,7 +93,10 @@
           <p>Deja prise : {{ nbParticipants }}</p>
           <p>Restant : {{ info.tournoi.nbJoueur - nbParticipants }}</p>
         </div>
-        <v-btn v-if="currentRole!==NONCONNECTE && !dejaParticipe" @click="participerEvent">Réserver sa place</v-btn>
+          <div v-if="currentRole!==NONCONNECTE && !dejaParticipe">
+              <v-btn @click="participerEvent" v-if="!dejaReserve">Réserver sa place</v-btn>
+              <span v-else>Vous etes deja inscrit comme spectateur</span>
+          </div>
         <v-btn v-else-if="currentRole!==NONCONNECTE && dejaParticipe" @click="annulerParticipationEvent">Annuler sa
           réservation
         </v-btn>
@@ -239,12 +245,15 @@ export default {
         },
 
         async participationEvent(){
-          let info = this.evenements.find(elem => elem.idEvenement === parseInt(this.$route.params.id))
-          let data = await myaxios.get(`/gestionTournoi/getById/${info.tournoi.idTournoi}`);
+          //let info = this.evenements.find(elem => elem.idEvenement === parseInt(this.$route.params.id))
+            if (this.info===undefined)
+                return
+            let res = await myaxios.get(`/gestionTournoi/getById/${this.info.tournoi.idTournoi}`);
 
-          if(data.status === 200){
-            this.participations =  data.data;
-            this.dejaParticipe = this.participations.filter(res => res.idUser === this.currentUser.idUser).length > 0
+          if(res.status === 200){
+            this.participations =  res.data.data;
+            if (this.currentUser)
+                this.dejaParticipe = this.participations.filter(res => res.idUser === this.currentUser.idUser).length > 0
           }
         },
 
@@ -268,10 +277,10 @@ export default {
       },
       async annulerParticipationEvent() {
         try {
-          await myaxios.delete(`/gestionTournoi/${this.info.tournoi.idTournoi}/${this.currentUser.idUser}`);
-          this.reservations.splice(this.reservations.findIndex(res => res.idUser === this.currentUser.idUser && res.idTournoi === this.info.tournoi.idTournoi,), 1)
-          this.dejaReserve = false
-          alert('Vous avez bien annulé votre réservation');
+            await myaxios.delete(`/gestionTournoi/${this.info.tournoi.idTournoi}/${this.currentUser.idUser}`);
+            this.participations.splice(this.participations.findIndex(res => res.idUser === this.currentUser.idUser && res.idTournoi === this.info.tournoi.idTournoi), 1)
+            this.dejaParticipe = false
+            alert('Vous avez bien annulé votre réservation');
         } catch (error) {
           console.error(error);
           alert('Une erreur est survenue lors de l\'annulation de votre réservation');
@@ -388,16 +397,21 @@ export default {
                 if (this.currentUser) {
                     this.dejaReserve = this.reservations.filter(res => res.idUser === this.currentUser.idUser).length > 0
                 }
-                this.participationEvent();
+                // this.participationEvent();
             })
         // this.fetchEventInfo(this.idEvenement)
         this.notifUsers = compareAsc(this.currentDate, new Date('2023-02-01 00:00:00')) === compareDesc(this.currentDate, new Date('2023-02-03 23:59:59'))
 
-        //this.participationEvent();
+        this.participationEvent();
 
         // pour tester pendant le Geeky Event
         // this.notifUsers = compareAsc(new Date('2023-02-02 00:00:00'), new Date('2023-02-01 00:00:00')) === compareDesc(new Date('2023-02-02 00:00:00'), new Date('2023-02-03 23:59:59'))
     },
+    watch:{
+        info(){
+            this.participationEvent();
+        }
+    }
 }
 </script>
 

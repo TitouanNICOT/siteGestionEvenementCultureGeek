@@ -55,6 +55,10 @@ export default {
             else if (node.gagne === -1)
                 css.backgroundColor = "lightcoral"
             // css.width = node.children ? "100px" : "85px"
+            if (node.idTour===this.info.idTour){
+                css.border = "5px dotted black"
+                css.backgroundColor = "gold"
+            }
             return css
         },
         nodeSelected(node) {
