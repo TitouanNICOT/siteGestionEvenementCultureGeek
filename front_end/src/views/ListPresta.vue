@@ -1,7 +1,7 @@
 <template>
     <ListeDataView :data="listePresta" :filtreInfo="filtreInfo" nomPage="Liste des prestataires">
         <template v-slot:default="{elem}">
-            <v-card class="pa-3" style="height: 100%" outlined @click="goToPresta(elem.id)">
+            <v-card class="pa-3" style="height: 100%" outlined @click="goToPresta(elem.idUser)">
                 <h3 style="text-align: center">{{ elem.nom }} {{elem.prenom}}</h3>
                 <hr>
                 <span>Pseudo : <strong>{{ elem.pseudo }}</strong></span>
@@ -31,6 +31,12 @@ export default {
     computed:{
         ...mapGetters(["listePresta"]),
             ...mapState(["stands"])
+    },
+    methods:{
+        goToPresta(id){
+            console.log(id)
+            this.$router.push({name:"infosPresta",params:{idUser:id}})
+        }
     }
 }
 </script>

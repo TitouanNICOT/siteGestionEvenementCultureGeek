@@ -1,6 +1,7 @@
 <template>
     <div style=" padding: 20px">
-        <v-btn @click="genererTournois" v-if="!info">Generer Tournois</v-btn>
+        <v-btn @click="$store.state.currentUser={idUser:1}">Debug Page</v-btn>
+        <v-btn @click="genererTournois" v-if="!info && isOwner">Generer Tournois</v-btn>
         <VueTree v-else
                 :dataset="info"
                  :config="{ nodeWidth: 70, nodeHeight: 40, levelHeight: 120 }"
@@ -10,7 +11,7 @@
                  ref="vueTree">
             <template v-slot:node="{node}">
                 <div class="node" :style="cssMethode(node)">
-                    <span v-if="nodeSelected(node)">
+                    <span v-if="nodeSelected(node) && isOwner">
                         <span v-for="(children,index) in node.children" :key="index">
                             <v-btn @click="majTourTounois(children.idJoueur,node)">
                                 {{users.find(u => u.idUser === children.idJoueur).pseudo}}
@@ -38,11 +39,18 @@ import {mapState} from "vuex";
 export default {
     name: "TournoiView",
     data: () => ({
-        info: {},
+        info: {}
     }),
     components: {VueTree},
     computed: {
-        ...mapState(["users"])
+        ...mapState(["users","currentUser","evenements"]),
+        isOwner(){
+            if (!(this.evenement && this.currentUser)) return false
+            return this.currentUser.idUser === this.evenement.getIdPresta()
+        },
+        evenement(){
+            return this.evenements.find(e => e.tournoi && e.tournoi.idTournoi === this.$route.params.idTournoi)
+        }
     },
     methods: {
         formatUser(user) {
@@ -75,17 +83,20 @@ export default {
                 })
         },
         genererTournois(){
-            this.$route.params.idTournoi=1;
             myaxios.post("/gestionTournoi/"+this.$route.params.idTournoi)
                 .then(() => {
                     this.loadInfo()
                 })
         },
         loadInfo(){
-            myaxios.get("/gestionTournoi/1").then((response) => {
+            myaxios.get("/gestionTournoi/"+this.$route.params.idTournoi).then((response) => {
                 this.info = response.data.data;
             }).catch((error) => {
                 console.log(error)
+                if (error.response.status===404){
+                    alert("Tournoi non trouvé")
+                    this.$router.push("/")
+                }
             });
         }
     },
