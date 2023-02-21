@@ -10,6 +10,27 @@ const listById = async (req, res) => {
     })
 }
 
+const modifStatus = async (req, res) => {
+    const id = req.params.id
+    if (isNaN(id))
+        return res.status(404).send({success: 0})
+
+    var status = req.body.status;
+    const tournoi = await db.tournoi.findByPk(id)
+
+    db.tournoi.update({
+        status: status ? status : tournoi.status,
+    }, {
+        where: {idTournoi: id}
+    }).then(async() => {
+        const data = await db.tournoi.findByPk(id)
+        return res.status(200).send({success: 1, data: data})
+    }).catch((error) => {
+        console.error(error)
+        return res.status(404).send({success: 0})
+    });
+}
+
 const add = async (req, res) => {
     console.log(req.body)
     db.inscriptionTournoi.create({
@@ -21,6 +42,61 @@ const add = async (req, res) => {
         console.error(error)
         return res.status(404).send({success: 0})
     });
+}
+
+const createTournoi = async (req, res) => {
+    console.log("attempt to create tournoi")
+    console.log(req.body)
+    db.tournoi.create({
+        nbTour: req.body.nbTour,
+        nomTournoi: req.body.nomTournoi,
+        idEvenement: req.body.idEvenement,
+        status:0
+    }).then((result) => {
+        return res.status(200).send({success: 1})
+    }).catch((error) => {
+        console.error(error)
+        return res.status(404).send({success: 0})
+    });
+}
+
+const editTournoiInfos = async (req, res) => {
+    const id = req.params.id
+    console.log(req.body)
+    db.tournoi.update({
+        nbTour: req.body.nbTour,
+        nomTournoi: req.body.nomTournoi,
+    },
+        {where:{idTournoi:id}}).then((result) => {
+        return res.status(200).send({success: 1})
+    }).catch((error) => {
+        console.error(error)
+        return res.status(404).send({success: 0})
+    });
+}
+
+const deleteTournoi = async (req, res) => {
+    const id = req.params.id;
+    if (isNaN(id))
+        return res.status(404).send({success: 0})
+
+    db.inscriptionTournoi.destroy({
+        where: {idTournoi: id}
+    }).then(()=>{
+        db.tour.destroy({
+            where: {idTournoi: id}
+        }).then(()=> {
+            db.tournoi.destroy({
+                where: {idTournoi: id}
+            }).then((result) => {
+                return res.status(200).send({success: 1})
+            }).catch((error) => {
+                console.error(error)
+                return res.status(404).send({success: 0})
+            });
+        })
+    })
+
 }
 
 const deleteUser = async(req, res) => {
@@ -118,4 +194,4 @@ const majTourTounois = (req,res) => {
     })
 }
 
-export {listById,add,deleteUser, genereArbre,generationTournoi,majTourTounois}
+export {listById,createTournoi,editTournoiInfos, deleteTournoi,add,modifStatus,deleteUser, genereArbre,generationTournoi,majTourTounois}

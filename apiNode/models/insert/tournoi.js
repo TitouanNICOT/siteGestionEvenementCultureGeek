@@ -1,12 +1,20 @@
 import {genereArbre} from "../../controllers/gestionTournoi.controller.js";
 
 export default async (db) => {
+
     await db.tournoi.create({
         nomTournoi: 'TournoiTest',
         nbTour: 4,
-        idEvenement:2
+        idEvenement:2,
+        status:1,
     })
 
+    await db.tournoi.create({
+        nomTournoi: 'TournoiTestEdition',
+        nbTour: 5,
+        idEvenement:1,
+        status:0,
+    })
 
     for (let i = 0; i < 16; i++) {
         const {idUser} = await db.user.create({

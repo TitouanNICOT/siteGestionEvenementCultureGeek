@@ -29,8 +29,11 @@ const newEvenement = async (req, res) => {
         heureFin: req.body.heureFin,
         idTypeEvenement: req.body.idTypeEvenement,
         idStand: req.body.idStand
-    }).then(() => {
-        return res.status(200).send({success: 1})
+    }).then((result) => {
+        console.log("resultat de la création : ");
+        console.log(result);
+        console.log(result.idEvenement);
+        return res.status(200).send({success: 1,data:result})
     }).catch((error) => {
         console.error(error)
         return res.status(404).send({success: 0})

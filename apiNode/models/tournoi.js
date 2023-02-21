@@ -14,6 +14,10 @@ export const Tournoi = (Sequelize, sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false
         },
+        status: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
         nbJoueur: {
             type: Sequelize.VIRTUAL,
             get() {

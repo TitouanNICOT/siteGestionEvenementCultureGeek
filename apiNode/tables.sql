@@ -159,6 +159,7 @@ CREATE TABLE IF NOT EXISTS tournoi
     nbManche    INT,
     jeu         VARCHAR(50),
     idEvenement INT,
+    status INT,
     FOREIGN KEY (idEvenement) REFERENCES evenement (idEvenement)
 );
 

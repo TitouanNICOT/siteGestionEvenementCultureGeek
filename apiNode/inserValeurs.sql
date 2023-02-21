@@ -188,9 +188,9 @@ INSERT INTO reservation
 VALUES (7, 2);
 
 INSERT INTO tournoi
-VALUES (DEFAULT, 4, 'The Battle of Polytopia', 1);
+VALUES (DEFAULT, 4, 'The Battle of Polytopia', 1,0);
 INSERT INTO tournoi
-VALUES (DEFAULT, 5, 'Mario Kart 8 Deluxe', 2);
+VALUES (DEFAULT, 5, 'Mario Kart 8 Deluxe', 2,0);
 
 INSERT INTO participe
 VALUES (1, 1);

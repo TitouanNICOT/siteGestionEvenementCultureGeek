@@ -26,6 +26,24 @@
                           required>
                       </v-select>
                   </p>
+                  <div v-if="currentlyEditingTournoi">
+                    <p>Nom du tournoi :
+                      <v-text-field
+                          v-model="tournoiNomJeu"
+                          :rules="jeuRule"
+                          aria-required="true"
+                          required>
+                      </v-text-field>
+                    </p>
+                    <p>Nombre de tours :
+                      <v-text-field
+                          v-model="tournoiNbTour"
+                          :rules="nbTourRule"
+                          aria-required="true"
+                          required>
+                      </v-text-field>
+                    </p>
+                  </div>
                   <p>Date de début :
                       <v-datetime-picker
                           v-model="eventHeureDebut"
@@ -93,13 +111,14 @@
           <p>Deja prise : {{ nbParticipants }}</p>
           <p>Restant : {{ info.tournoi.nbJoueur - nbParticipants }}</p>
         </div>
-          <div v-if="currentRole!==NONCONNECTE && !dejaParticipe">
+          <div v-if="currentRole!==NONCONNECTE && !dejaParticipe && info.tournoi.status === 1">
               <v-btn @click="participerEvent" v-if="!dejaReserve">Réserver sa place</v-btn>
               <span v-else>Vous etes deja inscrit comme spectateur</span>
           </div>
         <v-btn v-else-if="currentRole!==NONCONNECTE && dejaParticipe" @click="annulerParticipationEvent">Annuler sa
           réservation
         </v-btn>
+        <p v-else-if="info.tournoi.status !== 1">Le tournoi n'accepte plus les inscriptions.</p>
         <p v-else>Vous devez être connecté pour réserver une place.</p>
       </div>
       </div>
@@ -107,7 +126,7 @@
         <br>
         <div>
             <v-btn @click="goToStand(info.stand.id)">Voir Stand</v-btn>
-            <v-btn v-if="currentRole===2 && isOwner"
+            <v-btn v-if="currentRole===2 && isOwner && (!info.tournoi ||info.tournoi.status === 0)"
                    @click="toggleEdition"
                    color="var(--primary-color)"
                    style="color: white">
@@ -119,6 +138,35 @@
                    style="color: white">
                 Annuler
             </v-btn>
+
+            <v-btn v-if="!isEditing && currentRole===2 && isOwner && info.tournoi && info.tournoi.status === 0"
+                   @click="setStatusTo(1)"
+                   color="var(--primary-color)"
+                   style="color: white">
+              Lancer les inscriptions
+            </v-btn>
+
+          <v-btn v-if="!isEditing && currentRole===2 && isOwner && info.tournoi && info.tournoi.status === 1"
+                 @click="setStatusTo(2)"
+                 color="var(--primary-color)"
+                 style="color: white">
+            Démarer le tournoi
+          </v-btn>
+
+          <v-btn v-if="!isEditing && currentRole===2 && isOwner && info.tournoi && info.tournoi.status === 2"
+                 @click="setStatusTo(3)"
+                 color="var(--primary-color)"
+                 style="color: white">
+            Finir le tournoi
+          </v-btn>
+
+          <v-btn v-if="!isEditing && info.tournoi && (info.tournoi.status === 2 || info.tournoi.status === 3)"
+                 :to="pathToGraph"
+                 color="var(--primary-color)"
+                 style="color: white">
+            Voir le graphique
+          </v-btn>
+
             <v-dialog
                 v-model="dialog"
                 persistent
@@ -204,6 +252,8 @@ export default {
         eventHeureDebut: Date,
         eventHeureFin: Date,
         eventNomStand: String,
+        tournoiNomJeu: String,
+        tournoiNbTour: Number,
         nameRule: [
             nom => !!nom || 'Le nom de l\'évenement est requis',
         ],
@@ -213,7 +263,12 @@ export default {
         selectRule: [
             select => !!select || 'Le type d\'évenement est requis',
         ],
-
+        jeuRule: [
+          nom => !!nom || 'Le nom du jeu est requis',
+        ],
+        nbTourRule: [
+          nom => !!nom || 'Le nombre de tours est requis',
+        ],
 
 
 
@@ -221,6 +276,17 @@ export default {
     computed: {
         ...mapState(["evenements", "currentUser", "listeTypeEvenement", "stands"]),
         ...mapGetters(["currentRole"]),
+
+        pathToGraph(){
+          if(this.info.tournoi){
+            return "/tournoi/"+this.info.tournoi.idTournoi;
+          }
+          return "/tournoi/1";
+        },
+
+        currentlyEditingTournoi(){
+          return this.eventType === "Tournoi";
+        },
         info() {
             return this.evenements.find(elem => elem.idEvenement === parseInt(this.$route.params.id))
         },
@@ -242,6 +308,27 @@ export default {
         format,
         goToStand(num) {
             this.$router.push({name: 'stand', params: {id: num}})
+        },
+
+        async setStatusTo(status){
+          //let info = this.evenements.find(elem => elem.idEvenement === parseInt(this.$route.params.id))
+          if (this.info===undefined)
+            return
+          let res = await myaxios.patch(`/gestionTournoi/${this.info.tournoi.idTournoi}/status`,{
+            status:status
+          });
+
+          if(res.status === 200){
+            this.info.tournoi.status = status;
+
+            if(status === 2){
+              let res = await myaxios.post(`/gestionTournoi/${this.info.tournoi.idTournoi}`);
+
+              if(res.status === 200){
+                alert("Tournoi bien initialisé");
+              }
+            }
+          }
         },
 
         async participationEvent(){
@@ -318,6 +405,12 @@ export default {
             }
         },
         deleteEvent() {
+
+            if(this.info.tournoi){
+              myaxios.delete(`/gestionTournoi/${this.info.tournoi.idTournoi}`);
+            }
+
+
             myaxios.delete(`/evenements/reservation/${this.idEvenement}/all`).then(() => {
                 if (this.notifUsers) {
                     console.log("All users has been notified")
@@ -339,6 +432,8 @@ export default {
                 this.eventHeureFin = new Date(this.info.heureFin)
                 this.eventNomStand = this.info.stand.nomStand
                 this.isEditing = true;
+                this.tournoiNomJeu = this.info.tournoi ? this.info.tournoi.nomTournoi : "";
+                this.tournoiNbTour = this.info.tournoi ? this.info.tournoi.nbTour : 0;
             } else {
                 if (this.$refs.form.validate() && this.additionnalValidation()) {
                     this.isEditing = false;
@@ -353,8 +448,37 @@ export default {
                         idStand: nomDuStand.id
                     }).then((responce) => {
                         if (responce.data.success === 1) {
-                            alert("as been modified")
-                            router.push({name: "evenement"})
+                            alert("has been modified")
+
+                            if(typeDEvenement.idTypeEvenement === 1){
+                              if(this.info.tournoi){
+                                // Edit tournoi
+                                myaxios.patch(`/gestionTournoi/${this.info.tournoi.idTournoi}`,{
+                                  nbTour:this.tournoiNbTour,
+                                  nomTournoi:this.tournoiNomJeu,
+                                }).then(()=>{
+                                  router.push({name: "evenement"})
+                                })
+                              }else{
+                                // Create tournoi
+                                myaxios.post(`/gestionTournoi/tournoi/create`,{
+                                  nbTour:this.tournoiNbTour,
+                                  nomTournoi:this.tournoiNomJeu,
+                                  status:0,
+                                  idEvenement:this.info.idEvenement
+                                }).then(()=>{
+                                  router.push({name: "evenement"})
+                                })
+                              }
+                            }else if(this.info.tournoi){
+                              // Delete tournoi
+                              myaxios.delete(`/gestionTournoi/${this.info.tournoi.idTournoi}`).then(()=>{
+                                router.push({name: "evenement"})
+                              })
+
+                            }else{
+                              router.push({name: "evenement"})
+                            }
                         } else
                             alert("Erreur lors de la modification du stand")
                     })
@@ -402,7 +526,10 @@ export default {
         // this.fetchEventInfo(this.idEvenement)
         this.notifUsers = compareAsc(this.currentDate, new Date('2023-02-01 00:00:00')) === compareDesc(this.currentDate, new Date('2023-02-03 23:59:59'))
 
-        this.participationEvent();
+        if(this.info.tournoi){
+          this.participationEvent();
+        }
+
 
         // pour tester pendant le Geeky Event
         // this.notifUsers = compareAsc(new Date('2023-02-02 00:00:00'), new Date('2023-02-01 00:00:00')) === compareDesc(new Date('2023-02-02 00:00:00'), new Date('2023-02-03 23:59:59'))
