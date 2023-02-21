@@ -140,6 +140,8 @@ const genereArbre = async (req,res) => {
         where: {idTournoi: idTournoi},//req.params.idTournoi
         raw: true
     }).then(data => {
+        if (data.length === 0)
+            return res.status(404).send({success: 0, data: "Aucun tournoi trouvé"})
         const arbre = genereArbreNiveau(tournoi.nbTour, data,null)[0]
         res.status(200).send({success:1,data:arbre})
     }).catch(err => {

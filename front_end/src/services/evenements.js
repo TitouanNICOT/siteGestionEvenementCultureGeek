@@ -43,6 +43,10 @@ class Evenement {
         stand.listEvenement.push(this);
     }
 
+    getIdPresta(){
+        return this.stand ? this.stand.user.idUser : undefined;
+    }
+
     // toAPI() {
     //     return {
     //         idStand: this.id,

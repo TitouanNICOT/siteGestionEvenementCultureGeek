@@ -123,8 +123,8 @@ const routes = [
         component: () => import('../views/PageStatTemp.vue')
     },
     {
-        path: '/test',
-        name: 'test',
+        path: '/tournoi/:idTournoi',
+        name: 'vueTournoi',
         component: () => import('../views/TournoiView.vue')
     }
 ]
