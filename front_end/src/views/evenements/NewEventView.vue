@@ -46,24 +46,25 @@
                 :rules="selectRule"
                 required>
             </v-select>
-          <div v-if="currentlyEditingTournoi">
-            <p>Nom du tournoi :
-              <v-text-field
-                  v-model="tournoiNomJeu"
-                  :rules="jeuRule"
-                  aria-required="true"
-                  required>
-              </v-text-field>
-            </p>
-            <p>Nombre de tours :
-              <v-text-field
-                  v-model="tournoiNbTour"
-                  :rules="nbTourRule"
-                  aria-required="true"
-                  required>
-              </v-text-field>
-            </p>
-          </div>
+            <div v-if="currentlyEditingTournoi">
+                <p>Nom du tournoi :
+                    <v-text-field
+                        v-model="tournoiNomJeu"
+                        :rules="jeuRule"
+                        aria-required="true"
+                        required>
+                    </v-text-field>
+                </p>
+                <p>Nombre de tours :
+                    <v-text-field
+                        v-model="tournoiNbTour"
+                        :rules="nbTourRule"
+                        aria-required="true"
+                        type="number"
+                        required>
+                    </v-text-field>
+                </p>
+            </div>
             <v-text-field
                 :value="idStand"
                 label="numéro de stand"
@@ -83,10 +84,10 @@
 <script>
 import router from "@/router";
 import {format, compareAsc} from "date-fns";
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 import {log10} from "chart.js/helpers";
-import axios from "axios";
 import myaxios from "@/services/axios";
+import Evenement from "@/services/evenements";
 
 export default {
     name: "NewEventView",
@@ -104,10 +105,10 @@ export default {
                 select => !!select || 'Le type d\'évenement est requis',
             ],
             jeuRule: [
-              nom => !!nom || 'Le nom du jeu est requis',
+                nom => !!nom || 'Le nom du jeu est requis',
             ],
             nbTourRule: [
-              nom => !!nom || 'Le nombre de tours est requis',
+                nom => !!nom || 'Le nombre de tours est requis',
             ],
             menu: false,
             menu2: false,
@@ -127,9 +128,9 @@ export default {
             return this.listeTypeEvenement.map(typeEvenement => typeEvenement.libelleTypeEvenement)
         },
 
-      currentlyEditingTournoi(){
-        return this.eventType === "Tournoi";
-      },
+        currentlyEditingTournoi() {
+            return this.eventType === "Tournoi";
+        },
     },
     methods: {
         compareAsc,
@@ -138,49 +139,49 @@ export default {
         router() {
             return router
         },
+        ...mapMutations(["addEvenement"]),
         addEvent() {
 
             if (this.$refs.form.validate() && this.additionnalValidation())
-                axios.post('http://127.0.0.1:3000/evenements', {
+                myaxios.post('/evenements', {
                     libelleEvenement: this.EventName,
                     heureDebut: this.startDatetime,
                     heureFin: this.endDatetime,
-                    idTypeEvenement: this.listeTypeEvenement.find(typeEvenement => typeEvenement.libelleTypeEvenement === this.eventType).idTypeEvenement ,
+                    idTypeEvenement: this.listeTypeEvenement.find(typeEvenement => typeEvenement.libelleTypeEvenement === this.eventType).idTypeEvenement,
                     idStand: this.idStand
-                }).then( (result) => {
+                }).then((result) => {
                     alert('Évènement ajouté avec succès')
 
-                    if(result.status === 200 && this.currentlyEditingTournoi){
+                    myaxios.get("/evenements/"+result.data.data.idEvenement).then((result2) => {
+                        this.addEvenement(Evenement.fromAPI(result2.data.data))
 
-                      myaxios.post(`http://127.0.0.1:3000/gestionTournoi/tournoi/create`,{
-                        nbTour:this.tournoiNbTour,
-                        nomTournoi:this.tournoiNomJeu,
-                        status:0,
-                        idEvenement:result.data.data.idEvenement
-                      }).then(()=>{
-                        router.push({name: "evenement"})
-                      })
-                    }else{
-                      this.$router.push({name: 'evenement'})
-                    }
-
-
-
-
-                }).catch(error => {
-                    console.log(error)
+                        if (result.status === 200 && this.currentlyEditingTournoi) {
+                            myaxios.post(`/gestionTournoi/tournoi/create`, {
+                                nbTour: this.tournoiNbTour,
+                                nomTournoi: this.tournoiNomJeu,
+                                status: 0,
+                                idEvenement: result.data.data.idEvenement
+                            }).then(() => {
+                                router.push({name: "evenement"})
+                            })
+                        } else {
+                            this.$router.push({name: 'evenement'})
+                        }
+                    }).catch(error => {
+                        console.log(error)
+                    })
                 })
 
         },
-        getMinDate(){
-            if (this.startDatetime){
+        getMinDate() {
+            if (this.startDatetime) {
                 return format(this.startDatetime, 'yyyy-MM-dd')
             }
             return '2023-02-01'
         },
-        getMaxDate(){
+        getMaxDate() {
 
-            if (this.endDatetime){
+            if (this.endDatetime) {
                 return format(this.endDatetime, 'yyyy-MM-dd')
             }
             return '2023-02-03'

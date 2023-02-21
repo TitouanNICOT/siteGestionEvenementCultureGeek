@@ -42,6 +42,10 @@ export default new Vuex.Store({
         setEvenements(state, evenement) {
             state.evenements = evenement;
         },
+        addEvenement(state, evenement) {
+            evenement.setStand( state.stands.find(stand => stand.id === evenement.idStand) )
+            state.evenements.push(evenement)
+        },
         addStand(state, stand) {
             state.stands.push(stand);
         },

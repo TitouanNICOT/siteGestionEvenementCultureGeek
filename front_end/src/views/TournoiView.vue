@@ -49,7 +49,7 @@ export default {
             return this.currentUser.idUser === this.evenement.getIdPresta()
         },
         evenement(){
-            return this.evenements.find(e => e.tournoi && e.tournoi.idTournoi === this.$route.params.idTournoi)
+            return this.evenements.find(e => e.tournoi && e.tournoi.idTournoi === parseInt(this.$route.params.idTournoi))
         }
     },
     methods: {

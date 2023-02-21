@@ -322,11 +322,16 @@ export default {
             this.info.tournoi.status = status;
 
             if(status === 2){
-              let res = await myaxios.post(`/gestionTournoi/${this.info.tournoi.idTournoi}`);
-
-              if(res.status === 200){
-                alert("Tournoi bien initialisé");
-              }
+                try {
+                    let res = await myaxios.post(`/gestionTournoi/${this.info.tournoi.idTournoi}`);
+                    if(res.status === 200){
+                        alert("Tournoi bien initialisé");
+                    }
+                }catch (e) {
+                    this.setStatusTo(1);
+                    if (e.response.status===500)
+                        alert("Pas le bon nombre de personne pour commencer tournoi")
+                }
             }
           }
         },
@@ -526,8 +531,8 @@ export default {
         // this.fetchEventInfo(this.idEvenement)
         this.notifUsers = compareAsc(this.currentDate, new Date('2023-02-01 00:00:00')) === compareDesc(this.currentDate, new Date('2023-02-03 23:59:59'))
 
-        if(this.info.tournoi){
-          this.participationEvent();
+        if (this.info && this.info.tournoi) {
+            this.participationEvent();
         }
 
 
