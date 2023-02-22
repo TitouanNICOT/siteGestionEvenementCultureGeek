@@ -58,15 +58,15 @@ export default {
     name: 'NavBar',
     data() {
         return {
-          titles: [{text: 'Home', icon: 'mdi-home', color: 'grey', route: '/'}
-            , {text: 'Carte', icon: 'mdi-map-marker', color: 'grey', route: '/carte'}
-            , {text: 'Liste des stands', icon: 'mdi-store', color: 'grey', route: '/stand'}
-            , {text: 'Liste des événements', icon: 'mdi-calendar', color: 'grey', route: '/evenement'}
-            , {text: 'Liste des boutiques', icon: 'mdi-cart', color: 'grey', route: '/boutique'}
-            , {text: 'Liste des prestataires', icon: 'mdi-account-tie', color: 'grey', route: '/prestataire'}
-            , {text: 'Timeline', icon: 'mdi-timeline-clock-outline', color: 'grey', route: '/timeline'}
-            , {text: 'Contact', icon: 'mdi-email', color: 'grey', route: '/contact'}
-          ],
+            titles: [{text: 'Home', icon: 'mdi-home', color: 'grey', route: '/'}
+                , {text: 'Carte', icon: 'mdi-map-marker', color: 'grey', route: '/carte'}
+                , {text: 'Liste des stands', icon: 'mdi-store', color: 'grey', route: '/stand'}
+                , {text: 'Liste des événements', icon: 'mdi-calendar', color: 'grey', route: '/evenement'}
+                , {text: 'Liste des boutiques', icon: 'mdi-cart', color: 'grey', route: '/boutique'}
+                , {text: 'Liste des prestataires', icon: 'mdi-account-tie', color: 'grey', route: '/prestataire'}
+                , {text: 'Timeline', icon: 'mdi-timeline-clock-outline', color: 'grey', route: '/timeline'}
+                , {text: 'Contact', icon: 'mdi-email', color: 'grey', route: '/contact'}
+            ],
             ADMIN, PRESTA, CLIENT, roles,
             drawer: false
         }
@@ -83,6 +83,7 @@ export default {
     methods: {
         ...mapMutations(['removeCurrentUser']),
         changeRouteId(id) {
+            this.drawer = false;
             this.$router.push(this.titles[id].route).catch(() => {
             })
         },

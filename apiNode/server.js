@@ -55,6 +55,10 @@ app.get("/",(req, res)=>{
     res.status(200).send("salut");
 })
 
+app.get("/*", (req, res) => {
+    res.status(404).send("Page not found");
+});
+
 app.listen(port,()=>{
     console.log("Le serveur ecoute sur port " + port);
     // userRepo.createTable()

@@ -7,6 +7,8 @@
             <p>Nom : {{currentUser.nom}}</p>
             <p>Prénom : {{currentUser.prenom}}</p>
             <p>Mail : {{currentUser.email}}</p>
+            <p v-if="currentUser.isNotif">Notifications: activées</p>
+            <p v-else>Notifications: désactivées</p>
         </div>
         <ModifierUser/>
         <br>
