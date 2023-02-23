@@ -128,6 +128,11 @@ const routes = [
         component: () => import('../views/TournoiView.vue')
     },
     {
+        path: '/gestionParticipant',
+        name: 'gestionParticipant',
+        component: () => import('../components/GestionParticipant.vue')
+    },
+    {
         path: '/*',
         name: 'notFound',
         component: () => import('../views/NotFoundView.vue')

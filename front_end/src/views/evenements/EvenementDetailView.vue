@@ -168,6 +168,12 @@
                    style="color: white">
                 Voir le graphique
             </v-btn>
+          <v-btn
+                   @click="goToGestionParticipants()"
+                   color="var(--primary-color)"
+                   style="color: white">
+                Gestion des Participants
+          </v-btn>
 
             <v-dialog
                 v-model="dialog"
@@ -547,6 +553,9 @@ export default {
                 return format(this.eventHeureFin, 'yyyy-MM-dd')
             }
             return '2023-02-03'
+        },
+        goToGestionParticipants() {
+            router.push({name: "gestionParticipant"})
         },
     },
     created() {

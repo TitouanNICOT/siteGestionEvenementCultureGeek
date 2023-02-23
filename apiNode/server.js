@@ -17,6 +17,7 @@ import loginRouter from "./routes/login.router.js";
 import cors from 'cors'
 import mailRouter from "./routes/mail.router.js";
 import gestionTournoiRouter from "./routes/gestionTournoi.router.js";
+import gestionParticipantRouter from "./routes/gestionParticipant.router.js";
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
@@ -50,6 +51,7 @@ app.use("/connection",loginRouter);
 app.use("/mail", mailRouter)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use("/gestionTournoi",gestionTournoiRouter);
+app.use("/gestionParticipant",gestionParticipantRouter);
 
 app.get("/",(req, res)=>{
     res.status(200).send("salut");

@@ -9,7 +9,7 @@
             dark
             style="z-index: 2"
             class="sidebar">
-            <v-list class="" style="padding-top: 40%">
+          <v-list class="" style="padding-top: 40%">
                 <img class="logo" src="/GEEKY_EVENT.png" alt=""/>
                 <v-list-item style="margin-bottom: 15px" v-if="currentRole === ADMIN" to="/admin">
                     <v-icon style="margin: 10px">mdi-account-multiple</v-icon>
@@ -31,7 +31,6 @@
         </v-navigation-drawer>
 
         <v-app-bar app
-                   hide-on-scroll
                    color="var(--primary-color)"
                    dark>
 
