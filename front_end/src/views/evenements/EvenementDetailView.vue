@@ -168,12 +168,12 @@
                    style="color: white">
                 Voir le graphique
             </v-btn>
-          <v-btn
+            <v-btn v-if="currentRole===2 && isOwner"
                    @click="goToGestionParticipants()"
                    color="var(--primary-color)"
                    style="color: white">
                 Gestion des Participants
-          </v-btn>
+            </v-btn>
 
             <v-dialog
                 v-model="dialog"
@@ -488,7 +488,8 @@ export default {
                                     }).then(() => {
                                         myaxios.post('/mail/notification', {
                                             eventId: this.idEvenement,
-                                                        eventStatus: 'Modified'    }).then(() => {
+                                            eventStatus: 'Modified'
+                                        }).then(() => {
                                             alert("All users has been notified")
                                         }).catch(error => {
                                             console.log(error)
