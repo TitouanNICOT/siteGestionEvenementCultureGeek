@@ -11,7 +11,7 @@ const sendEMail = async (req, res) => {
         secure: true,
         auth: {
             user: "contact.squadron70",
-            pass: "osrnscavukhfudvj",
+            pass: "omnkkuduznsoelvb",
         }
     });
 
@@ -217,7 +217,7 @@ const sendNotification = async (req, res) => {
         secure: true,
         auth: {
             user: "contact.squadron70",
-            pass: "tfbpkgebmcshyyva",
+            pass: "omnkkuduznsoelvb",
         }
     });
 
@@ -230,20 +230,22 @@ const sendNotification = async (req, res) => {
         }]
     }).then((evenements) => {
         let emails = evenements.map((evenement) => evenement.users.map((user) => user.email));
-        emails.forEach((email) => {
-            try {
-                transporter.sendMail({
-                    from: "contact.squadron70@gmail.com",
-                    to: email,
-                    subject: sujet,
-                    html: htmlcontent
-                })
-            }
-            catch (e) {
-                console.log(e);
-                return res.status(500).send({success: 0, data: e})
-            }
-        })
+        console.log(emails)
+        if (emails.length !== 0) {
+            emails.forEach((email) => {
+                try {
+                    transporter.sendMail({
+                        from: "contact.squadron70@gmail.com",
+                        to: email,
+                        subject: sujet,
+                        html: htmlcontent
+                    })
+                } catch (e) {
+                    console.log(e);
+                    return res.status(500).send({success: 0, data: e})
+                }
+            })
+        }
     });
 
     return res.status(200).send({success: 1, data: "Mails envoyés"})
